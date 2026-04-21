@@ -12,6 +12,7 @@ public partial class LoginForm : Form {
   private void ButtonSubmit_Click(object sender, EventArgs e) {
     string username = TBoxUsername.Text.Trim();
     string password = TBoxPassword.Text.Trim();
+    bool rememberMe = ChBoxRememberMe.Checked;
 
     if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password)) {
       MessageBox.Show("Molimo unesite korisničko ime i lozinku.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -19,7 +20,7 @@ public partial class LoginForm : Form {
     }
 
     try {
-      if (AuthService.Login(username, password)) {
+      if (AuthService.Login(username, password, rememberMe)) {
         IsLoginSuccessful = true;
         DialogResult = DialogResult.OK;
         Close();

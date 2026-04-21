@@ -30,7 +30,7 @@
       TBoxUsername = new ReaLTaiizor.Controls.MaterialTextBoxEdit();
       TBoxPassword = new ReaLTaiizor.Controls.MaterialTextBoxEdit();
       bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
-      ChBoxRemeberMe = new ReaLTaiizor.Controls.AloneCheckBox();
+      ChBoxRememberMe = new ReaLTaiizor.Controls.AloneCheckBox();
       ButtonSubmit = new ReaLTaiizor.Controls.AloneButton();
       ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
       SuspendLayout();
@@ -129,7 +129,7 @@
       TBoxPassword.MaxLength = 32767;
       TBoxPassword.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
       TBoxPassword.Name = "TBoxPassword";
-      TBoxPassword.PasswordChar = '\0';
+      TBoxPassword.PasswordChar = '●';
       TBoxPassword.PrefixSuffixText = null;
       TBoxPassword.ReadOnly = false;
       TBoxPassword.RightToLeft = RightToLeft.No;
@@ -142,7 +142,7 @@
       TBoxPassword.TabStop = false;
       TBoxPassword.TextAlign = HorizontalAlignment.Left;
       TBoxPassword.TrailingIcon = null;
-      TBoxPassword.UseSystemPasswordChar = false;
+      TBoxPassword.UseSystemPasswordChar = true;
       // 
       // bigLabel4
       // 
@@ -156,17 +156,18 @@
       bigLabel4.TabIndex = 6;
       bigLabel4.Text = "Password";
       // 
-      // ChBoxRemeberMe
+      // ChBoxRememberMe
       // 
-      ChBoxRemeberMe.BackColor = Color.Transparent;
-      ChBoxRemeberMe.Checked = false;
-      ChBoxRemeberMe.EnabledCalc = true;
-      ChBoxRemeberMe.ForeColor = Color.FromArgb(124, 133, 142);
-      ChBoxRemeberMe.Location = new Point(28, 446);
-      ChBoxRemeberMe.Name = "ChBoxRemeberMe";
-      ChBoxRemeberMe.Size = new Size(97, 17);
-      ChBoxRemeberMe.TabIndex = 9;
-      ChBoxRemeberMe.Text = "Zapamti Me";
+      ChBoxRememberMe.BackColor = Color.Transparent;
+      ChBoxRememberMe.Checked = false;
+      ChBoxRememberMe.EnabledCalc = true;
+      ChBoxRememberMe.Font = new Font("Segoe UI", 10F);
+      ChBoxRememberMe.ForeColor = Color.FromArgb(124, 133, 142);
+      ChBoxRememberMe.Location = new Point(28, 446);
+      ChBoxRememberMe.Name = "ChBoxRememberMe";
+      ChBoxRememberMe.Size = new Size(97, 17);
+      ChBoxRememberMe.TabIndex = 9;
+      ChBoxRememberMe.Text = "Zapamti Me";
       // 
       // ButtonSubmit
       // 
@@ -178,7 +179,7 @@
       ButtonSubmit.Name = "ButtonSubmit";
       ButtonSubmit.Size = new Size(280, 51);
       ButtonSubmit.TabIndex = 10;
-      ButtonSubmit.Text = "Prijavi Se";
+      ButtonSubmit.Text = "Prijava";
       ButtonSubmit.Click += ButtonSubmit_Click;
       // 
       // LoginForm
@@ -188,7 +189,7 @@
       BackColor = Color.White;
       ClientSize = new Size(336, 564);
       Controls.Add(ButtonSubmit);
-      Controls.Add(ChBoxRemeberMe);
+      Controls.Add(ChBoxRememberMe);
       Controls.Add(TBoxPassword);
       Controls.Add(bigLabel4);
       Controls.Add(TBoxUsername);
@@ -216,7 +217,7 @@
     private ReaLTaiizor.Controls.MaterialTextBoxEdit TBoxUsername;
     private ReaLTaiizor.Controls.MaterialTextBoxEdit TBoxPassword;
     private ReaLTaiizor.Controls.BigLabel bigLabel4;
-    private ReaLTaiizor.Controls.AloneCheckBox ChBoxRemeberMe;
+    private ReaLTaiizor.Controls.AloneCheckBox ChBoxRememberMe;
     private ReaLTaiizor.Controls.AloneButton ButtonSubmit;
   }
 }
