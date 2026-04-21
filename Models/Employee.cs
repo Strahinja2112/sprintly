@@ -34,19 +34,16 @@ public class Employee {
   public string PasswordHash { get; set; } = null!;
 
   public string? CertificationLevel { get; set; }
-
   public string? ProductDomain { get; set; }
-
   public string? TeamRole { get; set; }
-
   public string? SeniorityLevel { get; set; }
-
   public string? Field { get; set; }
 
   [Required]
   public EmployeeType Type { get; set; }
 
   public virtual ICollection<Project> Projects { get; set; } = [];
+  public virtual ICollection<Meeting> Meetings { get; set; } = [];
 }
 
 public enum EmployeeType {

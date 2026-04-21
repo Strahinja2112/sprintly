@@ -21,38 +21,38 @@ public class AppDbContext : DbContext {
   }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder) {
-    // Employee Mapiranja
+    // Employee
     modelBuilder.Entity<Employee>(entity => {
       entity.HasIndex(e => e.Email).IsUnique();
       entity.HasIndex(e => e.Username).IsUnique();
       entity.Property(e => e.Type).HasConversion<string>();
     });
 
-    // Client Mapiranja
+    // Client
     modelBuilder.Entity<Client>()
         .HasIndex(c => c.Email).IsUnique();
 
-    // UserStory Mapiranja
+    // UserStory
     modelBuilder.Entity<UserStory>()
         .HasOne(u => u.Client)
         .WithMany(c => c.UserStories)
         .HasForeignKey(u => u.ClientId)
         .OnDelete(DeleteBehavior.SetNull);
 
-    // WorkTask Mapiranja
-    modelBuilder.Entity<WorkTask>()
-        .HasOne(w => w.UserStory)
-        .WithMany()
-        .HasForeignKey(w => w.UserStoryId)
-        .OnDelete(DeleteBehavior.Cascade);
+    // WorkTask
+    modelBuilder.Entity<WorkTask>(entity => {
+      entity.HasOne(w => w.UserStory)
+          .WithMany()
+          .HasForeignKey(w => w.UserStoryId)
+          .OnDelete(DeleteBehavior.Cascade);
 
-    modelBuilder.Entity<WorkTask>()
-        .HasOne(w => w.Sprint)
-        .WithMany(s => s.WorkTasks)
-        .HasForeignKey(w => w.SprintId)
-        .OnDelete(DeleteBehavior.Restrict);
+      entity.HasOne(w => w.Sprint)
+          .WithMany(s => s.WorkTasks)
+          .HasForeignKey(w => w.SprintId)
+          .OnDelete(DeleteBehavior.Restrict);
+    });
 
-    // WorkTaskEntry Mapiranja (Many-to-Many sa dodatnim podacima)
+    // WorkTaskEntry (Join tabela sa podacima - Manuelno mapirana)
     modelBuilder.Entity<WorkTaskEntry>(entity => {
       entity.HasKey(we => new { we.EmployeeId, we.WorkTaskId, we.WorkDate });
 
@@ -67,13 +67,13 @@ public class AppDbContext : DbContext {
           .OnDelete(DeleteBehavior.Cascade);
     });
 
-    // Project Mapiranja (Many-to-Many implicitna)
+    // Project (Many-to-Many: Employee <-> Project)
     modelBuilder.Entity<Project>()
         .HasMany(p => p.Members)
         .WithMany(e => e.Projects)
         .UsingEntity(j => j.ToTable("Employee_WorksOn_Project"));
 
-    // Sprint Mapiranja
+    // Sprint
     modelBuilder.Entity<Sprint>(entity => {
       entity.HasOne(s => s.Project)
           .WithMany(p => p.Sprints)
@@ -88,18 +88,18 @@ public class AppDbContext : DbContext {
       entity.Property(s => s.Status).HasConversion<string>();
     });
 
-    // Distribution Mapiranja
+    // Distribution
     modelBuilder.Entity<Distribution>()
         .Property(d => d.Environment).HasConversion<string>();
 
-    // Increment Mapiranja
+    // Increment
     modelBuilder.Entity<Increment>()
         .HasOne(i => i.Distribution)
         .WithMany()
         .HasForeignKey(i => i.DistributionId)
         .OnDelete(DeleteBehavior.Cascade);
 
-    // Feature Mapiranja
+    // Feature
     modelBuilder.Entity<Feature>(entity => {
       entity.HasOne(f => f.Sprint)
           .WithMany()
@@ -112,7 +112,7 @@ public class AppDbContext : DbContext {
           .OnDelete(DeleteBehavior.Cascade);
     });
 
-    // Meeting Mapiranja (TPH)
+    // Meeting (Many-to-Many: Employee <-> Meeting + TPH)
     modelBuilder.Entity<Meeting>(entity => {
       entity.HasOne(m => m.Sprint)
           .WithMany(s => s.Meetings)
@@ -120,6 +120,11 @@ public class AppDbContext : DbContext {
           .OnDelete(DeleteBehavior.Cascade);
 
       entity.Property(m => m.Type).HasConversion<string>();
+
+      // Implementacija međutabele za prisustvo
+      entity.HasMany(m => m.Attendees)
+          .WithMany(e => e.Meetings)
+          .UsingEntity(j => j.ToTable("Employee_Attends_Meeting"));
     });
   }
 }
