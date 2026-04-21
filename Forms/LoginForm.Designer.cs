@@ -31,7 +31,7 @@
       TBoxPassword = new ReaLTaiizor.Controls.MaterialTextBoxEdit();
       bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
       ChBoxRemeberMe = new ReaLTaiizor.Controls.AloneCheckBox();
-      btnSubmit = new ReaLTaiizor.Controls.AloneButton();
+      ButtonSubmit = new ReaLTaiizor.Controls.AloneButton();
       ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
       SuspendLayout();
       // 
@@ -168,17 +168,18 @@
       ChBoxRemeberMe.TabIndex = 9;
       ChBoxRemeberMe.Text = "Zapamti Me";
       // 
-      // btnSubmit
+      // ButtonSubmit
       // 
-      btnSubmit.BackColor = Color.Transparent;
-      btnSubmit.EnabledCalc = true;
-      btnSubmit.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-      btnSubmit.ForeColor = Color.FromArgb(124, 133, 142);
-      btnSubmit.Location = new Point(28, 483);
-      btnSubmit.Name = "btnSubmit";
-      btnSubmit.Size = new Size(280, 51);
-      btnSubmit.TabIndex = 10;
-      btnSubmit.Text = "Prijavi Se";
+      ButtonSubmit.BackColor = Color.Transparent;
+      ButtonSubmit.EnabledCalc = true;
+      ButtonSubmit.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+      ButtonSubmit.ForeColor = Color.FromArgb(124, 133, 142);
+      ButtonSubmit.Location = new Point(28, 483);
+      ButtonSubmit.Name = "ButtonSubmit";
+      ButtonSubmit.Size = new Size(280, 51);
+      ButtonSubmit.TabIndex = 10;
+      ButtonSubmit.Text = "Prijavi Se";
+      ButtonSubmit.Click += ButtonSubmit_Click;
       // 
       // LoginForm
       // 
@@ -186,7 +187,7 @@
       AutoScaleMode = AutoScaleMode.Font;
       BackColor = Color.White;
       ClientSize = new Size(336, 564);
-      Controls.Add(btnSubmit);
+      Controls.Add(ButtonSubmit);
       Controls.Add(ChBoxRemeberMe);
       Controls.Add(TBoxPassword);
       Controls.Add(bigLabel4);
@@ -216,6 +217,6 @@
     private ReaLTaiizor.Controls.MaterialTextBoxEdit TBoxPassword;
     private ReaLTaiizor.Controls.BigLabel bigLabel4;
     private ReaLTaiizor.Controls.AloneCheckBox ChBoxRemeberMe;
-    private ReaLTaiizor.Controls.AloneButton btnSubmit;
+    private ReaLTaiizor.Controls.AloneButton ButtonSubmit;
   }
 }
