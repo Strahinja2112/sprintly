@@ -29,7 +29,7 @@
       // 
       AutoScaleDimensions = new SizeF(7F, 15F);
       AutoScaleMode = AutoScaleMode.Font;
-      ClientSize = new Size(452, 450);
+      ClientSize = new Size(882, 450);
       FormBorderStyle = FormBorderStyle.FixedSingle;
       MaximizeBox = false;
       Name = "MainForm";
