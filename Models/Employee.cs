@@ -45,6 +45,8 @@ public class Employee {
 
   [Required]
   public EmployeeType Type { get; set; }
+
+  public virtual ICollection<Project> Projects { get; set; } = [];
 }
 
 public enum EmployeeType {
