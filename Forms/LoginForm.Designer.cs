@@ -52,7 +52,7 @@
       bigLabel1.BackColor = Color.Transparent;
       bigLabel1.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
       bigLabel1.ForeColor = Color.FromArgb(80, 80, 80);
-      bigLabel1.Location = new Point(76, 134);
+      bigLabel1.Location = new Point(76, 125);
       bigLabel1.Margin = new Padding(4, 0, 4, 0);
       bigLabel1.Name = "bigLabel1";
       bigLabel1.Size = new Size(188, 59);
@@ -64,7 +64,7 @@
       bigLabel2.BackColor = Color.Transparent;
       bigLabel2.Font = new Font("Segoe UI", 14F);
       bigLabel2.ForeColor = Color.FromArgb(80, 80, 80);
-      bigLabel2.Location = new Point(28, 198);
+      bigLabel2.Location = new Point(28, 196);
       bigLabel2.Margin = new Padding(4, 0, 4, 0);
       bigLabel2.Name = "bigLabel2";
       bigLabel2.Size = new Size(280, 56);
@@ -80,9 +80,9 @@
       bigLabel3.ForeColor = Color.FromArgb(80, 80, 80);
       bigLabel3.Location = new Point(28, 274);
       bigLabel3.Name = "bigLabel3";
-      bigLabel3.Size = new Size(75, 20);
+      bigLabel3.Size = new Size(106, 20);
       bigLabel3.TabIndex = 4;
-      bigLabel3.Text = "Username";
+      bigLabel3.Text = "Korisničko Ime";
       // 
       // TBoxUsername
       // 
@@ -152,9 +152,9 @@
       bigLabel4.ForeColor = Color.FromArgb(80, 80, 80);
       bigLabel4.Location = new Point(28, 360);
       bigLabel4.Name = "bigLabel4";
-      bigLabel4.Size = new Size(70, 20);
+      bigLabel4.Size = new Size(59, 20);
       bigLabel4.TabIndex = 6;
-      bigLabel4.Text = "Password";
+      bigLabel4.Text = "Lozinka";
       // 
       // ChBoxRememberMe
       // 
@@ -163,7 +163,7 @@
       ChBoxRememberMe.EnabledCalc = true;
       ChBoxRememberMe.Font = new Font("Segoe UI", 10F);
       ChBoxRememberMe.ForeColor = Color.FromArgb(124, 133, 142);
-      ChBoxRememberMe.Location = new Point(28, 446);
+      ChBoxRememberMe.Location = new Point(28, 443);
       ChBoxRememberMe.Name = "ChBoxRememberMe";
       ChBoxRememberMe.Size = new Size(97, 17);
       ChBoxRememberMe.TabIndex = 9;
@@ -175,7 +175,7 @@
       ButtonSubmit.EnabledCalc = true;
       ButtonSubmit.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
       ButtonSubmit.ForeColor = Color.FromArgb(124, 133, 142);
-      ButtonSubmit.Location = new Point(28, 483);
+      ButtonSubmit.Location = new Point(28, 496);
       ButtonSubmit.Name = "ButtonSubmit";
       ButtonSubmit.Size = new Size(280, 51);
       ButtonSubmit.TabIndex = 10;
@@ -187,7 +187,7 @@
       AutoScaleDimensions = new SizeF(7F, 15F);
       AutoScaleMode = AutoScaleMode.Font;
       BackColor = Color.White;
-      ClientSize = new Size(336, 564);
+      ClientSize = new Size(336, 569);
       Controls.Add(ButtonSubmit);
       Controls.Add(ChBoxRememberMe);
       Controls.Add(TBoxPassword);
@@ -202,7 +202,7 @@
       MaximizeBox = false;
       Name = "LoginForm";
       StartPosition = FormStartPosition.CenterScreen;
-      Text = "LoginForm";
+      Text = "Sprintra - Login";
       ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
       ResumeLayout(false);
       PerformLayout();
