@@ -27,8 +27,15 @@ internal static class Program {
       Application.Run(new Forms.MainForm());
     }
     else {
-      Application.Run(new Forms.LoginForm());
-      //Application.Run(new Forms.MainForm());
+      var loginForm = new Forms.LoginForm();
+      Application.Run(loginForm);
+
+      if (!loginForm.IsLoginSuccessful) {
+        Application.Exit();
+        return;
+      }
+
+      Application.Run(new Forms.MainForm());
     }
   }
 }
