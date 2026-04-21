@@ -121,10 +121,22 @@ public class AppDbContext : DbContext {
 
       entity.Property(m => m.Type).HasConversion<string>();
 
-      // Implementacija međutabele za prisustvo
+      // Many-to-Many: Employee <-> Meeting
       entity.HasMany(m => m.Attendees)
           .WithMany(e => e.Meetings)
-          .UsingEntity(j => j.ToTable("Employee_Attends_Meeting"));
+          .UsingEntity<Dictionary<string, object>>(
+              "Employee_Attends_Meeting",
+              j => j
+                  .HasOne<Employee>()
+                  .WithMany()
+                  .HasForeignKey("AttendeesId")
+                  .OnDelete(DeleteBehavior.NoAction),
+              j => j
+                  .HasOne<Meeting>()
+                  .WithMany()
+                  .HasForeignKey("MeetingsId")
+                  .OnDelete(DeleteBehavior.Cascade)
+          );
     });
   }
 }
