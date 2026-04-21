@@ -7,8 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace Sprintra.Forms {
-  public partial class Sprintra : Form {
-    public Sprintra() {
+  public partial class MainForm : Form {
+    public MainForm() {
       InitializeComponent();
     }
   }

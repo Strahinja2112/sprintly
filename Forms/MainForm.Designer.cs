@@ -1,5 +1,5 @@
 ﻿namespace Sprintra.Forms {
-  partial class Sprintra {
+  partial class MainForm {
     /// <summary>
     /// Required designer variable.
     /// </summary>
@@ -25,12 +25,14 @@
     private void InitializeComponent() {
       SuspendLayout();
       // 
-      // Sprintra
+      // MainForm
       // 
       AutoScaleDimensions = new SizeF(7F, 15F);
       AutoScaleMode = AutoScaleMode.Font;
-      ClientSize = new Size(800, 450);
-      Name = "Sprintra";
+      ClientSize = new Size(452, 450);
+      FormBorderStyle = FormBorderStyle.FixedSingle;
+      MaximizeBox = false;
+      Name = "MainForm";
       StartPosition = FormStartPosition.CenterScreen;
       Text = "MainForm";
       ResumeLayout(false);
