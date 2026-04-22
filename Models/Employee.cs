@@ -34,14 +34,29 @@ public class Employee {
   public string PasswordHash { get; set; } = null!;
 
   public string? TeamRole { get; set; }
-  public string? SeniorityLevel { get; set; }
-  public string? Field { get; set; }
+  public SeniorityLevel? SeniorityLevel { get; set; }
+  public Field? Field { get; set; }
 
   [Required]
   public EmployeeType Type { get; set; }
 
   public virtual ICollection<Project> Projects { get; set; } = [];
   public virtual ICollection<Meeting> Meetings { get; set; } = [];
+}
+
+public enum SeniorityLevel {
+  Junior,
+  Medior,
+  Senior,
+  Lead
+}
+
+public enum Field {
+  Backend,
+  Frontend,
+  Fullstack,
+  QA,
+  DevOps
 }
 
 public enum EmployeeType {

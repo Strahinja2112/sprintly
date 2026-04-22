@@ -21,8 +21,8 @@ public partial class EmployeesForm : BaseForm {
 
   private void EmployeesForm_Load(object sender, EventArgs e) {
     ComboBoxType.Items.AddRange(Enum.GetNames<EmployeeType>());
-    ComboBoxExpirience.Items.AddRange(new string[] { "Junior", "Medior", "Senior", "Lead" });
-    ComboBoxField.Items.AddRange(new string[] { "Backend", "Frontend", "Fullstack", "QA", "DevOps" });
+    ComboBoxExpirience.Items.AddRange(Enum.GetNames<SeniorityLevel>());
+    ComboBoxField.Items.AddRange(Enum.GetNames<Field>());
 
     LoadEmployees();
 
@@ -150,8 +150,8 @@ public partial class EmployeesForm : BaseForm {
       emp.HireDate = DateTime.Value;
       emp.Type = Enum.TryParse(ComboBoxType.SelectedItem?.ToString(), out EmployeeType type) ? type : EmployeeType.Developer;
       if (emp.Type == EmployeeType.Developer) {
-        emp.SeniorityLevel = ComboBoxExpirience.SelectedItem?.ToString();
-        emp.Field = ComboBoxField.SelectedItem?.ToString();
+        emp.SeniorityLevel = Enum.TryParse(ComboBoxExpirience.SelectedItem?.ToString(), out SeniorityLevel seniorityLevel) ? seniorityLevel : null;
+        emp.Field = Enum.TryParse(ComboBoxField.SelectedItem?.ToString(), out Field field) ? field : null;
       }
       else {
         emp.SeniorityLevel = null;
