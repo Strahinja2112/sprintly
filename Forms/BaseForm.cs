@@ -1,7 +1,7 @@
 ﻿namespace Sprintra.Forms;
 
-public abstract class BaseForm : Form {
-  protected static void SetPlaceholder(Control control, string text) {
+public class BaseForm : Form {
+  protected void SetPlaceholder(Control control, string text) {
     control.Text = text;
     control.ForeColor = Color.Gray;
 

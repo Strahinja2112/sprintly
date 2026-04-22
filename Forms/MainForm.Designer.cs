@@ -219,7 +219,7 @@
       LabelSprints.Name = "LabelSprints";
       LabelSprints.Size = new Size(145, 50);
       LabelSprints.TabIndex = 6;
-      LabelSprints.Text = "Sprintevi";
+      LabelSprints.Text = "Sprintovi";
       LabelSprints.TextAlign = ContentAlignment.MiddleLeft;
       // 
       // iconPictureBox1
