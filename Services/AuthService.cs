@@ -44,11 +44,12 @@ public static class AuthService {
     return false;
   }
 
-  public static void Logout() {
+  public static void Logout(Form form) {
     CurrentUser = null;
     if (File.Exists(SessionFile)) {
       File.Delete(SessionFile);
     }
+    form.Close();
   }
 
   private static void SaveSessionToFile(string username) {

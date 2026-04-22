@@ -5,7 +5,6 @@ namespace Sprintra;
 internal static class Program {
   [STAThread]
   static void Main() {
-
     ApplicationConfiguration.Initialize();
 
     var isLoginSaved = AuthService.TryAutoLogin();
