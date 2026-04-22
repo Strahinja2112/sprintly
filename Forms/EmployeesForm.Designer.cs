@@ -25,9 +25,9 @@ partial class EmployeesForm {
   /// </summary>
   private void InitializeComponent() {
     components = new System.ComponentModel.Container();
-    DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
     bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     DGVEmployees = new ReaLTaiizor.Controls.PoisonDataGridView();
@@ -57,6 +57,7 @@ partial class EmployeesForm {
     TBoxName = new ReaLTaiizor.Controls.BigTextBox();
     dungeonLabel3 = new ReaLTaiizor.Controls.DungeonLabel();
     bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
+    TBoxSearch = new ReaLTaiizor.Controls.BigTextBox();
     ((System.ComponentModel.ISupportInitialize)DGVEmployees).BeginInit();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).BeginInit();
     PanelUserData.SuspendLayout();
@@ -93,40 +94,40 @@ partial class EmployeesForm {
     DGVEmployees.BorderStyle = BorderStyle.None;
     DGVEmployees.CellBorderStyle = DataGridViewCellBorderStyle.None;
     DGVEmployees.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-    DGVEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+    dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle4.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle4.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle4.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+    DGVEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
     DGVEmployees.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-    dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
-    dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-    DGVEmployees.DefaultCellStyle = dataGridViewCellStyle2;
+    dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle5.BackColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle5.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle5.ForeColor = Color.FromArgb(136, 136, 136);
+    dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+    DGVEmployees.DefaultCellStyle = dataGridViewCellStyle5;
     DGVEmployees.EnableHeadersVisualStyles = false;
     DGVEmployees.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
     DGVEmployees.GridColor = Color.FromArgb(255, 255, 255);
-    DGVEmployees.Location = new Point(19, 163);
+    DGVEmployees.Location = new Point(19, 171);
     DGVEmployees.Name = "DGVEmployees";
     DGVEmployees.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-    DGVEmployees.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+    dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle6.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle6.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle6.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+    DGVEmployees.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
     DGVEmployees.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGVEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-    DGVEmployees.Size = new Size(559, 296);
+    DGVEmployees.Size = new Size(559, 288);
     DGVEmployees.TabIndex = 3;
     DGVEmployees.CellClick += DGVEmployees_CellClick;
     // 
@@ -147,12 +148,12 @@ partial class EmployeesForm {
     ButtonUserDelete.EnabledCalc = true;
     ButtonUserDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButtonUserDelete.ForeColor = Color.DarkSlateGray;
-    ButtonUserDelete.Location = new Point(19, 114);
+    ButtonUserDelete.Location = new Point(392, 124);
     ButtonUserDelete.Name = "ButtonUserDelete";
     ButtonUserDelete.OverColor = Color.FromArgb(242, 242, 242);
-    ButtonUserDelete.Size = new Size(173, 40);
+    ButtonUserDelete.Size = new Size(90, 40);
     ButtonUserDelete.TabIndex = 4;
-    ButtonUserDelete.Text = "Obriši Zaposlenog";
+    ButtonUserDelete.Text = "Obriši";
     ButtonUserDelete.Click += ButtonUserDelete_Click;
     // 
     // ButonUserAdd
@@ -167,12 +168,13 @@ partial class EmployeesForm {
     ButonUserAdd.EnabledCalc = true;
     ButonUserAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButonUserAdd.ForeColor = Color.White;
-    ButonUserAdd.Location = new Point(351, 114);
+    ButonUserAdd.Location = new Point(488, 124);
     ButonUserAdd.Name = "ButonUserAdd";
     ButonUserAdd.OverColor = Color.DimGray;
-    ButonUserAdd.Size = new Size(227, 40);
+    ButonUserAdd.RightToLeft = RightToLeft.Yes;
+    ButonUserAdd.Size = new Size(90, 40);
     ButonUserAdd.TabIndex = 5;
-    ButonUserAdd.Text = "Dodaj Novog Zaposlenog";
+    ButonUserAdd.Text = "Dodaj";
     ButonUserAdd.Click += ButonUserAdd_Click;
     // 
     // PanelUserData
@@ -502,12 +504,29 @@ partial class EmployeesForm {
     bigLabel2.Text = "Unos novog korisnika";
     bigLabel2.TextAlign = ContentAlignment.MiddleCenter;
     // 
+    // TBoxSearch
+    // 
+    TBoxSearch.BackColor = Color.Transparent;
+    TBoxSearch.Font = new Font("Tahoma", 11F);
+    TBoxSearch.ForeColor = Color.DimGray;
+    TBoxSearch.Image = null;
+    TBoxSearch.Location = new Point(19, 123);
+    TBoxSearch.MaxLength = 32767;
+    TBoxSearch.Multiline = true;
+    TBoxSearch.Name = "TBoxSearch";
+    TBoxSearch.ReadOnly = false;
+    TBoxSearch.Size = new Size(229, 41);
+    TBoxSearch.TabIndex = 9;
+    TBoxSearch.TextAlignment = HorizontalAlignment.Left;
+    TBoxSearch.UseSystemPasswordChar = false;
+    // 
     // EmployeesForm
     // 
     AutoScaleDimensions = new SizeF(7F, 15F);
     AutoScaleMode = AutoScaleMode.Font;
     BackColor = SystemColors.Control;
     ClientSize = new Size(967, 471);
+    Controls.Add(TBoxSearch);
     Controls.Add(PanelUserData);
     Controls.Add(ButonUserAdd);
     Controls.Add(ButtonUserDelete);
@@ -556,4 +575,5 @@ partial class EmployeesForm {
   private ReaLTaiizor.Controls.AloneComboBox ComboBoxField;
   private ReaLTaiizor.Controls.BigTextBox TBoxPassword;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
+  private ReaLTaiizor.Controls.BigTextBox TBoxSearch;
 }

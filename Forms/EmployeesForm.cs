@@ -5,13 +5,13 @@ using System.Data;
 
 namespace Sprintra.Forms;
 
-public partial class EmployeesForm : Form {
+public partial class EmployeesForm : BaseForm {
   private bool isExpanded = false;
   private readonly int expandedPanelWidth = 0;
-  private readonly Form parent;
+  private readonly BaseForm parent;
   private int selectedEmployeeId = 0;
 
-  public EmployeesForm(Form parent) {
+  public EmployeesForm(BaseForm parent) {
     InitializeComponent();
     expandedPanelWidth = PanelUserData.Width - 10;
     PanelUserData.Hide();
@@ -22,13 +22,17 @@ public partial class EmployeesForm : Form {
     ComboBoxType.Items.AddRange(Enum.GetNames<EmployeeType>());
     ComboBoxExpirience.Items.AddRange(new string[] { "Junior", "Medior", "Senior", "Lead" });
     ComboBoxField.Items.AddRange(new string[] { "Backend", "Frontend", "Fullstack", "QA", "DevOps" });
+
     LoadEmployees();
+
+    SetPlaceholder(TBoxSearch, "Pretraga zaposlenih...");
   }
 
   private void ButonUserAdd_Click(object sender, EventArgs e) {
     ClearInputs();
     ExpandParent();
   }
+
   private void ButtonUserDelete_Click(object sender, EventArgs e) {
     if (selectedEmployeeId == 0) {
       MessageBox.Show("Molimo vas da prvo odaberete zaposlenog iz tabele kojeg želite da obrišete.",
@@ -216,6 +220,8 @@ public partial class EmployeesForm : Form {
       PanelUserData.Show();
       isExpanded = true;
     }
+
+    parent.CenterOnScreen();
   }
 
   private void LoadEmployeeToInputs(int id) {

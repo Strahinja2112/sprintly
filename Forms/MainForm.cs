@@ -2,7 +2,7 @@
 
 namespace Sprintra.Forms;
 
-public partial class MainForm : Form {
+public partial class MainForm : BaseForm {
   public MainForm() {
     InitializeComponent();
   }
@@ -37,7 +37,6 @@ public partial class MainForm : Form {
     LabelUserName.Text = "@" + AuthService.CurrentUser.Username;
     LabelUserType.Text = AuthService.CurrentUser.Type.ToString();
   }
-
 
   private void ButtonLogout_Click(object sender, EventArgs e) {
     AuthService.Logout(this);
