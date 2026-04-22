@@ -24,40 +24,40 @@
     /// </summary>
     private void InitializeComponent() {
       panel1 = new Panel();
-      panel4 = new Panel();
-      bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
+      PanelWorkLog = new Panel();
+      LabelWorkLog = new ReaLTaiizor.Controls.BigLabel();
       iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
-      panel3 = new Panel();
-      bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
+      PanelProjects = new Panel();
+      LabelProjects = new ReaLTaiizor.Controls.BigLabel();
       iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
-      panel2 = new Panel();
-      bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
+      PanelEmployees = new Panel();
+      LabelEmployees = new ReaLTaiizor.Controls.BigLabel();
       iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
-      PanelDashboard = new Panel();
-      LabelDashboard = new ReaLTaiizor.Controls.BigLabel();
+      PanelSprints = new Panel();
+      LabelSprints = new ReaLTaiizor.Controls.BigLabel();
       iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
       ButtonLogout = new ReaLTaiizor.Controls.AloneButton();
       LabelUserType = new ReaLTaiizor.Controls.BigLabel();
       LabelUserName = new ReaLTaiizor.Controls.BigLabel();
       PanelMainContent = new Panel();
       panel1.SuspendLayout();
-      panel4.SuspendLayout();
+      PanelWorkLog.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)iconPictureBox4).BeginInit();
-      panel3.SuspendLayout();
+      PanelProjects.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)iconPictureBox3).BeginInit();
-      panel2.SuspendLayout();
+      PanelEmployees.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)iconPictureBox2).BeginInit();
-      PanelDashboard.SuspendLayout();
+      PanelSprints.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
       SuspendLayout();
       // 
       // panel1
       // 
       panel1.BackColor = SystemColors.ControlLight;
-      panel1.Controls.Add(panel4);
-      panel1.Controls.Add(panel3);
-      panel1.Controls.Add(panel2);
-      panel1.Controls.Add(PanelDashboard);
+      panel1.Controls.Add(PanelWorkLog);
+      panel1.Controls.Add(PanelProjects);
+      panel1.Controls.Add(PanelEmployees);
+      panel1.Controls.Add(PanelSprints);
       panel1.Controls.Add(ButtonLogout);
       panel1.Controls.Add(LabelUserType);
       panel1.Controls.Add(LabelUserName);
@@ -67,171 +67,174 @@
       panel1.Size = new Size(190, 470);
       panel1.TabIndex = 3;
       // 
-      // panel4
+      // PanelWorkLog
       // 
-      panel4.Controls.Add(bigLabel3);
-      panel4.Controls.Add(iconPictureBox4);
-      panel4.Cursor = Cursors.Hand;
-      panel4.Dock = DockStyle.Top;
-      panel4.Location = new Point(0, 150);
-      panel4.Name = "panel4";
-      panel4.Size = new Size(190, 50);
-      panel4.TabIndex = 11;
+      PanelWorkLog.Controls.Add(LabelWorkLog);
+      PanelWorkLog.Controls.Add(iconPictureBox4);
+      PanelWorkLog.Cursor = Cursors.Hand;
+      PanelWorkLog.Dock = DockStyle.Top;
+      PanelWorkLog.Location = new Point(0, 150);
+      PanelWorkLog.Name = "PanelWorkLog";
+      PanelWorkLog.Size = new Size(190, 50);
+      PanelWorkLog.TabIndex = 11;
+      PanelWorkLog.Click += PanelWorkLog_Click;
       // 
-      // bigLabel3
+      // LabelWorkLog
       // 
-      bigLabel3.BackColor = Color.Transparent;
-      bigLabel3.Cursor = Cursors.Hand;
-      bigLabel3.Dock = DockStyle.Right;
-      bigLabel3.Font = new Font("Segoe UI", 16F);
-      bigLabel3.ForeColor = Color.DimGray;
-      bigLabel3.Location = new Point(50, 0);
-      bigLabel3.Name = "bigLabel3";
-      bigLabel3.Size = new Size(140, 50);
-      bigLabel3.TabIndex = 6;
-      bigLabel3.Text = "Log";
-      bigLabel3.TextAlign = ContentAlignment.MiddleLeft;
+      LabelWorkLog.BackColor = Color.Transparent;
+      LabelWorkLog.Cursor = Cursors.Hand;
+      LabelWorkLog.Dock = DockStyle.Right;
+      LabelWorkLog.Font = new Font("Segoe UI", 16F);
+      LabelWorkLog.ForeColor = Color.FromArgb(65, 65, 65);
+      LabelWorkLog.Location = new Point(45, 0);
+      LabelWorkLog.Name = "LabelWorkLog";
+      LabelWorkLog.Size = new Size(145, 50);
+      LabelWorkLog.TabIndex = 6;
+      LabelWorkLog.Text = "Work Log";
+      LabelWorkLog.TextAlign = ContentAlignment.MiddleLeft;
       // 
       // iconPictureBox4
       // 
       iconPictureBox4.BackColor = Color.Transparent;
       iconPictureBox4.Enabled = false;
-      iconPictureBox4.ForeColor = Color.DarkOliveGreen;
+      iconPictureBox4.ForeColor = Color.FromArgb(45, 45, 45);
       iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.Calculator;
-      iconPictureBox4.IconColor = Color.DarkOliveGreen;
+      iconPictureBox4.IconColor = Color.FromArgb(45, 45, 45);
       iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-      iconPictureBox4.IconSize = 35;
+      iconPictureBox4.IconSize = 30;
       iconPictureBox4.Location = new Point(9, 11);
       iconPictureBox4.Name = "iconPictureBox4";
       iconPictureBox4.Padding = new Padding(20, 20, 0, 0);
-      iconPictureBox4.Size = new Size(35, 35);
+      iconPictureBox4.Size = new Size(30, 30);
       iconPictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
       iconPictureBox4.TabIndex = 0;
       iconPictureBox4.TabStop = false;
       // 
-      // panel3
+      // PanelProjects
       // 
-      panel3.Controls.Add(bigLabel2);
-      panel3.Controls.Add(iconPictureBox3);
-      panel3.Cursor = Cursors.Hand;
-      panel3.Dock = DockStyle.Top;
-      panel3.Location = new Point(0, 100);
-      panel3.Name = "panel3";
-      panel3.Size = new Size(190, 50);
-      panel3.TabIndex = 10;
+      PanelProjects.Controls.Add(LabelProjects);
+      PanelProjects.Controls.Add(iconPictureBox3);
+      PanelProjects.Cursor = Cursors.Hand;
+      PanelProjects.Dock = DockStyle.Top;
+      PanelProjects.Location = new Point(0, 100);
+      PanelProjects.Name = "PanelProjects";
+      PanelProjects.Size = new Size(190, 50);
+      PanelProjects.TabIndex = 10;
+      PanelProjects.Click += PanelProjects_Click;
       // 
-      // bigLabel2
+      // LabelProjects
       // 
-      bigLabel2.BackColor = Color.Transparent;
-      bigLabel2.Cursor = Cursors.Hand;
-      bigLabel2.Dock = DockStyle.Right;
-      bigLabel2.Font = new Font("Segoe UI", 16F);
-      bigLabel2.ForeColor = Color.DimGray;
-      bigLabel2.Location = new Point(50, 0);
-      bigLabel2.Name = "bigLabel2";
-      bigLabel2.Size = new Size(140, 50);
-      bigLabel2.TabIndex = 6;
-      bigLabel2.Text = "Projekti";
-      bigLabel2.TextAlign = ContentAlignment.MiddleLeft;
+      LabelProjects.BackColor = Color.Transparent;
+      LabelProjects.Cursor = Cursors.Hand;
+      LabelProjects.Dock = DockStyle.Right;
+      LabelProjects.Font = new Font("Segoe UI", 16F);
+      LabelProjects.ForeColor = Color.FromArgb(65, 65, 65);
+      LabelProjects.Location = new Point(45, 0);
+      LabelProjects.Name = "LabelProjects";
+      LabelProjects.Size = new Size(145, 50);
+      LabelProjects.TabIndex = 6;
+      LabelProjects.Text = "Projekti";
+      LabelProjects.TextAlign = ContentAlignment.MiddleLeft;
       // 
       // iconPictureBox3
       // 
       iconPictureBox3.BackColor = Color.Transparent;
       iconPictureBox3.Enabled = false;
-      iconPictureBox3.ForeColor = Color.DarkOliveGreen;
+      iconPictureBox3.ForeColor = Color.FromArgb(45, 45, 45);
       iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.TableTennis;
-      iconPictureBox3.IconColor = Color.DarkOliveGreen;
+      iconPictureBox3.IconColor = Color.FromArgb(45, 45, 45);
       iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-      iconPictureBox3.IconSize = 35;
+      iconPictureBox3.IconSize = 30;
       iconPictureBox3.Location = new Point(9, 11);
       iconPictureBox3.Name = "iconPictureBox3";
       iconPictureBox3.Padding = new Padding(20, 20, 0, 0);
-      iconPictureBox3.Size = new Size(35, 35);
+      iconPictureBox3.Size = new Size(30, 30);
       iconPictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
       iconPictureBox3.TabIndex = 0;
       iconPictureBox3.TabStop = false;
       // 
-      // panel2
+      // PanelEmployees
       // 
-      panel2.Controls.Add(bigLabel1);
-      panel2.Controls.Add(iconPictureBox2);
-      panel2.Cursor = Cursors.Hand;
-      panel2.Dock = DockStyle.Top;
-      panel2.Location = new Point(0, 50);
-      panel2.Name = "panel2";
-      panel2.Size = new Size(190, 50);
-      panel2.TabIndex = 9;
+      PanelEmployees.Controls.Add(LabelEmployees);
+      PanelEmployees.Controls.Add(iconPictureBox2);
+      PanelEmployees.Cursor = Cursors.Hand;
+      PanelEmployees.Dock = DockStyle.Top;
+      PanelEmployees.Location = new Point(0, 50);
+      PanelEmployees.Name = "PanelEmployees";
+      PanelEmployees.Size = new Size(190, 50);
+      PanelEmployees.TabIndex = 9;
+      PanelEmployees.Click += PanelEmployees_Click;
       // 
-      // bigLabel1
+      // LabelEmployees
       // 
-      bigLabel1.BackColor = Color.Transparent;
-      bigLabel1.Cursor = Cursors.Hand;
-      bigLabel1.Dock = DockStyle.Right;
-      bigLabel1.Font = new Font("Segoe UI", 16F);
-      bigLabel1.ForeColor = Color.DimGray;
-      bigLabel1.Location = new Point(50, 0);
-      bigLabel1.Name = "bigLabel1";
-      bigLabel1.Size = new Size(140, 50);
-      bigLabel1.TabIndex = 6;
-      bigLabel1.Text = "Zaposleni";
-      bigLabel1.TextAlign = ContentAlignment.MiddleLeft;
+      LabelEmployees.BackColor = Color.Transparent;
+      LabelEmployees.Cursor = Cursors.Hand;
+      LabelEmployees.Dock = DockStyle.Right;
+      LabelEmployees.Font = new Font("Segoe UI", 16F);
+      LabelEmployees.ForeColor = Color.FromArgb(65, 65, 65);
+      LabelEmployees.Location = new Point(45, 0);
+      LabelEmployees.Name = "LabelEmployees";
+      LabelEmployees.Size = new Size(145, 50);
+      LabelEmployees.TabIndex = 6;
+      LabelEmployees.Text = "Zaposleni";
+      LabelEmployees.TextAlign = ContentAlignment.MiddleLeft;
       // 
       // iconPictureBox2
       // 
       iconPictureBox2.BackColor = Color.Transparent;
       iconPictureBox2.Enabled = false;
-      iconPictureBox2.ForeColor = Color.DarkOliveGreen;
+      iconPictureBox2.ForeColor = Color.FromArgb(45, 45, 45);
       iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.UserCheck;
-      iconPictureBox2.IconColor = Color.DarkOliveGreen;
+      iconPictureBox2.IconColor = Color.FromArgb(45, 45, 45);
       iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-      iconPictureBox2.IconSize = 35;
+      iconPictureBox2.IconSize = 30;
       iconPictureBox2.Location = new Point(9, 11);
       iconPictureBox2.Name = "iconPictureBox2";
       iconPictureBox2.Padding = new Padding(20, 20, 0, 0);
-      iconPictureBox2.Size = new Size(35, 35);
+      iconPictureBox2.Size = new Size(30, 30);
       iconPictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
       iconPictureBox2.TabIndex = 0;
       iconPictureBox2.TabStop = false;
       // 
-      // PanelDashboard
+      // PanelSprints
       // 
-      PanelDashboard.Controls.Add(LabelDashboard);
-      PanelDashboard.Controls.Add(iconPictureBox1);
-      PanelDashboard.Cursor = Cursors.Hand;
-      PanelDashboard.Dock = DockStyle.Top;
-      PanelDashboard.Location = new Point(0, 0);
-      PanelDashboard.Name = "PanelDashboard";
-      PanelDashboard.Size = new Size(190, 50);
-      PanelDashboard.TabIndex = 8;
-      PanelDashboard.Click += PanelDashboard_Click;
+      PanelSprints.Controls.Add(LabelSprints);
+      PanelSprints.Controls.Add(iconPictureBox1);
+      PanelSprints.Cursor = Cursors.Hand;
+      PanelSprints.Dock = DockStyle.Top;
+      PanelSprints.Location = new Point(0, 0);
+      PanelSprints.Name = "PanelSprints";
+      PanelSprints.Size = new Size(190, 50);
+      PanelSprints.TabIndex = 8;
+      PanelSprints.Click += PanelSprints_Click;
       // 
-      // LabelDashboard
+      // LabelSprints
       // 
-      LabelDashboard.BackColor = Color.Transparent;
-      LabelDashboard.Cursor = Cursors.Hand;
-      LabelDashboard.Dock = DockStyle.Right;
-      LabelDashboard.Font = new Font("Segoe UI", 16F);
-      LabelDashboard.ForeColor = Color.DimGray;
-      LabelDashboard.Location = new Point(50, 0);
-      LabelDashboard.Name = "LabelDashboard";
-      LabelDashboard.Size = new Size(140, 50);
-      LabelDashboard.TabIndex = 6;
-      LabelDashboard.Text = "Dashboard";
-      LabelDashboard.TextAlign = ContentAlignment.MiddleLeft;
+      LabelSprints.BackColor = Color.Transparent;
+      LabelSprints.Cursor = Cursors.Hand;
+      LabelSprints.Dock = DockStyle.Right;
+      LabelSprints.Font = new Font("Segoe UI", 16F);
+      LabelSprints.ForeColor = Color.FromArgb(65, 65, 65);
+      LabelSprints.Location = new Point(45, 0);
+      LabelSprints.Name = "LabelSprints";
+      LabelSprints.Size = new Size(145, 50);
+      LabelSprints.TabIndex = 6;
+      LabelSprints.Text = "Sprintevi";
+      LabelSprints.TextAlign = ContentAlignment.MiddleLeft;
       // 
       // iconPictureBox1
       // 
       iconPictureBox1.BackColor = Color.Transparent;
       iconPictureBox1.Enabled = false;
-      iconPictureBox1.ForeColor = Color.DarkOliveGreen;
+      iconPictureBox1.ForeColor = Color.FromArgb(45, 45, 45);
       iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Dashboard;
-      iconPictureBox1.IconColor = Color.DarkOliveGreen;
+      iconPictureBox1.IconColor = Color.FromArgb(45, 45, 45);
       iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-      iconPictureBox1.IconSize = 35;
+      iconPictureBox1.IconSize = 30;
       iconPictureBox1.Location = new Point(9, 11);
       iconPictureBox1.Name = "iconPictureBox1";
       iconPictureBox1.Padding = new Padding(20, 20, 0, 0);
-      iconPictureBox1.Size = new Size(35, 35);
+      iconPictureBox1.Size = new Size(30, 30);
       iconPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
       iconPictureBox1.TabIndex = 0;
       iconPictureBox1.TabStop = false;
@@ -296,13 +299,13 @@
       Load += MainForm_Load;
       panel1.ResumeLayout(false);
       panel1.PerformLayout();
-      panel4.ResumeLayout(false);
+      PanelWorkLog.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)iconPictureBox4).EndInit();
-      panel3.ResumeLayout(false);
+      PanelProjects.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)iconPictureBox3).EndInit();
-      panel2.ResumeLayout(false);
+      PanelEmployees.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)iconPictureBox2).EndInit();
-      PanelDashboard.ResumeLayout(false);
+      PanelSprints.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
       ResumeLayout(false);
     }
@@ -312,18 +315,18 @@
     private ReaLTaiizor.Controls.BigLabel LabelUserName;
     private ReaLTaiizor.Controls.BigLabel LabelUserType;
     private ReaLTaiizor.Controls.AloneButton ButtonLogout;
-    private Panel PanelDashboard;
+    private Panel PanelSprints;
     private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
-    private ReaLTaiizor.Controls.BigLabel LabelDashboard;
+    private ReaLTaiizor.Controls.BigLabel LabelSprints;
     private Panel PanelMainContent;
-    private Panel panel3;
-    private ReaLTaiizor.Controls.BigLabel bigLabel2;
+    private Panel PanelProjects;
+    private ReaLTaiizor.Controls.BigLabel LabelProjects;
     private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
-    private Panel panel2;
-    private ReaLTaiizor.Controls.BigLabel bigLabel1;
+    private Panel PanelEmployees;
+    private ReaLTaiizor.Controls.BigLabel LabelEmployees;
     private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
-    private Panel panel4;
-    private ReaLTaiizor.Controls.BigLabel bigLabel3;
+    private Panel PanelWorkLog;
+    private ReaLTaiizor.Controls.BigLabel LabelWorkLog;
     private FontAwesome.Sharp.IconPictureBox iconPictureBox4;
   }
 }

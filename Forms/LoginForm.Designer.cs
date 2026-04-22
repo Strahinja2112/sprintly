@@ -112,6 +112,7 @@
       TBoxUsername.TabStop = false;
       TBoxUsername.TextAlign = HorizontalAlignment.Left;
       TBoxUsername.TrailingIcon = null;
+      TBoxUsername.UseAccent = false;
       TBoxUsername.UseSystemPasswordChar = false;
       // 
       // TBoxPassword
@@ -142,6 +143,7 @@
       TBoxPassword.TabStop = false;
       TBoxPassword.TextAlign = HorizontalAlignment.Left;
       TBoxPassword.TrailingIcon = null;
+      TBoxPassword.UseAccent = false;
       TBoxPassword.UseSystemPasswordChar = true;
       // 
       // bigLabel4

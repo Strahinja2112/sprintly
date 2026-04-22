@@ -1,5 +1,4 @@
-﻿using Sprintra.Models;
-using Sprintra.Services;
+﻿using Sprintra.Services;
 
 namespace Sprintra.Forms;
 
@@ -11,14 +10,28 @@ public partial class MainForm : Form {
   private void MainForm_Load(object sender, EventArgs e) {
     if (AuthService.CurrentUser == null) {
       Close();
+      return;
     }
 
-    if (AuthService.CurrentUser.Type == EmployeeType.Developer) {
-      PanelDashboard.Hide();
+    LabelSprints.Click += PanelSprints_Click;
+    LabelWorkLog.Click += PanelWorkLog_Click;
+    LabelProjects.Click += PanelProjects_Click;
+    LabelEmployees.Click += PanelEmployees_Click;
+
+    if (!PermissionsService.CanLogWork()) {
+      PanelWorkLog.Hide();
+    }
+    if (!PermissionsService.CanManageProjects()) {
+      PanelProjects.Hide();
+    }
+    if (!PermissionsService.CanManageUsers()) {
+      PanelEmployees.Hide();
+    }
+    if (!PermissionsService.CanManageSprints()) {
+      PanelSprints.Hide();
     }
     else {
-      PanelDashboard_Click(sender, e);
-      LabelDashboard.Click += PanelDashboard_Click;
+      PanelSprints_Click(sender, e);
     }
 
     LabelUserName.Text = "@" + AuthService.CurrentUser.Username;
@@ -28,10 +41,6 @@ public partial class MainForm : Form {
 
   private void ButtonLogout_Click(object sender, EventArgs e) {
     AuthService.Logout(this);
-  }
-
-  private void PanelDashboard_Click(object sender, EventArgs e) {
-    OpenChildForm(new DashboardForm());
   }
 
   private void OpenChildForm(Form childForm) {
@@ -47,5 +56,21 @@ public partial class MainForm : Form {
     PanelMainContent.Tag = childForm;
     childForm.BringToFront();
     childForm.Show();
+  }
+
+  private void PanelEmployees_Click(object sender, EventArgs e) {
+    OpenChildForm(new DashboardForm());
+  }
+
+  private void PanelSprints_Click(object sender, EventArgs e) {
+    OpenChildForm(new DashboardForm());
+  }
+
+  private void PanelProjects_Click(object sender, EventArgs e) {
+    OpenChildForm(new DashboardForm());
+  }
+
+  private void PanelWorkLog_Click(object sender, EventArgs e) {
+    OpenChildForm(new DashboardForm());
   }
 }

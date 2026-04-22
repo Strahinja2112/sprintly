@@ -47,8 +47,8 @@ public class Employee {
 }
 
 public enum EmployeeType {
-  Standard,
   ScrumMaster,
   ProductOwner,
-  Developer
+  Developer,
+  Admin
 }
