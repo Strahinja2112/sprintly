@@ -97,9 +97,9 @@
       // 
       iconPictureBox4.BackColor = Color.Transparent;
       iconPictureBox4.Enabled = false;
-      iconPictureBox4.ForeColor = Color.FromArgb(45, 45, 45);
+      iconPictureBox4.ForeColor = Color.DarkSlateGray;
       iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.Calculator;
-      iconPictureBox4.IconColor = Color.FromArgb(45, 45, 45);
+      iconPictureBox4.IconColor = Color.DarkSlateGray;
       iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
       iconPictureBox4.IconSize = 30;
       iconPictureBox4.Location = new Point(9, 11);
@@ -140,9 +140,9 @@
       // 
       iconPictureBox3.BackColor = Color.Transparent;
       iconPictureBox3.Enabled = false;
-      iconPictureBox3.ForeColor = Color.FromArgb(45, 45, 45);
-      iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.TableTennis;
-      iconPictureBox3.IconColor = Color.FromArgb(45, 45, 45);
+      iconPictureBox3.ForeColor = Color.DarkSlateGray;
+      iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.Timeline;
+      iconPictureBox3.IconColor = Color.DarkSlateGray;
       iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
       iconPictureBox3.IconSize = 30;
       iconPictureBox3.Location = new Point(9, 11);
@@ -183,9 +183,9 @@
       // 
       iconPictureBox2.BackColor = Color.Transparent;
       iconPictureBox2.Enabled = false;
-      iconPictureBox2.ForeColor = Color.FromArgb(45, 45, 45);
-      iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.UserCheck;
-      iconPictureBox2.IconColor = Color.FromArgb(45, 45, 45);
+      iconPictureBox2.ForeColor = Color.DarkSlateGray;
+      iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.UserFriends;
+      iconPictureBox2.IconColor = Color.DarkSlateGray;
       iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
       iconPictureBox2.IconSize = 30;
       iconPictureBox2.Location = new Point(9, 11);
@@ -226,9 +226,9 @@
       // 
       iconPictureBox1.BackColor = Color.Transparent;
       iconPictureBox1.Enabled = false;
-      iconPictureBox1.ForeColor = Color.FromArgb(45, 45, 45);
-      iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Dashboard;
-      iconPictureBox1.IconColor = Color.FromArgb(45, 45, 45);
+      iconPictureBox1.ForeColor = Color.DarkSlateGray;
+      iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Crosshairs;
+      iconPictureBox1.IconColor = Color.DarkSlateGray;
       iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
       iconPictureBox1.IconSize = 30;
       iconPictureBox1.Location = new Point(9, 11);
@@ -269,7 +269,7 @@
       LabelUserName.AutoSize = true;
       LabelUserName.BackColor = Color.Transparent;
       LabelUserName.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-      LabelUserName.ForeColor = Color.DarkOliveGreen;
+      LabelUserName.ForeColor = Color.DarkSlateGray;
       LabelUserName.Location = new Point(3, 367);
       LabelUserName.Name = "LabelUserName";
       LabelUserName.Size = new Size(127, 30);

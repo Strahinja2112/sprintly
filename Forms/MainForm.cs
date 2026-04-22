@@ -27,11 +27,11 @@ public partial class MainForm : Form {
     if (!PermissionsService.CanManageUsers()) {
       PanelEmployees.Hide();
     }
+    else {
+      PanelEmployees_Click(sender, e);
+    }
     if (!PermissionsService.CanManageSprints()) {
       PanelSprints.Hide();
-    }
-    else {
-      PanelSprints_Click(sender, e);
     }
 
     LabelUserName.Text = "@" + AuthService.CurrentUser.Username;
@@ -59,18 +59,18 @@ public partial class MainForm : Form {
   }
 
   private void PanelEmployees_Click(object sender, EventArgs e) {
-    OpenChildForm(new DashboardForm());
+    OpenChildForm(new EmployeesForm(this));
   }
 
   private void PanelSprints_Click(object sender, EventArgs e) {
-    OpenChildForm(new DashboardForm());
+    OpenChildForm(new SprintsForm());
   }
 
   private void PanelProjects_Click(object sender, EventArgs e) {
-    OpenChildForm(new DashboardForm());
+    OpenChildForm(new SprintsForm());
   }
 
   private void PanelWorkLog_Click(object sender, EventArgs e) {
-    OpenChildForm(new DashboardForm());
+    OpenChildForm(new SprintsForm());
   }
 }
