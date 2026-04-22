@@ -33,8 +33,6 @@ public class Employee {
   [Required]
   public string PasswordHash { get; set; } = null!;
 
-  public string? CertificationLevel { get; set; }
-  public string? ProductDomain { get; set; }
   public string? TeamRole { get; set; }
   public string? SeniorityLevel { get; set; }
   public string? Field { get; set; }
