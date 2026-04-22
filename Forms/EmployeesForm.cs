@@ -10,10 +10,11 @@ public partial class EmployeesForm : BaseForm {
   private readonly int expandedPanelWidth = 0;
   private readonly BaseForm parent;
   private int selectedEmployeeId = 0;
+  private string searchPlaceholder = "Pretraga zaposlenih...";
 
   public EmployeesForm(BaseForm parent) {
     InitializeComponent();
-    expandedPanelWidth = PanelUserData.Width - 10;
+    expandedPanelWidth = PanelUserData.Width;
     PanelUserData.Hide();
     this.parent = parent;
   }
@@ -25,7 +26,7 @@ public partial class EmployeesForm : BaseForm {
 
     LoadEmployees();
 
-    SetPlaceholder(TBoxSearch, "Pretraga zaposlenih...");
+    SetPlaceholder(TBoxSearch, searchPlaceholder);
   }
 
   private void ButonUserAdd_Click(object sender, EventArgs e) {
@@ -242,5 +243,32 @@ public partial class EmployeesForm : BaseForm {
 
       bigLabel2.Text = "Izmena Korisnika";
     }
+  }
+
+  private void TBoxSearch_TextChanged(object sender, EventArgs e) {
+    string searchTerm = TBoxSearch.Text.Trim();
+
+    if (searchTerm == searchPlaceholder || string.IsNullOrEmpty(searchTerm)) {
+      LoadEmployees();
+      return;
+    }
+
+    using var db = new AppDbContext();
+
+    var filteredEmployees = db.Employees
+        .Where(emp => emp.FirstName.Contains(searchTerm) ||
+                      emp.LastName.Contains(searchTerm) ||
+                      emp.Username.Contains(searchTerm))
+        .Select(emp => new {
+          emp.Id,
+          Ime = emp.FirstName,
+          Prezime = emp.LastName,
+          emp.Username,
+          Uloga = emp.Type.ToString(),
+          emp.Status
+        })
+        .ToList();
+
+    DGVEmployees.DataSource = filteredEmployees;
   }
 }

@@ -43,6 +43,10 @@ public partial class MainForm : BaseForm {
   }
 
   private void OpenChildForm(Form childForm) {
+    Width = MinimumSize.Width;
+    Height = MinimumSize.Height;
+    CenterOnScreen();
+
     if (PanelMainContent.Controls.Count > 0) {
       PanelMainContent.Controls.Clear();
     }

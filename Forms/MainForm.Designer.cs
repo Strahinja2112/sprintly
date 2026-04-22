@@ -53,7 +53,7 @@
       // 
       // panel1
       // 
-      panel1.BackColor = SystemColors.ControlLight;
+      panel1.BackColor = SystemColors.Window;
       panel1.Controls.Add(PanelWorkLog);
       panel1.Controls.Add(PanelProjects);
       panel1.Controls.Add(PanelEmployees);
@@ -278,6 +278,7 @@
       // 
       // PanelMainContent
       // 
+      PanelMainContent.BackColor = SystemColors.Window;
       PanelMainContent.Dock = DockStyle.Fill;
       PanelMainContent.Location = new Point(190, 0);
       PanelMainContent.Name = "PanelMainContent";
@@ -293,6 +294,7 @@
       Controls.Add(panel1);
       FormBorderStyle = FormBorderStyle.FixedSingle;
       MaximizeBox = false;
+      MinimumSize = new Size(806, 509);
       Name = "MainForm";
       StartPosition = FormStartPosition.CenterScreen;
       Text = "MainForm";
