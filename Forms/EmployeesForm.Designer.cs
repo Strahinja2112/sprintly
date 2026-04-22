@@ -35,8 +35,13 @@ partial class EmployeesForm {
     ButtonUserDelete = new ReaLTaiizor.Controls.FoxButton();
     ButonUserAdd = new ReaLTaiizor.Controls.FoxButton();
     PanelUserData = new Panel();
+    metroTextBox1 = new ReaLTaiizor.Controls.MetroTextBox();
+    dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
+    bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
+    poisonDateTime1 = new ReaLTaiizor.Controls.PoisonDateTime();
     ((System.ComponentModel.ISupportInitialize)DGVEmployees).BeginInit();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).BeginInit();
+    PanelUserData.SuspendLayout();
     SuspendLayout();
     // 
     // bigLabel1
@@ -152,18 +157,86 @@ partial class EmployeesForm {
     // 
     // PanelUserData
     // 
+    PanelUserData.Controls.Add(poisonDateTime1);
+    PanelUserData.Controls.Add(metroTextBox1);
+    PanelUserData.Controls.Add(dungeonLabel2);
+    PanelUserData.Controls.Add(bigLabel2);
     PanelUserData.Dock = DockStyle.Right;
-    PanelUserData.Location = new Point(589, 0);
+    PanelUserData.Location = new Point(585, 0);
     PanelUserData.Name = "PanelUserData";
     PanelUserData.Size = new Size(412, 471);
     PanelUserData.TabIndex = 6;
+    // 
+    // metroTextBox1
+    // 
+    metroTextBox1.AutoCompleteCustomSource = null;
+    metroTextBox1.AutoCompleteMode = AutoCompleteMode.None;
+    metroTextBox1.AutoCompleteSource = AutoCompleteSource.None;
+    metroTextBox1.BorderColor = Color.DarkSlateGray;
+    metroTextBox1.DisabledBackColor = Color.FromArgb(204, 204, 204);
+    metroTextBox1.DisabledBorderColor = Color.FromArgb(155, 155, 155);
+    metroTextBox1.DisabledForeColor = Color.FromArgb(136, 136, 136);
+    metroTextBox1.Font = new Font("Segoe UI", 14F);
+    metroTextBox1.HoverColor = Color.FromArgb(102, 102, 102);
+    metroTextBox1.Image = null;
+    metroTextBox1.IsDerivedStyle = true;
+    metroTextBox1.Lines = null;
+    metroTextBox1.Location = new Point(13, 114);
+    metroTextBox1.MaxLength = 32767;
+    metroTextBox1.Multiline = false;
+    metroTextBox1.Name = "metroTextBox1";
+    metroTextBox1.ReadOnly = false;
+    metroTextBox1.Size = new Size(203, 36);
+    metroTextBox1.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+    metroTextBox1.StyleManager = null;
+    metroTextBox1.TabIndex = 3;
+    metroTextBox1.Text = "metroTextBox1";
+    metroTextBox1.TextAlign = HorizontalAlignment.Left;
+    metroTextBox1.ThemeAuthor = "Taiizor";
+    metroTextBox1.ThemeName = "MetroLight";
+    metroTextBox1.UseSystemPasswordChar = false;
+    metroTextBox1.WatermarkText = "";
+    // 
+    // dungeonLabel2
+    // 
+    dungeonLabel2.BackColor = Color.Transparent;
+    dungeonLabel2.Dock = DockStyle.Top;
+    dungeonLabel2.Font = new Font("Segoe UI", 11F);
+    dungeonLabel2.ForeColor = Color.FromArgb(76, 76, 77);
+    dungeonLabel2.Location = new Point(0, 55);
+    dungeonLabel2.Name = "dungeonLabel2";
+    dungeonLabel2.Size = new Size(412, 25);
+    dungeonLabel2.TabIndex = 2;
+    dungeonLabel2.Text = "Unesite podatke o novom ili postojecem korisniku";
+    // 
+    // bigLabel2
+    // 
+    bigLabel2.BackColor = Color.Transparent;
+    bigLabel2.Dock = DockStyle.Top;
+    bigLabel2.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+    bigLabel2.ForeColor = Color.DarkSlateGray;
+    bigLabel2.Location = new Point(0, 0);
+    bigLabel2.Name = "bigLabel2";
+    bigLabel2.Size = new Size(412, 55);
+    bigLabel2.TabIndex = 1;
+    bigLabel2.Text = "Novi Ili Postojeci Korisnik";
+    bigLabel2.TextAlign = ContentAlignment.MiddleLeft;
+    // 
+    // poisonDateTime1
+    // 
+    poisonDateTime1.FontSize = ReaLTaiizor.Extension.Poison.PoisonDateTimeSize.Medium;
+    poisonDateTime1.Location = new Point(13, 163);
+    poisonDateTime1.MinimumSize = new Size(0, 29);
+    poisonDateTime1.Name = "poisonDateTime1";
+    poisonDateTime1.Size = new Size(203, 29);
+    poisonDateTime1.TabIndex = 4;
     // 
     // EmployeesForm
     // 
     AutoScaleDimensions = new SizeF(7F, 15F);
     AutoScaleMode = AutoScaleMode.Font;
     BackColor = SystemColors.Control;
-    ClientSize = new Size(1001, 471);
+    ClientSize = new Size(997, 471);
     Controls.Add(PanelUserData);
     Controls.Add(ButonUserAdd);
     Controls.Add(ButtonUserDelete);
@@ -175,6 +248,7 @@ partial class EmployeesForm {
     Load += EmployeesForm_Load;
     ((System.ComponentModel.ISupportInitialize)DGVEmployees).EndInit();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).EndInit();
+    PanelUserData.ResumeLayout(false);
     ResumeLayout(false);
     PerformLayout();
   }
@@ -188,4 +262,8 @@ partial class EmployeesForm {
   private ReaLTaiizor.Controls.FoxButton ButtonUserDelete;
   private ReaLTaiizor.Controls.FoxButton ButonUserAdd;
   private Panel PanelUserData;
+  private ReaLTaiizor.Controls.BigLabel bigLabel2;
+  private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
+  private ReaLTaiizor.Controls.MetroTextBox metroTextBox1;
+  private ReaLTaiizor.Controls.PoisonDateTime poisonDateTime1;
 }

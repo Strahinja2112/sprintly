@@ -43,6 +43,7 @@ public partial class EmployeesForm : Form {
   private void ExpandParent() {
     if (!isExpanded) {
       parent.Width += expandedPanelWidth;
+      PanelUserData.Show();
       isExpanded = true;
     }
   }
