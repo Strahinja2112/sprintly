@@ -4,10 +4,14 @@ using System.Data;
 namespace Sprintra.Forms;
 
 public partial class EmployeesForm : Form {
-  private Form parent;
+  private bool isExpanded = false;
+  private readonly int expandedPanelWidth = 0;
+  private readonly Form parent;
 
   public EmployeesForm(Form parent) {
     InitializeComponent();
+    expandedPanelWidth = PanelUserData.Width;
+    PanelUserData.Hide();
     this.parent = parent;
   }
 
@@ -27,11 +31,19 @@ public partial class EmployeesForm : Form {
 
     DGVEmployees.DataSource = employees;
 
-    // Opciono: Sakrij ID kolonu ako ne želiš da je korisnik vidi
     if (DGVEmployees.Columns["Id"] != null) {
       DGVEmployees.Columns["Id"]?.Visible = false;
     }
+  }
 
-    parent.Width += 500;
+  private void ButonUserAdd_Click(object sender, EventArgs e) {
+    ExpandParent();
+  }
+
+  private void ExpandParent() {
+    if (!isExpanded) {
+      parent.Width += expandedPanelWidth;
+      isExpanded = true;
+    }
   }
 }
