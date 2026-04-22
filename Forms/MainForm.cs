@@ -1,4 +1,5 @@
-﻿using Sprintra.Services;
+﻿using Sprintra.Models;
+using Sprintra.Services;
 
 namespace Sprintra.Forms;
 
@@ -12,9 +13,13 @@ public partial class MainForm : Form {
       Close();
     }
 
-    PanelDashboard_Click(sender, e);
-
-    LabelDashboard.Click += PanelDashboard_Click;
+    if (AuthService.CurrentUser.Type == EmployeeType.Developer) {
+      PanelDashboard.Hide();
+    }
+    else {
+      PanelDashboard_Click(sender, e);
+      LabelDashboard.Click += PanelDashboard_Click;
+    }
 
     LabelUserName.Text = "@" + AuthService.CurrentUser.Username;
     LabelUserType.Text = AuthService.CurrentUser.Type.ToString();
