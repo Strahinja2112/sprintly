@@ -10,7 +10,7 @@ public partial class EmployeesForm : Form {
 
   public EmployeesForm(Form parent) {
     InitializeComponent();
-    expandedPanelWidth = PanelUserData.Width;
+    expandedPanelWidth = PanelUserData.Width - 10;
     PanelUserData.Hide();
     this.parent = parent;
   }
