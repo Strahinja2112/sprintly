@@ -24,35 +24,49 @@ partial class SprintsForm {
   /// the contents of this method with the code editor.
   /// </summary>
   private void InitializeComponent() {
-    airCheckBox1 = new ReaLTaiizor.Controls.AirCheckBox();
+    bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
+    dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     SuspendLayout();
     // 
-    // airCheckBox1
+    // bigLabel1
     // 
-    airCheckBox1.Checked = false;
-    airCheckBox1.Customization = "7e3t//Ly8v/r6+v/5ubm/+vr6//f39//p6en/zw8PP8=";
-    airCheckBox1.Font = new Font("Segoe UI", 13F);
-    airCheckBox1.Image = null;
-    airCheckBox1.Location = new Point(12, 12);
-    airCheckBox1.Name = "airCheckBox1";
-    airCheckBox1.NoRounding = false;
-    airCheckBox1.Size = new Size(155, 17);
-    airCheckBox1.TabIndex = 0;
-    airCheckBox1.Text = "airCheckBox1";
-    airCheckBox1.Transparent = false;
+    bigLabel1.AutoSize = true;
+    bigLabel1.BackColor = Color.Transparent;
+    bigLabel1.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
+    bigLabel1.ForeColor = Color.DarkSlateGray;
+    bigLabel1.Location = new Point(12, 5);
+    bigLabel1.Name = "bigLabel1";
+    bigLabel1.Size = new Size(408, 46);
+    bigLabel1.TabIndex = 12;
+    bigLabel1.Text = "Upravljanje Sprintovima";
+    // 
+    // dungeonLabel1
+    // 
+    dungeonLabel1.BackColor = Color.Transparent;
+    dungeonLabel1.Font = new Font("Segoe UI", 11F);
+    dungeonLabel1.ForeColor = Color.FromArgb(76, 76, 77);
+    dungeonLabel1.Location = new Point(17, 59);
+    dungeonLabel1.Name = "dungeonLabel1";
+    dungeonLabel1.Size = new Size(573, 45);
+    dungeonLabel1.TabIndex = 13;
+    dungeonLabel1.Text = "Ovo je stranica na kojoj možete upravljati sprintovima, dodati nove sprintove, ili menjati postojeće.";
     // 
     // SprintsForm
     // 
     AutoScaleDimensions = new SizeF(7F, 15F);
     AutoScaleMode = AutoScaleMode.Font;
-    ClientSize = new Size(584, 431);
-    Controls.Add(airCheckBox1);
+    ClientSize = new Size(984, 471);
+    Controls.Add(bigLabel1);
+    Controls.Add(dungeonLabel1);
+    MaximizeBox = false;
     Name = "SprintsForm";
     Text = "DashboardForm";
     ResumeLayout(false);
+    PerformLayout();
   }
 
   #endregion
 
-  private ReaLTaiizor.Controls.AirCheckBox airCheckBox1;
+  private ReaLTaiizor.Controls.BigLabel bigLabel1;
+  private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
 }
