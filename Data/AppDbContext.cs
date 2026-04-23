@@ -17,7 +17,7 @@ public class AppDbContext : DbContext {
   public DbSet<Meeting> Meetings { get; set; }
 
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-    optionsBuilder.UseSqlServer(@"Server=DESKTOP-RUAM7G4\SQLEXPRESS;Database=Sprintra;Trusted_Connection=True;TrustServerCertificate=True;");
+    optionsBuilder.UseSqlServer($"Server={Environment.MachineName}\\SQLEXPRESS;Database=Sprintra;Trusted_Connection=True;TrustServerCertificate=True;");
   }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder) {
