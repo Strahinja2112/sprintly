@@ -9,7 +9,7 @@ public partial class ProjectsForm : BaseForm {
   private readonly int expandedPanelWidth = 0;
   private readonly BaseForm parent;
   private int selectedProjectId = 0;
-  private string searchPlaceholder = "Pretraga projekata...";
+  private const string searchPlaceholder = "Pretraga projekata...";
 
   public ProjectsForm(BaseForm parent) {
     InitializeComponent();
@@ -93,7 +93,7 @@ public partial class ProjectsForm : BaseForm {
       project.Description = description;
       project.Status = Enum.Parse<ProjectStatus>(status);
       project.StartDate = DateTimePickerStart.Value;
-      //project.EndDate = DateTimePickerEnd.Value; // Ako imaš EndDate
+      project.EndDate = DateTimePickerEnd.Value;
 
       db.SaveChanges();
 
@@ -125,7 +125,7 @@ public partial class ProjectsForm : BaseForm {
           Početak = p.StartDate,
           Kraj = p.EndDate
         })
-        .OrderBy(p => p.Naziv)
+        .OrderByDescending(p => p.Kraj).ThenByDescending(p => p.Početak)
         .ToList();
 
     DGVProjects.DataSource = projects;
