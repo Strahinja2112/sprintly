@@ -65,8 +65,7 @@ public partial class MainForm : BaseForm {
   }
 
   private void PanelSprints_Click(object sender, EventArgs e) {
-    OpenChildForm(new SprintsForm());
-    Width += 500;
+    OpenChildForm(new SprintsForm(this));
   }
 
   private void PanelProjects_Click(object sender, EventArgs e) {
@@ -74,6 +73,6 @@ public partial class MainForm : BaseForm {
   }
 
   private void PanelWorkLog_Click(object sender, EventArgs e) {
-    OpenChildForm(new SprintsForm());
+    OpenChildForm(new SprintsForm(this));
   }
 }

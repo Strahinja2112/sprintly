@@ -6,9 +6,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class Sprint {
   public int Id { get; set; }
 
+  [Required]
+  [MaxLength(100)]
+  public string Name { get; set; } = null!;
+
+  [MaxLength(500)]
+  public string? Goal { get; set; }
+
   public int ProjectId { get; set; }
 
-  public int ScrumMasterId { get; set; }
+  public int? ScrumMasterId { get; set; }
 
   public DateTime StartDate { get; set; }
 
@@ -17,16 +24,22 @@ public class Sprint {
   public int EstimatedWorkHours { get; set; }
 
   [Required]
-  [MaxLength(30)]
-  public string Status { get; set; } = null!;
+  public SprintStatus Status { get; set; }
 
   [ForeignKey("ProjectId")]
   public virtual Project Project { get; set; } = null!;
 
   [ForeignKey("ScrumMasterId")]
-  public virtual Employee ScrumMaster { get; set; } = null!;
+  public virtual Employee? ScrumMaster { get; set; }
 
   public virtual ICollection<WorkTask> WorkTasks { get; set; } = [];
 
   public virtual ICollection<Meeting> Meetings { get; set; } = new List<Meeting>();
+}
+
+public enum SprintStatus {
+  Planned,
+  Active,
+  Completed,
+  Canceled
 }

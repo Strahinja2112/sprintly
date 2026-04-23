@@ -101,7 +101,7 @@ partial class SprintsForm {
     DGVSprints.EnableHeadersVisualStyles = false;
     DGVSprints.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
     DGVSprints.GridColor = Color.FromArgb(255, 255, 255);
-    DGVSprints.Location = new Point(17, 193);
+    DGVSprints.Location = new Point(17, 219);
     DGVSprints.Name = "DGVSprints";
     DGVSprints.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
     dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -115,7 +115,7 @@ partial class SprintsForm {
     DGVSprints.RowHeadersVisible = false;
     DGVSprints.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGVSprints.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-    DGVSprints.Size = new Size(569, 261);
+    DGVSprints.Size = new Size(569, 235);
     DGVSprints.TabIndex = 17;
     DGVSprints.Theme = ReaLTaiizor.Enum.Poison.ThemeStyle.Light;
     // 
@@ -131,10 +131,10 @@ partial class SprintsForm {
     ButtonDelete.EnabledCalc = true;
     ButtonDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButtonDelete.ForeColor = Color.DarkSlateGray;
-    ButtonDelete.Location = new Point(400, 146);
+    ButtonDelete.Location = new Point(400, 143);
     ButtonDelete.Name = "ButtonDelete";
     ButtonDelete.OverColor = Color.FromArgb(242, 242, 242);
-    ButtonDelete.Size = new Size(90, 41);
+    ButtonDelete.Size = new Size(90, 70);
     ButtonDelete.TabIndex = 18;
     ButtonDelete.Text = "Obriši";
     // 
@@ -150,11 +150,11 @@ partial class SprintsForm {
     ButonAdd.EnabledCalc = true;
     ButonAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButonAdd.ForeColor = Color.White;
-    ButonAdd.Location = new Point(496, 146);
+    ButonAdd.Location = new Point(496, 143);
     ButonAdd.Name = "ButonAdd";
     ButonAdd.OverColor = Color.DimGray;
     ButonAdd.RightToLeft = RightToLeft.Yes;
-    ButonAdd.Size = new Size(90, 41);
+    ButonAdd.Size = new Size(90, 70);
     ButonAdd.TabIndex = 19;
     ButonAdd.Text = "Dodaj";
     // 
@@ -317,7 +317,7 @@ partial class SprintsForm {
     dungeonLabel4.BackColor = Color.Transparent;
     dungeonLabel4.Font = new Font("Segoe UI", 13F);
     dungeonLabel4.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel4.Location = new Point(17, 113);
+    dungeonLabel4.Location = new Point(12, 113);
     dungeonLabel4.Name = "dungeonLabel4";
     dungeonLabel4.Size = new Size(127, 25);
     dungeonLabel4.TabIndex = 26;
@@ -329,9 +329,9 @@ partial class SprintsForm {
     ComboBoxProjects.FormattingEnabled = true;
     ComboBoxProjects.IntegralHeight = false;
     ComboBoxProjects.ItemHeight = 15;
-    ComboBoxProjects.Location = new Point(146, 117);
+    ComboBoxProjects.Location = new Point(17, 143);
     ComboBoxProjects.Name = "ComboBoxProjects";
-    ComboBoxProjects.Size = new Size(440, 23);
+    ComboBoxProjects.Size = new Size(377, 23);
     ComboBoxProjects.TabIndex = 28;
     // 
     // TBoxSearch
@@ -340,7 +340,7 @@ partial class SprintsForm {
     TBoxSearch.Font = new Font("Tahoma", 11F);
     TBoxSearch.ForeColor = Color.DimGray;
     TBoxSearch.Image = null;
-    TBoxSearch.Location = new Point(17, 146);
+    TBoxSearch.Location = new Point(17, 172);
     TBoxSearch.MaxLength = 32767;
     TBoxSearch.Multiline = true;
     TBoxSearch.Name = "TBoxSearch";
