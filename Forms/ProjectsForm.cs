@@ -11,6 +11,8 @@ public partial class ProjectsForm : BaseForm {
   private int selectedProjectId = 0;
   private const string searchPlaceholder = "Pretraga projekata...";
 
+  private bool dateChanged = false;
+
   public ProjectsForm(BaseForm parent) {
     InitializeComponent();
     expandedPanelWidth = PanelProjectData.Width;
@@ -78,7 +80,7 @@ public partial class ProjectsForm : BaseForm {
 
     try {
       using var db = new AppDbContext();
-      Project project;
+      Project? project;
 
       if (selectedProjectId == 0) {
         project = new Project {
@@ -91,7 +93,9 @@ public partial class ProjectsForm : BaseForm {
         if (project == null) {
           return;
         }
-        project.EndDate = DateTimePicker.Value;
+        if (dateChanged) {
+          project.EndDate = DateTimePicker.Value;
+        }
       }
 
       project.Name = name;
@@ -145,7 +149,16 @@ public partial class ProjectsForm : BaseForm {
       TBoxProjectName.Text = p.Name;
       TBoxDescription.Text = p.Description;
       ComboBoxStatus.SelectedItem = p.Status;
-      DateTimePicker.Value = selectedProjectId != 0 ? p.EndDate ?? DateTime.Now : p.StartDate;
+
+      DateTime targetDate = p.EndDate ?? (p.StartDate > DateTime.Now ? p.StartDate : DateTime.Now);
+
+      if (targetDate < DateTimePicker.MinDate) targetDate = DateTimePicker.MinDate;
+      if (targetDate > DateTimePicker.MaxDate) targetDate = DateTimePicker.MaxDate;
+
+      DateTimePicker.Value = targetDate;
+
+      DateTimePicker.MinDate = DateTimePicker.Value;
+      dateChanged = false;
 
       bigLabel2.Text = "Izmena Projekta: " + p.Name;
     }
@@ -170,7 +183,8 @@ public partial class ProjectsForm : BaseForm {
     TBoxProjectName.Text = "";
     TBoxDescription.Text = "";
     ComboBoxStatus.SelectedIndex = -1;
-    DateTimePicker.Value = DateTime.Now;
+    DateTimePicker.Value = DateTimePicker.MinDate = DateTime.Now;
+    dateChanged = false;
     bigLabel2.Text = "Novi Projekat";
     LabelDate.Text = "Datum početka";
   }
@@ -182,5 +196,9 @@ public partial class ProjectsForm : BaseForm {
       isExpanded = true;
     }
     parent.CenterOnScreen();
+  }
+
+  private void DateTimePicker_ValueChanged(object sender, EventArgs e) {
+    dateChanged = true;
   }
 }

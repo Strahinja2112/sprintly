@@ -76,6 +76,7 @@ partial class ProjectsForm {
     DateTimePicker.Name = "DateTimePicker";
     DateTimePicker.Size = new Size(353, 29);
     DateTimePicker.TabIndex = 29;
+    DateTimePicker.ValueChanged += DateTimePicker_ValueChanged;
     // 
     // LabelDate
     // 
