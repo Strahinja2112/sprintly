@@ -18,6 +18,8 @@ public partial class MainForm : BaseForm {
     LabelProjects.Click += PanelProjects_Click;
     LabelEmployees.Click += PanelEmployees_Click;
 
+    PanelProjects_Click(sender, e);
+
     if (!PermissionsService.CanLogWork()) {
       PanelWorkLog.Hide();
     }
@@ -26,9 +28,6 @@ public partial class MainForm : BaseForm {
     }
     if (!PermissionsService.CanManageUsers()) {
       PanelEmployees.Hide();
-    }
-    else {
-      PanelEmployees_Click(sender, e);
     }
     if (!PermissionsService.CanManageSprints()) {
       PanelSprints.Hide();

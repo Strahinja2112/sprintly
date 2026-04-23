@@ -19,7 +19,7 @@ public partial class ProjectsForm : BaseForm {
   }
 
   private void ProjectsForm_Load(object sender, EventArgs e) {
-    ComboBoxStatus.Items.AddRange(new string[] { "Active", "Completed", "On Hold", "Planned" });
+    ComboBoxStatus.Items.AddRange(Enum.GetNames<ProjectStatus>());
 
     LoadProjects();
     SetPlaceholder(TBoxSearch, searchPlaceholder);
@@ -91,7 +91,7 @@ public partial class ProjectsForm : BaseForm {
 
       project.Name = name;
       project.Description = description;
-      project.Status = status;
+      project.Status = Enum.Parse<ProjectStatus>(status);
       project.StartDate = DateTimePickerStart.Value;
       //project.EndDate = DateTimePickerEnd.Value; // Ako imaš EndDate
 
@@ -121,8 +121,9 @@ public partial class ProjectsForm : BaseForm {
         .Select(p => new {
           p.Id,
           Naziv = p.Name,
-          Status = p.Status,
-          Početak = p.StartDate
+          p.Status,
+          Početak = p.StartDate,
+          Kraj = p.EndDate
         })
         .OrderBy(p => p.Naziv)
         .ToList();

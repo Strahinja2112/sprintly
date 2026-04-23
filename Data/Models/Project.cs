@@ -15,7 +15,7 @@ public class Project {
 
   [Required]
   [MaxLength(30)]
-  public string Status { get; set; } = null!;
+  public ProjectStatus Status { get; set; }
 
   public DateTime StartDate { get; set; }
 
@@ -24,4 +24,11 @@ public class Project {
   public virtual ICollection<Sprint> Sprints { get; set; } = new List<Sprint>();
 
   public virtual ICollection<Employee> Members { get; set; } = new List<Employee>();
+}
+
+public enum ProjectStatus {
+  Active,
+  Completed,
+  OnHold,
+  Planned
 }

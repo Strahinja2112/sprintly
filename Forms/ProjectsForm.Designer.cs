@@ -25,9 +25,9 @@ partial class ProjectsForm {
   /// </summary>
   private void InitializeComponent() {
     components = new System.ComponentModel.Container();
-    DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
     TBoxSearch = new ReaLTaiizor.Controls.BigTextBox();
     DateTimePickerStart = new ReaLTaiizor.Controls.PoisonDateTime();
     dungeonLabel11 = new ReaLTaiizor.Controls.DungeonLabel();
@@ -47,7 +47,7 @@ partial class ProjectsForm {
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     StyleManager1 = new ReaLTaiizor.Manager.PoisonStyleManager(components);
     ButtonProjectDelete = new ReaLTaiizor.Controls.FoxButton();
-    ButonUserAdd = new ReaLTaiizor.Controls.FoxButton();
+    ButonProjectAdd = new ReaLTaiizor.Controls.FoxButton();
     PanelProjectData.SuspendLayout();
     ((System.ComponentModel.ISupportInitialize)DGVProjects).BeginInit();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).BeginInit();
@@ -68,6 +68,7 @@ partial class ProjectsForm {
     TBoxSearch.TabIndex = 16;
     TBoxSearch.TextAlignment = HorizontalAlignment.Left;
     TBoxSearch.UseSystemPasswordChar = false;
+    TBoxSearch.TextChanged += TBoxSearch_TextChanged;
     // 
     // DateTimePickerStart
     // 
@@ -203,6 +204,7 @@ partial class ProjectsForm {
     ButtonSave.Size = new Size(353, 40);
     ButtonSave.TabIndex = 7;
     ButtonSave.Text = "Sačuvaj";
+    ButtonSave.Click += ButtonSave_Click;
     // 
     // TBoxProjectName
     // 
@@ -265,41 +267,42 @@ partial class ProjectsForm {
     DGVProjects.BorderStyle = BorderStyle.None;
     DGVProjects.CellBorderStyle = DataGridViewCellBorderStyle.None;
     DGVProjects.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-    DGVProjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+    dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle4.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle4.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle4.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+    DGVProjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
     DGVProjects.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-    dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
-    dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-    DGVProjects.DefaultCellStyle = dataGridViewCellStyle2;
+    dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle5.BackColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle5.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle5.ForeColor = Color.FromArgb(136, 136, 136);
+    dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+    DGVProjects.DefaultCellStyle = dataGridViewCellStyle5;
     DGVProjects.EnableHeadersVisualStyles = false;
     DGVProjects.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
     DGVProjects.GridColor = Color.FromArgb(255, 255, 255);
     DGVProjects.Location = new Point(17, 166);
     DGVProjects.Name = "DGVProjects";
     DGVProjects.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-    DGVProjects.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+    dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle6.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle6.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle6.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+    DGVProjects.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
     DGVProjects.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGVProjects.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
     DGVProjects.Size = new Size(569, 288);
     DGVProjects.TabIndex = 12;
+    DGVProjects.CellClick += DGVProjects_CellClick;
     // 
     // dungeonLabel1
     // 
@@ -314,7 +317,7 @@ partial class ProjectsForm {
     // 
     // StyleManager1
     // 
-    StyleManager1.Owner = null;
+    StyleManager1.Owner = this;
     StyleManager1.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Silver;
     // 
     // ButtonProjectDelete
@@ -335,26 +338,28 @@ partial class ProjectsForm {
     ButtonProjectDelete.Size = new Size(90, 40);
     ButtonProjectDelete.TabIndex = 13;
     ButtonProjectDelete.Text = "Obriši";
+    ButtonProjectDelete.Click += ButtonProjectDelete_Click;
     // 
-    // ButonUserAdd
+    // ButonProjectAdd
     // 
-    ButonUserAdd.BackColor = Color.Transparent;
-    ButonUserAdd.BaseColor = Color.DarkSlateGray;
-    ButonUserAdd.BorderColor = Color.DarkSlateGray;
-    ButonUserAdd.DisabledBaseColor = Color.FromArgb(255, 224, 192);
-    ButonUserAdd.DisabledBorderColor = Color.FromArgb(209, 209, 209);
-    ButonUserAdd.DisabledTextColor = Color.FromArgb(166, 178, 190);
-    ButonUserAdd.DownColor = Color.DarkSlateGray;
-    ButonUserAdd.EnabledCalc = true;
-    ButonUserAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-    ButonUserAdd.ForeColor = Color.White;
-    ButonUserAdd.Location = new Point(496, 120);
-    ButonUserAdd.Name = "ButonUserAdd";
-    ButonUserAdd.OverColor = Color.DimGray;
-    ButonUserAdd.RightToLeft = RightToLeft.Yes;
-    ButonUserAdd.Size = new Size(90, 40);
-    ButonUserAdd.TabIndex = 14;
-    ButonUserAdd.Text = "Dodaj";
+    ButonProjectAdd.BackColor = Color.Transparent;
+    ButonProjectAdd.BaseColor = Color.DarkSlateGray;
+    ButonProjectAdd.BorderColor = Color.DarkSlateGray;
+    ButonProjectAdd.DisabledBaseColor = Color.FromArgb(255, 224, 192);
+    ButonProjectAdd.DisabledBorderColor = Color.FromArgb(209, 209, 209);
+    ButonProjectAdd.DisabledTextColor = Color.FromArgb(166, 178, 190);
+    ButonProjectAdd.DownColor = Color.DarkSlateGray;
+    ButonProjectAdd.EnabledCalc = true;
+    ButonProjectAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+    ButonProjectAdd.ForeColor = Color.White;
+    ButonProjectAdd.Location = new Point(496, 120);
+    ButonProjectAdd.Name = "ButonProjectAdd";
+    ButonProjectAdd.OverColor = Color.DimGray;
+    ButonProjectAdd.RightToLeft = RightToLeft.Yes;
+    ButonProjectAdd.Size = new Size(90, 40);
+    ButonProjectAdd.TabIndex = 14;
+    ButonProjectAdd.Text = "Dodaj";
+    ButonProjectAdd.Click += ButtonProjectAdd_Click;
     // 
     // ProjectsForm
     // 
@@ -367,9 +372,10 @@ partial class ProjectsForm {
     Controls.Add(DGVProjects);
     Controls.Add(dungeonLabel1);
     Controls.Add(ButtonProjectDelete);
-    Controls.Add(ButonUserAdd);
+    Controls.Add(ButonProjectAdd);
     Name = "ProjectsForm";
     Text = "ProjectForm";
+    Load += ProjectsForm_Load;
     PanelProjectData.ResumeLayout(false);
     PanelProjectData.PerformLayout();
     ((System.ComponentModel.ISupportInitialize)DGVProjects).EndInit();
@@ -395,7 +401,7 @@ partial class ProjectsForm {
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
   private ReaLTaiizor.Manager.PoisonStyleManager StyleManager1;
   private ReaLTaiizor.Controls.FoxButton ButtonProjectDelete;
-  private ReaLTaiizor.Controls.FoxButton ButonUserAdd;
+  private ReaLTaiizor.Controls.FoxButton ButonProjectAdd;
   private ReaLTaiizor.Controls.PoisonDateTime poisonDateTime1;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel12;
   private ReaLTaiizor.Controls.BigTextBox TBoxDescription;
