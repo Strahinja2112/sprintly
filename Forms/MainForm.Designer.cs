@@ -341,7 +341,7 @@
       Controls.Add(PanelMainContent);
       Controls.Add(panel1);
       FormBorderStyle = FormBorderStyle.FixedSingle;
-      MaximizeBox = false;
+      MinimizeBox = false;
       MinimumSize = new Size(806, 509);
       Name = "MainForm";
       StartPosition = FormStartPosition.CenterScreen;
