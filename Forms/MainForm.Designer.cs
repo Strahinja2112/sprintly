@@ -253,7 +253,7 @@
       PanelSprints.Location = new Point(0, 0);
       PanelSprints.Name = "PanelSprints";
       PanelSprints.Size = new Size(190, 50);
-      PanelSprints.TabIndex = 8;
+      PanelSprints.TabIndex = 11;
       PanelSprints.Click += PanelSprints_Click;
       // 
       // LabelSprints

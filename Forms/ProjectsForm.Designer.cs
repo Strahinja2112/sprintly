@@ -62,7 +62,7 @@ partial class ProjectsForm {
     TBoxSearch.Multiline = true;
     TBoxSearch.Name = "TBoxSearch";
     TBoxSearch.ReadOnly = false;
-    TBoxSearch.Size = new Size(229, 41);
+    TBoxSearch.Size = new Size(377, 41);
     TBoxSearch.TabIndex = 16;
     TBoxSearch.TextAlignment = HorizontalAlignment.Left;
     TBoxSearch.UseSystemPasswordChar = false;
