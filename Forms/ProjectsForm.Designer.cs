@@ -25,19 +25,17 @@ partial class ProjectsForm {
   /// </summary>
   private void InitializeComponent() {
     components = new System.ComponentModel.Container();
-    DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
     TBoxSearch = new ReaLTaiizor.Controls.BigTextBox();
-    DateTimePickerStart = new ReaLTaiizor.Controls.PoisonDateTime();
-    dungeonLabel11 = new ReaLTaiizor.Controls.DungeonLabel();
+    DateTimePicker = new ReaLTaiizor.Controls.PoisonDateTime();
+    LabelDate = new ReaLTaiizor.Controls.DungeonLabel();
     ComboBoxStatus = new ReaLTaiizor.Controls.AloneComboBox();
     dungeonLabel7 = new ReaLTaiizor.Controls.DungeonLabel();
     PanelProjectData = new Panel();
     TBoxDescription = new ReaLTaiizor.Controls.BigTextBox();
     dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
-    poisonDateTime1 = new ReaLTaiizor.Controls.PoisonDateTime();
-    dungeonLabel12 = new ReaLTaiizor.Controls.DungeonLabel();
     ButtonSave = new ReaLTaiizor.Controls.FoxButton();
     TBoxProjectName = new ReaLTaiizor.Controls.BigTextBox();
     dungeonLabel3 = new ReaLTaiizor.Controls.DungeonLabel();
@@ -70,26 +68,26 @@ partial class ProjectsForm {
     TBoxSearch.UseSystemPasswordChar = false;
     TBoxSearch.TextChanged += TBoxSearch_TextChanged;
     // 
-    // DateTimePickerStart
+    // DateTimePicker
     // 
-    DateTimePickerStart.FontSize = ReaLTaiizor.Extension.Poison.PoisonDateTimeSize.Medium;
-    DateTimePickerStart.Location = new Point(14, 306);
-    DateTimePickerStart.MinimumSize = new Size(0, 29);
-    DateTimePickerStart.Name = "DateTimePickerStart";
-    DateTimePickerStart.Size = new Size(173, 29);
-    DateTimePickerStart.TabIndex = 29;
+    DateTimePicker.FontSize = ReaLTaiizor.Extension.Poison.PoisonDateTimeSize.Medium;
+    DateTimePicker.Location = new Point(14, 370);
+    DateTimePicker.MinimumSize = new Size(0, 29);
+    DateTimePicker.Name = "DateTimePicker";
+    DateTimePicker.Size = new Size(353, 29);
+    DateTimePicker.TabIndex = 29;
     // 
-    // dungeonLabel11
+    // LabelDate
     // 
-    dungeonLabel11.AutoSize = true;
-    dungeonLabel11.BackColor = Color.Transparent;
-    dungeonLabel11.Font = new Font("Segoe UI", 13F);
-    dungeonLabel11.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel11.Location = new Point(14, 278);
-    dungeonLabel11.Name = "dungeonLabel11";
-    dungeonLabel11.Size = new Size(134, 25);
-    dungeonLabel11.TabIndex = 28;
-    dungeonLabel11.Text = "Datum početka";
+    LabelDate.AutoSize = true;
+    LabelDate.BackColor = Color.Transparent;
+    LabelDate.Font = new Font("Segoe UI", 13F);
+    LabelDate.ForeColor = Color.FromArgb(76, 76, 77);
+    LabelDate.Location = new Point(14, 342);
+    LabelDate.Name = "LabelDate";
+    LabelDate.Size = new Size(134, 25);
+    LabelDate.TabIndex = 28;
+    LabelDate.Text = "Datum početka";
     // 
     // ComboBoxStatus
     // 
@@ -99,9 +97,9 @@ partial class ProjectsForm {
     ComboBoxStatus.EnabledCalc = true;
     ComboBoxStatus.FormattingEnabled = true;
     ComboBoxStatus.ItemHeight = 20;
-    ComboBoxStatus.Location = new Point(14, 375);
+    ComboBoxStatus.Location = new Point(14, 312);
     ComboBoxStatus.Name = "ComboBoxStatus";
-    ComboBoxStatus.Size = new Size(173, 26);
+    ComboBoxStatus.Size = new Size(353, 26);
     ComboBoxStatus.TabIndex = 25;
     // 
     // dungeonLabel7
@@ -110,7 +108,7 @@ partial class ProjectsForm {
     dungeonLabel7.BackColor = Color.Transparent;
     dungeonLabel7.Font = new Font("Segoe UI", 13F);
     dungeonLabel7.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel7.Location = new Point(14, 347);
+    dungeonLabel7.Location = new Point(14, 284);
     dungeonLabel7.Name = "dungeonLabel7";
     dungeonLabel7.Size = new Size(130, 25);
     dungeonLabel7.TabIndex = 23;
@@ -121,16 +119,14 @@ partial class ProjectsForm {
     PanelProjectData.BackColor = SystemColors.Window;
     PanelProjectData.Controls.Add(TBoxDescription);
     PanelProjectData.Controls.Add(dungeonLabel2);
-    PanelProjectData.Controls.Add(poisonDateTime1);
-    PanelProjectData.Controls.Add(dungeonLabel12);
-    PanelProjectData.Controls.Add(DateTimePickerStart);
-    PanelProjectData.Controls.Add(dungeonLabel11);
+    PanelProjectData.Controls.Add(DateTimePicker);
+    PanelProjectData.Controls.Add(LabelDate);
     PanelProjectData.Controls.Add(ComboBoxStatus);
     PanelProjectData.Controls.Add(ButtonSave);
     PanelProjectData.Controls.Add(TBoxProjectName);
-    PanelProjectData.Controls.Add(dungeonLabel7);
     PanelProjectData.Controls.Add(dungeonLabel3);
     PanelProjectData.Controls.Add(bigLabel2);
+    PanelProjectData.Controls.Add(dungeonLabel7);
     PanelProjectData.Dock = DockStyle.Right;
     PanelProjectData.Location = new Point(601, 0);
     PanelProjectData.Name = "PanelProjectData";
@@ -148,7 +144,7 @@ partial class ProjectsForm {
     TBoxDescription.Multiline = true;
     TBoxDescription.Name = "TBoxDescription";
     TBoxDescription.ReadOnly = false;
-    TBoxDescription.Size = new Size(353, 112);
+    TBoxDescription.Size = new Size(353, 128);
     TBoxDescription.TabIndex = 35;
     TBoxDescription.TextAlignment = HorizontalAlignment.Left;
     TBoxDescription.UseSystemPasswordChar = false;
@@ -164,27 +160,6 @@ partial class ProjectsForm {
     dungeonLabel2.Size = new Size(119, 25);
     dungeonLabel2.TabIndex = 34;
     dungeonLabel2.Text = "Opis projekta";
-    // 
-    // poisonDateTime1
-    // 
-    poisonDateTime1.FontSize = ReaLTaiizor.Extension.Poison.PoisonDateTimeSize.Medium;
-    poisonDateTime1.Location = new Point(194, 306);
-    poisonDateTime1.MinimumSize = new Size(0, 29);
-    poisonDateTime1.Name = "poisonDateTime1";
-    poisonDateTime1.Size = new Size(173, 29);
-    poisonDateTime1.TabIndex = 33;
-    // 
-    // dungeonLabel12
-    // 
-    dungeonLabel12.AutoSize = true;
-    dungeonLabel12.BackColor = Color.Transparent;
-    dungeonLabel12.Font = new Font("Segoe UI", 13F);
-    dungeonLabel12.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel12.Location = new Point(194, 278);
-    dungeonLabel12.Name = "dungeonLabel12";
-    dungeonLabel12.Size = new Size(144, 25);
-    dungeonLabel12.TabIndex = 32;
-    dungeonLabel12.Text = "Datum završetka";
     // 
     // ButtonSave
     // 
@@ -267,41 +242,43 @@ partial class ProjectsForm {
     DGVProjects.BorderStyle = BorderStyle.None;
     DGVProjects.CellBorderStyle = DataGridViewCellBorderStyle.None;
     DGVProjects.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle4.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle4.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle4.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-    DGVProjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+    dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+    DGVProjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
     DGVProjects.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-    dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle5.BackColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle5.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle5.ForeColor = Color.FromArgb(136, 136, 136);
-    dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-    DGVProjects.DefaultCellStyle = dataGridViewCellStyle5;
+    dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
+    dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+    DGVProjects.DefaultCellStyle = dataGridViewCellStyle2;
     DGVProjects.EnableHeadersVisualStyles = false;
     DGVProjects.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
     DGVProjects.GridColor = Color.FromArgb(255, 255, 255);
     DGVProjects.Location = new Point(17, 166);
     DGVProjects.Name = "DGVProjects";
     DGVProjects.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle6.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle6.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle6.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-    DGVProjects.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+    dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+    DGVProjects.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+    DGVProjects.RowHeadersVisible = false;
     DGVProjects.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGVProjects.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
     DGVProjects.Size = new Size(569, 288);
     DGVProjects.TabIndex = 12;
+    DGVProjects.Theme = ReaLTaiizor.Enum.Poison.ThemeStyle.Light;
     DGVProjects.CellClick += DGVProjects_CellClick;
     // 
     // dungeonLabel1
@@ -387,8 +364,8 @@ partial class ProjectsForm {
   #endregion
 
   private ReaLTaiizor.Controls.BigTextBox TBoxSearch;
-  private ReaLTaiizor.Controls.PoisonDateTime DateTimePickerStart;
-  private ReaLTaiizor.Controls.DungeonLabel dungeonLabel11;
+  private ReaLTaiizor.Controls.PoisonDateTime DateTimePicker;
+  private ReaLTaiizor.Controls.DungeonLabel LabelDate;
   private ReaLTaiizor.Controls.AloneComboBox ComboBoxStatus;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel7;
   private Panel PanelProjectData;
@@ -402,8 +379,6 @@ partial class ProjectsForm {
   private ReaLTaiizor.Manager.PoisonStyleManager StyleManager1;
   private ReaLTaiizor.Controls.FoxButton ButtonProjectDelete;
   private ReaLTaiizor.Controls.FoxButton ButonProjectAdd;
-  private ReaLTaiizor.Controls.PoisonDateTime poisonDateTime1;
-  private ReaLTaiizor.Controls.DungeonLabel dungeonLabel12;
   private ReaLTaiizor.Controls.BigTextBox TBoxDescription;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
 }

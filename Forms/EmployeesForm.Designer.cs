@@ -125,6 +125,7 @@ partial class EmployeesForm {
     dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
     dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
     DGVEmployees.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+    DGVEmployees.RowHeadersVisible = false;
     DGVEmployees.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGVEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
     DGVEmployees.Size = new Size(569, 288);

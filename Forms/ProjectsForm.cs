@@ -81,19 +81,22 @@ public partial class ProjectsForm : BaseForm {
       Project project;
 
       if (selectedProjectId == 0) {
-        project = new Project { StartDate = DateTimePickerStart.Value };
+        project = new Project {
+          StartDate = DateTimePicker.Value
+        };
         db.Projects.Add(project);
       }
       else {
         project = db.Projects.FirstOrDefault(p => p.Id == selectedProjectId);
-        if (project == null) return;
+        if (project == null) {
+          return;
+        }
+        project.EndDate = DateTimePicker.Value;
       }
 
       project.Name = name;
       project.Description = description;
       project.Status = Enum.Parse<ProjectStatus>(status);
-      project.StartDate = DateTimePickerStart.Value;
-      project.EndDate = DateTimePickerEnd.Value;
 
       db.SaveChanges();
 
@@ -108,10 +111,12 @@ public partial class ProjectsForm : BaseForm {
   }
 
   private void DGVProjects_CellClick(object sender, DataGridViewCellEventArgs e) {
-    if (e.RowIndex >= 0 && DGVProjects.Rows[e.RowIndex].Cells["Id"].Value != null) {
+    var isValid = e.RowIndex >= 0 && DGVProjects.Rows[e.RowIndex].Cells["Id"].Value != null;
+    if (isValid) {
       selectedProjectId = Convert.ToInt32(DGVProjects.Rows[e.RowIndex].Cells["Id"].Value);
       LoadProjectToInputs(selectedProjectId);
       ExpandParent();
+      LabelDate.Text = "Datum završetka";
     }
   }
 
@@ -140,7 +145,7 @@ public partial class ProjectsForm : BaseForm {
       TBoxProjectName.Text = p.Name;
       TBoxDescription.Text = p.Description;
       ComboBoxStatus.SelectedItem = p.Status;
-      DateTimePickerStart.Value = p.StartDate;
+      DateTimePicker.Value = selectedProjectId != 0 ? p.EndDate ?? DateTime.Now : p.StartDate;
 
       bigLabel2.Text = "Izmena Projekta: " + p.Name;
     }
@@ -165,8 +170,9 @@ public partial class ProjectsForm : BaseForm {
     TBoxProjectName.Text = "";
     TBoxDescription.Text = "";
     ComboBoxStatus.SelectedIndex = -1;
-    DateTimePickerStart.Value = DateTime.Now;
+    DateTimePicker.Value = DateTime.Now;
     bigLabel2.Text = "Novi Projekat";
+    LabelDate.Text = "Datum početka";
   }
 
   private void ExpandParent() {
