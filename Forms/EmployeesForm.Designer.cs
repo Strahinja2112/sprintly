@@ -37,7 +37,7 @@ partial class EmployeesForm {
     PanelUserData = new Panel();
     TBoxPassword = new ReaLTaiizor.Controls.BigTextBox();
     dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
-    DateTime = new ReaLTaiizor.Controls.PoisonDateTime();
+    DateTimePicker = new ReaLTaiizor.Controls.PoisonDateTime();
     dungeonLabel11 = new ReaLTaiizor.Controls.DungeonLabel();
     ComboBoxField = new ReaLTaiizor.Controls.AloneComboBox();
     ComboBoxExpirience = new ReaLTaiizor.Controls.AloneComboBox();
@@ -69,7 +69,7 @@ partial class EmployeesForm {
     bigLabel1.BackColor = Color.Transparent;
     bigLabel1.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
     bigLabel1.ForeColor = Color.DarkSlateGray;
-    bigLabel1.Location = new Point(12, 9);
+    bigLabel1.Location = new Point(12, 5);
     bigLabel1.Name = "bigLabel1";
     bigLabel1.Size = new Size(416, 46);
     bigLabel1.TabIndex = 0;
@@ -80,11 +80,11 @@ partial class EmployeesForm {
     dungeonLabel1.BackColor = Color.Transparent;
     dungeonLabel1.Font = new Font("Segoe UI", 11F);
     dungeonLabel1.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel1.Location = new Point(19, 55);
+    dungeonLabel1.Location = new Point(17, 59);
     dungeonLabel1.Name = "dungeonLabel1";
     dungeonLabel1.Size = new Size(548, 45);
     dungeonLabel1.TabIndex = 1;
-    dungeonLabel1.Text = "Ovo je stranica na kojoj mozete upravljati zaposlenima, dodati novog zaposlenog, ili otpustiti postojece zaposlene";
+    dungeonLabel1.Text = "Ovo je stranica na kojoj možete upravljati zaposlenima, dodati nove zaposlene, ili otpustiti postojeće.";
     // 
     // DGVEmployees
     // 
@@ -114,7 +114,7 @@ partial class EmployeesForm {
     DGVEmployees.EnableHeadersVisualStyles = false;
     DGVEmployees.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
     DGVEmployees.GridColor = Color.FromArgb(255, 255, 255);
-    DGVEmployees.Location = new Point(18, 168);
+    DGVEmployees.Location = new Point(17, 166);
     DGVEmployees.Name = "DGVEmployees";
     DGVEmployees.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
     dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -127,7 +127,7 @@ partial class EmployeesForm {
     DGVEmployees.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
     DGVEmployees.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGVEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-    DGVEmployees.Size = new Size(559, 288);
+    DGVEmployees.Size = new Size(569, 288);
     DGVEmployees.TabIndex = 3;
     DGVEmployees.CellClick += DGVEmployees_CellClick;
     // 
@@ -148,7 +148,7 @@ partial class EmployeesForm {
     ButtonUserDelete.EnabledCalc = true;
     ButtonUserDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButtonUserDelete.ForeColor = Color.DarkSlateGray;
-    ButtonUserDelete.Location = new Point(391, 121);
+    ButtonUserDelete.Location = new Point(400, 120);
     ButtonUserDelete.Name = "ButtonUserDelete";
     ButtonUserDelete.OverColor = Color.FromArgb(242, 242, 242);
     ButtonUserDelete.Size = new Size(90, 40);
@@ -168,7 +168,7 @@ partial class EmployeesForm {
     ButonUserAdd.EnabledCalc = true;
     ButonUserAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButonUserAdd.ForeColor = Color.White;
-    ButonUserAdd.Location = new Point(487, 121);
+    ButonUserAdd.Location = new Point(496, 119);
     ButonUserAdd.Name = "ButonUserAdd";
     ButonUserAdd.OverColor = Color.DimGray;
     ButonUserAdd.RightToLeft = RightToLeft.Yes;
@@ -182,7 +182,7 @@ partial class EmployeesForm {
     PanelUserData.BackColor = SystemColors.Window;
     PanelUserData.Controls.Add(TBoxPassword);
     PanelUserData.Controls.Add(dungeonLabel2);
-    PanelUserData.Controls.Add(DateTime);
+    PanelUserData.Controls.Add(DateTimePicker);
     PanelUserData.Controls.Add(dungeonLabel11);
     PanelUserData.Controls.Add(ComboBoxField);
     PanelUserData.Controls.Add(ComboBoxExpirience);
@@ -203,7 +203,7 @@ partial class EmployeesForm {
     PanelUserData.Controls.Add(dungeonLabel3);
     PanelUserData.Controls.Add(bigLabel2);
     PanelUserData.Dock = DockStyle.Right;
-    PanelUserData.Location = new Point(584, 0);
+    PanelUserData.Location = new Point(601, 0);
     PanelUserData.Name = "PanelUserData";
     PanelUserData.Size = new Size(383, 471);
     PanelUserData.TabIndex = 6;
@@ -236,14 +236,14 @@ partial class EmployeesForm {
     dungeonLabel2.TabIndex = 30;
     dungeonLabel2.Text = "Lozinka";
     // 
-    // DateTime
+    // DateTimePicker
     // 
-    DateTime.FontSize = ReaLTaiizor.Extension.Poison.PoisonDateTimeSize.Medium;
-    DateTime.Location = new Point(14, 352);
-    DateTime.MinimumSize = new Size(0, 29);
-    DateTime.Name = "DateTime";
-    DateTime.Size = new Size(353, 29);
-    DateTime.TabIndex = 29;
+    DateTimePicker.FontSize = ReaLTaiizor.Extension.Poison.PoisonDateTimeSize.Medium;
+    DateTimePicker.Location = new Point(14, 352);
+    DateTimePicker.MinimumSize = new Size(0, 29);
+    DateTimePicker.Name = "DateTimePicker";
+    DateTimePicker.Size = new Size(353, 29);
+    DateTimePicker.TabIndex = 29;
     // 
     // dungeonLabel11
     // 
@@ -511,7 +511,7 @@ partial class EmployeesForm {
     TBoxSearch.Font = new Font("Tahoma", 11F);
     TBoxSearch.ForeColor = Color.DimGray;
     TBoxSearch.Image = null;
-    TBoxSearch.Location = new Point(18, 120);
+    TBoxSearch.Location = new Point(17, 119);
     TBoxSearch.MaxLength = 32767;
     TBoxSearch.Multiline = true;
     TBoxSearch.Name = "TBoxSearch";
@@ -527,7 +527,7 @@ partial class EmployeesForm {
     AutoScaleDimensions = new SizeF(7F, 15F);
     AutoScaleMode = AutoScaleMode.Font;
     BackColor = SystemColors.Control;
-    ClientSize = new Size(967, 471);
+    ClientSize = new Size(984, 471);
     Controls.Add(TBoxSearch);
     Controls.Add(PanelUserData);
     Controls.Add(ButonUserAdd);
@@ -572,7 +572,7 @@ partial class EmployeesForm {
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel10;
   private ReaLTaiizor.Controls.AloneComboBox ComboBoxType;
   private ReaLTaiizor.Controls.AloneComboBox ComboBoxExpirience;
-  private ReaLTaiizor.Controls.PoisonDateTime DateTime;
+  private ReaLTaiizor.Controls.PoisonDateTime DateTimePicker;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel11;
   private ReaLTaiizor.Controls.AloneComboBox ComboBoxField;
   private ReaLTaiizor.Controls.BigTextBox TBoxPassword;

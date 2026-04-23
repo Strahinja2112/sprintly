@@ -1,7 +1,7 @@
 ﻿namespace Sprintra.Data;
 
 using Microsoft.EntityFrameworkCore;
-using Sprintra.Models;
+using Sprintra.Data.Models;
 
 public class AppDbContext : DbContext {
   public DbSet<Employee> Employees { get; set; }

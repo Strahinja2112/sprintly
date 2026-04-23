@@ -1,6 +1,6 @@
 ﻿namespace Sprintra.Services;
 
-using Sprintra.Models;
+using Sprintra.Data.Models;
 
 public static class PermissionsService {
   public static bool CanManageProjects() {

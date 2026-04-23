@@ -70,7 +70,7 @@ public partial class MainForm : BaseForm {
   }
 
   private void PanelProjects_Click(object sender, EventArgs e) {
-    OpenChildForm(new SprintsForm());
+    OpenChildForm(new ProjectsForm(this));
   }
 
   private void PanelWorkLog_Click(object sender, EventArgs e) {

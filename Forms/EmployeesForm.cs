@@ -1,5 +1,5 @@
 ﻿using Sprintra.Data;
-using Sprintra.Models;
+using Sprintra.Data.Models;
 using Sprintra.Services;
 using System.Data;
 
@@ -147,7 +147,7 @@ public partial class EmployeesForm : BaseForm {
       emp.Username = username;
       emp.Email = email;
       emp.Phone = TBoxPhone.Text.Trim();
-      emp.HireDate = DateTime.Value;
+      emp.HireDate = DateTimePicker.Value;
       emp.Type = Enum.TryParse(ComboBoxType.SelectedItem?.ToString(), out EmployeeType type) ? type : EmployeeType.Developer;
       if (emp.Type == EmployeeType.Developer) {
         emp.SeniorityLevel = Enum.TryParse(ComboBoxExpirience.SelectedItem?.ToString(), out SeniorityLevel seniorityLevel) ? seniorityLevel : null;
@@ -173,8 +173,8 @@ public partial class EmployeesForm : BaseForm {
   }
 
   private void DGVEmployees_CellClick(object sender, DataGridViewCellEventArgs e) {
-    if (e.RowIndex >= 0) {
-      selectedEmployeeId = (int)DGVEmployees.Rows[e.RowIndex].Cells["Id"].Value;
+    if (e.RowIndex >= 0 && DGVEmployees.Rows[e.RowIndex].Cells["Id"].Value != null) {
+      selectedEmployeeId = Convert.ToInt32(DGVEmployees.Rows[e.RowIndex].Cells["Id"].Value);
       LoadEmployeeToInputs(selectedEmployeeId);
       ExpandParent();
     }
@@ -188,7 +188,7 @@ public partial class EmployeesForm : BaseForm {
     TBoxEmail.Text = "";
     TBoxPhone.Text = "06";
     TBoxPassword.Text = "";
-    DateTime.Value = System.DateTime.Now;
+    DateTimePicker.Value = System.DateTime.Now;
     ComboBoxType.SelectedIndex = -1;
     ComboBoxExpirience.SelectedIndex = -1;
     ComboBoxField.SelectedIndex = -1;
@@ -202,10 +202,10 @@ public partial class EmployeesForm : BaseForm {
           emp.Id,
           Ime = emp.FirstName,
           Prezime = emp.LastName,
-          emp.Username,
+          emp.Email,
           Uloga = emp.Type.ToString(),
-          emp.Status
         })
+        .OrderBy(emp => emp.Prezime)
         .ToList();
 
     DGVEmployees.DataSource = employees;
@@ -226,22 +226,36 @@ public partial class EmployeesForm : BaseForm {
   }
 
   private void LoadEmployeeToInputs(int id) {
-    using var db = new AppDbContext();
-    var emp = db.Employees.FirstOrDefault(e => e.Id == id);
+    try {
+      using var db = new AppDbContext();
+      var emp = db.Employees.FirstOrDefault(e => e.Id == id);
 
-    if (emp != null) {
-      TBoxName.Text = emp.FirstName;
-      TBoxLastName.Text = emp.LastName;
-      TBoxUsername.Text = emp.Username;
-      TBoxEmail.Text = emp.Email;
-      TBoxPhone.Text = emp.Phone;
-      DateTime.Value = emp.HireDate;
+      if (emp != null) {
+        TBoxName.Text = emp.FirstName;
+        TBoxLastName.Text = emp.LastName;
+        TBoxUsername.Text = emp.Username;
+        TBoxEmail.Text = emp.Email;
+        TBoxPhone.Text = emp.Phone ?? "";
+        DateTimePicker.Value = emp.HireDate;
 
-      ComboBoxType.SelectedItem = emp.Type.ToString();
-      ComboBoxExpirience.SelectedItem = emp.SeniorityLevel;
-      ComboBoxField.SelectedItem = emp.Field;
+        ComboBoxType.SelectedItem = emp.Type.ToString();
 
-      bigLabel2.Text = "Izmena Korisnika";
+        ComboBoxType_SelectedIndexChanged(null, null);
+
+        if (emp.Type == EmployeeType.Developer) {
+          ComboBoxExpirience.SelectedItem = emp.SeniorityLevel?.ToString();
+          ComboBoxField.SelectedItem = emp.Field?.ToString();
+        }
+        else {
+          ComboBoxExpirience.SelectedIndex = -1;
+          ComboBoxField.SelectedIndex = -1;
+        }
+
+        bigLabel2.Text = "Izmena Korisnika: " + emp.Username;
+      }
+    }
+    catch (Exception ex) {
+      MessageBox.Show("Greška pri učitavanju podataka: " + ex.Message);
     }
   }
 

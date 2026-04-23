@@ -2,7 +2,7 @@
 
 using BCrypt.Net;
 using Sprintra.Data;
-using Sprintra.Models;
+using Sprintra.Data.Models;
 using System.Security.Cryptography;
 using System.Text;
 

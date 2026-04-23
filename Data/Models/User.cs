@@ -1,4 +1,4 @@
-﻿namespace Sprintra.Models;
+﻿namespace Sprintra.Data.Models;
 
 internal class User {
   public int Id { get; set; }
