@@ -24,15 +24,17 @@ partial class SprintsForm {
   /// the contents of this method with the code editor.
   /// </summary>
   private void InitializeComponent() {
-    DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
     bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     DGVSprints = new ReaLTaiizor.Controls.PoisonDataGridView();
     ButtonDelete = new ReaLTaiizor.Controls.FoxButton();
     ButonAdd = new ReaLTaiizor.Controls.FoxButton();
     PanelProjectData = new Panel();
+    dungeonNumeric1 = new ReaLTaiizor.Controls.DungeonNumeric();
+    dungeonLabel5 = new ReaLTaiizor.Controls.DungeonLabel();
     TBoxDescription = new ReaLTaiizor.Controls.BigTextBox();
     dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
     DateTimePicker = new ReaLTaiizor.Controls.PoisonDateTime();
@@ -81,37 +83,37 @@ partial class SprintsForm {
     DGVSprints.BorderStyle = BorderStyle.None;
     DGVSprints.CellBorderStyle = DataGridViewCellBorderStyle.None;
     DGVSprints.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-    DGVSprints.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+    dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle4.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle4.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle4.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+    DGVSprints.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
     DGVSprints.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-    dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
-    dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-    DGVSprints.DefaultCellStyle = dataGridViewCellStyle2;
+    dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle5.BackColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle5.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle5.ForeColor = Color.FromArgb(136, 136, 136);
+    dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+    DGVSprints.DefaultCellStyle = dataGridViewCellStyle5;
     DGVSprints.EnableHeadersVisualStyles = false;
     DGVSprints.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
     DGVSprints.GridColor = Color.FromArgb(255, 255, 255);
     DGVSprints.Location = new Point(17, 219);
     DGVSprints.Name = "DGVSprints";
     DGVSprints.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-    DGVSprints.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+    dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle6.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle6.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle6.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+    DGVSprints.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
     DGVSprints.RowHeadersVisible = false;
     DGVSprints.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGVSprints.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -157,10 +159,13 @@ partial class SprintsForm {
     ButonAdd.Size = new Size(90, 70);
     ButonAdd.TabIndex = 19;
     ButonAdd.Text = "Dodaj";
+    ButonAdd.Click += ButonAdd_Click;
     // 
     // PanelProjectData
     // 
     PanelProjectData.BackColor = SystemColors.Window;
+    PanelProjectData.Controls.Add(dungeonNumeric1);
+    PanelProjectData.Controls.Add(dungeonLabel5);
     PanelProjectData.Controls.Add(TBoxDescription);
     PanelProjectData.Controls.Add(dungeonLabel2);
     PanelProjectData.Controls.Add(DateTimePicker);
@@ -176,6 +181,39 @@ partial class SprintsForm {
     PanelProjectData.Name = "PanelProjectData";
     PanelProjectData.Size = new Size(383, 471);
     PanelProjectData.TabIndex = 20;
+    // 
+    // dungeonNumeric1
+    // 
+    dungeonNumeric1.BackColor = Color.Transparent;
+    dungeonNumeric1.BackColorA = Color.FromArgb(246, 246, 246);
+    dungeonNumeric1.BackColorB = Color.FromArgb(254, 254, 254);
+    dungeonNumeric1.BorderColor = Color.FromArgb(180, 180, 180);
+    dungeonNumeric1.ButtonForeColorA = Color.FromArgb(75, 75, 75);
+    dungeonNumeric1.ButtonForeColorB = Color.FromArgb(75, 75, 75);
+    dungeonNumeric1.Font = new Font("Tahoma", 11F);
+    dungeonNumeric1.ForeColor = Color.FromArgb(76, 76, 76);
+    dungeonNumeric1.Location = new Point(192, 370);
+    dungeonNumeric1.Maximum = 100L;
+    dungeonNumeric1.Minimum = 0L;
+    dungeonNumeric1.MinimumSize = new Size(93, 28);
+    dungeonNumeric1.Name = "dungeonNumeric1";
+    dungeonNumeric1.Size = new Size(175, 28);
+    dungeonNumeric1.TabIndex = 37;
+    dungeonNumeric1.Text = "dungeonNumeric1";
+    dungeonNumeric1.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Near;
+    dungeonNumeric1.Value = 0L;
+    // 
+    // dungeonLabel5
+    // 
+    dungeonLabel5.AutoSize = true;
+    dungeonLabel5.BackColor = Color.Transparent;
+    dungeonLabel5.Font = new Font("Segoe UI", 13F);
+    dungeonLabel5.ForeColor = Color.FromArgb(76, 76, 77);
+    dungeonLabel5.Location = new Point(192, 342);
+    dungeonLabel5.Name = "dungeonLabel5";
+    dungeonLabel5.Size = new Size(167, 25);
+    dungeonLabel5.TabIndex = 36;
+    dungeonLabel5.Text = "Dužina u nedeljama";
     // 
     // TBoxDescription
     // 
@@ -307,9 +345,9 @@ partial class SprintsForm {
     dungeonLabel7.ForeColor = Color.FromArgb(76, 76, 77);
     dungeonLabel7.Location = new Point(14, 284);
     dungeonLabel7.Name = "dungeonLabel7";
-    dungeonLabel7.Size = new Size(130, 25);
+    dungeonLabel7.Size = new Size(119, 25);
     dungeonLabel7.TabIndex = 23;
-    dungeonLabel7.Text = "Status projekta";
+    dungeonLabel7.Text = "Status sprinta";
     // 
     // dungeonLabel4
     // 
@@ -333,6 +371,7 @@ partial class SprintsForm {
     ComboBoxProjects.Name = "ComboBoxProjects";
     ComboBoxProjects.Size = new Size(377, 23);
     ComboBoxProjects.TabIndex = 28;
+    ComboBoxProjects.SelectedIndexChanged += ComboBoxProjects_SelectedIndexChanged;
     // 
     // TBoxSearch
     // 
@@ -367,6 +406,7 @@ partial class SprintsForm {
     MaximizeBox = false;
     Name = "SprintsForm";
     Text = "DashboardForm";
+    Load += SprintsForm_Load;
     ((System.ComponentModel.ISupportInitialize)DGVSprints).EndInit();
     PanelProjectData.ResumeLayout(false);
     PanelProjectData.PerformLayout();
@@ -395,4 +435,6 @@ partial class SprintsForm {
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel4;
   private ComboBox ComboBoxProjects;
   private ReaLTaiizor.Controls.BigTextBox TBoxSearch;
+  private ReaLTaiizor.Controls.DungeonNumeric dungeonNumeric1;
+  private ReaLTaiizor.Controls.DungeonLabel dungeonLabel5;
 }

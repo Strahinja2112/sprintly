@@ -13,23 +13,17 @@ public partial class SprintsForm : BaseForm {
 
   public SprintsForm(BaseForm parent) {
     InitializeComponent();
-    expandedPanelWidth = PanelProjectData.Width; // Koristim tvoje ime iz dizajnera
+    expandedPanelWidth = PanelProjectData.Width;
     PanelProjectData.Hide();
     this.parent = parent;
   }
 
   private void SprintsForm_Load(object sender, EventArgs e) {
-    // 1. Inicijalizacija statusa (Enum)
     ComboBoxStatus.Items.AddRange(Enum.GetNames<SprintStatus>());
 
-    // 2. Punjenje filtera za projekte
     LoadProjectsToFilter();
 
-    // 3. Placeholder za search
     SetPlaceholder(TBoxSearch, searchPlaceholder);
-
-    // 4. Povezivanje eventa za promenu projekta
-    ComboBoxProjects.SelectedIndexChanged += ComboBoxProjects_SelectedIndexChanged;
   }
 
   private void LoadProjectsToFilter() {
@@ -50,7 +44,13 @@ public partial class SprintsForm : BaseForm {
 
   private void LoadSprints() {
     if (ComboBoxProjects.SelectedValue == null) return;
-    int projectId = (int)ComboBoxProjects.SelectedValue;
+    Project? project = (Project?)ComboBoxProjects.SelectedItem;
+
+    var projectId = project?.Id ?? 0;
+
+    if (projectId < 1) {
+      return;
+    }
 
     using var db = new AppDbContext();
     var sprints = db.Sprints
