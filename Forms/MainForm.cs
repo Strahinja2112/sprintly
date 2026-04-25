@@ -50,38 +50,19 @@ public partial class MainForm : BaseForm {
     AuthService.Logout(this);
   }
 
-  private void OpenChildForm(Form childForm) {
-    Width = MinimumSize.Width;
-    Height = MinimumSize.Height;
-    CenterOnScreen();
-
-    if (PanelMainContent.Controls.Count > 0) {
-      PanelMainContent.Controls.Clear();
-    }
-
-    childForm.TopLevel = false;
-    childForm.FormBorderStyle = FormBorderStyle.None;
-    childForm.Dock = DockStyle.Fill;
-
-    PanelMainContent.Controls.Add(childForm);
-    PanelMainContent.Tag = childForm;
-    childForm.BringToFront();
-    childForm.Show();
-  }
-
   private void PanelEmployees_Click(object sender, EventArgs e) {
-    OpenChildForm(new EmployeesForm(this));
+    OpenChildForm(PanelMainContent, new EmployeesForm(this));
   }
 
   private void PanelSprints_Click(object sender, EventArgs e) {
-    OpenChildForm(new SprintsForm(this));
+    OpenChildForm(PanelMainContent, new SprintsForm(this));
   }
 
   private void PanelProjects_Click(object sender, EventArgs e) {
-    OpenChildForm(new ProjectsForm(this));
+    OpenChildForm(PanelMainContent, new ProjectsForm(this));
   }
 
   private void PanelWorkLog_Click(object sender, EventArgs e) {
-    OpenChildForm(new SprintsForm(this));
+    OpenChildForm(PanelMainContent, new SprintsForm(this));
   }
 }

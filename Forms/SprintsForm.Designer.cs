@@ -25,9 +25,9 @@ partial class SprintsForm {
   /// </summary>
   private void InitializeComponent() {
     components = new System.ComponentModel.Container();
-    DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
     bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     DGVSprints = new ReaLTaiizor.Controls.PoisonDataGridView();
@@ -86,37 +86,37 @@ partial class SprintsForm {
     DGVSprints.BorderStyle = BorderStyle.None;
     DGVSprints.CellBorderStyle = DataGridViewCellBorderStyle.None;
     DGVSprints.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle7.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle7.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle7.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-    DGVSprints.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+    dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+    DGVSprints.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
     DGVSprints.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-    dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle8.BackColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle8.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle8.ForeColor = Color.FromArgb(136, 136, 136);
-    dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-    DGVSprints.DefaultCellStyle = dataGridViewCellStyle8;
+    dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
+    dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+    DGVSprints.DefaultCellStyle = dataGridViewCellStyle2;
     DGVSprints.EnableHeadersVisualStyles = false;
     DGVSprints.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
     DGVSprints.GridColor = Color.FromArgb(255, 255, 255);
     DGVSprints.Location = new Point(17, 219);
     DGVSprints.Name = "DGVSprints";
     DGVSprints.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle9.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle9.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle9.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle9.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-    DGVSprints.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+    dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+    DGVSprints.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
     DGVSprints.RowHeadersVisible = false;
     DGVSprints.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGVSprints.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -395,6 +395,7 @@ partial class SprintsForm {
     TBoxSearch.TabIndex = 29;
     TBoxSearch.TextAlignment = HorizontalAlignment.Left;
     TBoxSearch.UseSystemPasswordChar = false;
+    TBoxSearch.TextChanged += TBoxSearch_TextChanged;
     // 
     // StyleManager1
     // 

@@ -229,7 +229,8 @@ public partial class SprintsForm : BaseForm {
     using var db = new AppDbContext();
     DGVSprints.DataSource = db.Sprints
         .Where(s => s.ProjectId == projectId && s.Name.Contains(term))
-        .Select(s => new { s.Id, Naziv = s.Name, s.Status, Početak = s.StartDate })
+        .Select(s => new { s.Id, Naziv = s.Name, s.Status, Početak = s.StartDate, Kraj = s.EndDate })
+        .OrderByDescending(s => s.Početak)
         .ToList();
   }
 

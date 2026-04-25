@@ -28,4 +28,23 @@ public class BaseForm : Form {
 
     Location = new Point(x, y);
   }
+
+  protected void OpenChildForm(Panel container, Form childForm) {
+    Width = MinimumSize.Width;
+    Height = MinimumSize.Height;
+    CenterOnScreen();
+
+    if (container.Controls.Count > 0) {
+      container.Controls.Clear();
+    }
+
+    childForm.TopLevel = false;
+    childForm.FormBorderStyle = FormBorderStyle.None;
+    childForm.Dock = DockStyle.Fill;
+
+    container.Controls.Add(childForm);
+    container.Tag = childForm;
+    childForm.BringToFront();
+    childForm.Show();
+  }
 }
