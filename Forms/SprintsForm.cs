@@ -80,9 +80,13 @@ public partial class SprintsForm : BaseForm {
 
     NumericSprintLength.Enabled = DateTimePicker.Enabled = true;
 
-    using var db = new AppDbContext();
-    var lastSprint = db.Sprints.Where(s => s.ProjectId == projectId).OrderByDescending(s => s.EndDate).First();
-    DateTimePicker.MinDate = DateTimePicker.Value = lastSprint.EndDate?.AddDays(1) ?? DateTime.Now;
+    using (var db = new AppDbContext()) {
+      var sprints = db.Sprints.Where(s => s.ProjectId == projectId).OrderByDescending(s => s.EndDate);
+      DateTimePicker.MinDate = DateTimePicker.Value =
+        sprints.Any()
+          ? sprints.First().EndDate?.AddDays(1) ?? DateTime.Now
+          : DateTime.Now;
+    }
 
     ClearInputs();
     ExpandParent();
@@ -184,7 +188,9 @@ public partial class SprintsForm : BaseForm {
       TBoxProjectName.Text = s.Name;
       TBoxDescription.Text = s.Goal;
       ComboBoxStatus.SelectedItem = s.Status.ToString();
+
       DateTimePicker.Value = DateTimePicker.MinDate = s.StartDate;
+      NumericSprintLength.Value = (int)((s.EndDate - s.StartDate)?.TotalDays / 7);
 
       NumericSprintLength.Enabled = DateTimePicker.Enabled = false;
 
