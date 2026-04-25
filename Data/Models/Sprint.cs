@@ -34,7 +34,7 @@ public class Sprint {
 
   public virtual ICollection<WorkTask> WorkTasks { get; set; } = [];
 
-  public virtual ICollection<Meeting> Meetings { get; set; } = new List<Meeting>();
+  public virtual ICollection<Meeting> Meetings { get; set; } = [];
 }
 
 public enum SprintStatus {

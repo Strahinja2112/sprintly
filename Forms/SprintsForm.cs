@@ -33,7 +33,7 @@ public partial class SprintsForm : BaseForm {
     ComboBoxProjects.DataSource = projects;
     ComboBoxProjects.DisplayMember = "Name";
     ComboBoxProjects.ValueMember = "Id";
-    ComboBoxProjects.SelectedIndex = -1; // Ništa nije selektovano na početku
+    ComboBoxProjects.SelectedIndex = projects.Count > 0 ? 0 : -1;
   }
 
   private void ComboBoxProjects_SelectedIndexChanged(object sender, EventArgs e) {
@@ -79,8 +79,8 @@ public partial class SprintsForm : BaseForm {
   }
 
   private void ButtonSave_Click(object sender, EventArgs e) {
-    string name = TBoxProjectName.Text.Trim(); // Tvoje ime iz dizajnera za ime sprinta
-    string goal = TBoxDescription.Text.Trim(); // Tvoje ime iz dizajnera za cilj sprinta
+    string name = TBoxProjectName.Text.Trim();
+    string goal = TBoxDescription.Text.Trim();
 
     if (string.IsNullOrEmpty(name)) {
       MessageBox.Show("Ime sprinta je obavezno.", "Validacija", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -89,25 +89,26 @@ public partial class SprintsForm : BaseForm {
 
     try {
       using var db = new AppDbContext();
-      Sprint sprint;
+      Sprint? sprint;
 
       if (selectedSprintId == 0) {
         sprint = new Sprint {
           ProjectId = (int)ComboBoxProjects.SelectedValue,
-          Status = SprintStatus.Planned // Default
+          Status = SprintStatus.Planned
         };
         db.Sprints.Add(sprint);
       }
       else {
         sprint = db.Sprints.FirstOrDefault(s => s.Id == selectedSprintId);
-        if (sprint == null) return;
+        if (sprint == null) {
+          return;
+        }
       }
 
       sprint.Name = name;
       sprint.Goal = goal;
       sprint.StartDate = DateTimePicker.Value;
-      // Ako u modelu imaš EndDate, dodaj logiku za trajanje (npr. +14 dana)
-      sprint.EndDate = DateTimePicker.Value.AddDays(14);
+      sprint.EndDate = DateTimePicker.Value.AddDays(NumericSprintLength.Value * 7);
 
       if (ComboBoxStatus.SelectedIndex != -1) {
         sprint.Status = Enum.Parse<SprintStatus>(ComboBoxStatus.SelectedItem.ToString());
@@ -179,5 +180,14 @@ public partial class SprintsForm : BaseForm {
         .Where(s => s.ProjectId == projectId && s.Name.Contains(term))
         .Select(s => new { s.Id, Naziv = s.Name, s.Status, Početak = s.StartDate })
         .ToList();
+  }
+
+  private void DateTimePicker_ValueChanged(object sender, EventArgs e) {
+    if (DateTimePicker.Value.Date <= DateTime.Now.Date) {
+      ComboBoxStatus.SelectedItem = SprintStatus.Active.ToString();
+    }
+    else {
+      ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
+    }
   }
 }
