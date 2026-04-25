@@ -1,4 +1,5 @@
-﻿using Sprintra.Services;
+﻿using Sprintra.Data;
+using Sprintra.Services;
 
 namespace Sprintra.Forms;
 
@@ -13,12 +14,20 @@ public partial class MainForm : BaseForm {
       return;
     }
 
+    using (var db = new AppDbContext()) {
+      var sprintsCount = db.Sprints.Count();
+      var projectsCount = db.Projects.Count();
+      var employeesCount = db.Employees.Count();
+
+      LabelSprintsCount.Text = sprintsCount.ToString();
+      LabelProjectsCount.Text = projectsCount.ToString();
+      LabelEmployeesCount.Text = employeesCount.ToString();
+    }
+
     LabelSprints.Click += PanelSprints_Click;
     LabelWorkLog.Click += PanelWorkLog_Click;
     LabelProjects.Click += PanelProjects_Click;
     LabelEmployees.Click += PanelEmployees_Click;
-
-    PanelProjects_Click(sender, e);
 
     if (!PermissionsService.CanLogWork()) {
       PanelWorkLog.Hide();

@@ -43,6 +43,20 @@
       LabelUserType = new ReaLTaiizor.Controls.BigLabel();
       LabelUserName = new ReaLTaiizor.Controls.BigLabel();
       PanelMainContent = new Panel();
+      panel4 = new Panel();
+      LabelSprintsCount = new ReaLTaiizor.Controls.DungeonLabel();
+      dungeonLabel7 = new ReaLTaiizor.Controls.DungeonLabel();
+      iconPictureBox8 = new FontAwesome.Sharp.IconPictureBox();
+      panel3 = new Panel();
+      LabelEmployeesCount = new ReaLTaiizor.Controls.DungeonLabel();
+      dungeonLabel5 = new ReaLTaiizor.Controls.DungeonLabel();
+      iconPictureBox7 = new FontAwesome.Sharp.IconPictureBox();
+      panel2 = new Panel();
+      LabelProjectsCount = new ReaLTaiizor.Controls.DungeonLabel();
+      dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
+      iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
+      dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
+      bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
       panel1.SuspendLayout();
       PanelUserStories.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)iconPictureBox5).BeginInit();
@@ -54,6 +68,13 @@
       ((System.ComponentModel.ISupportInitialize)iconPictureBox3).BeginInit();
       PanelSprints.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
+      PanelMainContent.SuspendLayout();
+      panel4.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)iconPictureBox8).BeginInit();
+      panel3.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)iconPictureBox7).BeginInit();
+      panel2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)iconPictureBox6).BeginInit();
       SuspendLayout();
       // 
       // panel1
@@ -327,11 +348,196 @@
       // PanelMainContent
       // 
       PanelMainContent.BackColor = SystemColors.Control;
+      PanelMainContent.Controls.Add(panel4);
+      PanelMainContent.Controls.Add(panel3);
+      PanelMainContent.Controls.Add(panel2);
+      PanelMainContent.Controls.Add(dungeonLabel1);
+      PanelMainContent.Controls.Add(bigLabel2);
       PanelMainContent.Dock = DockStyle.Fill;
       PanelMainContent.Location = new Point(190, 0);
       PanelMainContent.Name = "PanelMainContent";
       PanelMainContent.Size = new Size(600, 470);
       PanelMainContent.TabIndex = 4;
+      // 
+      // panel4
+      // 
+      panel4.BackColor = SystemColors.Window;
+      panel4.Controls.Add(LabelSprintsCount);
+      panel4.Controls.Add(dungeonLabel7);
+      panel4.Controls.Add(iconPictureBox8);
+      panel4.Location = new Point(403, 255);
+      panel4.Name = "panel4";
+      panel4.Size = new Size(150, 150);
+      panel4.TabIndex = 18;
+      // 
+      // LabelSprintsCount
+      // 
+      LabelSprintsCount.BackColor = Color.Transparent;
+      LabelSprintsCount.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
+      LabelSprintsCount.ForeColor = Color.FromArgb(76, 76, 77);
+      LabelSprintsCount.Location = new Point(0, 86);
+      LabelSprintsCount.Name = "LabelSprintsCount";
+      LabelSprintsCount.Size = new Size(150, 64);
+      LabelSprintsCount.TabIndex = 17;
+      LabelSprintsCount.Text = "11";
+      LabelSprintsCount.TextAlign = ContentAlignment.TopCenter;
+      // 
+      // dungeonLabel7
+      // 
+      dungeonLabel7.BackColor = Color.Transparent;
+      dungeonLabel7.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+      dungeonLabel7.ForeColor = Color.FromArgb(76, 76, 77);
+      dungeonLabel7.Location = new Point(0, 56);
+      dungeonLabel7.Name = "dungeonLabel7";
+      dungeonLabel7.Size = new Size(150, 30);
+      dungeonLabel7.TabIndex = 16;
+      dungeonLabel7.Text = "Broj sprintova";
+      dungeonLabel7.TextAlign = ContentAlignment.MiddleCenter;
+      // 
+      // iconPictureBox8
+      // 
+      iconPictureBox8.BackColor = Color.Transparent;
+      iconPictureBox8.Enabled = false;
+      iconPictureBox8.ForeColor = Color.DarkSlateGray;
+      iconPictureBox8.IconChar = FontAwesome.Sharp.IconChar.FlagCheckered;
+      iconPictureBox8.IconColor = Color.DarkSlateGray;
+      iconPictureBox8.IconFont = FontAwesome.Sharp.IconFont.Auto;
+      iconPictureBox8.IconSize = 50;
+      iconPictureBox8.Location = new Point(51, 10);
+      iconPictureBox8.Name = "iconPictureBox8";
+      iconPictureBox8.Padding = new Padding(20, 20, 0, 0);
+      iconPictureBox8.Size = new Size(50, 50);
+      iconPictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
+      iconPictureBox8.TabIndex = 1;
+      iconPictureBox8.TabStop = false;
+      // 
+      // panel3
+      // 
+      panel3.BackColor = SystemColors.Window;
+      panel3.Controls.Add(LabelEmployeesCount);
+      panel3.Controls.Add(dungeonLabel5);
+      panel3.Controls.Add(iconPictureBox7);
+      panel3.Location = new Point(221, 255);
+      panel3.Name = "panel3";
+      panel3.Size = new Size(150, 150);
+      panel3.TabIndex = 16;
+      // 
+      // LabelEmployeesCount
+      // 
+      LabelEmployeesCount.BackColor = Color.Transparent;
+      LabelEmployeesCount.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
+      LabelEmployeesCount.ForeColor = Color.FromArgb(76, 76, 77);
+      LabelEmployeesCount.Location = new Point(0, 86);
+      LabelEmployeesCount.Name = "LabelEmployeesCount";
+      LabelEmployeesCount.Size = new Size(150, 64);
+      LabelEmployeesCount.TabIndex = 17;
+      LabelEmployeesCount.Text = "11";
+      LabelEmployeesCount.TextAlign = ContentAlignment.TopCenter;
+      // 
+      // dungeonLabel5
+      // 
+      dungeonLabel5.BackColor = Color.Transparent;
+      dungeonLabel5.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+      dungeonLabel5.ForeColor = Color.FromArgb(76, 76, 77);
+      dungeonLabel5.Location = new Point(0, 56);
+      dungeonLabel5.Name = "dungeonLabel5";
+      dungeonLabel5.Size = new Size(150, 30);
+      dungeonLabel5.TabIndex = 16;
+      dungeonLabel5.Text = "Broj zaposlenih";
+      dungeonLabel5.TextAlign = ContentAlignment.MiddleCenter;
+      // 
+      // iconPictureBox7
+      // 
+      iconPictureBox7.BackColor = Color.Transparent;
+      iconPictureBox7.Enabled = false;
+      iconPictureBox7.ForeColor = Color.DarkSlateGray;
+      iconPictureBox7.IconChar = FontAwesome.Sharp.IconChar.User;
+      iconPictureBox7.IconColor = Color.DarkSlateGray;
+      iconPictureBox7.IconFont = FontAwesome.Sharp.IconFont.Auto;
+      iconPictureBox7.IconSize = 50;
+      iconPictureBox7.Location = new Point(51, 10);
+      iconPictureBox7.Name = "iconPictureBox7";
+      iconPictureBox7.Padding = new Padding(20, 20, 0, 0);
+      iconPictureBox7.Size = new Size(50, 50);
+      iconPictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+      iconPictureBox7.TabIndex = 1;
+      iconPictureBox7.TabStop = false;
+      // 
+      // panel2
+      // 
+      panel2.BackColor = SystemColors.Window;
+      panel2.Controls.Add(LabelProjectsCount);
+      panel2.Controls.Add(dungeonLabel2);
+      panel2.Controls.Add(iconPictureBox6);
+      panel2.Location = new Point(44, 255);
+      panel2.Name = "panel2";
+      panel2.Size = new Size(150, 150);
+      panel2.TabIndex = 15;
+      // 
+      // LabelProjectsCount
+      // 
+      LabelProjectsCount.BackColor = Color.Transparent;
+      LabelProjectsCount.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
+      LabelProjectsCount.ForeColor = Color.FromArgb(76, 76, 77);
+      LabelProjectsCount.Location = new Point(0, 86);
+      LabelProjectsCount.Name = "LabelProjectsCount";
+      LabelProjectsCount.Size = new Size(150, 64);
+      LabelProjectsCount.TabIndex = 17;
+      LabelProjectsCount.Text = "11";
+      LabelProjectsCount.TextAlign = ContentAlignment.TopCenter;
+      // 
+      // dungeonLabel2
+      // 
+      dungeonLabel2.BackColor = Color.Transparent;
+      dungeonLabel2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+      dungeonLabel2.ForeColor = Color.FromArgb(76, 76, 77);
+      dungeonLabel2.Location = new Point(0, 56);
+      dungeonLabel2.Name = "dungeonLabel2";
+      dungeonLabel2.Size = new Size(150, 30);
+      dungeonLabel2.TabIndex = 16;
+      dungeonLabel2.Text = "Broj projekata";
+      dungeonLabel2.TextAlign = ContentAlignment.MiddleCenter;
+      // 
+      // iconPictureBox6
+      // 
+      iconPictureBox6.BackColor = Color.Transparent;
+      iconPictureBox6.Enabled = false;
+      iconPictureBox6.ForeColor = Color.DarkSlateGray;
+      iconPictureBox6.IconChar = FontAwesome.Sharp.IconChar.Timeline;
+      iconPictureBox6.IconColor = Color.DarkSlateGray;
+      iconPictureBox6.IconFont = FontAwesome.Sharp.IconFont.Auto;
+      iconPictureBox6.IconSize = 50;
+      iconPictureBox6.Location = new Point(51, 10);
+      iconPictureBox6.Name = "iconPictureBox6";
+      iconPictureBox6.Padding = new Padding(20, 20, 0, 0);
+      iconPictureBox6.Size = new Size(50, 50);
+      iconPictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+      iconPictureBox6.TabIndex = 1;
+      iconPictureBox6.TabStop = false;
+      // 
+      // dungeonLabel1
+      // 
+      dungeonLabel1.BackColor = Color.Transparent;
+      dungeonLabel1.Font = new Font("Segoe UI", 14F);
+      dungeonLabel1.ForeColor = Color.FromArgb(76, 76, 77);
+      dungeonLabel1.Location = new Point(15, 125);
+      dungeonLabel1.Name = "dungeonLabel1";
+      dungeonLabel1.Size = new Size(573, 87);
+      dungeonLabel1.TabIndex = 14;
+      dungeonLabel1.Text = "Sprintra — Windows desktop aplikacija za Scrum timove. Upravljajte sprintovima, pratite zadatke, logujte rad i sarađujte — sve kroz čist, nativni WinForms interfejs.";
+      dungeonLabel1.TextAlign = ContentAlignment.MiddleCenter;
+      // 
+      // bigLabel2
+      // 
+      bigLabel2.AutoSize = true;
+      bigLabel2.BackColor = Color.Transparent;
+      bigLabel2.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
+      bigLabel2.ForeColor = Color.DarkSlateGray;
+      bigLabel2.Location = new Point(197, 66);
+      bigLabel2.Name = "bigLabel2";
+      bigLabel2.Size = new Size(188, 59);
+      bigLabel2.TabIndex = 13;
+      bigLabel2.Text = "Sprintra";
       // 
       // MainForm
       // 
@@ -359,6 +565,14 @@
       ((System.ComponentModel.ISupportInitialize)iconPictureBox3).EndInit();
       PanelSprints.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
+      PanelMainContent.ResumeLayout(false);
+      PanelMainContent.PerformLayout();
+      panel4.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)iconPictureBox8).EndInit();
+      panel3.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)iconPictureBox7).EndInit();
+      panel2.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)iconPictureBox6).EndInit();
       ResumeLayout(false);
     }
 
@@ -383,5 +597,19 @@
     private Panel PanelUserStories;
     private ReaLTaiizor.Controls.BigLabel bigLabel1;
     private FontAwesome.Sharp.IconPictureBox iconPictureBox5;
+    private ReaLTaiizor.Controls.BigLabel bigLabel2;
+    private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
+    private Panel panel2;
+    private FontAwesome.Sharp.IconPictureBox iconPictureBox6;
+    private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
+    private ReaLTaiizor.Controls.DungeonLabel LabelProjectsCount;
+    private Panel panel4;
+    private ReaLTaiizor.Controls.DungeonLabel LabelSprintsCount;
+    private ReaLTaiizor.Controls.DungeonLabel dungeonLabel7;
+    private FontAwesome.Sharp.IconPictureBox iconPictureBox8;
+    private Panel panel3;
+    private ReaLTaiizor.Controls.DungeonLabel LabelEmployeesCount;
+    private ReaLTaiizor.Controls.DungeonLabel dungeonLabel5;
+    private FontAwesome.Sharp.IconPictureBox iconPictureBox7;
   }
 }

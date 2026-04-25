@@ -51,7 +51,7 @@
       bigLabel1.AutoSize = true;
       bigLabel1.BackColor = Color.Transparent;
       bigLabel1.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
-      bigLabel1.ForeColor = Color.FromArgb(80, 80, 80);
+      bigLabel1.ForeColor = Color.DarkSlateGray;
       bigLabel1.Location = new Point(76, 125);
       bigLabel1.Margin = new Padding(4, 0, 4, 0);
       bigLabel1.Name = "bigLabel1";

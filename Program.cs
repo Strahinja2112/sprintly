@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Sprintra.Data;
+using Sprintra.Data.Models;
 using Sprintra.Forms;
 using Sprintra.Services;
 
@@ -14,7 +17,7 @@ internal static class Program {
 
     var isLoginSaved = AuthService.TryAutoLogin();
     if (!isLoginSaved) {
-      var loginForm = new Forms.LoginForm();
+      var loginForm = new LoginForm();
       Application.Run(loginForm);
 
       if (!loginForm.IsLoginSuccessful) {
@@ -25,5 +28,10 @@ internal static class Program {
 
     MainForm = new MainForm();
     Application.Run(MainForm);
+
+    using var db = new AppDbContext();
+    db.Projects
+      .Where(p => p.EndDate < DateTime.Now)
+      .ExecuteUpdate(c => c.SetProperty(p => p.Status, ProjectStatus.Completed));
   }
 }
