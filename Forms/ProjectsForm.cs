@@ -160,7 +160,7 @@ public partial class ProjectsForm : BaseForm {
       DateTimePicker.MinDate = DateTimePicker.Value;
       dateChanged = false;
 
-      bigLabel2.Text = "Izmena Projekta: " + p.Name;
+      bigLabel2.Text = "Izmena projekta";
     }
   }
 

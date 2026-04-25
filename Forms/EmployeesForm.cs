@@ -32,6 +32,7 @@ public partial class EmployeesForm : BaseForm {
   private void ButonUserAdd_Click(object sender, EventArgs e) {
     ClearInputs();
     ExpandParent();
+    bigLabel2.Text = "Unos novog korisnika";
   }
 
   private void ButtonUserDelete_Click(object sender, EventArgs e) {
@@ -251,7 +252,7 @@ public partial class EmployeesForm : BaseForm {
           ComboBoxField.SelectedIndex = -1;
         }
 
-        bigLabel2.Text = "Izmena Korisnika: " + emp.Username;
+        bigLabel2.Text = "Izmena korisnika";
       }
     }
     catch (Exception ex) {
