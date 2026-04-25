@@ -365,7 +365,7 @@
       panel4.Controls.Add(LabelSprintsCount);
       panel4.Controls.Add(dungeonLabel7);
       panel4.Controls.Add(iconPictureBox8);
-      panel4.Location = new Point(403, 255);
+      panel4.Location = new Point(403, 246);
       panel4.Name = "panel4";
       panel4.Size = new Size(150, 150);
       panel4.TabIndex = 18;
@@ -379,7 +379,7 @@
       LabelSprintsCount.Name = "LabelSprintsCount";
       LabelSprintsCount.Size = new Size(150, 64);
       LabelSprintsCount.TabIndex = 17;
-      LabelSprintsCount.Text = "11";
+      LabelSprintsCount.Text = "X";
       LabelSprintsCount.TextAlign = ContentAlignment.TopCenter;
       // 
       // dungeonLabel7
@@ -417,7 +417,7 @@
       panel3.Controls.Add(LabelEmployeesCount);
       panel3.Controls.Add(dungeonLabel5);
       panel3.Controls.Add(iconPictureBox7);
-      panel3.Location = new Point(221, 255);
+      panel3.Location = new Point(221, 246);
       panel3.Name = "panel3";
       panel3.Size = new Size(150, 150);
       panel3.TabIndex = 16;
@@ -431,7 +431,7 @@
       LabelEmployeesCount.Name = "LabelEmployeesCount";
       LabelEmployeesCount.Size = new Size(150, 64);
       LabelEmployeesCount.TabIndex = 17;
-      LabelEmployeesCount.Text = "11";
+      LabelEmployeesCount.Text = "X";
       LabelEmployeesCount.TextAlign = ContentAlignment.TopCenter;
       // 
       // dungeonLabel5
@@ -469,7 +469,7 @@
       panel2.Controls.Add(LabelProjectsCount);
       panel2.Controls.Add(dungeonLabel2);
       panel2.Controls.Add(iconPictureBox6);
-      panel2.Location = new Point(44, 255);
+      panel2.Location = new Point(44, 246);
       panel2.Name = "panel2";
       panel2.Size = new Size(150, 150);
       panel2.TabIndex = 15;
@@ -483,7 +483,7 @@
       LabelProjectsCount.Name = "LabelProjectsCount";
       LabelProjectsCount.Size = new Size(150, 64);
       LabelProjectsCount.TabIndex = 17;
-      LabelProjectsCount.Text = "11";
+      LabelProjectsCount.Text = "X";
       LabelProjectsCount.TextAlign = ContentAlignment.TopCenter;
       // 
       // dungeonLabel2
@@ -520,7 +520,7 @@
       dungeonLabel1.BackColor = Color.Transparent;
       dungeonLabel1.Font = new Font("Segoe UI", 14F);
       dungeonLabel1.ForeColor = Color.FromArgb(76, 76, 77);
-      dungeonLabel1.Location = new Point(15, 125);
+      dungeonLabel1.Location = new Point(15, 116);
       dungeonLabel1.Name = "dungeonLabel1";
       dungeonLabel1.Size = new Size(573, 87);
       dungeonLabel1.TabIndex = 14;
@@ -533,7 +533,7 @@
       bigLabel2.BackColor = Color.Transparent;
       bigLabel2.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
       bigLabel2.ForeColor = Color.DarkSlateGray;
-      bigLabel2.Location = new Point(197, 66);
+      bigLabel2.Location = new Point(197, 57);
       bigLabel2.Name = "bigLabel2";
       bigLabel2.Size = new Size(188, 59);
       bigLabel2.TabIndex = 13;
