@@ -66,7 +66,7 @@ public partial class SprintsForm : BaseForm {
         .ToList();
 
     DGVSprints.DataSource = sprints;
-    if (DGVSprints.Columns["Id"] != null) DGVSprints.Columns["Id"].Visible = false;
+    DGVSprints.Columns["Id"]?.Visible = false;
   }
 
   private void ButonAdd_Click(object sender, EventArgs e) {
@@ -74,11 +74,54 @@ public partial class SprintsForm : BaseForm {
       MessageBox.Show("Molimo vas da prvo odaberete projekat na vrhu.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Information);
       return;
     }
+
+    if (ComboBoxProjects.SelectedValue == null) return;
+    int projectId = (int)ComboBoxProjects.SelectedValue;
+
+    NumericSprintLength.Enabled = DateTimePicker.Enabled = true;
+
+    using var db = new AppDbContext();
+    var lastSprint = db.Sprints.Where(s => s.ProjectId == projectId).OrderByDescending(s => s.EndDate).First();
+    DateTimePicker.MinDate = DateTimePicker.Value = lastSprint.EndDate?.AddDays(1) ?? DateTime.Now;
+
     ClearInputs();
     ExpandParent();
   }
 
   private void ButtonSave_Click(object sender, EventArgs e) {
+    if (ComboBoxStatus.SelectedItem == null) {
+      return;
+    }
+
+    var value = ComboBoxStatus.SelectedItem?.ToString();
+    var sprintStatus = Enum.Parse<SprintStatus>(value);
+
+    if (sprintStatus == SprintStatus.Active && DateTimePicker.Value.Date > DateTime.Now.Date) {
+      MessageBox.Show("Sprint ne može biti aktivan pre datuma početka.", "Logička greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+      ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
+      return;
+    }
+
+    if (sprintStatus == SprintStatus.Completed) {
+      if (DateTimePicker.Value.Date > DateTime.Now.Date) {
+        MessageBox.Show("Ne možete završiti sprint koji još nije ni počeo.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
+        return;
+      }
+
+      var result = MessageBox.Show("Da li ste sigurni da želite da zatvorite ovaj sprint?", "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+      if (result == DialogResult.No) {
+        ComboBoxStatus.SelectedItem = SprintStatus.Active.ToString();
+      }
+    }
+
+    if (sprintStatus == SprintStatus.Canceled && selectedSprintId != 0) {
+      var result = MessageBox.Show("Otkazivanje sprinta će ga ukloniti iz aktivnog planiranja. Nastaviti?", "Upozorenje", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+      if (result == DialogResult.No) {
+        ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
+      }
+    }
+
     string name = TBoxProjectName.Text.Trim();
     string goal = TBoxDescription.Text.Trim();
 
@@ -141,9 +184,11 @@ public partial class SprintsForm : BaseForm {
       TBoxProjectName.Text = s.Name;
       TBoxDescription.Text = s.Goal;
       ComboBoxStatus.SelectedItem = s.Status.ToString();
-      DateTimePicker.Value = s.StartDate;
+      DateTimePicker.Value = DateTimePicker.MinDate = s.StartDate;
 
-      bigLabel2.Text = "Izmena: " + s.Name;
+      NumericSprintLength.Enabled = DateTimePicker.Enabled = false;
+
+      bigLabel2.Text = "Izmena";
     }
   }
 
@@ -152,7 +197,7 @@ public partial class SprintsForm : BaseForm {
     TBoxProjectName.Text = "";
     TBoxDescription.Text = "";
     ComboBoxStatus.SelectedIndex = -1;
-    DateTimePicker.Value = DateTime.Now;
+    DateTimePicker.Value = DateTimePicker.MinDate;
     bigLabel2.Text = "Novi Sprint";
   }
 
@@ -189,5 +234,9 @@ public partial class SprintsForm : BaseForm {
     else {
       ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
     }
+  }
+
+  private void ComboBoxStatus_SelectedIndexChanged(object sender, EventArgs e) {
+
   }
 }

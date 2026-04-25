@@ -38,12 +38,19 @@ public partial class ProjectsForm : BaseForm {
       return;
     }
 
+    using var db = new AppDbContext();
+    var count = db.Sprints.Count(s => s.ProjectId == selectedProjectId);
+
+    if (count > 0) {
+      MessageBox.Show($"Projekat koji sadrži sprintove ({count}) ne može biti obrisan.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+      return;
+    }
+
     var result = MessageBox.Show($"Da li ste sigurni da želite da obrišete projekat '{TBoxProjectName.Text}'?",
                                  "Potvrda brisanja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
     if (result == DialogResult.Yes) {
       try {
-        using var db = new AppDbContext();
         var project = db.Projects.FirstOrDefault(p => p.Id == selectedProjectId);
 
         if (project != null) {
