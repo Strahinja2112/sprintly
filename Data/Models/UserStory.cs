@@ -9,21 +9,39 @@ public class UserStory {
   public int? ClientId { get; set; }
 
   [Required]
-  [MaxLength(50)]
+  public int ProjectId { get; set; }
+
+  public int? SprintId { get; set; }
+
+  [Required]
+  [MaxLength(100)]
   public string Title { get; set; } = null!;
 
   [Required]
-  [MaxLength(50)]
+  [MaxLength(500)]
   public string Description { get; set; } = null!;
 
   public int Priority { get; set; }
 
   [Required]
-  [MaxLength(50)]
-  public string Status { get; set; } = null!;
+  public UserStoryStatus Status { get; set; }
 
   [ForeignKey("ClientId")]
   public virtual Client? Client { get; set; }
 
+  [ForeignKey("ProjectId")]
+  public virtual Project Project { get; set; } = null!;
+
+  [ForeignKey("SprintId")]
+  public virtual Sprint? Sprint { get; set; }
+
   public virtual ICollection<WorkTask> WorkTasks { get; set; } = [];
+}
+
+public enum UserStoryStatus {
+  Backlog,
+  Todo,
+  InProgress,
+  InReview,
+  Done
 }

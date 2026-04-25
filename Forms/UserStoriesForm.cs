@@ -61,7 +61,7 @@ public partial class UserStoriesForm : BaseForm {
       us.Priority
     }).ToList();
 
-    DGVSprints.DataSource = sprints;
+    DGVSprints.DataSource = userStories;
     DGVSprints.Columns["Id"]?.Visible = false;
   }
 
@@ -161,7 +161,7 @@ public partial class UserStoriesForm : BaseForm {
       MessageBox.Show("Sprint sačuvan!", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
       ClearInputs();
-      LoadSprints();
+      LoadUserStories();
     }
     catch (Exception ex) {
       MessageBox.Show(ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -215,7 +215,7 @@ public partial class UserStoriesForm : BaseForm {
   private void TBoxSearch_TextChanged(object sender, EventArgs e) {
     string term = TBoxSearch.Text.Trim();
     if (term == searchPlaceholder || string.IsNullOrEmpty(term)) {
-      LoadSprints();
+      LoadUserStories();
       return;
     }
 
