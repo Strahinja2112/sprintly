@@ -102,6 +102,7 @@ partial class ProjectsForm {
     ComboBoxStatus.Name = "ComboBoxStatus";
     ComboBoxStatus.Size = new Size(353, 26);
     ComboBoxStatus.TabIndex = 25;
+    ComboBoxStatus.SelectedIndexChanged += ComboBoxStatus_SelectedIndexChanged;
     // 
     // dungeonLabel7
     // 

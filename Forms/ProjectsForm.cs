@@ -200,5 +200,21 @@ public partial class ProjectsForm : BaseForm {
 
   private void DateTimePicker_ValueChanged(object sender, EventArgs e) {
     dateChanged = true;
+    if (DateTimePicker.Value.Date <= DateTime.Now.Date) {
+      ComboBoxStatus.SelectedItem = ProjectStatus.Active.ToString();
+    }
+    else {
+      ComboBoxStatus.SelectedItem = ProjectStatus.Planned.ToString();
+    }
+  }
+
+  private void ComboBoxStatus_SelectedIndexChanged(object sender, EventArgs e) {
+    var value = (ComboBoxStatus.SelectedItem?.ToString())
+      ?? throw new Exception("Pogresan tip ProjectStatus!");
+
+    var projectStatus = Enum.Parse<ProjectStatus>(value);
+    if (projectStatus == ProjectStatus.Active && DateTimePicker.Value.Date <= DateTime.Now.Date) {
+      MessageBox.Show("");
+    }
   }
 }
