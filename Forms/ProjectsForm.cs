@@ -209,12 +209,43 @@ public partial class ProjectsForm : BaseForm {
   }
 
   private void ComboBoxStatus_SelectedIndexChanged(object sender, EventArgs e) {
-    var value = (ComboBoxStatus.SelectedItem?.ToString())
-      ?? throw new Exception("Pogresan tip ProjectStatus!");
+    var value = ComboBoxStatus.SelectedItem?.ToString();
+    if (value == null) {
+      return;
+    }
 
     var projectStatus = Enum.Parse<ProjectStatus>(value);
-    if (projectStatus == ProjectStatus.Active && DateTimePicker.Value.Date <= DateTime.Now.Date) {
-      MessageBox.Show("");
+
+    if (projectStatus == ProjectStatus.Active && DateTimePicker.Value.Date > DateTime.Now.Date) {
+      MessageBox.Show("Projekat ne može biti aktivan ako je datum početka u budućnosti.",
+                      "Nevalidan status", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+      ComboBoxStatus.SelectedItem = ProjectStatus.Planned.ToString();
+      return;
+    }
+
+    if (projectStatus == ProjectStatus.Completed) {
+      if (selectedProjectId == 0) {
+        MessageBox.Show("Projekat ne može biti completed ako nije ni kreiran.",
+                      "Nevalidan status", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        ComboBoxStatus.SelectedItem = ProjectStatus.Planned.ToString();
+        return;
+      }
+
+      var result = MessageBox.Show("Da li ste sigurni da želite da označite projekat kao završen?",
+                                     "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+      if (result == DialogResult.Yes) {
+        DateTimePicker.Value = DateTime.Now;
+        LabelDate.Text = "Datum završetka";
+      }
+      else {
+        ComboBoxStatus.SelectedItem = ProjectStatus.Active.ToString();
+      }
+
+      return;
+    }
+
+    if (projectStatus == ProjectStatus.Active && LabelDate.Text == "Datum završetka") {
+      LabelDate.Text = "Datum početka";
     }
   }
 }
