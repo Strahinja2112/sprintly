@@ -25,7 +25,7 @@
     private void InitializeComponent() {
       panel1 = new Panel();
       PanelUserStories = new Panel();
-      bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
+      LabelUserStories = new ReaLTaiizor.Controls.BigLabel();
       iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
       PanelEmployees = new Panel();
       LabelEmployees = new ReaLTaiizor.Controls.BigLabel();
@@ -96,7 +96,7 @@
       // 
       // PanelUserStories
       // 
-      PanelUserStories.Controls.Add(bigLabel1);
+      PanelUserStories.Controls.Add(LabelUserStories);
       PanelUserStories.Controls.Add(iconPictureBox5);
       PanelUserStories.Cursor = Cursors.Hand;
       PanelUserStories.Dock = DockStyle.Top;
@@ -104,20 +104,21 @@
       PanelUserStories.Name = "PanelUserStories";
       PanelUserStories.Size = new Size(190, 50);
       PanelUserStories.TabIndex = 10;
+      PanelUserStories.Click += PanelUserStories_Click;
       // 
-      // bigLabel1
+      // LabelUserStories
       // 
-      bigLabel1.BackColor = Color.Transparent;
-      bigLabel1.Cursor = Cursors.Hand;
-      bigLabel1.Dock = DockStyle.Right;
-      bigLabel1.Font = new Font("Segoe UI", 16F);
-      bigLabel1.ForeColor = Color.FromArgb(65, 65, 65);
-      bigLabel1.Location = new Point(45, 0);
-      bigLabel1.Name = "bigLabel1";
-      bigLabel1.Size = new Size(145, 50);
-      bigLabel1.TabIndex = 6;
-      bigLabel1.Text = "Priče";
-      bigLabel1.TextAlign = ContentAlignment.MiddleLeft;
+      LabelUserStories.BackColor = Color.Transparent;
+      LabelUserStories.Cursor = Cursors.Hand;
+      LabelUserStories.Dock = DockStyle.Right;
+      LabelUserStories.Font = new Font("Segoe UI", 16F);
+      LabelUserStories.ForeColor = Color.FromArgb(65, 65, 65);
+      LabelUserStories.Location = new Point(45, 0);
+      LabelUserStories.Name = "LabelUserStories";
+      LabelUserStories.Size = new Size(145, 50);
+      LabelUserStories.TabIndex = 6;
+      LabelUserStories.Text = "Priče";
+      LabelUserStories.TextAlign = ContentAlignment.MiddleLeft;
       // 
       // iconPictureBox5
       // 
@@ -595,7 +596,7 @@
     private ReaLTaiizor.Controls.BigLabel LabelWorkLog;
     private FontAwesome.Sharp.IconPictureBox iconPictureBox4;
     private Panel PanelUserStories;
-    private ReaLTaiizor.Controls.BigLabel bigLabel1;
+    private ReaLTaiizor.Controls.BigLabel LabelUserStories;
     private FontAwesome.Sharp.IconPictureBox iconPictureBox5;
     private ReaLTaiizor.Controls.BigLabel bigLabel2;
     private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;

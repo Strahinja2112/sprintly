@@ -28,6 +28,7 @@ public partial class MainForm : BaseForm {
     LabelWorkLog.Click += PanelWorkLog_Click;
     LabelProjects.Click += PanelProjects_Click;
     LabelEmployees.Click += PanelEmployees_Click;
+    LabelUserStories.Click += PanelUserStories_Click;
 
     if (!PermissionsService.CanLogWork()) {
       PanelWorkLog.Hide();
@@ -64,5 +65,9 @@ public partial class MainForm : BaseForm {
 
   private void PanelWorkLog_Click(object sender, EventArgs e) {
     OpenChildForm(PanelMainContent, new SprintsForm(this));
+  }
+
+  private void PanelUserStories_Click(object sender, EventArgs e) {
+    OpenChildForm(PanelMainContent, new UserStoriesForm(this));
   }
 }
