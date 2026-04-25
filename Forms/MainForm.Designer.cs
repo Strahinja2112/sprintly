@@ -24,7 +24,7 @@
     /// </summary>
     private void InitializeComponent() {
       panel1 = new Panel();
-      panel2 = new Panel();
+      PanelUserStories = new Panel();
       bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
       iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
       PanelEmployees = new Panel();
@@ -44,7 +44,7 @@
       LabelUserName = new ReaLTaiizor.Controls.BigLabel();
       PanelMainContent = new Panel();
       panel1.SuspendLayout();
-      panel2.SuspendLayout();
+      PanelUserStories.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)iconPictureBox5).BeginInit();
       PanelEmployees.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)iconPictureBox2).BeginInit();
@@ -59,7 +59,7 @@
       // panel1
       // 
       panel1.BackColor = SystemColors.Window;
-      panel1.Controls.Add(panel2);
+      panel1.Controls.Add(PanelUserStories);
       panel1.Controls.Add(PanelEmployees);
       panel1.Controls.Add(PanelWorkLog);
       panel1.Controls.Add(PanelProjects);
@@ -73,16 +73,16 @@
       panel1.Size = new Size(190, 470);
       panel1.TabIndex = 3;
       // 
-      // panel2
+      // PanelUserStories
       // 
-      panel2.Controls.Add(bigLabel1);
-      panel2.Controls.Add(iconPictureBox5);
-      panel2.Cursor = Cursors.Hand;
-      panel2.Dock = DockStyle.Top;
-      panel2.Location = new Point(0, 200);
-      panel2.Name = "panel2";
-      panel2.Size = new Size(190, 50);
-      panel2.TabIndex = 10;
+      PanelUserStories.Controls.Add(bigLabel1);
+      PanelUserStories.Controls.Add(iconPictureBox5);
+      PanelUserStories.Cursor = Cursors.Hand;
+      PanelUserStories.Dock = DockStyle.Top;
+      PanelUserStories.Location = new Point(0, 200);
+      PanelUserStories.Name = "PanelUserStories";
+      PanelUserStories.Size = new Size(190, 50);
+      PanelUserStories.TabIndex = 10;
       // 
       // bigLabel1
       // 
@@ -349,7 +349,7 @@
       Load += MainForm_Load;
       panel1.ResumeLayout(false);
       panel1.PerformLayout();
-      panel2.ResumeLayout(false);
+      PanelUserStories.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)iconPictureBox5).EndInit();
       PanelEmployees.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)iconPictureBox2).EndInit();
@@ -380,7 +380,7 @@
     private Panel PanelWorkLog;
     private ReaLTaiizor.Controls.BigLabel LabelWorkLog;
     private FontAwesome.Sharp.IconPictureBox iconPictureBox4;
-    private Panel panel2;
+    private Panel PanelUserStories;
     private ReaLTaiizor.Controls.BigLabel bigLabel1;
     private FontAwesome.Sharp.IconPictureBox iconPictureBox5;
   }

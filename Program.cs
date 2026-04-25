@@ -1,8 +1,11 @@
+using Sprintra.Forms;
 using Sprintra.Services;
 
 namespace Sprintra;
 
 internal static class Program {
+  public static MainForm MainForm = null!;
+
   [STAThread]
   static void Main() {
     ApplicationConfiguration.Initialize();
@@ -20,6 +23,7 @@ internal static class Program {
       }
     }
 
-    Application.Run(new Forms.MainForm());
+    MainForm = new MainForm();
+    Application.Run(MainForm);
   }
 }

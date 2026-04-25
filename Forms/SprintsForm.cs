@@ -13,8 +13,8 @@ public partial class SprintsForm : BaseForm {
 
   public SprintsForm(BaseForm parent) {
     InitializeComponent();
-    expandedPanelWidth = PanelProjectData.Width;
-    PanelProjectData.Hide();
+    expandedPanelWidth = PanelProjectEdit.Width;
+    PanelProjectEdit.Hide();
     this.parent = parent;
   }
 
@@ -210,7 +210,7 @@ public partial class SprintsForm : BaseForm {
   private void ExpandParent() {
     if (!isExpanded) {
       parent.Width += expandedPanelWidth;
-      PanelProjectData.Show();
+      PanelProjectEdit.Show();
       isExpanded = true;
     }
     parent.CenterOnScreen();
