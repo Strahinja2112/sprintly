@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using Sprintra.Data;
-using Sprintra.Data.Models;
 using Sprintra.Forms;
-using Sprintra.Services;
+using Sprintra.Src.Data;
+using Sprintra.Src.Data.Models;
+using Sprintra.Src.Services;
 
 namespace Sprintra;
 
