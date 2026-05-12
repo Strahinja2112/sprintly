@@ -58,8 +58,6 @@ public partial class ProjectsForm : BaseForm {
           db.Projects.Remove(project);
           db.SaveChanges();
 
-          MessageBox.Show("Projekat je uspešno obrisan.", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
           ClearInputs();
           LoadProjects();
 
@@ -88,7 +86,7 @@ public partial class ProjectsForm : BaseForm {
 
     try {
       using var db = new AppDbContext();
-      Project? project;
+      Project? project = null;
 
       if (selectedProjectId == 0) {
         project = new Project {
@@ -111,8 +109,6 @@ public partial class ProjectsForm : BaseForm {
       project.Status = Enum.Parse<ProjectStatus>(status);
 
       db.SaveChanges();
-
-      MessageBox.Show(selectedProjectId == 0 ? "Projekat kreiran!" : "Projekat ažuriran!", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
       ClearInputs();
       LoadProjects();

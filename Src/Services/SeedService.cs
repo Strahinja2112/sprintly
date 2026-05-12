@@ -23,13 +23,13 @@ internal class SeedService {
       db.Employees.AddRange(employees);
       db.SaveChanges();
 
-      var projects = GetSeedProjects();
-      db.Projects.AddRange(projects);
-      db.SaveChanges();
+      //var projects = GetSeedProjects();
+      //db.Projects.AddRange(projects);
+      //db.SaveChanges();
 
-      AssignMembersToProjects(db);
+      //AssignMembersToProjects(db);
 
-      db.SaveChanges();
+      // db.SaveChanges();
     }
     catch (Exception ex) {
       throw new Exception($"Greška prilikom seedovanja: {ex.Message}");

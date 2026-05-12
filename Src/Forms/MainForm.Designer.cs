@@ -57,6 +57,7 @@
       iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
       dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
       bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
+      PanelUserData = new Panel();
       panel1.SuspendLayout();
       PanelUserStories.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)iconPictureBox5).BeginInit();
@@ -75,19 +76,18 @@
       ((System.ComponentModel.ISupportInitialize)iconPictureBox7).BeginInit();
       panel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)iconPictureBox6).BeginInit();
+      PanelUserData.SuspendLayout();
       SuspendLayout();
       // 
       // panel1
       // 
       panel1.BackColor = SystemColors.Window;
+      panel1.Controls.Add(PanelUserData);
       panel1.Controls.Add(PanelUserStories);
       panel1.Controls.Add(PanelEmployees);
       panel1.Controls.Add(PanelWorkLog);
       panel1.Controls.Add(PanelProjects);
       panel1.Controls.Add(PanelSprints);
-      panel1.Controls.Add(ButtonLogout);
-      panel1.Controls.Add(LabelUserType);
-      panel1.Controls.Add(LabelUserName);
       panel1.Dock = DockStyle.Left;
       panel1.Location = new Point(0, 0);
       panel1.Name = "panel1";
@@ -315,7 +315,7 @@
       ButtonLogout.EnabledCalc = true;
       ButtonLogout.Font = new Font("Segoe UI", 13F);
       ButtonLogout.ForeColor = Color.FromArgb(124, 133, 142);
-      ButtonLogout.Location = new Point(9, 423);
+      ButtonLogout.Location = new Point(9, 56);
       ButtonLogout.Name = "ButtonLogout";
       ButtonLogout.Size = new Size(172, 36);
       ButtonLogout.TabIndex = 7;
@@ -328,7 +328,7 @@
       LabelUserType.BackColor = Color.Transparent;
       LabelUserType.Font = new Font("Segoe UI", 9F);
       LabelUserType.ForeColor = Color.FromArgb(80, 80, 80);
-      LabelUserType.Location = new Point(9, 400);
+      LabelUserType.Location = new Point(9, 37);
       LabelUserType.Name = "LabelUserType";
       LabelUserType.Size = new Size(57, 15);
       LabelUserType.TabIndex = 6;
@@ -340,7 +340,7 @@
       LabelUserName.BackColor = Color.Transparent;
       LabelUserName.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
       LabelUserName.ForeColor = Color.DarkSlateGray;
-      LabelUserName.Location = new Point(3, 367);
+      LabelUserName.Location = new Point(3, 4);
       LabelUserName.Name = "LabelUserName";
       LabelUserName.Size = new Size(127, 30);
       LabelUserName.TabIndex = 5;
@@ -540,6 +540,17 @@
       bigLabel2.TabIndex = 13;
       bigLabel2.Text = "Sprintra";
       // 
+      // PanelUserData
+      // 
+      PanelUserData.Controls.Add(LabelUserName);
+      PanelUserData.Controls.Add(LabelUserType);
+      PanelUserData.Controls.Add(ButtonLogout);
+      PanelUserData.Dock = DockStyle.Bottom;
+      PanelUserData.Location = new Point(0, 370);
+      PanelUserData.Name = "PanelUserData";
+      PanelUserData.Size = new Size(190, 100);
+      PanelUserData.TabIndex = 12;
+      // 
       // MainForm
       // 
       AutoScaleDimensions = new SizeF(7F, 15F);
@@ -555,7 +566,6 @@
       Text = "MainForm";
       Load += MainForm_Load;
       panel1.ResumeLayout(false);
-      panel1.PerformLayout();
       PanelUserStories.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)iconPictureBox5).EndInit();
       PanelEmployees.ResumeLayout(false);
@@ -574,6 +584,8 @@
       ((System.ComponentModel.ISupportInitialize)iconPictureBox7).EndInit();
       panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)iconPictureBox6).EndInit();
+      PanelUserData.ResumeLayout(false);
+      PanelUserData.PerformLayout();
       ResumeLayout(false);
     }
 
@@ -612,5 +624,6 @@
     private ReaLTaiizor.Controls.DungeonLabel LabelEmployeesCount;
     private ReaLTaiizor.Controls.DungeonLabel dungeonLabel5;
     private FontAwesome.Sharp.IconPictureBox iconPictureBox7;
+    private Panel PanelUserData;
   }
 }

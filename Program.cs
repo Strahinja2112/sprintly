@@ -10,7 +10,7 @@ internal static class Program {
   static void Main() {
     ApplicationConfiguration.Initialize();
 
-    //SeedService.FullSeed();
+    // SeedService.FullSeed();
 
     var isLoginSaved = AuthService.TryAutoLogin();
     if (!isLoginSaved) {

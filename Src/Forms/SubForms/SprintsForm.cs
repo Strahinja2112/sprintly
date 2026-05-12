@@ -1,35 +1,43 @@
-﻿using Sprintra.Src.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
 using Sprintra.Src.Forms;
+using Sprintra.Src.Services;
 using System.Data;
 
 namespace Sprintra.Forms;
 
 public partial class SprintsForm : BaseForm {
   private bool isExpanded = false;
+
   private readonly int expandedPanelWidth = 0;
-  private readonly BaseForm parent;
   private int selectedSprintId = 0;
+
+  private readonly BaseForm parent;
+  private readonly SprintService sprintService;
+
   private const string searchPlaceholder = "Pretraga sprintova...";
+
 
   public SprintsForm(BaseForm parent) {
     InitializeComponent();
+
+    sprintService = new SprintService();
     expandedPanelWidth = PanelProjectEdit.Width;
     PanelProjectEdit.Hide();
     this.parent = parent;
   }
 
-  private void SprintsForm_Load(object sender, EventArgs e) {
+  private async void SprintsForm_Load(object sender, EventArgs e) {
     ComboBoxStatus.Items.AddRange(Enum.GetNames<SprintStatus>());
 
-    LoadProjectsToFilter();
-
+    await LoadProjectsToFilter();
     SetPlaceholder(TBoxSearch, searchPlaceholder);
   }
 
-  private void LoadProjectsToFilter() {
+  private async Task LoadProjectsToFilter() {
     using var db = new AppDbContext();
-    var projects = db.Projects.OrderBy(p => p.Name).ToList();
+    var projects = await db.Projects.OrderBy(p => p.Name).ToListAsync();
 
     ComboBoxProjects.DataSource = projects;
     ComboBoxProjects.DisplayMember = "Name";
@@ -40,161 +48,122 @@ public partial class SprintsForm : BaseForm {
   private void ComboBoxProjects_SelectedIndexChanged(object sender, EventArgs e) {
     if (ComboBoxProjects.SelectedIndex != -1) {
       LoadSprints();
+      SetRulesInUI();
     }
   }
 
-  private void LoadSprints() {
-    if (ComboBoxProjects.SelectedValue == null) return;
-    Project? project = (Project?)ComboBoxProjects.SelectedItem;
+  private void SetRulesInUI() {
+    if (ComboBoxProjects.SelectedItem == null) return;
 
-    var projectId = project?.Id ?? 0;
+    var project = (Project)ComboBoxProjects.SelectedItem;
+    DateTimePicker.MinDate = project.StartDate;
+  }
 
-    if (projectId < 1) {
-      return;
-    }
+  private async void LoadSprints(string term = "") {
+    if (ComboBoxProjects.SelectedValue is not int projectId || projectId < 1) return;
 
-    using var db = new AppDbContext();
-    var sprints = db.Sprints
-        .Where(s => s.ProjectId == projectId)
-        .Select(s => new {
-          s.Id,
-          Naziv = s.Name,
-          Status = s.Status.ToString(),
-          Početak = s.StartDate,
-          Kraj = s.EndDate
-        })
-        .OrderByDescending(s => s.Početak)
-        .ToList();
+    var sprints = await sprintService.GetSprintsByProjectAsync(projectId, term);
 
-    DGVSprints.DataSource = sprints;
+    DGVSprints.DataSource = sprints.Select(s => new {
+      s.Id,
+      Naziv = s.Name,
+      Status = s.Status.ToString(),
+      Početak = s.StartDate,
+      Kraj = s.EndDate
+    }).ToList();
+
     DGVSprints.Columns["Id"]?.Visible = false;
   }
 
-  private void ButonAdd_Click(object sender, EventArgs e) {
-    if (ComboBoxProjects.SelectedIndex == -1) {
+  private async void ButonAdd_Click(object sender, EventArgs e) {
+    if (ComboBoxProjects.SelectedIndex == -1 || ComboBoxProjects.SelectedValue == null) {
       MessageBox.Show("Molimo vas da prvo odaberete projekat na vrhu.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Information);
       return;
     }
 
-    if (ComboBoxProjects.SelectedValue == null) return;
     int projectId = (int)ComboBoxProjects.SelectedValue;
-
     NumericSprintLength.Enabled = DateTimePicker.Enabled = true;
 
     using (var db = new AppDbContext()) {
-      var sprints = db.Sprints.Where(s => s.ProjectId == projectId).OrderByDescending(s => s.EndDate);
-      DateTimePicker.MinDate = DateTimePicker.Value =
-        sprints.Any()
-          ? sprints.First().EndDate?.AddDays(1) ?? DateTime.Now
-          : DateTime.Now;
+      var lastSprint = await db.Sprints
+          .Where(s => s.ProjectId == projectId)
+          .OrderByDescending(s => s.EndDate)
+          .FirstOrDefaultAsync();
+
+      if (lastSprint == null) {
+        var project = await db.Projects.FindAsync(projectId);
+        if (project != null) {
+          DateTimePicker.MinDate = DateTimePicker.Value = project.StartDate;
+        }
+      }
+      else if (lastSprint.EndDate.HasValue) {
+        DateTimePicker.MinDate = DateTimePicker.Value = lastSprint.EndDate.Value.AddDays(1);
+      }
     }
 
     ClearInputs();
     ExpandParent();
   }
 
-  private void ButtonSave_Click(object sender, EventArgs e) {
-    if (ComboBoxStatus.SelectedItem == null) {
-      return;
-    }
-
-    var value = ComboBoxStatus.SelectedItem?.ToString();
-    var sprintStatus = Enum.Parse<SprintStatus>(value);
-
-    if (sprintStatus == SprintStatus.Active && DateTimePicker.Value.Date > DateTime.Now.Date) {
-      MessageBox.Show("Sprint ne može biti aktivan pre datuma početka.", "Logička greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-      ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
-      return;
-    }
-
-    if (sprintStatus == SprintStatus.Completed) {
-      if (DateTimePicker.Value.Date > DateTime.Now.Date) {
-        MessageBox.Show("Ne možete završiti sprint koji još nije ni počeo.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
-        return;
-      }
-
-      var result = MessageBox.Show("Da li ste sigurni da želite da zatvorite ovaj sprint?", "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-      if (result == DialogResult.No) {
-        ComboBoxStatus.SelectedItem = SprintStatus.Active.ToString();
-      }
-    }
-
-    if (sprintStatus == SprintStatus.Canceled && selectedSprintId != 0) {
-      var result = MessageBox.Show("Otkazivanje sprinta će ga ukloniti iz aktivnog planiranja. Nastaviti?", "Upozorenje", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-      if (result == DialogResult.No) {
-        ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
-      }
-    }
-
-    string name = TBoxProjectName.Text.Trim();
-    string goal = TBoxDescription.Text.Trim();
-
-    if (string.IsNullOrEmpty(name)) {
-      MessageBox.Show("Ime sprinta je obavezno.", "Validacija", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-      return;
-    }
+  private async void ButtonSave_Click(object sender, EventArgs e) {
+    if (ComboBoxProjects.SelectedValue == null || ComboBoxStatus.SelectedItem == null) return;
 
     try {
-      using var db = new AppDbContext();
-      Sprint? sprint;
+      var sprintStatus = Enum.Parse<SprintStatus>(ComboBoxStatus.SelectedItem.ToString()!);
 
+      if (sprintStatus == SprintStatus.Completed) {
+        var result = MessageBox.Show("Da li ste sigurni da želite da zatvorite ovaj sprint?", "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        if (result == DialogResult.No) return;
+      }
+
+      Sprint? sprint;
       if (selectedSprintId == 0) {
-        sprint = new Sprint {
-          ProjectId = (int)ComboBoxProjects.SelectedValue,
-          Status = SprintStatus.Planned
-        };
-        db.Sprints.Add(sprint);
+        sprint = new Sprint { ProjectId = (int)ComboBoxProjects.SelectedValue };
       }
       else {
-        sprint = db.Sprints.FirstOrDefault(s => s.Id == selectedSprintId);
-        if (sprint == null) {
-          return;
-        }
+        sprint = await sprintService.GetByIdAsync(selectedSprintId);
+        if (sprint == null) return;
       }
 
-      sprint.Name = name;
-      sprint.Goal = goal;
+      sprint.Name = TBoxProjectName.Text.Trim();
+      sprint.Goal = TBoxDescription.Text.Trim();
       sprint.StartDate = DateTimePicker.Value;
-      sprint.EndDate = DateTimePicker.Value.AddDays(NumericSprintLength.Value * 7);
+      sprint.EndDate = DateTimePicker.Value.AddDays((double)NumericSprintLength.Value * 7);
+      sprint.Status = sprintStatus;
 
-      if (ComboBoxStatus.SelectedIndex != -1) {
-        sprint.Status = Enum.Parse<SprintStatus>(ComboBoxStatus.SelectedItem.ToString());
-      }
+      await sprintService.SaveSprintAsync(sprint);
 
-      db.SaveChanges();
       MessageBox.Show("Sprint sačuvan!", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
       ClearInputs();
       LoadSprints();
     }
     catch (Exception ex) {
-      MessageBox.Show(ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      MessageBox.Show(ex.Message, "Validacija / Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
     }
   }
 
-  private void DGVSprints_CellClick(object sender, DataGridViewCellEventArgs e) {
+  private async void DGVSprints_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGVSprints.Rows[e.RowIndex].Cells["Id"].Value != null) {
       selectedSprintId = Convert.ToInt32(DGVSprints.Rows[e.RowIndex].Cells["Id"].Value);
-      LoadSprintToInputs(selectedSprintId);
+      await LoadSprintToInputs(selectedSprintId);
       ExpandParent();
     }
   }
 
-  private void LoadSprintToInputs(int id) {
-    using var db = new AppDbContext();
-    var s = db.Sprints.FirstOrDefault(sprint => sprint.Id == id);
+  private async Task LoadSprintToInputs(int id) {
+    var s = await sprintService.GetByIdAsync(id);
 
     if (s != null) {
       TBoxProjectName.Text = s.Name;
       TBoxDescription.Text = s.Goal;
       ComboBoxStatus.SelectedItem = s.Status.ToString();
+      DateTimePicker.Value = s.StartDate;
 
-      DateTimePicker.Value = DateTimePicker.MinDate = s.StartDate;
-      NumericSprintLength.Value = (int)((s.EndDate - s.StartDate)?.TotalDays / 7);
+      if (s.EndDate.HasValue) {
+        NumericSprintLength.Value = (long)((s.EndDate.Value - s.StartDate).TotalDays / 7);
+      }
 
       NumericSprintLength.Enabled = DateTimePicker.Enabled = false;
-
       bigLabel2.Text = "Izmena";
     }
   }
@@ -219,32 +188,13 @@ public partial class SprintsForm : BaseForm {
 
   private void TBoxSearch_TextChanged(object sender, EventArgs e) {
     string term = TBoxSearch.Text.Trim();
-    if (term == searchPlaceholder || string.IsNullOrEmpty(term)) {
-      LoadSprints();
-      return;
-    }
-
-    if (ComboBoxProjects.SelectedValue == null) return;
-    int projectId = (int)ComboBoxProjects.SelectedValue;
-
-    using var db = new AppDbContext();
-    DGVSprints.DataSource = db.Sprints
-        .Where(s => s.ProjectId == projectId && s.Name.Contains(term))
-        .Select(s => new { s.Id, Naziv = s.Name, s.Status, Početak = s.StartDate, Kraj = s.EndDate })
-        .OrderByDescending(s => s.Početak)
-        .ToList();
+    LoadSprints(term == searchPlaceholder ? "" : term);
   }
 
   private void DateTimePicker_ValueChanged(object sender, EventArgs e) {
-    if (DateTimePicker.Value.Date <= DateTime.Now.Date) {
-      ComboBoxStatus.SelectedItem = SprintStatus.Active.ToString();
-    }
-    else {
-      ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
-    }
+    if (DateTimePicker.Value.Date <= DateTime.Now.Date) ComboBoxStatus.SelectedItem = SprintStatus.Active.ToString();
+    else ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
   }
 
-  private void ComboBoxStatus_SelectedIndexChanged(object sender, EventArgs e) {
-
-  }
+  private void ComboBoxStatus_SelectedIndexChanged(object sender, EventArgs e) { }
 }
