@@ -1,7 +1,4 @@
-using Microsoft.EntityFrameworkCore;
 using Sprintra.Forms;
-using Sprintra.Src.Data;
-using Sprintra.Src.Data.Models;
 using Sprintra.Src.Services;
 
 namespace Sprintra;
@@ -29,9 +26,9 @@ internal static class Program {
     MainForm = new MainForm();
     Application.Run(MainForm);
 
-    using var db = new AppDbContext();
-    db.Projects
-      .Where(p => p.EndDate < DateTime.Now)
-      .ExecuteUpdate(c => c.SetProperty(p => p.Status, ProjectStatus.Completed));
+    //using var db = new AppDbContext();
+    //db.Projects
+    //  .Where(p => p.EndDate < DateTime.Now)
+    //  .ExecuteUpdate(c => c.SetProperty(p => p.Status, ProjectStatus.Completed));
   }
 }

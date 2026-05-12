@@ -19,20 +19,27 @@ public partial class LoginForm : Form {
       return;
     }
 
+    ButtonSubmit.Text = "Prijavljivanje...";
+    ButtonSubmit.Refresh();
+
     try {
-      if (AuthService.Login(username, password, rememberMe)) {
-        IsLoginSuccessful = true;
-        DialogResult = DialogResult.OK;
-        Close();
-      }
-      else {
+      IsLoginSuccessful = AuthService.Login(username, password, rememberMe);
+
+      if (!IsLoginSuccessful) {
         MessageBox.Show("Neispravni podaci.", "Pristup odbijen", MessageBoxButtons.OK, MessageBoxIcon.Error);
         TBoxPassword.Clear();
         TBoxPassword.Focus();
+
+        return;
       }
+
+      DialogResult = DialogResult.OK;
+      Close();
     }
     catch (Exception ex) {
       MessageBox.Show(ex.Message, "Sistemska greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
+
+    ButtonSubmit.Text = "Prijava";
   }
 }
