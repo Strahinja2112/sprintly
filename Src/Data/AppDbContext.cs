@@ -5,7 +5,6 @@ using Sprintra.Src.Data.Models;
 
 public class AppDbContext : DbContext {
   public DbSet<Employee> Employees { get; set; }
-  public DbSet<Client> Clients { get; set; }
   public DbSet<UserStory> UserStories { get; set; }
   public DbSet<WorkTask> WorkTasks { get; set; }
   public DbSet<WorkTaskEntry> WorkTaskEntries { get; set; }
@@ -27,17 +26,6 @@ public class AppDbContext : DbContext {
       entity.HasIndex(e => e.Username).IsUnique();
       entity.Property(e => e.Type).HasConversion<string>();
     });
-
-    // Client
-    modelBuilder.Entity<Client>()
-        .HasIndex(c => c.Email).IsUnique();
-
-    // UserStory
-    modelBuilder.Entity<UserStory>()
-        .HasOne(u => u.Client)
-        .WithMany(c => c.UserStories)
-        .HasForeignKey(u => u.ClientId)
-        .OnDelete(DeleteBehavior.SetNull);
 
     // WorkTask
     modelBuilder.Entity<WorkTask>(entity => {

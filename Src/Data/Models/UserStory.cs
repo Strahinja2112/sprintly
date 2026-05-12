@@ -6,8 +6,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class UserStory {
   public int Id { get; set; }
 
-  public int? ClientId { get; set; }
-
   [Required]
   public int ProjectId { get; set; }
 
@@ -22,12 +20,6 @@ public class UserStory {
   public string Description { get; set; } = null!;
 
   public int Priority { get; set; }
-
-  [Required]
-  public UserStoryStatus Status { get; set; }
-
-  [ForeignKey("ClientId")]
-  public virtual Client? Client { get; set; }
 
   [ForeignKey("ProjectId")]
   public virtual Project Project { get; set; } = null!;

@@ -51,7 +51,6 @@ internal class SeedService {
         Title = "Inicijalna faza",
         Description = "Zadaci podešavanja",
         Priority = 1,
-        Status = UserStoryStatus.InProgress,
         ProjectId = project.Id // Povezujemo sa projektom
       };
       db.UserStories.Add(story);

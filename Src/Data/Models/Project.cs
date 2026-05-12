@@ -14,7 +14,6 @@ public class Project {
   public string Description { get; set; } = null!;
 
   [Required]
-  [MaxLength(30)]
   public ProjectStatus Status { get; set; }
 
   public DateTime StartDate { get; set; }

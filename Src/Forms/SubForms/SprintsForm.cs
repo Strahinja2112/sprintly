@@ -195,10 +195,10 @@ public partial class SprintsForm : BaseForm {
 
       if (await sprintsService.HasUnfinishedTasksAsync(selectedSprintId)) {
         var resultTasks = MessageBox.Show(
-            "Postoje nezavršeni zadaci u ovom sprintu. Želite li da ih prebacite nazad u Backlog pre završetka sprinta?",
-            "Nezavršeni zadaci",
-            MessageBoxButtons.YesNoCancel,
-            MessageBoxIcon.Question
+          "Postoje nezavršeni zadaci u ovom sprintu. Želite li da ih prebacite nazad u Backlog pre završetka sprinta?",
+          "Nezavršeni zadaci",
+          MessageBoxButtons.YesNoCancel,
+          MessageBoxIcon.Question
         );
 
         if (resultTasks == DialogResult.Cancel) return;

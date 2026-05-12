@@ -58,7 +58,6 @@ public partial class UserStoriesForm : BaseForm {
       us.Id,
       us.Title,
       us.Description,
-      us.Status,
       us.Priority
     }).ToList();
 
