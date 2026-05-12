@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Src\Forms\UserStoriesForm.cs">
+    <Compile Update="Src\Forms\SubForms\UserStoriesForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -40,6 +40,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Src\Forms\Popups\" />
+    <Folder Include="Src\Forms\Shared\" />
   </ItemGroup>
 
 </Project>

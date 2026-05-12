@@ -49,7 +49,8 @@ public partial class MainForm : BaseForm {
   }
 
   private void ButtonLogout_Click(object sender, EventArgs e) {
-    AuthService.Logout(this);
+    AuthService.Logout();
+    Close();
   }
 
   private void PanelEmployees_Click(object sender, EventArgs e) {
