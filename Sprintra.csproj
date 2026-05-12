@@ -25,12 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Src\" />
-    <Folder Include="Public\Icons\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Forms\UserStoriesForm.cs">
+    <Compile Update="Src\Forms\UserStoriesForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
