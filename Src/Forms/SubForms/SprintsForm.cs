@@ -157,7 +157,7 @@ public partial class SprintsForm : BaseForm {
       TBoxProjectName.Text = s.Name;
       TBoxDescription.Text = s.Goal;
       ComboBoxStatus.SelectedItem = s.Status.ToString();
-      DateTimePicker.Value = s.StartDate;
+      DateTimePicker.MinDate = DateTimePicker.Value = s.StartDate;
 
       if (s.EndDate.HasValue) {
         NumericSprintLength.Value = (long)((s.EndDate.Value - s.StartDate).TotalDays / 7);
