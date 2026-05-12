@@ -15,7 +15,7 @@ public partial class SprintsForm : BaseForm {
   private int selectedSprintId = 0;
 
   private readonly BaseForm parent;
-  private readonly SprintService sprintService;
+  private readonly SprintsService sprintService;
 
   private const string searchPlaceholder = "Pretraga sprintova...";
 
@@ -23,7 +23,7 @@ public partial class SprintsForm : BaseForm {
   public SprintsForm(BaseForm parent) {
     InitializeComponent();
 
-    sprintService = new SprintService();
+    sprintService = new SprintsService();
     expandedPanelWidth = PanelProjectEdit.Width;
     PanelProjectEdit.Hide();
     this.parent = parent;
@@ -179,6 +179,51 @@ public partial class SprintsForm : BaseForm {
   }
 
   private void TBoxDescription_TextChanged(object sender, EventArgs e) {
-    LabelDescriptionLength.Text = $"({TBoxDescription.Text.Length}/{LabelDescriptionLength.MaximumSize})";
+    LabelDescriptionLength.Text = $"({TBoxDescription.Text.Length}/{TBoxDescription.MaxLength})";
+  }
+
+  private async void ButtonFinishSprint_Click(object sender, EventArgs e) {
+    if (selectedSprintId == 0) {
+      return;
+    }
+
+    try {
+      var sprint = await sprintService.GetByIdAsync(selectedSprintId);
+      if (sprint == null) {
+        return;
+      }
+
+      if (await sprintService.HasUnfinishedTasksAsync(selectedSprintId)) {
+        var resultTasks = MessageBox.Show(
+            "Postoje nezavršeni zadaci u ovom sprintu. Želite li da ih prebacite nazad u Backlog pre završetka sprinta?",
+            "Nezavršeni zadaci",
+            MessageBoxButtons.YesNoCancel,
+            MessageBoxIcon.Question
+        );
+
+        if (resultTasks == DialogResult.Cancel) return;
+
+        if (resultTasks == DialogResult.Yes) {
+          await sprintService.MoveUnfinishedTasksToBacklogAsync(selectedSprintId);
+        }
+      }
+      else {
+        var confirm = MessageBox.Show("Da li ste sigurni da želite da završite ovaj sprint?", "Potvrda", MessageBoxButtons.YesNo);
+        if (confirm == DialogResult.No) return;
+      }
+
+      sprint.Status = SprintStatus.Completed;
+      sprint.EndDate = DateTime.Now;
+
+      await sprintService.SaveSprintAsync(sprint);
+
+      MessageBox.Show("Sprint uspešno završen!", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+      ClearInputs();
+      LoadSprints();
+    }
+    catch (Exception ex) {
+      MessageBox.Show(ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
   }
 }

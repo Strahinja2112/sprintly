@@ -216,6 +216,7 @@ partial class SprintsForm {
     ButtonFinishSprint.Size = new Size(229, 40);
     ButtonFinishSprint.TabIndex = 30;
     ButtonFinishSprint.Text = "Završi pre kraja";
+    ButtonFinishSprint.Click += ButtonFinishSprint_Click;
     // 
     // NumericSprintLength
     // 

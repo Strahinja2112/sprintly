@@ -20,7 +20,7 @@ public class WorkTask {
 
   [Required]
   [MaxLength(30)]
-  public string Status { get; set; } = null!;
+  public WorkTaskStatus Status { get; set; } = WorkTaskStatus.ToDo;
 
   [Column(TypeName = "decimal(6,2)")]
   public decimal EstimatedHours { get; set; }
@@ -31,5 +31,12 @@ public class WorkTask {
   [ForeignKey("SprintId")]
   public virtual Sprint Sprint { get; set; } = null!;
 
-  public virtual ICollection<WorkTaskEntry> WorkLogEntries { get; set; } = new List<WorkTaskEntry>();
+  public virtual ICollection<WorkTaskEntry> WorkLogEntries { get; set; } = [];
+}
+
+public enum WorkTaskStatus {
+  ToDo,
+  InProgress,
+  Done,
+  Cancelled
 }

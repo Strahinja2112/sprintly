@@ -4,10 +4,10 @@ using Sprintra.Src.Data.Models;
 
 namespace Sprintra.Src.Services;
 
-public class SprintService {
+public class SprintsService {
   private readonly AppDbContext db;
 
-  public SprintService() {
+  public SprintsService() {
     db = new AppDbContext();
   }
 
@@ -45,5 +45,21 @@ public class SprintService {
 
   public async Task<Sprint?> GetByIdAsync(int id) {
     return await db.Sprints.FirstOrDefaultAsync(s => s.Id == id);
+  }
+
+  public async Task<bool> HasUnfinishedTasksAsync(int sprintId) {
+    return await db.WorkTasks.AnyAsync(t => t.SprintId == sprintId && t.Status != WorkTaskStatus.Done);
+  }
+
+  public async Task MoveUnfinishedTasksToBacklogAsync(int sprintId) {
+    var unfinishedTasks = await db.WorkTasks
+        .Where(t => t.SprintId == sprintId && t.Status != WorkTaskStatus.Done)
+        .ToListAsync();
+
+    foreach (var task in unfinishedTasks) {
+      task.Status = WorkTaskStatus.Cancelled;
+    }
+
+    await db.SaveChangesAsync();
   }
 }
