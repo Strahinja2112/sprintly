@@ -37,7 +37,6 @@
       // 
       // pictureBox1
       // 
-      pictureBox1.Image = Properties.Resources.hawk_logo;
       pictureBox1.Location = new Point(76, 30);
       pictureBox1.Margin = new Padding(4, 3, 4, 3);
       pictureBox1.Name = "pictureBox1";
