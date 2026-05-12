@@ -30,8 +30,6 @@ public partial class SprintsForm : BaseForm {
   }
 
   private async void SprintsForm_Load(object sender, EventArgs e) {
-    ComboBoxStatus.Items.AddRange(Enum.GetNames<SprintStatus>());
-
     await LoadProjectsToFilter();
     SetPlaceholder(TBoxSearch, searchPlaceholder);
   }
@@ -107,16 +105,7 @@ public partial class SprintsForm : BaseForm {
   }
 
   private async void ButtonSave_Click(object sender, EventArgs e) {
-    if (ComboBoxProjects.SelectedValue == null || ComboBoxStatus.SelectedItem == null) return;
-
     try {
-      var sprintStatus = Enum.Parse<SprintStatus>(ComboBoxStatus.SelectedItem.ToString()!);
-
-      if (sprintStatus == SprintStatus.Completed) {
-        var result = MessageBox.Show("Da li ste sigurni da želite da zatvorite ovaj sprint?", "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-        if (result == DialogResult.No) return;
-      }
-
       Sprint? sprint;
       if (selectedSprintId == 0) {
         sprint = new Sprint { ProjectId = (int)ComboBoxProjects.SelectedValue };
@@ -130,7 +119,7 @@ public partial class SprintsForm : BaseForm {
       sprint.Goal = TBoxDescription.Text.Trim();
       sprint.StartDate = DateTimePicker.Value;
       sprint.EndDate = DateTimePicker.Value.AddDays((double)NumericSprintLength.Value * 7);
-      sprint.Status = sprintStatus;
+      sprint.Status = SprintStatus.Planned;
 
       await sprintService.SaveSprintAsync(sprint);
 
@@ -156,7 +145,6 @@ public partial class SprintsForm : BaseForm {
     if (s != null) {
       TBoxProjectName.Text = s.Name;
       TBoxDescription.Text = s.Goal;
-      ComboBoxStatus.SelectedItem = s.Status.ToString();
       DateTimePicker.Value = DateTimePicker.MinDate = s.StartDate;
 
       if (s.EndDate.HasValue) {
@@ -172,7 +160,6 @@ public partial class SprintsForm : BaseForm {
     selectedSprintId = 0;
     TBoxProjectName.Text = "";
     TBoxDescription.Text = "";
-    ComboBoxStatus.SelectedIndex = -1;
     DateTimePicker.Value = DateTimePicker.MinDate;
     bigLabel2.Text = "Novi Sprint";
   }
@@ -191,10 +178,7 @@ public partial class SprintsForm : BaseForm {
     LoadSprints(term == searchPlaceholder ? "" : term);
   }
 
-  private void DateTimePicker_ValueChanged(object sender, EventArgs e) {
-    if (DateTimePicker.Value.Date <= DateTime.Now.Date) ComboBoxStatus.SelectedItem = SprintStatus.Active.ToString();
-    else ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
+  private void TBoxDescription_TextChanged(object sender, EventArgs e) {
+    LabelDescriptionLength.Text = $"({TBoxDescription.Text.Length}/{LabelDescriptionLength.MaximumSize})";
   }
-
-  private void ComboBoxStatus_SelectedIndexChanged(object sender, EventArgs e) { }
 }

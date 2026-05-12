@@ -34,18 +34,18 @@ partial class SprintsForm {
     ButtonDelete = new ReaLTaiizor.Controls.FoxButton();
     ButonAdd = new ReaLTaiizor.Controls.FoxButton();
     PanelProjectEdit = new Panel();
+    LabelDescriptionLength = new ReaLTaiizor.Controls.DungeonLabel();
+    ButtonFinishSprint = new ReaLTaiizor.Controls.FoxButton();
     NumericSprintLength = new ReaLTaiizor.Controls.DungeonNumeric();
     dungeonLabel5 = new ReaLTaiizor.Controls.DungeonLabel();
     TBoxDescription = new ReaLTaiizor.Controls.BigTextBox();
     dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
     DateTimePicker = new ReaLTaiizor.Controls.PoisonDateTime();
     LabelDate = new ReaLTaiizor.Controls.DungeonLabel();
-    ComboBoxStatus = new ReaLTaiizor.Controls.AloneComboBox();
     ButtonSave = new ReaLTaiizor.Controls.FoxButton();
     TBoxProjectName = new ReaLTaiizor.Controls.BigTextBox();
     dungeonLabel3 = new ReaLTaiizor.Controls.DungeonLabel();
     bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
-    dungeonLabel7 = new ReaLTaiizor.Controls.DungeonLabel();
     dungeonLabel4 = new ReaLTaiizor.Controls.DungeonLabel();
     ComboBoxProjects = new ComboBox();
     TBoxSearch = new ReaLTaiizor.Controls.BigTextBox();
@@ -168,23 +168,54 @@ partial class SprintsForm {
     // PanelProjectEdit
     // 
     PanelProjectEdit.BackColor = SystemColors.Window;
+    PanelProjectEdit.Controls.Add(LabelDescriptionLength);
+    PanelProjectEdit.Controls.Add(ButtonFinishSprint);
     PanelProjectEdit.Controls.Add(NumericSprintLength);
     PanelProjectEdit.Controls.Add(dungeonLabel5);
     PanelProjectEdit.Controls.Add(TBoxDescription);
     PanelProjectEdit.Controls.Add(dungeonLabel2);
     PanelProjectEdit.Controls.Add(DateTimePicker);
     PanelProjectEdit.Controls.Add(LabelDate);
-    PanelProjectEdit.Controls.Add(ComboBoxStatus);
     PanelProjectEdit.Controls.Add(ButtonSave);
     PanelProjectEdit.Controls.Add(TBoxProjectName);
     PanelProjectEdit.Controls.Add(dungeonLabel3);
     PanelProjectEdit.Controls.Add(bigLabel2);
-    PanelProjectEdit.Controls.Add(dungeonLabel7);
     PanelProjectEdit.Dock = DockStyle.Right;
     PanelProjectEdit.Location = new Point(601, 0);
     PanelProjectEdit.Name = "PanelProjectEdit";
     PanelProjectEdit.Size = new Size(383, 471);
     PanelProjectEdit.TabIndex = 20;
+    // 
+    // LabelDescriptionLength
+    // 
+    LabelDescriptionLength.AutoSize = true;
+    LabelDescriptionLength.BackColor = Color.Transparent;
+    LabelDescriptionLength.Font = new Font("Segoe UI", 10F);
+    LabelDescriptionLength.ForeColor = Color.FromArgb(76, 76, 77);
+    LabelDescriptionLength.Location = new Point(313, 131);
+    LabelDescriptionLength.Name = "LabelDescriptionLength";
+    LabelDescriptionLength.Size = new Size(54, 19);
+    LabelDescriptionLength.TabIndex = 38;
+    LabelDescriptionLength.Text = "(0/255)";
+    // 
+    // ButtonFinishSprint
+    // 
+    ButtonFinishSprint.BackColor = Color.Transparent;
+    ButtonFinishSprint.BaseColor = SystemColors.Window;
+    ButtonFinishSprint.BorderColor = Color.DarkSlateGray;
+    ButtonFinishSprint.DisabledBaseColor = Color.FromArgb(249, 249, 249);
+    ButtonFinishSprint.DisabledBorderColor = Color.FromArgb(209, 209, 209);
+    ButtonFinishSprint.DisabledTextColor = Color.FromArgb(166, 178, 190);
+    ButtonFinishSprint.DownColor = Color.FromArgb(232, 232, 232);
+    ButtonFinishSprint.EnabledCalc = true;
+    ButtonFinishSprint.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+    ButtonFinishSprint.ForeColor = Color.DarkSlateGray;
+    ButtonFinishSprint.Location = new Point(14, 419);
+    ButtonFinishSprint.Name = "ButtonFinishSprint";
+    ButtonFinishSprint.OverColor = Color.FromArgb(242, 242, 242);
+    ButtonFinishSprint.Size = new Size(229, 40);
+    ButtonFinishSprint.TabIndex = 30;
+    ButtonFinishSprint.Text = "Završi pre kraja";
     // 
     // NumericSprintLength
     // 
@@ -226,14 +257,15 @@ partial class SprintsForm {
     TBoxDescription.ForeColor = Color.DimGray;
     TBoxDescription.Image = null;
     TBoxDescription.Location = new Point(14, 152);
-    TBoxDescription.MaxLength = 32767;
+    TBoxDescription.MaxLength = 255;
     TBoxDescription.Multiline = true;
     TBoxDescription.Name = "TBoxDescription";
     TBoxDescription.ReadOnly = false;
-    TBoxDescription.Size = new Size(353, 128);
+    TBoxDescription.Size = new Size(353, 186);
     TBoxDescription.TabIndex = 35;
     TBoxDescription.TextAlignment = HorizontalAlignment.Left;
     TBoxDescription.UseSystemPasswordChar = false;
+    TBoxDescription.TextChanged += TBoxDescription_TextChanged;
     // 
     // dungeonLabel2
     // 
@@ -255,7 +287,6 @@ partial class SprintsForm {
     DateTimePicker.Name = "DateTimePicker";
     DateTimePicker.Size = new Size(161, 29);
     DateTimePicker.TabIndex = 29;
-    DateTimePicker.ValueChanged += DateTimePicker_ValueChanged;
     // 
     // LabelDate
     // 
@@ -269,20 +300,6 @@ partial class SprintsForm {
     LabelDate.TabIndex = 28;
     LabelDate.Text = "Datum početka";
     // 
-    // ComboBoxStatus
-    // 
-    ComboBoxStatus.BackColor = SystemColors.HotTrack;
-    ComboBoxStatus.DrawMode = DrawMode.OwnerDrawFixed;
-    ComboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-    ComboBoxStatus.EnabledCalc = true;
-    ComboBoxStatus.FormattingEnabled = true;
-    ComboBoxStatus.ItemHeight = 20;
-    ComboBoxStatus.Location = new Point(14, 312);
-    ComboBoxStatus.Name = "ComboBoxStatus";
-    ComboBoxStatus.Size = new Size(353, 26);
-    ComboBoxStatus.TabIndex = 25;
-    ComboBoxStatus.SelectedIndexChanged += ComboBoxStatus_SelectedIndexChanged;
-    // 
     // ButtonSave
     // 
     ButtonSave.BackColor = Color.Transparent;
@@ -295,10 +312,10 @@ partial class SprintsForm {
     ButtonSave.EnabledCalc = true;
     ButtonSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButtonSave.ForeColor = Color.White;
-    ButtonSave.Location = new Point(14, 419);
+    ButtonSave.Location = new Point(249, 419);
     ButtonSave.Name = "ButtonSave";
     ButtonSave.OverColor = Color.DimGray;
-    ButtonSave.Size = new Size(353, 40);
+    ButtonSave.Size = new Size(118, 40);
     ButtonSave.TabIndex = 7;
     ButtonSave.Text = "Sačuvaj";
     ButtonSave.Click += ButtonSave_Click;
@@ -343,18 +360,6 @@ partial class SprintsForm {
     bigLabel2.TabIndex = 1;
     bigLabel2.Text = "Unos novog sprinta";
     bigLabel2.TextAlign = ContentAlignment.MiddleCenter;
-    // 
-    // dungeonLabel7
-    // 
-    dungeonLabel7.AutoSize = true;
-    dungeonLabel7.BackColor = Color.Transparent;
-    dungeonLabel7.Font = new Font("Segoe UI", 13F);
-    dungeonLabel7.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel7.Location = new Point(14, 284);
-    dungeonLabel7.Name = "dungeonLabel7";
-    dungeonLabel7.Size = new Size(119, 25);
-    dungeonLabel7.TabIndex = 23;
-    dungeonLabel7.Text = "Status sprinta";
     // 
     // dungeonLabel4
     // 
@@ -440,16 +445,16 @@ partial class SprintsForm {
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
   private ReaLTaiizor.Controls.PoisonDateTime DateTimePicker;
   private ReaLTaiizor.Controls.DungeonLabel LabelDate;
-  private ReaLTaiizor.Controls.AloneComboBox ComboBoxStatus;
   private ReaLTaiizor.Controls.FoxButton ButtonSave;
   private ReaLTaiizor.Controls.BigTextBox TBoxProjectName;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel3;
   private ReaLTaiizor.Controls.BigLabel bigLabel2;
-  private ReaLTaiizor.Controls.DungeonLabel dungeonLabel7;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel4;
   private ComboBox ComboBoxProjects;
   private ReaLTaiizor.Controls.BigTextBox TBoxSearch;
   private ReaLTaiizor.Controls.DungeonNumeric NumericSprintLength;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel5;
   private ReaLTaiizor.Manager.PoisonStyleManager StyleManager1;
+  private ReaLTaiizor.Controls.FoxButton ButtonFinishSprint;
+  private ReaLTaiizor.Controls.DungeonLabel LabelDescriptionLength;
 }
