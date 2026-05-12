@@ -143,6 +143,7 @@ partial class SprintsForm {
     ButtonDelete.Size = new Size(90, 70);
     ButtonDelete.TabIndex = 18;
     ButtonDelete.Text = "Obriši";
+    ButtonDelete.Click += ButtonDelete_Click;
     // 
     // ButonAdd
     // 

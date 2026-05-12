@@ -10,7 +10,7 @@ internal static class Program {
   static void Main() {
     ApplicationConfiguration.Initialize();
 
-    SeedService.FullSeed();
+    //SeedService.FullSeed();
 
     var isLoginSaved = AuthService.TryAutoLogin();
     if (!isLoginSaved) {
@@ -25,10 +25,5 @@ internal static class Program {
 
     MainForm = new MainForm();
     Application.Run(MainForm);
-
-    //using var db = new AppDbContext();
-    //db.Projects
-    //  .Where(p => p.EndDate < DateTime.Now)
-    //  .ExecuteUpdate(c => c.SetProperty(p => p.Status, ProjectStatus.Completed));
   }
 }

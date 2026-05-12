@@ -62,4 +62,21 @@ public class SprintsService {
 
     await db.SaveChangesAsync();
   }
+
+  public async Task DeleteSprintAsync(int sprintId) {
+    var sprint = await db.Sprints
+        .Include(s => s.WorkTasks)
+        .FirstOrDefaultAsync(s => s.Id == sprintId);
+
+    if (sprint == null) return;
+
+    if (sprint.WorkTasks.Count != 0)
+      throw new InvalidOperationException("Ne možete obrisati sprint koji ima povezane zadatke. Prvo obrišite ili premestite zadatke.");
+
+    if (sprint.Status != SprintStatus.Planned)
+      throw new InvalidOperationException("Samo planirani sprintovi (Planned) se mogu obrisati.");
+
+    db.Sprints.Remove(sprint);
+    await db.SaveChangesAsync();
+  }
 }

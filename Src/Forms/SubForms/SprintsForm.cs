@@ -15,7 +15,7 @@ public partial class SprintsForm : BaseForm {
   private int selectedSprintId = 0;
 
   private readonly BaseForm parent;
-  private readonly SprintsService sprintService;
+  private readonly SprintsService sprintsService;
 
   private const string searchPlaceholder = "Pretraga sprintova...";
 
@@ -23,7 +23,7 @@ public partial class SprintsForm : BaseForm {
   public SprintsForm(BaseForm parent) {
     InitializeComponent();
 
-    sprintService = new SprintsService();
+    sprintsService = new SprintsService();
     expandedPanelWidth = PanelProjectEdit.Width;
     PanelProjectEdit.Hide();
     this.parent = parent;
@@ -61,7 +61,7 @@ public partial class SprintsForm : BaseForm {
   private async void LoadSprints(string term = "") {
     if (ComboBoxProjects.SelectedValue is not int projectId || projectId < 1) return;
 
-    var sprints = await sprintService.GetSprintsByProjectAsync(projectId, term);
+    var sprints = await sprintsService.GetSprintsByProjectAsync(projectId, term);
 
     DGVSprints.DataSource = sprints.Select(s => new {
       s.Id,
@@ -111,7 +111,7 @@ public partial class SprintsForm : BaseForm {
         sprint = new Sprint { ProjectId = (int)ComboBoxProjects.SelectedValue };
       }
       else {
-        sprint = await sprintService.GetByIdAsync(selectedSprintId);
+        sprint = await sprintsService.GetByIdAsync(selectedSprintId);
         if (sprint == null) return;
       }
 
@@ -121,7 +121,7 @@ public partial class SprintsForm : BaseForm {
       sprint.EndDate = DateTimePicker.Value.AddDays((double)NumericSprintLength.Value * 7);
       sprint.Status = SprintStatus.Planned;
 
-      await sprintService.SaveSprintAsync(sprint);
+      await sprintsService.SaveSprintAsync(sprint);
 
       ClearInputs();
       LoadSprints();
@@ -140,7 +140,7 @@ public partial class SprintsForm : BaseForm {
   }
 
   private async Task LoadSprintToInputs(int id) {
-    var s = await sprintService.GetByIdAsync(id);
+    var s = await sprintsService.GetByIdAsync(id);
 
     if (s != null) {
       TBoxProjectName.Text = s.Name;
@@ -188,12 +188,12 @@ public partial class SprintsForm : BaseForm {
     }
 
     try {
-      var sprint = await sprintService.GetByIdAsync(selectedSprintId);
+      var sprint = await sprintsService.GetByIdAsync(selectedSprintId);
       if (sprint == null) {
         return;
       }
 
-      if (await sprintService.HasUnfinishedTasksAsync(selectedSprintId)) {
+      if (await sprintsService.HasUnfinishedTasksAsync(selectedSprintId)) {
         var resultTasks = MessageBox.Show(
             "Postoje nezavršeni zadaci u ovom sprintu. Želite li da ih prebacite nazad u Backlog pre završetka sprinta?",
             "Nezavršeni zadaci",
@@ -204,7 +204,7 @@ public partial class SprintsForm : BaseForm {
         if (resultTasks == DialogResult.Cancel) return;
 
         if (resultTasks == DialogResult.Yes) {
-          await sprintService.MoveUnfinishedTasksToBacklogAsync(selectedSprintId);
+          await sprintsService.MoveUnfinishedTasksToBacklogAsync(selectedSprintId);
         }
       }
       else {
@@ -215,7 +215,7 @@ public partial class SprintsForm : BaseForm {
       sprint.Status = SprintStatus.Completed;
       sprint.EndDate = DateTime.Now;
 
-      await sprintService.SaveSprintAsync(sprint);
+      await sprintsService.SaveSprintAsync(sprint);
 
       MessageBox.Show("Sprint uspešno završen!", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -224,6 +224,36 @@ public partial class SprintsForm : BaseForm {
     }
     catch (Exception ex) {
       MessageBox.Show(ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+  }
+
+  private async void ButtonDelete_Click(object sender, EventArgs e) {
+    if (selectedSprintId == 0) return;
+
+    var confirm = MessageBox.Show(
+        "Da li ste sigurni da želite trajno da obrišete ovaj sprint?",
+        "Potvrda brisanja",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Warning
+    );
+
+    if (confirm == DialogResult.No) return;
+
+    try {
+      await sprintsService.DeleteSprintAsync(selectedSprintId);
+
+      ClearInputs();
+      LoadSprints();
+
+      if (isExpanded) {
+        parent.Width -= expandedPanelWidth;
+        PanelProjectEdit.Hide();
+        isExpanded = false;
+        parent.CenterOnScreen();
+      }
+    }
+    catch (Exception ex) {
+      MessageBox.Show(ex.Message, "Brisanje nije dozvoljeno", MessageBoxButtons.OK, MessageBoxIcon.Stop);
     }
   }
 }
