@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sprintra.Src.Core;
 using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
 using Sprintra.Src.Forms;
@@ -133,7 +134,6 @@ public partial class SprintsForm : BaseForm {
 
       await sprintService.SaveSprintAsync(sprint);
 
-      MessageBox.Show("Sprint sačuvan!", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
       ClearInputs();
       LoadSprints();
     }
@@ -157,10 +157,10 @@ public partial class SprintsForm : BaseForm {
       TBoxProjectName.Text = s.Name;
       TBoxDescription.Text = s.Goal;
       ComboBoxStatus.SelectedItem = s.Status.ToString();
-      DateTimePicker.MinDate = DateTimePicker.Value = s.StartDate;
+      DateTimePicker.Value = DateTimePicker.MinDate = s.StartDate;
 
       if (s.EndDate.HasValue) {
-        NumericSprintLength.Value = (long)((s.EndDate.Value - s.StartDate).TotalDays / 7);
+        NumericSprintLength.Value = Helpers.CalculateTimeBetween(s.StartDate, s.EndDate, TimeUnit.Weeks);
       }
 
       NumericSprintLength.Enabled = DateTimePicker.Enabled = false;
