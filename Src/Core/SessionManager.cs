@@ -17,7 +17,10 @@ public static class SessionManager {
   }
 
   public static string? GetSavedUsername() {
-    if (!File.Exists(SessionFile)) return null;
+    if (!File.Exists(SessionFile)) {
+      return null;
+    }
+
     try {
       byte[] dataToDecrypt = Convert.FromBase64String(File.ReadAllText(SessionFile));
       byte[] decryptedData = ProtectedData.Unprotect(dataToDecrypt, additionalEntropy, DataProtectionScope.CurrentUser);
