@@ -45,6 +45,7 @@
   <ItemGroup>
     <Folder Include="Src\Forms\Popups\" />
     <Folder Include="Src\Forms\Shared\" />
+    <Folder Include="Src\Services\Forms\" />
   </ItemGroup>
 
 </Project>

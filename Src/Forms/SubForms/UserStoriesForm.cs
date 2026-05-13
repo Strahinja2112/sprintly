@@ -1,30 +1,33 @@
 ﻿using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
 using Sprintra.Src.Forms;
+using Sprintra.Src.Services;
 using System.Data;
 
 namespace Sprintra.Forms;
 
 public partial class UserStoriesForm : BaseForm {
   private bool isExpanded = false;
+
   private readonly int expandedPanelWidth = 0;
+  private int selectedStoryId = 0;
+
   private readonly BaseForm parent;
-  private int selectedSprintId = 0;
+  private readonly UserStoriesService userStoryService;
+
   private const string searchPlaceholder = "Pretraga korisničkih priča...";
 
   public UserStoriesForm(BaseForm parent) {
     InitializeComponent();
-    expandedPanelWidth = PanelProjectEdit.Width;
-    PanelProjectEdit.Hide();
+    userStoryService = new UserStoriesService();
+    expandedPanelWidth = PanelEdit.Width;
+    PanelEdit.Hide();
     this.parent = parent;
   }
 
-  private void SprintsForm_Load(object sender, EventArgs e) {
-    ComboBoxStatus.Items.AddRange(Enum.GetNames<SprintStatus>());
-
-    LoadProjectsToFilter();
-
+  private void UserStoriesForm_Load(object sender, EventArgs e) {
     SetPlaceholder(TBoxSearch, searchPlaceholder);
+    LoadProjectsToFilter();
   }
 
   private void LoadProjectsToFilter() {
@@ -35,34 +38,46 @@ public partial class UserStoriesForm : BaseForm {
     ComboBoxProjects.DisplayMember = "Name";
     ComboBoxProjects.ValueMember = "Id";
     ComboBoxProjects.SelectedIndex = projects.Count > 0 ? 0 : -1;
+
+    ComboBoxProjects_SelectedIndexChanged(null!, null!);
   }
 
-  private void ComboBoxProjects_SelectedIndexChanged(object sender, EventArgs e) {
-    if (ComboBoxProjects.SelectedIndex != -1) {
-      LoadUserStories();
+  private async void ComboBoxProjects_SelectedIndexChanged(object sender, EventArgs e) {
+    if (ComboBoxProjects.SelectedValue is int projectId) {
+      await LoadSprintsToFilter(projectId);
+      await LoadUserStoriesToDataGrid();
     }
   }
 
-  private void LoadUserStories() {
-    if (ComboBoxProjects.SelectedValue == null) return;
-    Project? project = (Project?)ComboBoxProjects.SelectedItem;
-
-    var projectId = project?.Id ?? 0;
-
-    if (projectId < 1) {
-      return;
-    }
-
+  private async Task LoadSprintsToFilter(int projectId) {
     using var db = new AppDbContext();
-    var userStories = db.UserStories.Where(us => us.ProjectId == projectId).Select(us => new {
+    var sprints = db.Sprints
+        .Where(s => s.ProjectId == projectId)
+        .OrderBy(s => s.Name)
+        .ToList();
+
+    sprints.Insert(0, new Sprint { Id = 0, Name = "-- Bez sprinta --" });
+
+    ComboBoxSprints.DataSource = sprints;
+    ComboBoxSprints.DisplayMember = "Name";
+    ComboBoxSprints.ValueMember = "Id";
+    ComboBoxSprints.SelectedIndex = 0;
+  }
+
+  private async Task LoadUserStoriesToDataGrid(string term = "") {
+    if (ComboBoxProjects.SelectedValue is not int projectId) return;
+
+    var stories = await userStoryService.GetByProjectAsync(projectId, term);
+
+    DGVSprints.DataSource = stories.Select(us => new {
       us.Id,
-      us.Title,
-      us.Description,
-      us.Priority
+      Naslov = us.Title,
+      Opis = us.Description,
+      Prioritet = us.Priority,
+      Sprint = us.Sprint != null ? us.Sprint.Name : "Backlog"
     }).ToList();
 
-    DGVSprints.DataSource = userStories;
-    DGVSprints.Columns["Id"]?.Visible = false;
+    if (DGVSprints.Columns["Id"] != null) DGVSprints.Columns["Id"].Visible = false;
   }
 
   private void ButonAdd_Click(object sender, EventArgs e) {
@@ -71,175 +86,87 @@ public partial class UserStoriesForm : BaseForm {
       return;
     }
 
-    if (ComboBoxProjects.SelectedValue == null) return;
-    int projectId = (int)ComboBoxProjects.SelectedValue;
-
-    NumericSprintLength.Enabled = DateTimePicker.Enabled = true;
-
-    using (var db = new AppDbContext()) {
-      var sprints = db.Sprints.Where(s => s.ProjectId == projectId).OrderByDescending(s => s.EndDate);
-      DateTimePicker.MinDate = DateTimePicker.Value =
-        sprints.Any()
-          ? sprints.First().EndDate?.AddDays(1) ?? DateTime.Now
-          : DateTime.Now;
-    }
-
     ClearInputs();
     ExpandParent();
   }
 
-  private void ButtonSave_Click(object sender, EventArgs e) {
-    if (ComboBoxStatus.SelectedItem == null) {
-      return;
-    }
-
-    var value = ComboBoxStatus.SelectedItem?.ToString();
-    var sprintStatus = Enum.Parse<SprintStatus>(value);
-
-    if (sprintStatus == SprintStatus.Active && DateTimePicker.Value.Date > DateTime.Now.Date) {
-      MessageBox.Show("Sprint ne može biti aktivan pre datuma početka.", "Logička greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-      ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
-      return;
-    }
-
-    if (sprintStatus == SprintStatus.Completed) {
-      if (DateTimePicker.Value.Date > DateTime.Now.Date) {
-        MessageBox.Show("Ne možete završiti sprint koji još nije ni počeo.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
-        return;
-      }
-
-      var result = MessageBox.Show("Da li ste sigurni da želite da zatvorite ovaj sprint?", "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-      if (result == DialogResult.No) {
-        ComboBoxStatus.SelectedItem = SprintStatus.Active.ToString();
-      }
-    }
-
-    if (sprintStatus == SprintStatus.Canceled && selectedSprintId != 0) {
-      var result = MessageBox.Show("Otkazivanje sprinta će ga ukloniti iz aktivnog planiranja. Nastaviti?", "Upozorenje", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-      if (result == DialogResult.No) {
-        ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
-      }
-    }
-
-    string name = TBoxProjectName.Text.Trim();
-    string goal = TBoxDescription.Text.Trim();
+  private async void ButtonSave_Click(object sender, EventArgs e) {
+    string name = TBoxName.Text.Trim();
+    string desc = TBoxDescription.Text.Trim();
 
     if (string.IsNullOrEmpty(name)) {
-      MessageBox.Show("Ime sprinta je obavezno.", "Validacija", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+      MessageBox.Show("Ime korisničke priče je obavezno.", "Validacija", MessageBoxButtons.OK, MessageBoxIcon.Warning);
       return;
     }
 
     try {
-      using var db = new AppDbContext();
-      Sprint? sprint;
+      UserStory story = selectedStoryId == 0
+          ? new UserStory {
+            ProjectId = (int)ComboBoxProjects.SelectedValue
+          }
+          : await userStoryService.GetByIdAsync(selectedStoryId) ?? new UserStory();
 
-      if (selectedSprintId == 0) {
-        sprint = new Sprint {
-          ProjectId = (int)ComboBoxProjects.SelectedValue,
-          Status = SprintStatus.Planned
-        };
-        db.Sprints.Add(sprint);
-      }
-      else {
-        sprint = db.Sprints.FirstOrDefault(s => s.Id == selectedSprintId);
-        if (sprint == null) {
-          return;
-        }
-      }
+      story.Title = name;
+      story.Description = desc;
+      story.Priority = (int)NumericPriority.Value;
 
-      sprint.Name = name;
-      sprint.Goal = goal;
-      sprint.StartDate = DateTimePicker.Value;
-      sprint.EndDate = DateTimePicker.Value.AddDays(NumericSprintLength.Value * 7);
+      int sprintId = (int)ComboBoxSprints.SelectedValue;
+      story.SprintId = sprintId > 0 ? sprintId : null;
 
-      if (ComboBoxStatus.SelectedIndex != -1) {
-        sprint.Status = Enum.Parse<SprintStatus>(ComboBoxStatus.SelectedItem.ToString());
-      }
-
-      db.SaveChanges();
-      MessageBox.Show("Sprint sačuvan!", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      await userStoryService.SaveUserStoryAsync(story);
 
       ClearInputs();
-      LoadUserStories();
+      await LoadUserStoriesToDataGrid();
+      MessageBox.Show("Uspešno sačuvano.", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
     catch (Exception ex) {
       MessageBox.Show(ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
   }
 
-  private void DGVSprints_CellClick(object sender, DataGridViewCellEventArgs e) {
+  private async void DGVSprints_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGVSprints.Rows[e.RowIndex].Cells["Id"].Value != null) {
-      selectedSprintId = Convert.ToInt32(DGVSprints.Rows[e.RowIndex].Cells["Id"].Value);
-      LoadSprintToInputs(selectedSprintId);
+      selectedStoryId = Convert.ToInt32(DGVSprints.Rows[e.RowIndex].Cells["Id"].Value);
+      await LoadUserStoryToInputs(selectedStoryId);
       ExpandParent();
     }
   }
 
-  private void LoadSprintToInputs(int id) {
-    using var db = new AppDbContext();
-    var s = db.Sprints.FirstOrDefault(sprint => sprint.Id == id);
-
-    if (s != null) {
-      TBoxProjectName.Text = s.Name;
-      TBoxDescription.Text = s.Goal;
-      ComboBoxStatus.SelectedItem = s.Status.ToString();
-
-      DateTimePicker.Value = DateTimePicker.MinDate = s.StartDate;
-      NumericSprintLength.Value = (int)((s.EndDate - s.StartDate)?.TotalDays / 7);
-
-      NumericSprintLength.Enabled = DateTimePicker.Enabled = false;
-
-      bigLabel2.Text = "Izmena";
+  private async Task LoadUserStoryToInputs(int id) {
+    var story = await userStoryService.GetByIdAsync(id);
+    if (story != null) {
+      TBoxName.Text = story.Title;
+      TBoxDescription.Text = story.Description;
+      NumericPriority.Value = story.Priority;
+      ComboBoxSprints.SelectedValue = story.SprintId ?? 0;
+      bigLabel2.Text = "Izmena korisničke priče";
     }
   }
 
   private void ClearInputs() {
-    selectedSprintId = 0;
-    TBoxProjectName.Text = "";
+    selectedStoryId = 0;
+    TBoxName.Text = "";
     TBoxDescription.Text = "";
-    ComboBoxStatus.SelectedIndex = -1;
-    DateTimePicker.Value = DateTimePicker.MinDate;
-    bigLabel2.Text = "Novi Sprint";
+    NumericPriority.Value = 1;
+    ComboBoxSprints.SelectedIndex = 0;
+    bigLabel2.Text = "Nova korisnička priča";
   }
 
   private void ExpandParent() {
     if (!isExpanded) {
       parent.Width += expandedPanelWidth;
-      PanelProjectEdit.Show();
+      PanelEdit.Show();
       isExpanded = true;
     }
     parent.CenterOnScreen();
   }
 
-  private void TBoxSearch_TextChanged(object sender, EventArgs e) {
+  private async void TBoxSearch_TextChanged(object sender, EventArgs e) {
     string term = TBoxSearch.Text.Trim();
     if (term == searchPlaceholder || string.IsNullOrEmpty(term)) {
-      LoadUserStories();
+      await LoadUserStoriesToDataGrid("");
       return;
     }
-
-    if (ComboBoxProjects.SelectedValue == null) return;
-    int projectId = (int)ComboBoxProjects.SelectedValue;
-
-    using var db = new AppDbContext();
-    DGVSprints.DataSource = db.Sprints
-        .Where(s => s.ProjectId == projectId && s.Name.Contains(term))
-        .Select(s => new { s.Id, Naziv = s.Name, s.Status, Početak = s.StartDate, Kraj = s.EndDate })
-        .OrderByDescending(s => s.Početak)
-        .ToList();
-  }
-
-  private void DateTimePicker_ValueChanged(object sender, EventArgs e) {
-    if (DateTimePicker.Value.Date <= DateTime.Now.Date) {
-      ComboBoxStatus.SelectedItem = SprintStatus.Active.ToString();
-    }
-    else {
-      ComboBoxStatus.SelectedItem = SprintStatus.Planned.ToString();
-    }
-  }
-
-  private void ComboBoxStatus_SelectedIndexChanged(object sender, EventArgs e) {
-
+    await LoadUserStoriesToDataGrid(term);
   }
 }

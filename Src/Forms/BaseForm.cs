@@ -1,7 +1,11 @@
 ﻿namespace Sprintra.Src.Forms;
 
 public class BaseForm : Form {
-  protected void SetPlaceholder(Control control, string text) {
+  public BaseForm() {
+    //Icon = SystemIcons.GetStockIcon(StockIconId.Link);
+  }
+
+  protected static void SetPlaceholder(Control control, string text) {
     control.Text = text;
     control.ForeColor = Color.Gray;
 
