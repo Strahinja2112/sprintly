@@ -60,8 +60,8 @@ public enum Field {
 }
 
 public enum EmployeeType {
+  Developer,
   ScrumMaster,
   ProductOwner,
-  Developer,
   Admin
 }

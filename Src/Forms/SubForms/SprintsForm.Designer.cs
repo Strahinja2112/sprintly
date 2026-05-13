@@ -137,10 +137,10 @@ partial class SprintsForm {
     ButtonDelete.EnabledCalc = true;
     ButtonDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButtonDelete.ForeColor = Color.DarkSlateGray;
-    ButtonDelete.Location = new Point(400, 143);
+    ButtonDelete.Location = new Point(400, 172);
     ButtonDelete.Name = "ButtonDelete";
     ButtonDelete.OverColor = Color.FromArgb(242, 242, 242);
-    ButtonDelete.Size = new Size(90, 70);
+    ButtonDelete.Size = new Size(90, 41);
     ButtonDelete.TabIndex = 18;
     ButtonDelete.Text = "Obriši";
     ButtonDelete.Click += ButtonDelete_Click;
@@ -157,11 +157,11 @@ partial class SprintsForm {
     ButonAdd.EnabledCalc = true;
     ButonAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButonAdd.ForeColor = Color.White;
-    ButonAdd.Location = new Point(496, 143);
+    ButonAdd.Location = new Point(496, 172);
     ButonAdd.Name = "ButonAdd";
     ButonAdd.OverColor = Color.DimGray;
     ButonAdd.RightToLeft = RightToLeft.Yes;
-    ButonAdd.Size = new Size(90, 70);
+    ButonAdd.Size = new Size(90, 41);
     ButonAdd.TabIndex = 19;
     ButonAdd.Text = "Dodaj";
     ButonAdd.Click += ButonAdd_Click;

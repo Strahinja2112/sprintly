@@ -29,12 +29,12 @@ internal class SeedService {
       var employees = new List<Employee>() {
         new() {
           FirstName = "Strahinja", LastName = "Prezime", Email = "s@s.com", Username = "strahinja",
-          PasswordHash = AuthService.HashPassword("sifra123"), HireDate = DateTime.Now, Status = "Active",
+          PasswordHash = AuthService.HashPassword("123"), HireDate = DateTime.Now, Status = "Active",
           Type = EmployeeType.Developer, SeniorityLevel = SeniorityLevel.Senior, Field = Field.Fullstack
         },
         new() {
           FirstName = "Admin", LastName = "System", Email = "a@a.com", Username = "admin",
-          PasswordHash = AuthService.HashPassword("admin123"), HireDate = DateTime.Now.AddYears(-1),
+          PasswordHash = AuthService.HashPassword("123"), HireDate = DateTime.Now.AddYears(-1),
           Status = "Active", Type = EmployeeType.Admin
         }
       };
