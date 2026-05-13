@@ -20,7 +20,10 @@ public partial class UserStoriesForm : BaseForm {
 
   public UserStoriesForm(BaseForm parent) {
     InitializeComponent();
+
     userStoriesService = new UserStoriesService();
+    sprintsService = new SprintsService();
+
     expandedPanelWidth = PanelEdit.Width;
     PanelEdit.Hide();
     this.parent = parent;
@@ -29,6 +32,7 @@ public partial class UserStoriesForm : BaseForm {
   private void UserStoriesForm_Load(object sender, EventArgs e) {
     SetPlaceholder(TBoxSearch, searchPlaceholder);
     LoadProjectsToFilter();
+    ComboBoxProjects_SelectedIndexChanged(sender, e);
   }
 
   private void LoadProjectsToFilter() {
@@ -173,7 +177,7 @@ public partial class UserStoriesForm : BaseForm {
         sprintFilter = sId;
       }
 
-      var stories = await userStoriesService.GetByProjectAsync(projectId, "", sprintFilter);
+      var stories = await userStoriesService.GetByProjectAsync(projectId, TBoxName.Text, sprintFilter);
 
       DGVSprints.DataSource = stories.Select(us => new {
         us.Id,

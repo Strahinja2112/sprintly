@@ -12,10 +12,6 @@ public class UserStoriesService {
   }
 
   public async Task<List<UserStory>> GetByProjectAsync(int projectId, string searchTerm = "", int? sprintId = null) {
-    if (sprintId == null) {
-      return [];
-    }
-
     using var context = new AppDbContext();
 
     var query = context.UserStories
