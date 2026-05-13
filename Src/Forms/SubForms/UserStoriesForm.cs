@@ -44,12 +44,12 @@ public partial class UserStoriesForm : BaseForm {
 
   private async void ComboBoxProjects_SelectedIndexChanged(object sender, EventArgs e) {
     if (ComboBoxProjects.SelectedValue is int projectId) {
-      await LoadSprintsToFilter(projectId);
+      await LoadSprintsToFilters(projectId);
       await LoadUserStoriesToDataGrid();
     }
   }
 
-  private async Task LoadSprintsToFilter(int projectId) {
+  private async Task LoadSprintsToFilters(int projectId) {
     using var db = new AppDbContext();
     var sprints = db.Sprints
         .Where(s => s.ProjectId == projectId)
@@ -58,10 +58,10 @@ public partial class UserStoriesForm : BaseForm {
 
     sprints.Insert(0, new Sprint { Id = 0, Name = "-- Bez sprinta --" });
 
-    ComboBoxSprints.DataSource = sprints;
-    ComboBoxSprints.DisplayMember = "Name";
-    ComboBoxSprints.ValueMember = "Id";
-    ComboBoxSprints.SelectedIndex = 0;
+    ComboBoxSprints.DataSource = ComboBoxSprintsForAdding.DataSource = sprints;
+    ComboBoxSprints.DisplayMember = ComboBoxSprintsForAdding.DisplayMember = "Name";
+    ComboBoxSprints.ValueMember = ComboBoxSprintsForAdding.ValueMember = "Id";
+    ComboBoxSprints.SelectedIndex = ComboBoxSprints.SelectedIndex = 0;
   }
 
   private async Task LoadUserStoriesToDataGrid(string term = "") {
@@ -168,5 +168,9 @@ public partial class UserStoriesForm : BaseForm {
       return;
     }
     await LoadUserStoriesToDataGrid(term);
+  }
+
+  private void ComboBoxSprints_SelectedIndexChanged(object sender, EventArgs e) {
+
   }
 }
