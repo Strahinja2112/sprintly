@@ -11,6 +11,13 @@ public class SprintsService {
     db = new AppDbContext();
   }
 
+  internal async Task<List<Sprint>> GetSprintsForProject(int projectId) {
+    return await db.Sprints
+        .Where(s => s.ProjectId == projectId)
+        .OrderBy(s => s.Name)
+        .ToListAsync();
+  }
+
   public async Task<List<Sprint>> GetSprintsByProjectAsync(int projectId, string searchTerm = "") {
     var query = db.Sprints.Where(s => s.ProjectId == projectId);
 

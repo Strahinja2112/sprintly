@@ -12,7 +12,13 @@ public class UserStoriesService {
   }
 
   public async Task<List<UserStory>> GetByProjectAsync(int projectId, string searchTerm = "", int? sprintId = null) {
-    var query = db.UserStories
+    if (sprintId == null) {
+      return [];
+    }
+
+    using var context = new AppDbContext();
+
+    var query = context.UserStories
         .Include(us => us.Sprint)
         .Where(us => us.ProjectId == projectId);
 
