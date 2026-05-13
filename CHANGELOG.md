@@ -6,6 +6,18 @@ All notable changes to this project will be documented in this file.
 
 ## 2026-05-12
 
+### Removed
+- Client entity and related references
+
+### Refactored
+- Helpers utility for date difference calculations
+- Moved towards services architecture
+- Refactored folder structure for better organization
+
+---
+
+## Up To 2026-05-12 (First date to keep track)
+
 ### Added
 - Login system with username/password authentication
 - Session management with "Remember Me" (encrypted with DPAPI)
@@ -26,3 +38,4 @@ All notable changes to this project will be documented in this file.
 - Meeting Management has no UI
 - Client Management has no UI
 - Distribution/Increment/Feature management incomplete
+
