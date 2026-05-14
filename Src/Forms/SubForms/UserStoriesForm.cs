@@ -169,26 +169,22 @@ public partial class UserStoriesForm : BaseForm {
   }
 
   private async void ComboBoxSprints_SelectedIndexChanged(object sender, EventArgs e) {
-    if (ComboBoxSprints.SelectedValue is int sprintId) {
-      if (ComboBoxProjects.SelectedValue is not int projectId) return;
+    if (ComboBoxSprints.SelectedValue is not int sprintId) return;
+    if (ComboBoxProjects.SelectedValue is not int projectId) return;
 
-      int? sprintFilter = null;
-      if (ComboBoxSprints.SelectedValue is int sId && sId > 0) {
-        sprintFilter = sId;
-      }
+    var stories = await userStoriesService.GetByProjectAsync(
+      projectId, TBoxName.Text, sprintId > 0 ? sprintId : null
+    );
 
-      var stories = await userStoriesService.GetByProjectAsync(projectId, TBoxName.Text, sprintFilter);
+    DGVSprints.DataSource = stories.Select(us => new {
+      us.Id,
+      Naslov = us.Title,
+      Opis = us.Description,
+      Prioritet = us.Priority,
+      Sprint = us.Sprint?.Name ?? "Backlog"
+    }).ToList();
 
-      DGVSprints.DataSource = stories.Select(us => new {
-        us.Id,
-        Naslov = us.Title,
-        Opis = us.Description,
-        Prioritet = us.Priority,
-        Sprint = us.Sprint?.Name ?? "Backlog"
-      }).ToList();
-
-      DGVSprints.Columns["Id"]?.Visible = false;
-    }
+    DGVSprints.Columns["Id"]?.Visible = false;
   }
 
   private void ButtonAddToSprint_Click(object sender, EventArgs e) {

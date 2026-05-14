@@ -16,11 +16,7 @@ public class UserStoriesService {
 
     var query = context.UserStories
         .Include(us => us.Sprint)
-        .Where(us => us.ProjectId == projectId);
-
-    if (sprintId.HasValue && sprintId.Value > 0) {
-      query = query.Where(us => us.SprintId == sprintId.Value);
-    }
+        .Where(us => us.ProjectId == projectId && us.SprintId == sprintId);
 
     if (!string.IsNullOrWhiteSpace(searchTerm)) {
       query = query.Where(us => us.Title.Contains(searchTerm));
@@ -33,8 +29,10 @@ public class UserStoriesService {
     if (string.IsNullOrWhiteSpace(userStory.Title))
       throw new ArgumentException("Naslov korisničke priče je obavezan.");
 
-    if (userStory.Id == 0) db.UserStories.Add(userStory);
-    else db.Entry(userStory).State = EntityState.Modified;
+    if (userStory.Id == 0)
+      db.UserStories.Add(userStory);
+    else
+      db.Entry(userStory).State = EntityState.Modified;
 
     await db.SaveChangesAsync();
   }
