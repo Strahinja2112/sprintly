@@ -25,9 +25,9 @@ partial class WorkTasksForm {
   /// </summary>
   private void InitializeComponent() {
     components = new System.ComponentModel.Container();
-    DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
     bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     DGVSprints = new ReaLTaiizor.Controls.PoisonDataGridView();
@@ -63,9 +63,9 @@ partial class WorkTasksForm {
     bigLabel1.ForeColor = Color.DarkSlateGray;
     bigLabel1.Location = new Point(12, 5);
     bigLabel1.Name = "bigLabel1";
-    bigLabel1.Size = new Size(538, 46);
+    bigLabel1.Size = new Size(497, 46);
     bigLabel1.TabIndex = 12;
-    bigLabel1.Text = "Upravljanje Korisničkim Pričama";
+    bigLabel1.Text = "Upravljanje Radnim Zadacima";
     // 
     // dungeonLabel1
     // 
@@ -76,7 +76,7 @@ partial class WorkTasksForm {
     dungeonLabel1.Name = "dungeonLabel1";
     dungeonLabel1.Size = new Size(573, 45);
     dungeonLabel1.TabIndex = 13;
-    dungeonLabel1.Text = "Ovo je stranica na kojoj možete upravljati korisničkim pričama, dodati nove, ili menjati postojeće.";
+    dungeonLabel1.Text = "Ovo je stranica na kojoj možete upravljati radim zadacima, dodati nove, ili menjati postojeće.";
     // 
     // DGVSprints
     // 
@@ -86,37 +86,37 @@ partial class WorkTasksForm {
     DGVSprints.BorderStyle = BorderStyle.None;
     DGVSprints.CellBorderStyle = DataGridViewCellBorderStyle.None;
     DGVSprints.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle4.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle4.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle4.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-    DGVSprints.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+    dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+    DGVSprints.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
     DGVSprints.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-    dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle5.BackColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle5.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle5.ForeColor = Color.FromArgb(136, 136, 136);
-    dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-    DGVSprints.DefaultCellStyle = dataGridViewCellStyle5;
+    dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
+    dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+    DGVSprints.DefaultCellStyle = dataGridViewCellStyle2;
     DGVSprints.EnableHeadersVisualStyles = false;
     DGVSprints.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
     DGVSprints.GridColor = Color.FromArgb(255, 255, 255);
     DGVSprints.Location = new Point(17, 219);
     DGVSprints.Name = "DGVSprints";
     DGVSprints.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle6.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle6.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle6.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-    DGVSprints.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+    dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+    DGVSprints.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
     DGVSprints.RowHeadersVisible = false;
     DGVSprints.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGVSprints.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -399,7 +399,7 @@ partial class WorkTasksForm {
     dungeonLabel6.TabIndex = 30;
     dungeonLabel6.Text = "Izbor sprinta:";
     // 
-    // UserStoriesForm
+    // WorkTasksForm
     // 
     AutoScaleDimensions = new SizeF(7F, 15F);
     AutoScaleMode = AutoScaleMode.Font;
@@ -416,7 +416,7 @@ partial class WorkTasksForm {
     Controls.Add(bigLabel1);
     Controls.Add(dungeonLabel1);
     MaximizeBox = false;
-    Name = "UserStoriesForm";
+    Name = "WorkTasksForm";
     Text = "DashboardForm";
     Load += UserStoriesForm_Load;
     ((System.ComponentModel.ISupportInitialize)DGVSprints).EndInit();

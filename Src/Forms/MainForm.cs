@@ -82,6 +82,6 @@ public partial class MainForm : BaseForm {
   }
 
   private void PanelWorkTasks_Click(object sender, EventArgs e) {
-    OpenChildForm(PanelMainContent, new UserStoriesForm(this));
+    OpenChildForm(PanelMainContent, new WorkTasksForm(this));
   }
 }

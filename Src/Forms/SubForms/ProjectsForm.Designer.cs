@@ -71,10 +71,10 @@ partial class ProjectsForm {
     // DateTimePicker
     // 
     DateTimePicker.FontSize = ReaLTaiizor.Extension.Poison.PoisonDateTimeSize.Medium;
-    DateTimePicker.Location = new Point(14, 370);
+    DateTimePicker.Location = new Point(156, 311);
     DateTimePicker.MinimumSize = new Size(0, 29);
     DateTimePicker.Name = "DateTimePicker";
-    DateTimePicker.Size = new Size(353, 29);
+    DateTimePicker.Size = new Size(211, 29);
     DateTimePicker.TabIndex = 29;
     DateTimePicker.ValueChanged += DateTimePicker_ValueChanged;
     // 
@@ -84,7 +84,7 @@ partial class ProjectsForm {
     LabelDate.BackColor = Color.Transparent;
     LabelDate.Font = new Font("Segoe UI", 13F);
     LabelDate.ForeColor = Color.FromArgb(76, 76, 77);
-    LabelDate.Location = new Point(14, 342);
+    LabelDate.Location = new Point(150, 283);
     LabelDate.Name = "LabelDate";
     LabelDate.Size = new Size(134, 25);
     LabelDate.TabIndex = 28;
@@ -100,7 +100,7 @@ partial class ProjectsForm {
     ComboBoxStatus.ItemHeight = 20;
     ComboBoxStatus.Location = new Point(14, 312);
     ComboBoxStatus.Name = "ComboBoxStatus";
-    ComboBoxStatus.Size = new Size(353, 26);
+    ComboBoxStatus.Size = new Size(136, 26);
     ComboBoxStatus.TabIndex = 25;
     ComboBoxStatus.SelectedIndexChanged += ComboBoxStatus_SelectedIndexChanged;
     // 
