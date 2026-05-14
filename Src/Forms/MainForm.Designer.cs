@@ -24,6 +24,13 @@
     /// </summary>
     private void InitializeComponent() {
       panel1 = new Panel();
+      PanelWorkTasks = new Panel();
+      LabelWorkTasks = new ReaLTaiizor.Controls.BigLabel();
+      iconPictureBox9 = new FontAwesome.Sharp.IconPictureBox();
+      PanelUserData = new Panel();
+      LabelUserName = new ReaLTaiizor.Controls.BigLabel();
+      LabelUserType = new ReaLTaiizor.Controls.BigLabel();
+      ButtonLogout = new ReaLTaiizor.Controls.AloneButton();
       PanelUserStories = new Panel();
       LabelUserStories = new ReaLTaiizor.Controls.BigLabel();
       iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
@@ -39,9 +46,6 @@
       PanelSprints = new Panel();
       LabelSprints = new ReaLTaiizor.Controls.BigLabel();
       iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-      ButtonLogout = new ReaLTaiizor.Controls.AloneButton();
-      LabelUserType = new ReaLTaiizor.Controls.BigLabel();
-      LabelUserName = new ReaLTaiizor.Controls.BigLabel();
       PanelMainContent = new Panel();
       panel4 = new Panel();
       LabelSprintsCount = new ReaLTaiizor.Controls.DungeonLabel();
@@ -57,8 +61,10 @@
       iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
       dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
       bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
-      PanelUserData = new Panel();
       panel1.SuspendLayout();
+      PanelWorkTasks.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)iconPictureBox9).BeginInit();
+      PanelUserData.SuspendLayout();
       PanelUserStories.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)iconPictureBox5).BeginInit();
       PanelEmployees.SuspendLayout();
@@ -76,12 +82,12 @@
       ((System.ComponentModel.ISupportInitialize)iconPictureBox7).BeginInit();
       panel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)iconPictureBox6).BeginInit();
-      PanelUserData.SuspendLayout();
       SuspendLayout();
       // 
       // panel1
       // 
       panel1.BackColor = SystemColors.Window;
+      panel1.Controls.Add(PanelWorkTasks);
       panel1.Controls.Add(PanelUserData);
       panel1.Controls.Add(PanelUserStories);
       panel1.Controls.Add(PanelEmployees);
@@ -93,6 +99,97 @@
       panel1.Name = "panel1";
       panel1.Size = new Size(190, 470);
       panel1.TabIndex = 3;
+      // 
+      // PanelWorkTasks
+      // 
+      PanelWorkTasks.Controls.Add(LabelWorkTasks);
+      PanelWorkTasks.Controls.Add(iconPictureBox9);
+      PanelWorkTasks.Cursor = Cursors.Hand;
+      PanelWorkTasks.Dock = DockStyle.Top;
+      PanelWorkTasks.Location = new Point(0, 250);
+      PanelWorkTasks.Name = "PanelWorkTasks";
+      PanelWorkTasks.Size = new Size(190, 50);
+      PanelWorkTasks.TabIndex = 13;
+      PanelWorkTasks.Click += PanelWorkTasks_Click;
+      // 
+      // LabelWorkTasks
+      // 
+      LabelWorkTasks.BackColor = Color.Transparent;
+      LabelWorkTasks.Cursor = Cursors.Hand;
+      LabelWorkTasks.Dock = DockStyle.Right;
+      LabelWorkTasks.Font = new Font("Segoe UI", 16F);
+      LabelWorkTasks.ForeColor = Color.FromArgb(65, 65, 65);
+      LabelWorkTasks.Location = new Point(45, 0);
+      LabelWorkTasks.Name = "LabelWorkTasks";
+      LabelWorkTasks.Size = new Size(145, 50);
+      LabelWorkTasks.TabIndex = 6;
+      LabelWorkTasks.Text = "Radni Zadaci";
+      LabelWorkTasks.TextAlign = ContentAlignment.MiddleLeft;
+      // 
+      // iconPictureBox9
+      // 
+      iconPictureBox9.BackColor = Color.Transparent;
+      iconPictureBox9.Enabled = false;
+      iconPictureBox9.ForeColor = Color.DarkSlateGray;
+      iconPictureBox9.IconChar = FontAwesome.Sharp.IconChar.ChartLine;
+      iconPictureBox9.IconColor = Color.DarkSlateGray;
+      iconPictureBox9.IconFont = FontAwesome.Sharp.IconFont.Auto;
+      iconPictureBox9.IconSize = 30;
+      iconPictureBox9.Location = new Point(9, 11);
+      iconPictureBox9.Name = "iconPictureBox9";
+      iconPictureBox9.Padding = new Padding(20, 20, 0, 0);
+      iconPictureBox9.Size = new Size(30, 30);
+      iconPictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
+      iconPictureBox9.TabIndex = 0;
+      iconPictureBox9.TabStop = false;
+      // 
+      // PanelUserData
+      // 
+      PanelUserData.Controls.Add(LabelUserName);
+      PanelUserData.Controls.Add(LabelUserType);
+      PanelUserData.Controls.Add(ButtonLogout);
+      PanelUserData.Dock = DockStyle.Bottom;
+      PanelUserData.Location = new Point(0, 370);
+      PanelUserData.Name = "PanelUserData";
+      PanelUserData.Size = new Size(190, 100);
+      PanelUserData.TabIndex = 12;
+      // 
+      // LabelUserName
+      // 
+      LabelUserName.AutoSize = true;
+      LabelUserName.BackColor = Color.Transparent;
+      LabelUserName.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+      LabelUserName.ForeColor = Color.DarkSlateGray;
+      LabelUserName.Location = new Point(3, 4);
+      LabelUserName.Name = "LabelUserName";
+      LabelUserName.Size = new Size(127, 30);
+      LabelUserName.TabIndex = 5;
+      LabelUserName.Text = "User Name";
+      // 
+      // LabelUserType
+      // 
+      LabelUserType.AutoSize = true;
+      LabelUserType.BackColor = Color.Transparent;
+      LabelUserType.Font = new Font("Segoe UI", 9F);
+      LabelUserType.ForeColor = Color.FromArgb(80, 80, 80);
+      LabelUserType.Location = new Point(9, 37);
+      LabelUserType.Name = "LabelUserType";
+      LabelUserType.Size = new Size(57, 15);
+      LabelUserType.TabIndex = 6;
+      LabelUserType.Text = "User Type";
+      // 
+      // ButtonLogout
+      // 
+      ButtonLogout.BackColor = Color.Transparent;
+      ButtonLogout.EnabledCalc = true;
+      ButtonLogout.Font = new Font("Segoe UI", 13F);
+      ButtonLogout.ForeColor = Color.FromArgb(124, 133, 142);
+      ButtonLogout.Location = new Point(9, 56);
+      ButtonLogout.Name = "ButtonLogout";
+      ButtonLogout.Size = new Size(172, 36);
+      ButtonLogout.TabIndex = 7;
+      ButtonLogout.Text = "Odjavi se";
+      ButtonLogout.Click += ButtonLogout_Click;
       // 
       // PanelUserStories
       // 
@@ -117,7 +214,7 @@
       LabelUserStories.Name = "LabelUserStories";
       LabelUserStories.Size = new Size(145, 50);
       LabelUserStories.TabIndex = 6;
-      LabelUserStories.Text = "Priče";
+      LabelUserStories.Text = "Korisn. Priče";
       LabelUserStories.TextAlign = ContentAlignment.MiddleLeft;
       // 
       // iconPictureBox5
@@ -309,43 +406,6 @@
       iconPictureBox1.TabIndex = 0;
       iconPictureBox1.TabStop = false;
       // 
-      // ButtonLogout
-      // 
-      ButtonLogout.BackColor = Color.Transparent;
-      ButtonLogout.EnabledCalc = true;
-      ButtonLogout.Font = new Font("Segoe UI", 13F);
-      ButtonLogout.ForeColor = Color.FromArgb(124, 133, 142);
-      ButtonLogout.Location = new Point(9, 56);
-      ButtonLogout.Name = "ButtonLogout";
-      ButtonLogout.Size = new Size(172, 36);
-      ButtonLogout.TabIndex = 7;
-      ButtonLogout.Text = "Odjavi se";
-      ButtonLogout.Click += ButtonLogout_Click;
-      // 
-      // LabelUserType
-      // 
-      LabelUserType.AutoSize = true;
-      LabelUserType.BackColor = Color.Transparent;
-      LabelUserType.Font = new Font("Segoe UI", 9F);
-      LabelUserType.ForeColor = Color.FromArgb(80, 80, 80);
-      LabelUserType.Location = new Point(9, 37);
-      LabelUserType.Name = "LabelUserType";
-      LabelUserType.Size = new Size(57, 15);
-      LabelUserType.TabIndex = 6;
-      LabelUserType.Text = "User Type";
-      // 
-      // LabelUserName
-      // 
-      LabelUserName.AutoSize = true;
-      LabelUserName.BackColor = Color.Transparent;
-      LabelUserName.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-      LabelUserName.ForeColor = Color.DarkSlateGray;
-      LabelUserName.Location = new Point(3, 4);
-      LabelUserName.Name = "LabelUserName";
-      LabelUserName.Size = new Size(127, 30);
-      LabelUserName.TabIndex = 5;
-      LabelUserName.Text = "User Name";
-      // 
       // PanelMainContent
       // 
       PanelMainContent.BackColor = SystemColors.Control;
@@ -376,9 +436,9 @@
       LabelSprintsCount.BackColor = Color.Transparent;
       LabelSprintsCount.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
       LabelSprintsCount.ForeColor = Color.FromArgb(76, 76, 77);
-      LabelSprintsCount.Location = new Point(0, 86);
+      LabelSprintsCount.Location = new Point(0, 100);
       LabelSprintsCount.Name = "LabelSprintsCount";
-      LabelSprintsCount.Size = new Size(150, 64);
+      LabelSprintsCount.Size = new Size(150, 50);
       LabelSprintsCount.TabIndex = 17;
       LabelSprintsCount.Text = "X";
       LabelSprintsCount.TextAlign = ContentAlignment.TopCenter;
@@ -388,7 +448,7 @@
       dungeonLabel7.BackColor = Color.Transparent;
       dungeonLabel7.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
       dungeonLabel7.ForeColor = Color.FromArgb(76, 76, 77);
-      dungeonLabel7.Location = new Point(0, 56);
+      dungeonLabel7.Location = new Point(0, 70);
       dungeonLabel7.Name = "dungeonLabel7";
       dungeonLabel7.Size = new Size(150, 30);
       dungeonLabel7.TabIndex = 16;
@@ -428,9 +488,9 @@
       LabelEmployeesCount.BackColor = Color.Transparent;
       LabelEmployeesCount.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
       LabelEmployeesCount.ForeColor = Color.FromArgb(76, 76, 77);
-      LabelEmployeesCount.Location = new Point(0, 86);
+      LabelEmployeesCount.Location = new Point(0, 100);
       LabelEmployeesCount.Name = "LabelEmployeesCount";
-      LabelEmployeesCount.Size = new Size(150, 64);
+      LabelEmployeesCount.Size = new Size(150, 50);
       LabelEmployeesCount.TabIndex = 17;
       LabelEmployeesCount.Text = "X";
       LabelEmployeesCount.TextAlign = ContentAlignment.TopCenter;
@@ -440,7 +500,7 @@
       dungeonLabel5.BackColor = Color.Transparent;
       dungeonLabel5.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
       dungeonLabel5.ForeColor = Color.FromArgb(76, 76, 77);
-      dungeonLabel5.Location = new Point(0, 56);
+      dungeonLabel5.Location = new Point(0, 70);
       dungeonLabel5.Name = "dungeonLabel5";
       dungeonLabel5.Size = new Size(150, 30);
       dungeonLabel5.TabIndex = 16;
@@ -480,9 +540,9 @@
       LabelProjectsCount.BackColor = Color.Transparent;
       LabelProjectsCount.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
       LabelProjectsCount.ForeColor = Color.FromArgb(76, 76, 77);
-      LabelProjectsCount.Location = new Point(0, 86);
+      LabelProjectsCount.Location = new Point(0, 100);
       LabelProjectsCount.Name = "LabelProjectsCount";
-      LabelProjectsCount.Size = new Size(150, 64);
+      LabelProjectsCount.Size = new Size(150, 50);
       LabelProjectsCount.TabIndex = 17;
       LabelProjectsCount.Text = "X";
       LabelProjectsCount.TextAlign = ContentAlignment.TopCenter;
@@ -492,7 +552,7 @@
       dungeonLabel2.BackColor = Color.Transparent;
       dungeonLabel2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
       dungeonLabel2.ForeColor = Color.FromArgb(76, 76, 77);
-      dungeonLabel2.Location = new Point(0, 56);
+      dungeonLabel2.Location = new Point(0, 70);
       dungeonLabel2.Name = "dungeonLabel2";
       dungeonLabel2.Size = new Size(150, 30);
       dungeonLabel2.TabIndex = 16;
@@ -540,17 +600,6 @@
       bigLabel2.TabIndex = 13;
       bigLabel2.Text = "Sprintra";
       // 
-      // PanelUserData
-      // 
-      PanelUserData.Controls.Add(LabelUserName);
-      PanelUserData.Controls.Add(LabelUserType);
-      PanelUserData.Controls.Add(ButtonLogout);
-      PanelUserData.Dock = DockStyle.Bottom;
-      PanelUserData.Location = new Point(0, 370);
-      PanelUserData.Name = "PanelUserData";
-      PanelUserData.Size = new Size(190, 100);
-      PanelUserData.TabIndex = 12;
-      // 
       // MainForm
       // 
       AutoScaleDimensions = new SizeF(7F, 15F);
@@ -566,6 +615,10 @@
       Text = "MainForm";
       Load += MainForm_Load;
       panel1.ResumeLayout(false);
+      PanelWorkTasks.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)iconPictureBox9).EndInit();
+      PanelUserData.ResumeLayout(false);
+      PanelUserData.PerformLayout();
       PanelUserStories.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)iconPictureBox5).EndInit();
       PanelEmployees.ResumeLayout(false);
@@ -584,8 +637,6 @@
       ((System.ComponentModel.ISupportInitialize)iconPictureBox7).EndInit();
       panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)iconPictureBox6).EndInit();
-      PanelUserData.ResumeLayout(false);
-      PanelUserData.PerformLayout();
       ResumeLayout(false);
     }
 
@@ -625,5 +676,8 @@
     private ReaLTaiizor.Controls.DungeonLabel dungeonLabel5;
     private FontAwesome.Sharp.IconPictureBox iconPictureBox7;
     private Panel PanelUserData;
+    private Panel PanelWorkTasks;
+    private ReaLTaiizor.Controls.BigLabel LabelWorkTasks;
+    private FontAwesome.Sharp.IconPictureBox iconPictureBox9;
   }
 }

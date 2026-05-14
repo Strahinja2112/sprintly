@@ -145,6 +145,7 @@
       TBoxPassword.TrailingIcon = null;
       TBoxPassword.UseAccent = false;
       TBoxPassword.UseSystemPasswordChar = true;
+      TBoxPassword.KeyUp += TBoxPassword_KeyUp;
       // 
       // bigLabel4
       // 
@@ -161,9 +162,9 @@
       // ChBoxRememberMe
       // 
       ChBoxRememberMe.BackColor = Color.Transparent;
-      ChBoxRememberMe.Checked = false;
+      ChBoxRememberMe.Checked = true;
       ChBoxRememberMe.EnabledCalc = true;
-      ChBoxRememberMe.Font = new Font("Segoe UI", 10F);
+      ChBoxRememberMe.Font = new Font("Segoe UI", 13F);
       ChBoxRememberMe.ForeColor = Color.FromArgb(124, 133, 142);
       ChBoxRememberMe.Location = new Point(28, 443);
       ChBoxRememberMe.Name = "ChBoxRememberMe";

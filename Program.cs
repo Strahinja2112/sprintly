@@ -16,7 +16,7 @@ internal static class Program {
       HasUserLoggedOut = false;
 
       if (!AuthService.TryAutoLogin()) {
-        using var loginForm = new LoginForm();
+        var loginForm = new LoginForm();
         Application.Run(loginForm);
 
         if (!loginForm.IsLoginSuccessful) {

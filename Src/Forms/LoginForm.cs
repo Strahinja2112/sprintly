@@ -42,4 +42,10 @@ public partial class LoginForm : Form {
 
     ButtonSubmit.Text = "Prijava";
   }
+
+  private void TBoxPassword_KeyUp(object sender, KeyEventArgs e) {
+    if (e.KeyCode == Keys.Enter) {
+      ButtonSubmit_Click(sender, e);
+    }
+  }
 }

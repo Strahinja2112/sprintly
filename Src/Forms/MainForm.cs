@@ -30,6 +30,7 @@ public partial class MainForm : BaseForm {
     LabelProjects.Click += PanelProjects_Click;
     LabelEmployees.Click += PanelEmployees_Click;
     LabelUserStories.Click += PanelUserStories_Click;
+    LabelWorkTasks.Click += PanelWorkTasks_Click;
 
     if (!PermissionsService.CanLogWork()) {
       PanelWorkLog.Hide();
@@ -45,6 +46,9 @@ public partial class MainForm : BaseForm {
     }
     if (!PermissionsService.CanManageUserStories()) {
       PanelUserStories.Hide();
+    }
+    if (!PermissionsService.CanManageWorkTasks()) {
+      PanelWorkTasks.Hide();
     }
 
     LabelUserName.Text = "@" + AuthService.CurrentUser.Username;
@@ -74,6 +78,10 @@ public partial class MainForm : BaseForm {
   }
 
   private void PanelUserStories_Click(object sender, EventArgs e) {
+    OpenChildForm(PanelMainContent, new UserStoriesForm(this));
+  }
+
+  private void PanelWorkTasks_Click(object sender, EventArgs e) {
     OpenChildForm(PanelMainContent, new UserStoriesForm(this));
   }
 }

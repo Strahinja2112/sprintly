@@ -26,6 +26,7 @@ public static class PermissionsService {
   public static bool CanManageSprints() =>
       HasAnyRole(EmployeeType.Admin, EmployeeType.ScrumMaster);
 
-  public static bool CanManageUserStories() =>
-      HasAnyRole(EmployeeType.Admin, EmployeeType.ScrumMaster);
+  public static bool CanManageUserStories() => CanManageSprints();
+
+  public static bool CanManageWorkTasks() => CanManageSprints();
 }
