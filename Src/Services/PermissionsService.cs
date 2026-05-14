@@ -3,44 +3,29 @@
 using Sprintra.Src.Data.Models;
 
 public static class PermissionsService {
-  public static bool CanManageProjects() {
+  private static bool HasAnyRole(params EmployeeType[] allowedRoles) {
     if (AuthService.CurrentUser == null) {
       return false;
     }
 
-    return AuthService.CurrentUser.Type == EmployeeType.Admin;
-  }
-
-  public static bool CanManageSprints() {
-    if (AuthService.CurrentUser == null) {
-      return false;
+    if (allowedRoles.Length == 0) {
+      return true;
     }
 
-    return AuthService.CurrentUser.Type == EmployeeType.Admin ||
-           AuthService.CurrentUser.Type == EmployeeType.ScrumMaster;
+    return allowedRoles.Contains(AuthService.CurrentUser.Type);
   }
 
-  public static bool CanManageUsers() {
-    if (AuthService.CurrentUser == null) {
-      return false;
-    }
+  public static bool IsAdmin() => HasAnyRole(EmployeeType.Admin);
 
-    return AuthService.CurrentUser.Type == EmployeeType.Admin;
-  }
+  public static bool CanManageUsers() => IsAdmin();
 
-  public static bool CanLogWork() {
-    if (AuthService.CurrentUser == null) {
-      return false;
-    }
+  public static bool CanManageProjects() => IsAdmin();
 
-    return true;
-  }
+  public static bool CanLogWork() => HasAnyRole();
 
-  public static bool IsAdmin() {
-    if (AuthService.CurrentUser == null) {
-      return false;
-    }
+  public static bool CanManageSprints() =>
+      HasAnyRole(EmployeeType.Admin, EmployeeType.ScrumMaster);
 
-    return AuthService.CurrentUser.Type == EmployeeType.Admin;
-  }
+  public static bool CanManageUserStories() =>
+      HasAnyRole(EmployeeType.Admin, EmployeeType.ScrumMaster);
 }

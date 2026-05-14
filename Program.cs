@@ -4,26 +4,34 @@ using Sprintra.Src.Services;
 namespace Sprintra;
 
 internal static class Program {
-  public static MainForm MainForm = null!;
+  public static bool HasUserLoggedOut = false;
+
+  private static MainForm? mainForm = null;
 
   [STAThread]
   static void Main() {
     ApplicationConfiguration.Initialize();
 
-    //SeedService.FullSeed();
+    while (true) {
+      HasUserLoggedOut = false;
 
-    var isLoginSaved = AuthService.TryAutoLogin();
-    if (!isLoginSaved) {
-      var loginForm = new LoginForm();
-      Application.Run(loginForm);
+      if (!AuthService.TryAutoLogin()) {
+        using var loginForm = new LoginForm();
+        Application.Run(loginForm);
 
-      if (!loginForm.IsLoginSuccessful) {
-        Application.Exit();
-        return;
+        if (!loginForm.IsLoginSuccessful) {
+          break;
+        }
       }
-    }
 
-    MainForm = new MainForm();
-    Application.Run(MainForm);
+      mainForm = new MainForm();
+      Application.Run(mainForm);
+
+      if (!HasUserLoggedOut) {
+        break;
+      }
+
+      mainForm = null;
+    }
   }
 }

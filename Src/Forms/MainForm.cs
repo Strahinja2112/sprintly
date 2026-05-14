@@ -1,5 +1,4 @@
-﻿using Sprintra.Src;
-using Sprintra.Src.Data;
+﻿using Sprintra.Src.Data;
 using Sprintra.Src.Forms;
 using Sprintra.Src.Services;
 
@@ -8,9 +7,6 @@ namespace Sprintra.Forms;
 public partial class MainForm : BaseForm {
   public MainForm() {
     InitializeComponent();
-    this.ShowToast("Info", NotificationType.Info);
-    this.ShowToast("Warning", NotificationType.Warning);
-    this.ShowToast("Error", NotificationType.Error);
   }
 
   private void MainForm_Load(object sender, EventArgs e) {
@@ -47,6 +43,9 @@ public partial class MainForm : BaseForm {
     if (!PermissionsService.CanManageSprints()) {
       PanelSprints.Hide();
     }
+    if (!PermissionsService.CanManageUserStories()) {
+      PanelUserStories.Hide();
+    }
 
     LabelUserName.Text = "@" + AuthService.CurrentUser.Username;
     LabelUserType.Text = AuthService.CurrentUser.Type.ToString();
@@ -54,6 +53,7 @@ public partial class MainForm : BaseForm {
 
   private void ButtonLogout_Click(object sender, EventArgs e) {
     AuthService.Logout();
+    Program.HasUserLoggedOut = true;
     Close();
   }
 
