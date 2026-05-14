@@ -21,6 +21,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
     <PackageReference Include="ReaLTaiizor" Version="3.8.1.8" />
   </ItemGroup>
 
@@ -43,8 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Src\Forms\Popups\" />
-    <Folder Include="Src\Forms\Shared\" />
     <Folder Include="Src\Services\Forms\" />
   </ItemGroup>
 
