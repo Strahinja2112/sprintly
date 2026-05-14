@@ -1,4 +1,4 @@
-﻿namespace Sprintra.Src.Core;
+﻿namespace Sprintra.Src;
 
 public enum TimeUnit {
   Seconds,

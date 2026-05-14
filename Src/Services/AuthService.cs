@@ -1,6 +1,6 @@
 ﻿namespace Sprintra.Src.Services;
 
-using Sprintra.Src.Core;
+using Sprintra.Src;
 using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
 

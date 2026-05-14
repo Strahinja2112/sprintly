@@ -1,4 +1,5 @@
-﻿using Sprintra.Src.Data;
+﻿using Sprintra.Src;
+using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
 using Sprintra.Src.Forms;
 using Sprintra.Src.Services;
@@ -163,7 +164,7 @@ public partial class EmployeesForm : BaseForm {
       db.SaveChanges();
 
       string msg = selectedEmployeeId == 0 ? "Novi zaposleni je uspešno kreiran." : "Podaci o zaposlenom su uspešno ažurirani.";
-      MessageBox.Show(msg, "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      this.ShowToast(msg, NotificationType.Info);
 
       ClearInputs();
       LoadEmployees();

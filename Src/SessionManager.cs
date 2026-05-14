@@ -1,4 +1,4 @@
-﻿namespace Sprintra.Src.Core;
+﻿namespace Sprintra.Src;
 
 using System.Security.Cryptography;
 using System.Text;

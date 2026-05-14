@@ -1,4 +1,5 @@
-﻿using Sprintra.Src.Data;
+﻿using Sprintra.Src;
+using Sprintra.Src.Data;
 using Sprintra.Src.Forms;
 using Sprintra.Src.Services;
 
@@ -7,6 +8,9 @@ namespace Sprintra.Forms;
 public partial class MainForm : BaseForm {
   public MainForm() {
     InitializeComponent();
+    this.ShowToast("Info", NotificationType.Info);
+    this.ShowToast("Warning", NotificationType.Warning);
+    this.ShowToast("Error", NotificationType.Error);
   }
 
   private void MainForm_Load(object sender, EventArgs e) {
