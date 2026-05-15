@@ -229,7 +229,7 @@ partial class UserStoriesForm {
     bigLabel2.Name = "bigLabel2";
     bigLabel2.Size = new Size(383, 55);
     bigLabel2.TabIndex = 1;
-    bigLabel2.Text = "Nova korisnička priča";
+    bigLabel2.Text = "Title";
     bigLabel2.TextAlign = ContentAlignment.MiddleCenter;
     // 
     // dungeonLabel3
@@ -240,9 +240,9 @@ partial class UserStoriesForm {
     dungeonLabel3.ForeColor = Color.FromArgb(76, 76, 77);
     dungeonLabel3.Location = new Point(14, 54);
     dungeonLabel3.Name = "dungeonLabel3";
-    dungeonLabel3.Size = new Size(168, 25);
+    dungeonLabel3.Size = new Size(42, 25);
     dungeonLabel3.TabIndex = 5;
-    dungeonLabel3.Text = "Ime Korisničke Priče";
+    dungeonLabel3.Text = "Ime";
     // 
     // TBoxName
     // 
@@ -288,9 +288,9 @@ partial class UserStoriesForm {
     dungeonLabel2.ForeColor = Color.FromArgb(76, 76, 77);
     dungeonLabel2.Location = new Point(14, 125);
     dungeonLabel2.Name = "dungeonLabel2";
-    dungeonLabel2.Size = new Size(175, 25);
+    dungeonLabel2.Size = new Size(49, 25);
     dungeonLabel2.TabIndex = 34;
-    dungeonLabel2.Text = "Opis Korisničke Priče";
+    dungeonLabel2.Text = "Opis";
     // 
     // TBoxDescription
     // 

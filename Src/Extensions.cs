@@ -4,6 +4,7 @@ public enum NotificationType {
   Info,
   Warning,
   Error,
+  Success
 }
 
 public static class Extensions {

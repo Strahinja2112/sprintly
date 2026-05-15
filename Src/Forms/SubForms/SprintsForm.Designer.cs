@@ -277,9 +277,9 @@ partial class SprintsForm {
     dungeonLabel2.ForeColor = Color.FromArgb(76, 76, 77);
     dungeonLabel2.Location = new Point(14, 125);
     dungeonLabel2.Name = "dungeonLabel2";
-    dungeonLabel2.Size = new Size(94, 25);
+    dungeonLabel2.Size = new Size(35, 25);
     dungeonLabel2.TabIndex = 34;
-    dungeonLabel2.Text = "Cilj sprinta";
+    dungeonLabel2.Text = "Cilj";
     // 
     // DateTimePicker
     // 
@@ -346,9 +346,9 @@ partial class SprintsForm {
     dungeonLabel3.ForeColor = Color.FromArgb(76, 76, 77);
     dungeonLabel3.Location = new Point(14, 54);
     dungeonLabel3.Name = "dungeonLabel3";
-    dungeonLabel3.Size = new Size(103, 25);
+    dungeonLabel3.Size = new Size(42, 25);
     dungeonLabel3.TabIndex = 5;
-    dungeonLabel3.Text = "Ime Sprinta";
+    dungeonLabel3.Text = "Ime";
     // 
     // bigLabel2
     // 
@@ -360,7 +360,7 @@ partial class SprintsForm {
     bigLabel2.Name = "bigLabel2";
     bigLabel2.Size = new Size(383, 55);
     bigLabel2.TabIndex = 1;
-    bigLabel2.Text = "Unos novog sprinta";
+    bigLabel2.Text = "Title";
     bigLabel2.TextAlign = ContentAlignment.MiddleCenter;
     // 
     // dungeonLabel4

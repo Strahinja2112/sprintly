@@ -25,19 +25,17 @@ partial class WorkTasksForm {
   /// </summary>
   private void InitializeComponent() {
     components = new System.ComponentModel.Container();
-    DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
     bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
-    DGVSprints = new ReaLTaiizor.Controls.PoisonDataGridView();
+    DGV = new ReaLTaiizor.Controls.PoisonDataGridView();
     ButtonDelete = new ReaLTaiizor.Controls.FoxButton();
     ButonAdd = new ReaLTaiizor.Controls.FoxButton();
     PanelEdit = new Panel();
-    ComboBoxSprintsForAdding = new ComboBox();
-    NumericPriority = new ReaLTaiizor.Controls.DungeonNumeric();
+    NumericHours = new ReaLTaiizor.Controls.DungeonNumeric();
     TBoxDescription = new ReaLTaiizor.Controls.BigTextBox();
-    dungeonLabel5 = new ReaLTaiizor.Controls.DungeonLabel();
     dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
     ButtonSave = new ReaLTaiizor.Controls.FoxButton();
     TBoxName = new ReaLTaiizor.Controls.BigTextBox();
@@ -50,7 +48,9 @@ partial class WorkTasksForm {
     StyleManager1 = new ReaLTaiizor.Manager.PoisonStyleManager(components);
     ComboBoxSprints = new ComboBox();
     dungeonLabel6 = new ReaLTaiizor.Controls.DungeonLabel();
-    ((System.ComponentModel.ISupportInitialize)DGVSprints).BeginInit();
+    ComboBoxUserStories = new ComboBox();
+    dungeonLabel5 = new ReaLTaiizor.Controls.DungeonLabel();
+    ((System.ComponentModel.ISupportInitialize)DGV).BeginInit();
     PanelEdit.SuspendLayout();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).BeginInit();
     SuspendLayout();
@@ -78,52 +78,52 @@ partial class WorkTasksForm {
     dungeonLabel1.TabIndex = 13;
     dungeonLabel1.Text = "Ovo je stranica na kojoj možete upravljati radim zadacima, dodati nove, ili menjati postojeće.";
     // 
-    // DGVSprints
+    // DGV
     // 
-    DGVSprints.AllowUserToResizeRows = false;
-    DGVSprints.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-    DGVSprints.BackgroundColor = Color.FromArgb(255, 255, 255);
-    DGVSprints.BorderStyle = BorderStyle.None;
-    DGVSprints.CellBorderStyle = DataGridViewCellBorderStyle.None;
-    DGVSprints.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-    DGVSprints.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-    DGVSprints.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-    dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
-    dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-    DGVSprints.DefaultCellStyle = dataGridViewCellStyle2;
-    DGVSprints.EnableHeadersVisualStyles = false;
-    DGVSprints.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    DGVSprints.GridColor = Color.FromArgb(255, 255, 255);
-    DGVSprints.Location = new Point(17, 219);
-    DGVSprints.Name = "DGVSprints";
-    DGVSprints.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-    DGVSprints.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-    DGVSprints.RowHeadersVisible = false;
-    DGVSprints.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-    DGVSprints.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-    DGVSprints.Size = new Size(569, 235);
-    DGVSprints.TabIndex = 17;
-    DGVSprints.Theme = ReaLTaiizor.Enum.Poison.ThemeStyle.Light;
-    DGVSprints.CellClick += DGVSprints_CellClick;
+    DGV.AllowUserToResizeRows = false;
+    DGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+    DGV.BackgroundColor = Color.FromArgb(255, 255, 255);
+    DGV.BorderStyle = BorderStyle.None;
+    DGV.CellBorderStyle = DataGridViewCellBorderStyle.None;
+    DGV.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+    dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle13.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle13.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle13.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle13.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+    DGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+    DGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+    dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle14.BackColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle14.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle14.ForeColor = Color.FromArgb(136, 136, 136);
+    dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle14.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+    DGV.DefaultCellStyle = dataGridViewCellStyle14;
+    DGV.EnableHeadersVisualStyles = false;
+    DGV.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    DGV.GridColor = Color.FromArgb(255, 255, 255);
+    DGV.Location = new Point(17, 219);
+    DGV.Name = "DGV";
+    DGV.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+    dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle15.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle15.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle15.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle15.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+    DGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+    DGV.RowHeadersVisible = false;
+    DGV.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+    DGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+    DGV.Size = new Size(569, 235);
+    DGV.TabIndex = 17;
+    DGV.Theme = ReaLTaiizor.Enum.Poison.ThemeStyle.Light;
+    DGV.CellClick += DGV_CellClick;
     // 
     // ButtonDelete
     // 
@@ -168,10 +168,10 @@ partial class WorkTasksForm {
     // PanelEdit
     // 
     PanelEdit.BackColor = SystemColors.Window;
-    PanelEdit.Controls.Add(ComboBoxSprintsForAdding);
-    PanelEdit.Controls.Add(NumericPriority);
-    PanelEdit.Controls.Add(TBoxDescription);
+    PanelEdit.Controls.Add(ComboBoxUserStories);
+    PanelEdit.Controls.Add(NumericHours);
     PanelEdit.Controls.Add(dungeonLabel5);
+    PanelEdit.Controls.Add(TBoxDescription);
     PanelEdit.Controls.Add(dungeonLabel2);
     PanelEdit.Controls.Add(ButtonSave);
     PanelEdit.Controls.Add(TBoxName);
@@ -184,37 +184,26 @@ partial class WorkTasksForm {
     PanelEdit.Size = new Size(383, 471);
     PanelEdit.TabIndex = 20;
     // 
-    // ComboBoxSprintsForAdding
+    // NumericHours
     // 
-    ComboBoxSprintsForAdding.DropDownStyle = ComboBoxStyle.DropDownList;
-    ComboBoxSprintsForAdding.FormattingEnabled = true;
-    ComboBoxSprintsForAdding.IntegralHeight = false;
-    ComboBoxSprintsForAdding.ItemHeight = 15;
-    ComboBoxSprintsForAdding.Location = new Point(14, 388);
-    ComboBoxSprintsForAdding.Name = "ComboBoxSprintsForAdding";
-    ComboBoxSprintsForAdding.Size = new Size(173, 23);
-    ComboBoxSprintsForAdding.TabIndex = 33;
-    // 
-    // NumericPriority
-    // 
-    NumericPriority.BackColor = Color.Transparent;
-    NumericPriority.BackColorA = Color.FromArgb(246, 246, 246);
-    NumericPriority.BackColorB = Color.FromArgb(254, 254, 254);
-    NumericPriority.BorderColor = Color.FromArgb(180, 180, 180);
-    NumericPriority.ButtonForeColorA = Color.FromArgb(75, 75, 75);
-    NumericPriority.ButtonForeColorB = Color.FromArgb(75, 75, 75);
-    NumericPriority.Font = new Font("Tahoma", 11F);
-    NumericPriority.ForeColor = Color.FromArgb(76, 76, 76);
-    NumericPriority.Location = new Point(194, 386);
-    NumericPriority.Maximum = 100L;
-    NumericPriority.Minimum = 1L;
-    NumericPriority.MinimumSize = new Size(93, 28);
-    NumericPriority.Name = "NumericPriority";
-    NumericPriority.Size = new Size(175, 28);
-    NumericPriority.TabIndex = 37;
-    NumericPriority.Text = "dungeonNumeric1";
-    NumericPriority.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Near;
-    NumericPriority.Value = 1L;
+    NumericHours.BackColor = Color.Transparent;
+    NumericHours.BackColorA = Color.FromArgb(246, 246, 246);
+    NumericHours.BackColorB = Color.FromArgb(254, 254, 254);
+    NumericHours.BorderColor = Color.FromArgb(180, 180, 180);
+    NumericHours.ButtonForeColorA = Color.FromArgb(75, 75, 75);
+    NumericHours.ButtonForeColorB = Color.FromArgb(75, 75, 75);
+    NumericHours.Font = new Font("Tahoma", 11F);
+    NumericHours.ForeColor = Color.FromArgb(76, 76, 76);
+    NumericHours.Location = new Point(14, 380);
+    NumericHours.Maximum = 100L;
+    NumericHours.Minimum = 1L;
+    NumericHours.MinimumSize = new Size(93, 28);
+    NumericHours.Name = "NumericHours";
+    NumericHours.Size = new Size(175, 28);
+    NumericHours.TabIndex = 37;
+    NumericHours.Text = "dungeonNumeric1";
+    NumericHours.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Near;
+    NumericHours.Value = 1L;
     // 
     // TBoxDescription
     // 
@@ -232,18 +221,6 @@ partial class WorkTasksForm {
     TBoxDescription.TextAlignment = HorizontalAlignment.Left;
     TBoxDescription.UseSystemPasswordChar = false;
     // 
-    // dungeonLabel5
-    // 
-    dungeonLabel5.AutoSize = true;
-    dungeonLabel5.BackColor = Color.Transparent;
-    dungeonLabel5.Font = new Font("Segoe UI", 13F);
-    dungeonLabel5.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel5.Location = new Point(9, 358);
-    dungeonLabel5.Name = "dungeonLabel5";
-    dungeonLabel5.Size = new Size(169, 25);
-    dungeonLabel5.TabIndex = 32;
-    dungeonLabel5.Text = "Sprint za dodavanje";
-    // 
     // dungeonLabel2
     // 
     dungeonLabel2.AutoSize = true;
@@ -252,9 +229,9 @@ partial class WorkTasksForm {
     dungeonLabel2.ForeColor = Color.FromArgb(76, 76, 77);
     dungeonLabel2.Location = new Point(14, 125);
     dungeonLabel2.Name = "dungeonLabel2";
-    dungeonLabel2.Size = new Size(175, 25);
+    dungeonLabel2.Size = new Size(54, 25);
     dungeonLabel2.TabIndex = 34;
-    dungeonLabel2.Text = "Opis Korisničke Priče";
+    dungeonLabel2.Text = "Opis ";
     // 
     // ButtonSave
     // 
@@ -300,9 +277,9 @@ partial class WorkTasksForm {
     dungeonLabel3.ForeColor = Color.FromArgb(76, 76, 77);
     dungeonLabel3.Location = new Point(14, 54);
     dungeonLabel3.Name = "dungeonLabel3";
-    dungeonLabel3.Size = new Size(168, 25);
+    dungeonLabel3.Size = new Size(42, 25);
     dungeonLabel3.TabIndex = 5;
-    dungeonLabel3.Text = "Ime Korisničke Priče";
+    dungeonLabel3.Text = "Ime";
     // 
     // bigLabel2
     // 
@@ -314,7 +291,7 @@ partial class WorkTasksForm {
     bigLabel2.Name = "bigLabel2";
     bigLabel2.Size = new Size(383, 55);
     bigLabel2.TabIndex = 1;
-    bigLabel2.Text = "Unos novog sprinta";
+    bigLabel2.Text = "Title";
     bigLabel2.TextAlign = ContentAlignment.MiddleCenter;
     // 
     // dungeonLabel7
@@ -323,11 +300,11 @@ partial class WorkTasksForm {
     dungeonLabel7.BackColor = Color.Transparent;
     dungeonLabel7.Font = new Font("Segoe UI", 13F);
     dungeonLabel7.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel7.Location = new Point(194, 358);
+    dungeonLabel7.Location = new Point(14, 352);
     dungeonLabel7.Name = "dungeonLabel7";
-    dungeonLabel7.Size = new Size(126, 25);
+    dungeonLabel7.Size = new Size(162, 25);
     dungeonLabel7.TabIndex = 23;
-    dungeonLabel7.Text = "Prioritet (1-10)";
+    dungeonLabel7.Text = "Procenjeni broj sati";
     // 
     // dungeonLabel4
     // 
@@ -349,7 +326,7 @@ partial class WorkTasksForm {
     ComboBoxProjects.ItemHeight = 15;
     ComboBoxProjects.Location = new Point(17, 143);
     ComboBoxProjects.Name = "ComboBoxProjects";
-    ComboBoxProjects.Size = new Size(257, 23);
+    ComboBoxProjects.Size = new Size(279, 23);
     ComboBoxProjects.TabIndex = 28;
     ComboBoxProjects.SelectedIndexChanged += ComboBoxProjects_SelectedIndexChanged;
     // 
@@ -381,9 +358,9 @@ partial class WorkTasksForm {
     ComboBoxSprints.FormattingEnabled = true;
     ComboBoxSprints.IntegralHeight = false;
     ComboBoxSprints.ItemHeight = 15;
-    ComboBoxSprints.Location = new Point(278, 143);
+    ComboBoxSprints.Location = new Point(302, 143);
     ComboBoxSprints.Name = "ComboBoxSprints";
-    ComboBoxSprints.Size = new Size(308, 23);
+    ComboBoxSprints.Size = new Size(284, 23);
     ComboBoxSprints.TabIndex = 31;
     ComboBoxSprints.SelectedIndexChanged += ComboBoxSprints_SelectedIndexChanged;
     // 
@@ -393,11 +370,34 @@ partial class WorkTasksForm {
     dungeonLabel6.BackColor = Color.Transparent;
     dungeonLabel6.Font = new Font("Segoe UI", 13F);
     dungeonLabel6.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel6.Location = new Point(273, 113);
+    dungeonLabel6.Location = new Point(297, 113);
     dungeonLabel6.Name = "dungeonLabel6";
     dungeonLabel6.Size = new Size(116, 25);
     dungeonLabel6.TabIndex = 30;
     dungeonLabel6.Text = "Izbor sprinta:";
+    // 
+    // ComboBoxUserStories
+    // 
+    ComboBoxUserStories.DropDownStyle = ComboBoxStyle.DropDownList;
+    ComboBoxUserStories.FormattingEnabled = true;
+    ComboBoxUserStories.IntegralHeight = false;
+    ComboBoxUserStories.ItemHeight = 15;
+    ComboBoxUserStories.Location = new Point(199, 382);
+    ComboBoxUserStories.Name = "ComboBoxUserStories";
+    ComboBoxUserStories.Size = new Size(168, 23);
+    ComboBoxUserStories.TabIndex = 35;
+    // 
+    // dungeonLabel5
+    // 
+    dungeonLabel5.AutoSize = true;
+    dungeonLabel5.BackColor = Color.Transparent;
+    dungeonLabel5.Font = new Font("Segoe UI", 13F);
+    dungeonLabel5.ForeColor = Color.FromArgb(76, 76, 77);
+    dungeonLabel5.Location = new Point(193, 352);
+    dungeonLabel5.Name = "dungeonLabel5";
+    dungeonLabel5.Size = new Size(138, 25);
+    dungeonLabel5.TabIndex = 34;
+    dungeonLabel5.Text = "Korisnička priča:";
     // 
     // WorkTasksForm
     // 
@@ -410,7 +410,7 @@ partial class WorkTasksForm {
     Controls.Add(ComboBoxProjects);
     Controls.Add(dungeonLabel4);
     Controls.Add(PanelEdit);
-    Controls.Add(DGVSprints);
+    Controls.Add(DGV);
     Controls.Add(ButtonDelete);
     Controls.Add(ButonAdd);
     Controls.Add(bigLabel1);
@@ -418,8 +418,8 @@ partial class WorkTasksForm {
     MaximizeBox = false;
     Name = "WorkTasksForm";
     Text = "DashboardForm";
-    Load += UserStoriesForm_Load;
-    ((System.ComponentModel.ISupportInitialize)DGVSprints).EndInit();
+    Load += WorkTasksForm_Load;
+    ((System.ComponentModel.ISupportInitialize)DGV).EndInit();
     PanelEdit.ResumeLayout(false);
     PanelEdit.PerformLayout();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).EndInit();
@@ -431,7 +431,7 @@ partial class WorkTasksForm {
 
   private ReaLTaiizor.Controls.BigLabel bigLabel1;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
-  private ReaLTaiizor.Controls.PoisonDataGridView DGVSprints;
+  private ReaLTaiizor.Controls.PoisonDataGridView DGV;
   private ReaLTaiizor.Controls.FoxButton ButtonDelete;
   private ReaLTaiizor.Controls.FoxButton ButonAdd;
   private Panel PanelEdit;
@@ -445,10 +445,10 @@ partial class WorkTasksForm {
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel4;
   private ComboBox ComboBoxProjects;
   private ReaLTaiizor.Controls.BigTextBox TBoxSearch;
-  private ReaLTaiizor.Controls.DungeonNumeric NumericPriority;
+  private ReaLTaiizor.Controls.DungeonNumeric NumericHours;
   private ReaLTaiizor.Manager.PoisonStyleManager StyleManager1;
   private ComboBox ComboBoxSprints;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel6;
-  private ComboBox ComboBoxSprintsForAdding;
+  private ComboBox ComboBoxUserStories;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel5;
 }

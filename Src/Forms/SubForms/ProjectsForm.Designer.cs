@@ -112,9 +112,9 @@ partial class ProjectsForm {
     dungeonLabel7.ForeColor = Color.FromArgb(76, 76, 77);
     dungeonLabel7.Location = new Point(14, 284);
     dungeonLabel7.Name = "dungeonLabel7";
-    dungeonLabel7.Size = new Size(130, 25);
+    dungeonLabel7.Size = new Size(60, 25);
     dungeonLabel7.TabIndex = 23;
-    dungeonLabel7.Text = "Status projekta";
+    dungeonLabel7.Text = "Status";
     // 
     // PanelProjectData
     // 
@@ -159,9 +159,9 @@ partial class ProjectsForm {
     dungeonLabel2.ForeColor = Color.FromArgb(76, 76, 77);
     dungeonLabel2.Location = new Point(14, 125);
     dungeonLabel2.Name = "dungeonLabel2";
-    dungeonLabel2.Size = new Size(119, 25);
+    dungeonLabel2.Size = new Size(54, 25);
     dungeonLabel2.TabIndex = 34;
-    dungeonLabel2.Text = "Opis projekta";
+    dungeonLabel2.Text = "Opis ";
     // 
     // ButtonSave
     // 
@@ -207,9 +207,9 @@ partial class ProjectsForm {
     dungeonLabel3.ForeColor = Color.FromArgb(76, 76, 77);
     dungeonLabel3.Location = new Point(14, 54);
     dungeonLabel3.Name = "dungeonLabel3";
-    dungeonLabel3.Size = new Size(112, 25);
+    dungeonLabel3.Size = new Size(42, 25);
     dungeonLabel3.TabIndex = 5;
-    dungeonLabel3.Text = "Ime projekta";
+    dungeonLabel3.Text = "Ime";
     // 
     // bigLabel2
     // 
@@ -221,7 +221,7 @@ partial class ProjectsForm {
     bigLabel2.Name = "bigLabel2";
     bigLabel2.Size = new Size(383, 55);
     bigLabel2.TabIndex = 1;
-    bigLabel2.Text = "Unos novog projekta";
+    bigLabel2.Text = "Title";
     bigLabel2.TextAlign = ContentAlignment.MiddleCenter;
     // 
     // bigLabel1
