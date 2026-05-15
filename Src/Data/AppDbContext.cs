@@ -30,14 +30,14 @@ public class AppDbContext : DbContext {
     // WorkTask
     modelBuilder.Entity<WorkTask>(entity => {
       entity.HasOne(w => w.UserStory)
-          .WithMany()
+          .WithMany(u => u.WorkTasks)
           .HasForeignKey(w => w.UserStoryId)
           .OnDelete(DeleteBehavior.Cascade);
 
       entity.HasOne(w => w.Sprint)
           .WithMany(s => s.WorkTasks)
           .HasForeignKey(w => w.SprintId)
-          .OnDelete(DeleteBehavior.Restrict);
+          .OnDelete(DeleteBehavior.NoAction);
     });
 
     // WorkTaskEntry (Join tabela sa podacima - Manuelno mapirana)

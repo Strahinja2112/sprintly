@@ -9,8 +9,6 @@ public class UserStory {
   [Required]
   public int ProjectId { get; set; }
 
-  public int? SprintId { get; set; }
-
   [Required]
   [MaxLength(100)]
   public string Title { get; set; } = null!;
@@ -24,16 +22,5 @@ public class UserStory {
   [ForeignKey("ProjectId")]
   public virtual Project Project { get; set; } = null!;
 
-  [ForeignKey("SprintId")]
-  public virtual Sprint? Sprint { get; set; }
-
   public virtual ICollection<WorkTask> WorkTasks { get; set; } = [];
-}
-
-public enum UserStoryStatus {
-  Backlog,
-  Todo,
-  InProgress,
-  InReview,
-  Done
 }

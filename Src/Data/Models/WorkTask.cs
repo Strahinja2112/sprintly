@@ -8,7 +8,7 @@ public class WorkTask {
 
   public int UserStoryId { get; set; }
 
-  public int SprintId { get; set; }
+  public int? SprintId { get; set; }
 
   [Required]
   [MaxLength(150)]
@@ -19,7 +19,6 @@ public class WorkTask {
   public string Description { get; set; } = null!;
 
   [Required]
-  [MaxLength(30)]
   public WorkTaskStatus Status { get; set; } = WorkTaskStatus.ToDo;
 
   [Column(TypeName = "decimal(6,2)")]
@@ -29,7 +28,7 @@ public class WorkTask {
   public virtual UserStory UserStory { get; set; } = null!;
 
   [ForeignKey("SprintId")]
-  public virtual Sprint Sprint { get; set; } = null!;
+  public virtual Sprint? Sprint { get; set; } = null;
 
   public virtual ICollection<WorkTaskEntry> WorkLogEntries { get; set; } = [];
 }

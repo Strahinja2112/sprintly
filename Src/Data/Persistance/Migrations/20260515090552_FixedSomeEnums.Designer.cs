@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sprintra.Src.Data;
 
@@ -11,9 +12,11 @@ using Sprintra.Src.Data;
 namespace Sprintra.Data.Persistance.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260515090552_FixedSomeEnums")]
+    partial class FixedSomeEnums
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -340,6 +343,9 @@ namespace Sprintra.Data.Persistance.Migrations
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SprintId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -348,6 +354,8 @@ namespace Sprintra.Data.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("SprintId");
 
                     b.ToTable("UserStories");
                 });
@@ -373,13 +381,17 @@ namespace Sprintra.Data.Persistance.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<int?>("SprintId")
+                    b.Property<int>("SprintId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
+                        .HasMaxLength(30)
                         .HasColumnType("int");
 
                     b.Property<int>("UserStoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserStoryId1")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -387,6 +399,8 @@ namespace Sprintra.Data.Persistance.Migrations
                     b.HasIndex("SprintId");
 
                     b.HasIndex("UserStoryId");
+
+                    b.HasIndex("UserStoryId1");
 
                     b.ToTable("WorkTasks");
                 });
@@ -513,7 +527,13 @@ namespace Sprintra.Data.Persistance.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Sprintra.Src.Data.Models.Sprint", "Sprint")
+                        .WithMany()
+                        .HasForeignKey("SprintId");
+
                     b.Navigation("Project");
+
+                    b.Navigation("Sprint");
                 });
 
             modelBuilder.Entity("Sprintra.Src.Data.Models.WorkTask", b =>
@@ -521,13 +541,18 @@ namespace Sprintra.Data.Persistance.Migrations
                     b.HasOne("Sprintra.Src.Data.Models.Sprint", "Sprint")
                         .WithMany("WorkTasks")
                         .HasForeignKey("SprintId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Sprintra.Src.Data.Models.UserStory", "UserStory")
-                        .WithMany("WorkTasks")
+                        .WithMany()
                         .HasForeignKey("UserStoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Sprintra.Src.Data.Models.UserStory", null)
+                        .WithMany("WorkTasks")
+                        .HasForeignKey("UserStoryId1");
 
                     b.Navigation("Sprint");
 

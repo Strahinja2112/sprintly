@@ -77,6 +77,10 @@ public class SprintsService {
 
     if (sprint == null) return;
 
+    foreach (var task in sprint.WorkTasks) {
+      task.SprintId = null;
+    }
+
     if (sprint.WorkTasks.Count != 0)
       throw new InvalidOperationException("Ne možete obrisati sprint koji ima povezane zadatke. Prvo obrišite ili premestite zadatke.");
 

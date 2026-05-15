@@ -75,7 +75,6 @@ public partial class UserStoriesForm : BaseForm {
       Naslov = us.Title,
       Opis = us.Description,
       Prioritet = us.Priority,
-      Sprint = us.Sprint != null ? us.Sprint.Name : "Backlog"
     }).ToList();
 
     if (DGVSprints.Columns["Id"] != null) DGVSprints.Columns["Id"].Visible = false;
@@ -109,10 +108,6 @@ public partial class UserStoriesForm : BaseForm {
       story.Description = desc;
       story.Priority = (int)NumericPriority.Value;
 
-      if (ComboBoxSprintsForAdding.SelectedValue is int sprintId) {
-        story.SprintId = sprintId > 0 ? sprintId : null;
-      }
-
       await userStoriesService.SaveUserStoryAsync(story);
 
       ClearInputs();
@@ -136,7 +131,6 @@ public partial class UserStoriesForm : BaseForm {
       TBoxName.Text = story.Title;
       TBoxDescription.Text = story.Description;
       NumericPriority.Value = story.Priority;
-      ComboBoxSprints.SelectedValue = story.SprintId ?? 0;
       bigLabel2.Text = "Izmena korisničke priče";
     }
   }
@@ -185,7 +179,6 @@ public partial class UserStoriesForm : BaseForm {
       Naslov = us.Title,
       Opis = us.Description,
       Prioritet = us.Priority,
-      Sprint = us.Sprint?.Name ?? "Backlog"
     }).ToList();
 
     DGVSprints.Columns["Id"]?.Visible = false;

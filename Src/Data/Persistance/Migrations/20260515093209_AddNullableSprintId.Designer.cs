@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sprintra.Src.Data;
 
@@ -11,9 +12,11 @@ using Sprintra.Src.Data;
 namespace Sprintra.Data.Persistance.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260515093209_AddNullableSprintId")]
+    partial class AddNullableSprintId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -377,9 +380,13 @@ namespace Sprintra.Data.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
+                        .HasMaxLength(30)
                         .HasColumnType("int");
 
                     b.Property<int>("UserStoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserStoryId1")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -387,6 +394,8 @@ namespace Sprintra.Data.Persistance.Migrations
                     b.HasIndex("SprintId");
 
                     b.HasIndex("UserStoryId");
+
+                    b.HasIndex("UserStoryId1");
 
                     b.ToTable("WorkTasks");
                 });
@@ -524,10 +533,14 @@ namespace Sprintra.Data.Persistance.Migrations
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("Sprintra.Src.Data.Models.UserStory", "UserStory")
-                        .WithMany("WorkTasks")
+                        .WithMany()
                         .HasForeignKey("UserStoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Sprintra.Src.Data.Models.UserStory", null)
+                        .WithMany("WorkTasks")
+                        .HasForeignKey("UserStoryId1");
 
                     b.Navigation("Sprint");
 

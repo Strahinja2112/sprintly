@@ -15,8 +15,7 @@ public class UserStoriesService {
     using var context = new AppDbContext();
 
     var query = context.UserStories
-        .Include(us => us.Sprint)
-        .Where(us => us.ProjectId == projectId && us.SprintId == sprintId);
+        .Where(us => us.ProjectId == projectId);
 
     if (!string.IsNullOrWhiteSpace(searchTerm)) {
       query = query.Where(us => us.Title.Contains(searchTerm));
@@ -38,8 +37,6 @@ public class UserStoriesService {
   }
 
   public async Task<UserStory?> GetByIdAsync(int id) {
-    return await db.UserStories
-        .Include(us => us.Sprint)
-        .FirstOrDefaultAsync(us => us.Id == id);
+    return await db.UserStories.FirstOrDefaultAsync(us => us.Id == id);
   }
 }
