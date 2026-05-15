@@ -119,6 +119,7 @@ partial class SprintsForm {
     DGVSprints.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
     DGVSprints.RowHeadersVisible = false;
     DGVSprints.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+    DGVSprints.ScrollBars = ScrollBars.None;
     DGVSprints.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
     DGVSprints.Size = new Size(569, 235);
     DGVSprints.TabIndex = 17;

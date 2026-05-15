@@ -277,6 +277,7 @@ partial class ProjectsForm {
     DGVProjects.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
     DGVProjects.RowHeadersVisible = false;
     DGVProjects.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+    DGVProjects.ScrollBars = ScrollBars.None;
     DGVProjects.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
     DGVProjects.Size = new Size(569, 288);
     DGVProjects.TabIndex = 12;

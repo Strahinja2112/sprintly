@@ -52,18 +52,22 @@ public partial class WorkTasksForm : BaseForm {
 
   private async Task LoadUserStoriesToFilters(int projectId) {
     var userStories = await userStoriesService.GetByProjectAsync(projectId);
-    if (userStories.Count > 0) {
-      ComboBoxUserStories.DataSource = userStories;
-      ComboBoxUserStories.DisplayMember = "Title";
-      ComboBoxUserStories.ValueMember = "Id";
-      ComboBoxUserStories.SelectedIndex = 0;
-    }
+
+    ComboBoxUserStories.DataSource = userStories;
+
+    ComboBoxUserStories.DisplayMember = "Title";
+    ComboBoxUserStories.ValueMember = "Id";
+
+    ComboBoxUserStories.SelectedIndex = userStories.Count > 0 ? 0 : -1;
   }
 
   private async Task LoadSprintsToFilters(int projectId) {
     var sprints = await sprintsService.GetSprintsForProject(projectId);
 
-    sprints.Insert(0, new Sprint { Id = 0, Name = "-- Svi sprintovi --" });
+    sprints.Insert(0, new() {
+      Id = 0,
+      Name = "-- Svi sprintovi --"
+    });
 
     ComboBoxSprints.DataSource = sprints;
 
@@ -89,7 +93,7 @@ public partial class WorkTasksForm : BaseForm {
       Priča = t.UserStory?.Title,
       Status = t.Status.ToString(),
       Sati = t.EstimatedHours,
-      Sprint = t.Sprint?.Name ?? "Backlog"
+      PreostaliSati = t.EstimatedHours - 12
     }).ToList();
 
     DGV.Columns["Id"]?.Visible = false;
@@ -122,6 +126,12 @@ public partial class WorkTasksForm : BaseForm {
 
     if (ComboBoxSprints.SelectedValue is not int sprintId || sprintId <= 0) {
       this.ShowToast("Zadatak mora pripadati sprintu.", NotificationType.Warning);
+      return;
+    }
+
+    var sprint = await sprintsService.GetByIdAsync(sprintId);
+    if (sprint?.Status == SprintStatus.Completed) {
+      this.ShowToast("Ne možete dodati zadatak u sprint koji je završen.", NotificationType.Error);
       return;
     }
 

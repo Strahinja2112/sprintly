@@ -127,6 +127,7 @@ partial class EmployeesForm {
     DGVEmployees.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
     DGVEmployees.RowHeadersVisible = false;
     DGVEmployees.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+    DGVEmployees.ScrollBars = ScrollBars.None;
     DGVEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
     DGVEmployees.Size = new Size(569, 288);
     DGVEmployees.TabIndex = 3;
