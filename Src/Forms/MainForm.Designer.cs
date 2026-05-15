@@ -133,7 +133,7 @@
       iconPictureBox9.BackColor = Color.Transparent;
       iconPictureBox9.Enabled = false;
       iconPictureBox9.ForeColor = Color.DarkSlateGray;
-      iconPictureBox9.IconChar = FontAwesome.Sharp.IconChar.ChartLine;
+      iconPictureBox9.IconChar = FontAwesome.Sharp.IconChar.Tasks;
       iconPictureBox9.IconColor = Color.DarkSlateGray;
       iconPictureBox9.IconFont = FontAwesome.Sharp.IconFont.Auto;
       iconPictureBox9.IconSize = 30;
@@ -186,9 +186,9 @@
       LabelUserType.ForeColor = Color.FromArgb(80, 80, 80);
       LabelUserType.Location = new Point(7, 37);
       LabelUserType.Name = "LabelUserType";
-      LabelUserType.Size = new Size(57, 15);
+      LabelUserType.Size = new Size(53, 15);
       LabelUserType.TabIndex = 6;
-      LabelUserType.Text = "User Type";
+      LabelUserType.Text = "User role";
       // 
       // ButtonLogout
       // 
@@ -234,7 +234,7 @@
       iconPictureBox5.BackColor = Color.Transparent;
       iconPictureBox5.Enabled = false;
       iconPictureBox5.ForeColor = Color.DarkSlateGray;
-      iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.BookOpen;
+      iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.Lightbulb;
       iconPictureBox5.IconColor = Color.DarkSlateGray;
       iconPictureBox5.IconFont = FontAwesome.Sharp.IconFont.Auto;
       iconPictureBox5.IconSize = 30;
@@ -312,7 +312,7 @@
       LabelWorkLog.Name = "LabelWorkLog";
       LabelWorkLog.Size = new Size(150, 50);
       LabelWorkLog.TabIndex = 6;
-      LabelWorkLog.Text = "Work Log";
+      LabelWorkLog.Text = "Evidencija Rada";
       LabelWorkLog.TextAlign = ContentAlignment.MiddleLeft;
       // 
       // iconPictureBox4
@@ -320,7 +320,7 @@
       iconPictureBox4.BackColor = Color.Transparent;
       iconPictureBox4.Enabled = false;
       iconPictureBox4.ForeColor = Color.DarkSlateGray;
-      iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
+      iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.ClockFour;
       iconPictureBox4.IconColor = Color.DarkSlateGray;
       iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
       iconPictureBox4.IconSize = 30;
@@ -363,7 +363,7 @@
       iconPictureBox3.BackColor = Color.Transparent;
       iconPictureBox3.Enabled = false;
       iconPictureBox3.ForeColor = Color.DarkSlateGray;
-      iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.Timeline;
+      iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.Poll;
       iconPictureBox3.IconColor = Color.DarkSlateGray;
       iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
       iconPictureBox3.IconSize = 30;
@@ -406,7 +406,7 @@
       iconPictureBox1.BackColor = Color.Transparent;
       iconPictureBox1.Enabled = false;
       iconPictureBox1.ForeColor = Color.DarkSlateGray;
-      iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.FlagCheckered;
+      iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.SyncAlt;
       iconPictureBox1.IconColor = Color.DarkSlateGray;
       iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
       iconPictureBox1.IconSize = 30;
