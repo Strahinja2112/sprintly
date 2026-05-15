@@ -172,6 +172,10 @@ public partial class UserStoriesForm : BaseForm {
     if (ComboBoxSprints.SelectedValue is not int sprintId) return;
     if (ComboBoxProjects.SelectedValue is not int projectId) return;
 
+    if (sprintId == 0) {
+      var a = 1;
+    }
+
     var stories = await userStoriesService.GetByProjectAsync(
       projectId, TBoxName.Text, sprintId > 0 ? sprintId : null
     );

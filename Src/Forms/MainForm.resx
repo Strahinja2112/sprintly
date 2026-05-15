@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="dungeonLabel1.Text" xml:space="preserve">
+    <value>Sprintra je Windows desktop aplikacija napravljena pomoću C# i WinForms-a koja pomaže Scrum timovima da upravljaju svojim projektima, sprintovima i zadacima. Pruža izvorno Windows iskustvo sa kontrolom pristupa zasnovanom na ulogama i sveobuhvatnim funkcijama upravljanja projektima.</value>
+  </data>
 </root>

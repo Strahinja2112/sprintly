@@ -12,26 +12,35 @@ internal static class Program {
   static void Main() {
     ApplicationConfiguration.Initialize();
 
-    while (true) {
-      HasUserLoggedOut = false;
+    try {
+      //SeedService.FullSeed();
+      //AuthService.Logout();
 
-      if (!AuthService.TryAutoLogin()) {
-        var loginForm = new LoginForm();
-        Application.Run(loginForm);
+      while (true) {
+        HasUserLoggedOut = false;
 
-        if (!loginForm.IsLoginSuccessful) {
+        if (!AuthService.TryAutoLogin()) {
+          var loginForm = new LoginForm();
+          Application.Run(loginForm);
+          loginForm.Close();
+          if (!loginForm.IsLoginSuccessful) {
+            break;
+          }
+        }
+
+        mainForm = new MainForm();
+        Application.Run(mainForm);
+
+        if (!HasUserLoggedOut) {
           break;
         }
+
+        mainForm = null;
       }
+    }
+    catch (Exception) {
 
-      mainForm = new MainForm();
-      Application.Run(mainForm);
-
-      if (!HasUserLoggedOut) {
-        break;
-      }
-
-      mainForm = null;
+      throw;
     }
   }
 }

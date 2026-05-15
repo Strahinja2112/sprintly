@@ -23,6 +23,7 @@
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       panel1 = new Panel();
       PanelWorkTasks = new Panel();
       LabelWorkTasks = new ReaLTaiizor.Controls.BigLabel();
@@ -134,11 +135,11 @@
       iconPictureBox9.IconChar = FontAwesome.Sharp.IconChar.ChartLine;
       iconPictureBox9.IconColor = Color.DarkSlateGray;
       iconPictureBox9.IconFont = FontAwesome.Sharp.IconFont.Auto;
-      iconPictureBox9.IconSize = 25;
-      iconPictureBox9.Location = new Point(9, 15);
+      iconPictureBox9.IconSize = 30;
+      iconPictureBox9.Location = new Point(9, 12);
       iconPictureBox9.Name = "iconPictureBox9";
       iconPictureBox9.Padding = new Padding(20, 20, 0, 0);
-      iconPictureBox9.Size = new Size(25, 25);
+      iconPictureBox9.Size = new Size(30, 30);
       iconPictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
       iconPictureBox9.TabIndex = 0;
       iconPictureBox9.TabStop = false;
@@ -225,11 +226,11 @@
       iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.BookOpen;
       iconPictureBox5.IconColor = Color.DarkSlateGray;
       iconPictureBox5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-      iconPictureBox5.IconSize = 25;
-      iconPictureBox5.Location = new Point(9, 15);
+      iconPictureBox5.IconSize = 30;
+      iconPictureBox5.Location = new Point(9, 12);
       iconPictureBox5.Name = "iconPictureBox5";
       iconPictureBox5.Padding = new Padding(20, 20, 0, 0);
-      iconPictureBox5.Size = new Size(25, 25);
+      iconPictureBox5.Size = new Size(30, 30);
       iconPictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
       iconPictureBox5.TabIndex = 0;
       iconPictureBox5.TabStop = false;
@@ -268,11 +269,11 @@
       iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.UsersCog;
       iconPictureBox2.IconColor = Color.DarkSlateGray;
       iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-      iconPictureBox2.IconSize = 25;
-      iconPictureBox2.Location = new Point(9, 15);
+      iconPictureBox2.IconSize = 30;
+      iconPictureBox2.Location = new Point(9, 12);
       iconPictureBox2.Name = "iconPictureBox2";
       iconPictureBox2.Padding = new Padding(20, 20, 0, 0);
-      iconPictureBox2.Size = new Size(25, 25);
+      iconPictureBox2.Size = new Size(30, 30);
       iconPictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
       iconPictureBox2.TabIndex = 0;
       iconPictureBox2.TabStop = false;
@@ -311,11 +312,11 @@
       iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
       iconPictureBox4.IconColor = Color.DarkSlateGray;
       iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-      iconPictureBox4.IconSize = 25;
-      iconPictureBox4.Location = new Point(9, 15);
+      iconPictureBox4.IconSize = 30;
+      iconPictureBox4.Location = new Point(9, 12);
       iconPictureBox4.Name = "iconPictureBox4";
       iconPictureBox4.Padding = new Padding(20, 20, 0, 0);
-      iconPictureBox4.Size = new Size(25, 25);
+      iconPictureBox4.Size = new Size(30, 30);
       iconPictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
       iconPictureBox4.TabIndex = 0;
       iconPictureBox4.TabStop = false;
@@ -354,11 +355,11 @@
       iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.Timeline;
       iconPictureBox3.IconColor = Color.DarkSlateGray;
       iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-      iconPictureBox3.IconSize = 25;
-      iconPictureBox3.Location = new Point(9, 15);
+      iconPictureBox3.IconSize = 30;
+      iconPictureBox3.Location = new Point(9, 12);
       iconPictureBox3.Name = "iconPictureBox3";
       iconPictureBox3.Padding = new Padding(20, 20, 0, 0);
-      iconPictureBox3.Size = new Size(25, 25);
+      iconPictureBox3.Size = new Size(30, 30);
       iconPictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
       iconPictureBox3.TabIndex = 0;
       iconPictureBox3.TabStop = false;
@@ -397,11 +398,11 @@
       iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.FlagCheckered;
       iconPictureBox1.IconColor = Color.DarkSlateGray;
       iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-      iconPictureBox1.IconSize = 25;
-      iconPictureBox1.Location = new Point(9, 15);
+      iconPictureBox1.IconSize = 30;
+      iconPictureBox1.Location = new Point(9, 12);
       iconPictureBox1.Name = "iconPictureBox1";
       iconPictureBox1.Padding = new Padding(20, 20, 0, 0);
-      iconPictureBox1.Size = new Size(25, 25);
+      iconPictureBox1.Size = new Size(30, 30);
       iconPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
       iconPictureBox1.TabIndex = 0;
       iconPictureBox1.TabStop = false;
@@ -585,18 +586,18 @@
       dungeonLabel1.Name = "dungeonLabel1";
       dungeonLabel1.Size = new Size(573, 87);
       dungeonLabel1.TabIndex = 14;
-      dungeonLabel1.Text = "Sprintra — Windows desktop aplikacija za Scrum timove. Upravljajte sprintovima, pratite zadatke, logujte rad i sarađujte — sve kroz čist, nativni WinForms interfejs.";
+      dungeonLabel1.Text = resources.GetString("dungeonLabel1.Text");
       dungeonLabel1.TextAlign = ContentAlignment.MiddleCenter;
       // 
       // bigLabel2
       // 
       bigLabel2.AutoSize = true;
       bigLabel2.BackColor = Color.Transparent;
-      bigLabel2.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
+      bigLabel2.Font = new Font("Segoe UI", 52F, FontStyle.Bold);
       bigLabel2.ForeColor = Color.DarkSlateGray;
-      bigLabel2.Location = new Point(197, 57);
+      bigLabel2.Location = new Point(140, 15);
       bigLabel2.Name = "bigLabel2";
-      bigLabel2.Size = new Size(188, 59);
+      bigLabel2.Size = new Size(305, 93);
       bigLabel2.TabIndex = 13;
       bigLabel2.Text = "Sprintra";
       // 
