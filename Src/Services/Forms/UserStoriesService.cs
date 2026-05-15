@@ -2,7 +2,7 @@
 using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
 
-namespace Sprintra.Src.Services;
+namespace Sprintra.Src.Services.Forms;
 
 public class UserStoriesService {
   private readonly AppDbContext db;

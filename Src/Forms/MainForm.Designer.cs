@@ -29,6 +29,7 @@
       LabelWorkTasks = new ReaLTaiizor.Controls.BigLabel();
       iconPictureBox9 = new FontAwesome.Sharp.IconPictureBox();
       PanelUserData = new Panel();
+      panel5 = new Panel();
       LabelUserName = new ReaLTaiizor.Controls.BigLabel();
       LabelUserType = new ReaLTaiizor.Controls.BigLabel();
       ButtonLogout = new ReaLTaiizor.Controls.AloneButton();
@@ -146,14 +147,24 @@
       // 
       // PanelUserData
       // 
+      PanelUserData.Controls.Add(panel5);
       PanelUserData.Controls.Add(LabelUserName);
       PanelUserData.Controls.Add(LabelUserType);
       PanelUserData.Controls.Add(ButtonLogout);
       PanelUserData.Dock = DockStyle.Bottom;
-      PanelUserData.Location = new Point(0, 370);
+      PanelUserData.Location = new Point(0, 356);
       PanelUserData.Name = "PanelUserData";
-      PanelUserData.Size = new Size(190, 100);
+      PanelUserData.Size = new Size(190, 114);
       PanelUserData.TabIndex = 12;
+      PanelUserData.Paint += PanelUserData_Paint;
+      // 
+      // panel5
+      // 
+      panel5.BackColor = Color.DarkSlateGray;
+      panel5.Location = new Point(11, 59);
+      panel5.Name = "panel5";
+      panel5.Size = new Size(168, 1);
+      panel5.TabIndex = 8;
       // 
       // LabelUserName
       // 
@@ -173,7 +184,7 @@
       LabelUserType.BackColor = Color.Transparent;
       LabelUserType.Font = new Font("Segoe UI", 9F);
       LabelUserType.ForeColor = Color.FromArgb(80, 80, 80);
-      LabelUserType.Location = new Point(9, 37);
+      LabelUserType.Location = new Point(7, 37);
       LabelUserType.Name = "LabelUserType";
       LabelUserType.Size = new Size(57, 15);
       LabelUserType.TabIndex = 6;
@@ -183,9 +194,9 @@
       // 
       ButtonLogout.BackColor = Color.Transparent;
       ButtonLogout.EnabledCalc = true;
-      ButtonLogout.Font = new Font("Segoe UI", 13F);
-      ButtonLogout.ForeColor = Color.FromArgb(124, 133, 142);
-      ButtonLogout.Location = new Point(9, 56);
+      ButtonLogout.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+      ButtonLogout.ForeColor = Color.DarkSlateGray;
+      ButtonLogout.Location = new Point(9, 68);
       ButtonLogout.Name = "ButtonLogout";
       ButtonLogout.Size = new Size(172, 36);
       ButtonLogout.TabIndex = 7;
@@ -680,5 +691,6 @@
     private Panel PanelWorkTasks;
     private ReaLTaiizor.Controls.BigLabel LabelWorkTasks;
     private FontAwesome.Sharp.IconPictureBox iconPictureBox9;
+    private Panel panel5;
   }
 }

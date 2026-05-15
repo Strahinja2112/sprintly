@@ -15,6 +15,13 @@ public static class PermissionsService {
     return allowedRoles.Contains(AuthService.CurrentUser.Type);
   }
 
+  private static bool HasAtleastRole(EmployeeType requiredRole) {
+    if (AuthService.CurrentUser == null) {
+      return false;
+    }
+    return AuthService.CurrentUser.Type >= requiredRole;
+  }
+
   public static bool IsAdmin() => HasAnyRole(EmployeeType.Admin);
 
   public static bool CanManageUsers() => IsAdmin();
@@ -23,10 +30,9 @@ public static class PermissionsService {
 
   public static bool CanLogWork() => HasAnyRole();
 
-  public static bool CanManageSprints() =>
-      HasAnyRole(EmployeeType.Admin, EmployeeType.ScrumMaster);
+  public static bool CanManageSprints() => HasAnyRole(EmployeeType.Admin);
 
-  public static bool CanManageUserStories() => CanManageSprints();
+  public static bool CanManageUserStories() => HasAtleastRole(EmployeeType.ProductOwner);
 
-  public static bool CanManageWorkTasks() => CanManageSprints();
+  public static bool CanManageWorkTasks() => HasAtleastRole(EmployeeType.ProductOwner);
 }

@@ -17,9 +17,12 @@ internal class SeedService {
       db.Employees.RemoveRange(db.Employees);
       db.SaveChanges();
 
-      string[] tables = { "Employees", "Projects", "UserStories", "Sprints", "WorkTasks" };
+      var tables = new[] { "Employees", "Projects", "UserStories", "Sprints", "WorkTasks" };
       foreach (var table in tables) {
-        try { db.Database.ExecuteSqlRaw($"DBCC CHECKIDENT ('{table}', RESEED, 0)"); } catch { }
+        try {
+          db.Database.ExecuteSql($"DBCC CHECKIDENT ('{table}', RESEED, 0)");
+        }
+        catch { }
       }
 
       var employees = new List<Employee>() {
@@ -27,7 +30,7 @@ internal class SeedService {
                     PasswordHash = AuthService.HashPassword("123"), HireDate = DateTime.Now.AddYears(-2), Status = "Active", Type = EmployeeType.Admin },
 
                 new() { FirstName = "Marko", LastName = "Menadžer", Email = "marko@pm.com", Username = "markopm",
-                    PasswordHash = AuthService.HashPassword("123"), HireDate = DateTime.Now.AddMonths(-10), Status = "Active", Type = EmployeeType.Admin },
+                    PasswordHash = AuthService.HashPassword("123"), HireDate = DateTime.Now.AddMonths(-10), Status = "Active", Type = EmployeeType.ProductOwner },
 
                 new() { FirstName = "Jelena", LastName = "Scrum", Email = "jelena@sm.com", Username = "jelenasm",
                     PasswordHash = AuthService.HashPassword("123"), HireDate = DateTime.Now.AddMonths(-8), Status = "Active", Type = EmployeeType.ScrumMaster },

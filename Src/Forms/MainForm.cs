@@ -84,4 +84,8 @@ public partial class MainForm : BaseForm {
   private void PanelWorkTasks_Click(object sender, EventArgs e) {
     OpenChildForm(PanelMainContent, new WorkTasksForm(this));
   }
+
+  private void PanelUserData_Paint(object sender, PaintEventArgs e) {
+
+  }
 }
