@@ -13,10 +13,10 @@ public static class Extensions {
       string message, NotificationType type = NotificationType.Info, string? title = null
     ) {
       var actualTitle = title ?? type switch {
-        NotificationType.Info => "Informacija",
-        NotificationType.Warning => "Upozorenje",
-        NotificationType.Error => "Greška",
-        _ => "Notifikacija"
+        NotificationType.Info => "Informacija!",
+        NotificationType.Warning => "Upozorenje!",
+        NotificationType.Error => "Greška!",
+        _ => "Notifikacija!"
       };
 
       var trayIcon = new NotifyIcon() {
@@ -25,7 +25,7 @@ public static class Extensions {
         Text = actualTitle
       };
 
-      trayIcon.ShowBalloonTip(3000, actualTitle, message, type switch {
+      trayIcon.ShowBalloonTip(500, actualTitle, message, type switch {
         NotificationType.Info => ToolTipIcon.Info,
         NotificationType.Warning => ToolTipIcon.Warning,
         NotificationType.Error => ToolTipIcon.Error,

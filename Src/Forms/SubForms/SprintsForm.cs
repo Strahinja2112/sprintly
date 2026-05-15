@@ -9,16 +9,8 @@ using System.Data;
 namespace Sprintra.Forms;
 
 public partial class SprintsForm : BaseForm {
-  private bool isExpanded = false;
-
-  private readonly int expandedPanelWidth = 0;
   private int selectedSprintId = 0;
-
-  private readonly BaseForm parent;
   private readonly SprintsService sprintsService;
-
-  private const string searchPlaceholder = "Pretraga sprintova...";
-
 
   public SprintsForm(BaseForm parent) {
     InitializeComponent();

@@ -8,11 +8,7 @@ using System.Data;
 namespace Sprintra.Forms;
 
 public partial class EmployeesForm : BaseForm {
-  private bool isExpanded = false;
-  private readonly int expandedPanelWidth = 0;
-  private readonly BaseForm parent;
   private int selectedEmployeeId = 0;
-  private string searchPlaceholder = "Pretraga zaposlenih...";
 
   public EmployeesForm(BaseForm parent) {
     InitializeComponent();

@@ -6,11 +6,7 @@ using System.Data;
 namespace Sprintra.Forms;
 
 public partial class ProjectsForm : BaseForm {
-  private bool isExpanded = false;
-  private readonly int expandedPanelWidth = 0;
-  private readonly BaseForm parent;
   private int selectedProjectId = 0;
-  private const string searchPlaceholder = "Pretraga projekata...";
 
   private bool dateChanged = false;
 
