@@ -130,4 +130,7 @@
   <data name="hawk-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hawk-logo1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="hawk-logo-good-color" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hawk-logo-good-color.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -27,17 +27,17 @@
       bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
       bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
       bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
-      TBoxUsername = new ReaLTaiizor.Controls.MaterialTextBoxEdit();
-      TBoxPassword = new ReaLTaiizor.Controls.MaterialTextBoxEdit();
       bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
       ChBoxRememberMe = new ReaLTaiizor.Controls.AloneCheckBox();
       ButtonSubmit = new ReaLTaiizor.Controls.AloneButton();
+      TBoxUsername = new ReaLTaiizor.Controls.BigTextBox();
+      TBoxPassword = new ReaLTaiizor.Controls.BigTextBox();
       ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
       SuspendLayout();
       // 
       // pictureBox1
       // 
-      pictureBox1.Image = Properties.Resources.hawk_logo;
+      pictureBox1.Image = Properties.Resources.hawk_logo_good_color;
       pictureBox1.Location = new Point(76, 30);
       pictureBox1.Margin = new Padding(4, 3, 4, 3);
       pictureBox1.Name = "pictureBox1";
@@ -84,76 +84,13 @@
       bigLabel3.TabIndex = 4;
       bigLabel3.Text = "Korisničko Ime";
       // 
-      // TBoxUsername
-      // 
-      TBoxUsername.AnimateReadOnly = false;
-      TBoxUsername.AutoCompleteMode = AutoCompleteMode.None;
-      TBoxUsername.AutoCompleteSource = AutoCompleteSource.None;
-      TBoxUsername.BackgroundImageLayout = ImageLayout.None;
-      TBoxUsername.CharacterCasing = CharacterCasing.Normal;
-      TBoxUsername.Depth = 0;
-      TBoxUsername.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-      TBoxUsername.HideSelection = true;
-      TBoxUsername.LeadingIcon = null;
-      TBoxUsername.Location = new Point(28, 297);
-      TBoxUsername.MaxLength = 32767;
-      TBoxUsername.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
-      TBoxUsername.Name = "TBoxUsername";
-      TBoxUsername.PasswordChar = '\0';
-      TBoxUsername.PrefixSuffixText = null;
-      TBoxUsername.ReadOnly = false;
-      TBoxUsername.RightToLeft = RightToLeft.No;
-      TBoxUsername.SelectedText = "";
-      TBoxUsername.SelectionLength = 0;
-      TBoxUsername.SelectionStart = 0;
-      TBoxUsername.ShortcutsEnabled = true;
-      TBoxUsername.Size = new Size(280, 48);
-      TBoxUsername.TabIndex = 5;
-      TBoxUsername.TabStop = false;
-      TBoxUsername.TextAlign = HorizontalAlignment.Left;
-      TBoxUsername.TrailingIcon = null;
-      TBoxUsername.UseAccent = false;
-      TBoxUsername.UseSystemPasswordChar = false;
-      // 
-      // TBoxPassword
-      // 
-      TBoxPassword.AnimateReadOnly = false;
-      TBoxPassword.AutoCompleteMode = AutoCompleteMode.None;
-      TBoxPassword.AutoCompleteSource = AutoCompleteSource.None;
-      TBoxPassword.BackgroundImageLayout = ImageLayout.None;
-      TBoxPassword.CharacterCasing = CharacterCasing.Normal;
-      TBoxPassword.Depth = 0;
-      TBoxPassword.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-      TBoxPassword.HideSelection = true;
-      TBoxPassword.LeadingIcon = null;
-      TBoxPassword.Location = new Point(28, 383);
-      TBoxPassword.MaxLength = 32767;
-      TBoxPassword.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
-      TBoxPassword.Name = "TBoxPassword";
-      TBoxPassword.PasswordChar = '●';
-      TBoxPassword.PrefixSuffixText = null;
-      TBoxPassword.ReadOnly = false;
-      TBoxPassword.RightToLeft = RightToLeft.No;
-      TBoxPassword.SelectedText = "";
-      TBoxPassword.SelectionLength = 0;
-      TBoxPassword.SelectionStart = 0;
-      TBoxPassword.ShortcutsEnabled = true;
-      TBoxPassword.Size = new Size(280, 48);
-      TBoxPassword.TabIndex = 7;
-      TBoxPassword.TabStop = false;
-      TBoxPassword.TextAlign = HorizontalAlignment.Left;
-      TBoxPassword.TrailingIcon = null;
-      TBoxPassword.UseAccent = false;
-      TBoxPassword.UseSystemPasswordChar = true;
-      TBoxPassword.KeyUp += TBoxPassword_KeyUp;
-      // 
       // bigLabel4
       // 
       bigLabel4.AutoSize = true;
       bigLabel4.BackColor = Color.Transparent;
       bigLabel4.Font = new Font("Segoe UI", 11F);
       bigLabel4.ForeColor = Color.FromArgb(80, 80, 80);
-      bigLabel4.Location = new Point(28, 360);
+      bigLabel4.Location = new Point(28, 353);
       bigLabel4.Name = "bigLabel4";
       bigLabel4.Size = new Size(59, 20);
       bigLabel4.TabIndex = 6;
@@ -166,7 +103,7 @@
       ChBoxRememberMe.EnabledCalc = true;
       ChBoxRememberMe.Font = new Font("Segoe UI", 13F);
       ChBoxRememberMe.ForeColor = Color.FromArgb(124, 133, 142);
-      ChBoxRememberMe.Location = new Point(28, 443);
+      ChBoxRememberMe.Location = new Point(28, 426);
       ChBoxRememberMe.Name = "ChBoxRememberMe";
       ChBoxRememberMe.Size = new Size(97, 17);
       ChBoxRememberMe.TabIndex = 9;
@@ -176,26 +113,59 @@
       // 
       ButtonSubmit.BackColor = Color.Transparent;
       ButtonSubmit.EnabledCalc = true;
-      ButtonSubmit.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-      ButtonSubmit.ForeColor = Color.FromArgb(124, 133, 142);
-      ButtonSubmit.Location = new Point(28, 496);
+      ButtonSubmit.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+      ButtonSubmit.ForeColor = Color.DarkSlateGray;
+      ButtonSubmit.Location = new Point(28, 478);
       ButtonSubmit.Name = "ButtonSubmit";
       ButtonSubmit.Size = new Size(280, 51);
       ButtonSubmit.TabIndex = 10;
       ButtonSubmit.Text = "Prijava";
       ButtonSubmit.Click += ButtonSubmit_Click;
       // 
+      // TBoxUsername
+      // 
+      TBoxUsername.BackColor = Color.Transparent;
+      TBoxUsername.Font = new Font("Tahoma", 11F);
+      TBoxUsername.ForeColor = Color.DimGray;
+      TBoxUsername.Image = null;
+      TBoxUsername.Location = new Point(28, 297);
+      TBoxUsername.MaxLength = 32767;
+      TBoxUsername.Multiline = false;
+      TBoxUsername.Name = "TBoxUsername";
+      TBoxUsername.ReadOnly = false;
+      TBoxUsername.Size = new Size(280, 41);
+      TBoxUsername.TabIndex = 11;
+      TBoxUsername.TextAlignment = HorizontalAlignment.Left;
+      TBoxUsername.UseSystemPasswordChar = false;
+      // 
+      // TBoxPassword
+      // 
+      TBoxPassword.BackColor = Color.Transparent;
+      TBoxPassword.Font = new Font("Tahoma", 11F);
+      TBoxPassword.ForeColor = Color.DimGray;
+      TBoxPassword.Image = null;
+      TBoxPassword.Location = new Point(28, 376);
+      TBoxPassword.MaxLength = 32767;
+      TBoxPassword.Multiline = false;
+      TBoxPassword.Name = "TBoxPassword";
+      TBoxPassword.ReadOnly = false;
+      TBoxPassword.Size = new Size(280, 41);
+      TBoxPassword.TabIndex = 12;
+      TBoxPassword.TextAlignment = HorizontalAlignment.Left;
+      TBoxPassword.UseSystemPasswordChar = true;
+      TBoxPassword.KeyUp += TBoxPassword_KeyUp;
+      // 
       // LoginForm
       // 
       AutoScaleDimensions = new SizeF(7F, 15F);
       AutoScaleMode = AutoScaleMode.Font;
       BackColor = Color.White;
-      ClientSize = new Size(336, 569);
+      ClientSize = new Size(336, 551);
+      Controls.Add(TBoxPassword);
+      Controls.Add(TBoxUsername);
       Controls.Add(ButtonSubmit);
       Controls.Add(ChBoxRememberMe);
-      Controls.Add(TBoxPassword);
       Controls.Add(bigLabel4);
-      Controls.Add(TBoxUsername);
       Controls.Add(bigLabel3);
       Controls.Add(bigLabel2);
       Controls.Add(bigLabel1);
@@ -217,10 +187,10 @@
     private ReaLTaiizor.Controls.BigLabel bigLabel1;
     private ReaLTaiizor.Controls.BigLabel bigLabel2;
     private ReaLTaiizor.Controls.BigLabel bigLabel3;
-    private ReaLTaiizor.Controls.MaterialTextBoxEdit TBoxUsername;
-    private ReaLTaiizor.Controls.MaterialTextBoxEdit TBoxPassword;
     private ReaLTaiizor.Controls.BigLabel bigLabel4;
     private ReaLTaiizor.Controls.AloneCheckBox ChBoxRememberMe;
     private ReaLTaiizor.Controls.AloneButton ButtonSubmit;
+    private ReaLTaiizor.Controls.BigTextBox TBoxUsername;
+    private ReaLTaiizor.Controls.BigTextBox TBoxPassword;
   }
 }

@@ -27,7 +27,7 @@ public partial class LoginForm : Form {
 
       if (!IsLoginSuccessful) {
         MessageBox.Show("Neispravni podaci.", "Pristup odbijen", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        TBoxPassword.Clear();
+        TBoxPassword.Text = "";
         TBoxPassword.Focus();
 
         return;
