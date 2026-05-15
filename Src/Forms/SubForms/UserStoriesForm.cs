@@ -7,23 +7,14 @@ using System.Data;
 namespace Sprintra.Forms;
 
 public partial class UserStoriesForm : BaseForm {
-  private bool isExpanded = false;
-
-  private readonly int expandedPanelWidth = 0;
   private int selectedStoryId = 0;
 
-  private readonly BaseForm parent;
   private readonly UserStoriesService userStoriesService;
-  private readonly SprintsService sprintsService;
-
-  private const string searchPlaceholder = "Pretraga korisničkih priča...";
 
   public UserStoriesForm(BaseForm parent) {
     InitializeComponent();
 
     userStoriesService = new UserStoriesService();
-    sprintsService = new SprintsService();
-
     expandedPanelWidth = PanelEdit.Width;
     PanelEdit.Hide();
     this.parent = parent;
@@ -46,23 +37,9 @@ public partial class UserStoriesForm : BaseForm {
   }
 
   private async void ComboBoxProjects_SelectedIndexChanged(object sender, EventArgs e) {
-    if (ComboBoxProjects.SelectedValue is int projectId) {
-      await LoadSprintsToFilters(projectId);
+    if (ComboBoxProjects.SelectedValue is int) {
       await LoadUserStoriesToDataGrid();
     }
-  }
-
-  private async Task LoadSprintsToFilters(int projectId) {
-    using var db = new AppDbContext();
-    var sprints = await sprintsService.GetSprintsForProject(projectId);
-
-    sprints.Insert(0, new Sprint { Id = 0, Name = "-- Bez sprinta --" });
-
-    ComboBoxSprints.DataSource = sprints;
-    ComboBoxSprintsForAdding.DataSource = sprints.ToList();
-    ComboBoxSprints.DisplayMember = ComboBoxSprintsForAdding.DisplayMember = "Name";
-    ComboBoxSprints.ValueMember = ComboBoxSprintsForAdding.ValueMember = "Id";
-    ComboBoxSprints.SelectedIndex = ComboBoxSprints.SelectedIndex = 0;
   }
 
   private async Task LoadUserStoriesToDataGrid(string term = "") {
@@ -77,7 +54,14 @@ public partial class UserStoriesForm : BaseForm {
       Prioritet = us.Priority,
     }).ToList();
 
-    if (DGVSprints.Columns["Id"] != null) DGVSprints.Columns["Id"].Visible = false;
+    DGVSprints.Columns["Id"]?.Visible = false;
+
+    var lastColumn = DGVSprints.Columns["Prioritet"];
+    if (lastColumn != null) {
+      lastColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+      lastColumn.Width = 50;
+      lastColumn.Resizable = DataGridViewTriState.False;
+    }
   }
 
   private void ButonAdd_Click(object sender, EventArgs e) {
@@ -117,6 +101,7 @@ public partial class UserStoriesForm : BaseForm {
       MessageBox.Show($"Došlo je do greške: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
   }
+
   private async void DGVSprints_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGVSprints.Rows[e.RowIndex].Cells["Id"].Value != null) {
       selectedStoryId = Convert.ToInt32(DGVSprints.Rows[e.RowIndex].Cells["Id"].Value);
@@ -140,7 +125,6 @@ public partial class UserStoriesForm : BaseForm {
     TBoxName.Text = "";
     TBoxDescription.Text = "";
     NumericPriority.Value = 1;
-    ComboBoxSprints.SelectedIndex = 0;
     bigLabel2.Text = "Nova korisnička priča";
   }
 
@@ -160,31 +144,5 @@ public partial class UserStoriesForm : BaseForm {
       return;
     }
     await LoadUserStoriesToDataGrid(term);
-  }
-
-  private async void ComboBoxSprints_SelectedIndexChanged(object sender, EventArgs e) {
-    if (ComboBoxSprints.SelectedValue is not int sprintId) return;
-    if (ComboBoxProjects.SelectedValue is not int projectId) return;
-
-    if (sprintId == 0) {
-      var a = 1;
-    }
-
-    var stories = await userStoriesService.GetByProjectAsync(
-      projectId, TBoxName.Text, sprintId > 0 ? sprintId : null
-    );
-
-    DGVSprints.DataSource = stories.Select(us => new {
-      us.Id,
-      Naslov = us.Title,
-      Opis = us.Description,
-      Prioritet = us.Priority,
-    }).ToList();
-
-    DGVSprints.Columns["Id"]?.Visible = false;
-  }
-
-  private void ButtonAddToSprint_Click(object sender, EventArgs e) {
-
   }
 }

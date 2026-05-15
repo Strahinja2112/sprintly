@@ -1,6 +1,12 @@
 ﻿namespace Sprintra.Src.Forms;
 
 public class BaseForm : Form {
+  protected bool isExpanded = false;
+  protected int expandedPanelWidth = 0;
+  protected BaseForm? parent;
+  protected string searchPlaceholder = "Pretraga...";
+
+
   public BaseForm() {
     //Icon = SystemIcons.GetStockIcon(StockIconId.Link);
   }

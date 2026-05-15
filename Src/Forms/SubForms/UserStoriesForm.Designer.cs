@@ -25,34 +25,30 @@ partial class UserStoriesForm {
   /// </summary>
   private void InitializeComponent() {
     components = new System.ComponentModel.Container();
-    DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
     bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     DGVSprints = new ReaLTaiizor.Controls.PoisonDataGridView();
     ButtonDelete = new ReaLTaiizor.Controls.FoxButton();
     ButonAdd = new ReaLTaiizor.Controls.FoxButton();
-    PanelEdit = new Panel();
-    ComboBoxSprintsForAdding = new ComboBox();
-    NumericPriority = new ReaLTaiizor.Controls.DungeonNumeric();
-    TBoxDescription = new ReaLTaiizor.Controls.BigTextBox();
-    dungeonLabel5 = new ReaLTaiizor.Controls.DungeonLabel();
-    dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
-    ButtonSave = new ReaLTaiizor.Controls.FoxButton();
-    TBoxName = new ReaLTaiizor.Controls.BigTextBox();
-    dungeonLabel3 = new ReaLTaiizor.Controls.DungeonLabel();
-    bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
-    dungeonLabel7 = new ReaLTaiizor.Controls.DungeonLabel();
     dungeonLabel4 = new ReaLTaiizor.Controls.DungeonLabel();
     ComboBoxProjects = new ComboBox();
     TBoxSearch = new ReaLTaiizor.Controls.BigTextBox();
     StyleManager1 = new ReaLTaiizor.Manager.PoisonStyleManager(components);
-    ComboBoxSprints = new ComboBox();
-    dungeonLabel6 = new ReaLTaiizor.Controls.DungeonLabel();
+    dungeonLabel7 = new ReaLTaiizor.Controls.DungeonLabel();
+    bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
+    dungeonLabel3 = new ReaLTaiizor.Controls.DungeonLabel();
+    TBoxName = new ReaLTaiizor.Controls.BigTextBox();
+    ButtonSave = new ReaLTaiizor.Controls.FoxButton();
+    dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
+    TBoxDescription = new ReaLTaiizor.Controls.BigTextBox();
+    NumericPriority = new ReaLTaiizor.Controls.DungeonNumeric();
+    PanelEdit = new Panel();
     ((System.ComponentModel.ISupportInitialize)DGVSprints).BeginInit();
-    PanelEdit.SuspendLayout();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).BeginInit();
+    PanelEdit.SuspendLayout();
     SuspendLayout();
     // 
     // bigLabel1
@@ -86,37 +82,37 @@ partial class UserStoriesForm {
     DGVSprints.BorderStyle = BorderStyle.None;
     DGVSprints.CellBorderStyle = DataGridViewCellBorderStyle.None;
     DGVSprints.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle4.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle4.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle4.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-    DGVSprints.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+    dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+    DGVSprints.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
     DGVSprints.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-    dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle5.BackColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle5.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle5.ForeColor = Color.FromArgb(136, 136, 136);
-    dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-    DGVSprints.DefaultCellStyle = dataGridViewCellStyle5;
+    dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
+    dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+    DGVSprints.DefaultCellStyle = dataGridViewCellStyle2;
     DGVSprints.EnableHeadersVisualStyles = false;
     DGVSprints.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
     DGVSprints.GridColor = Color.FromArgb(255, 255, 255);
     DGVSprints.Location = new Point(17, 219);
     DGVSprints.Name = "DGVSprints";
     DGVSprints.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle6.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle6.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle6.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-    DGVSprints.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+    dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+    DGVSprints.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
     DGVSprints.RowHeadersVisible = false;
     DGVSprints.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGVSprints.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -165,170 +161,6 @@ partial class UserStoriesForm {
     ButonAdd.Text = "Dodaj";
     ButonAdd.Click += ButonAdd_Click;
     // 
-    // PanelEdit
-    // 
-    PanelEdit.BackColor = SystemColors.Window;
-    PanelEdit.Controls.Add(ComboBoxSprintsForAdding);
-    PanelEdit.Controls.Add(NumericPriority);
-    PanelEdit.Controls.Add(TBoxDescription);
-    PanelEdit.Controls.Add(dungeonLabel5);
-    PanelEdit.Controls.Add(dungeonLabel2);
-    PanelEdit.Controls.Add(ButtonSave);
-    PanelEdit.Controls.Add(TBoxName);
-    PanelEdit.Controls.Add(dungeonLabel3);
-    PanelEdit.Controls.Add(bigLabel2);
-    PanelEdit.Controls.Add(dungeonLabel7);
-    PanelEdit.Dock = DockStyle.Right;
-    PanelEdit.Location = new Point(601, 0);
-    PanelEdit.Name = "PanelEdit";
-    PanelEdit.Size = new Size(383, 471);
-    PanelEdit.TabIndex = 20;
-    // 
-    // ComboBoxSprintsForAdding
-    // 
-    ComboBoxSprintsForAdding.DropDownStyle = ComboBoxStyle.DropDownList;
-    ComboBoxSprintsForAdding.FormattingEnabled = true;
-    ComboBoxSprintsForAdding.IntegralHeight = false;
-    ComboBoxSprintsForAdding.ItemHeight = 15;
-    ComboBoxSprintsForAdding.Location = new Point(14, 388);
-    ComboBoxSprintsForAdding.Name = "ComboBoxSprintsForAdding";
-    ComboBoxSprintsForAdding.Size = new Size(173, 23);
-    ComboBoxSprintsForAdding.TabIndex = 33;
-    // 
-    // NumericPriority
-    // 
-    NumericPriority.BackColor = Color.Transparent;
-    NumericPriority.BackColorA = Color.FromArgb(246, 246, 246);
-    NumericPriority.BackColorB = Color.FromArgb(254, 254, 254);
-    NumericPriority.BorderColor = Color.FromArgb(180, 180, 180);
-    NumericPriority.ButtonForeColorA = Color.FromArgb(75, 75, 75);
-    NumericPriority.ButtonForeColorB = Color.FromArgb(75, 75, 75);
-    NumericPriority.Font = new Font("Tahoma", 11F);
-    NumericPriority.ForeColor = Color.FromArgb(76, 76, 76);
-    NumericPriority.Location = new Point(194, 386);
-    NumericPriority.Maximum = 100L;
-    NumericPriority.Minimum = 1L;
-    NumericPriority.MinimumSize = new Size(93, 28);
-    NumericPriority.Name = "NumericPriority";
-    NumericPriority.Size = new Size(175, 28);
-    NumericPriority.TabIndex = 37;
-    NumericPriority.Text = "dungeonNumeric1";
-    NumericPriority.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Near;
-    NumericPriority.Value = 1L;
-    // 
-    // TBoxDescription
-    // 
-    TBoxDescription.BackColor = Color.Transparent;
-    TBoxDescription.Font = new Font("Tahoma", 11F);
-    TBoxDescription.ForeColor = Color.DimGray;
-    TBoxDescription.Image = null;
-    TBoxDescription.Location = new Point(14, 152);
-    TBoxDescription.MaxLength = 32767;
-    TBoxDescription.Multiline = true;
-    TBoxDescription.Name = "TBoxDescription";
-    TBoxDescription.ReadOnly = false;
-    TBoxDescription.Size = new Size(353, 193);
-    TBoxDescription.TabIndex = 35;
-    TBoxDescription.TextAlignment = HorizontalAlignment.Left;
-    TBoxDescription.UseSystemPasswordChar = false;
-    // 
-    // dungeonLabel5
-    // 
-    dungeonLabel5.AutoSize = true;
-    dungeonLabel5.BackColor = Color.Transparent;
-    dungeonLabel5.Font = new Font("Segoe UI", 13F);
-    dungeonLabel5.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel5.Location = new Point(9, 358);
-    dungeonLabel5.Name = "dungeonLabel5";
-    dungeonLabel5.Size = new Size(169, 25);
-    dungeonLabel5.TabIndex = 32;
-    dungeonLabel5.Text = "Sprint za dodavanje";
-    // 
-    // dungeonLabel2
-    // 
-    dungeonLabel2.AutoSize = true;
-    dungeonLabel2.BackColor = Color.Transparent;
-    dungeonLabel2.Font = new Font("Segoe UI", 13F);
-    dungeonLabel2.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel2.Location = new Point(14, 125);
-    dungeonLabel2.Name = "dungeonLabel2";
-    dungeonLabel2.Size = new Size(175, 25);
-    dungeonLabel2.TabIndex = 34;
-    dungeonLabel2.Text = "Opis Korisničke Priče";
-    // 
-    // ButtonSave
-    // 
-    ButtonSave.BackColor = Color.Transparent;
-    ButtonSave.BaseColor = Color.DarkSlateGray;
-    ButtonSave.BorderColor = Color.DarkSlateGray;
-    ButtonSave.DisabledBaseColor = Color.FromArgb(249, 249, 249);
-    ButtonSave.DisabledBorderColor = Color.FromArgb(209, 209, 209);
-    ButtonSave.DisabledTextColor = Color.FromArgb(166, 178, 190);
-    ButtonSave.DownColor = Color.DarkSlateGray;
-    ButtonSave.EnabledCalc = true;
-    ButtonSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-    ButtonSave.ForeColor = Color.White;
-    ButtonSave.Location = new Point(14, 419);
-    ButtonSave.Name = "ButtonSave";
-    ButtonSave.OverColor = Color.DimGray;
-    ButtonSave.Size = new Size(353, 40);
-    ButtonSave.TabIndex = 7;
-    ButtonSave.Text = "Sačuvaj";
-    ButtonSave.Click += ButtonSave_Click;
-    // 
-    // TBoxName
-    // 
-    TBoxName.BackColor = Color.Transparent;
-    TBoxName.Font = new Font("Tahoma", 11F);
-    TBoxName.ForeColor = Color.DimGray;
-    TBoxName.Image = null;
-    TBoxName.Location = new Point(14, 81);
-    TBoxName.MaxLength = 32767;
-    TBoxName.Multiline = false;
-    TBoxName.Name = "TBoxName";
-    TBoxName.ReadOnly = false;
-    TBoxName.Size = new Size(353, 41);
-    TBoxName.TabIndex = 8;
-    TBoxName.TextAlignment = HorizontalAlignment.Left;
-    TBoxName.UseSystemPasswordChar = false;
-    // 
-    // dungeonLabel3
-    // 
-    dungeonLabel3.AutoSize = true;
-    dungeonLabel3.BackColor = Color.Transparent;
-    dungeonLabel3.Font = new Font("Segoe UI", 13F);
-    dungeonLabel3.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel3.Location = new Point(14, 54);
-    dungeonLabel3.Name = "dungeonLabel3";
-    dungeonLabel3.Size = new Size(168, 25);
-    dungeonLabel3.TabIndex = 5;
-    dungeonLabel3.Text = "Ime Korisničke Priče";
-    // 
-    // bigLabel2
-    // 
-    bigLabel2.BackColor = Color.Transparent;
-    bigLabel2.Dock = DockStyle.Top;
-    bigLabel2.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-    bigLabel2.ForeColor = Color.DarkSlateGray;
-    bigLabel2.Location = new Point(0, 0);
-    bigLabel2.Name = "bigLabel2";
-    bigLabel2.Size = new Size(383, 55);
-    bigLabel2.TabIndex = 1;
-    bigLabel2.Text = "Unos novog sprinta";
-    bigLabel2.TextAlign = ContentAlignment.MiddleCenter;
-    // 
-    // dungeonLabel7
-    // 
-    dungeonLabel7.AutoSize = true;
-    dungeonLabel7.BackColor = Color.Transparent;
-    dungeonLabel7.Font = new Font("Segoe UI", 13F);
-    dungeonLabel7.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel7.Location = new Point(194, 358);
-    dungeonLabel7.Name = "dungeonLabel7";
-    dungeonLabel7.Size = new Size(126, 25);
-    dungeonLabel7.TabIndex = 23;
-    dungeonLabel7.Text = "Prioritet (1-10)";
-    // 
     // dungeonLabel4
     // 
     dungeonLabel4.AutoSize = true;
@@ -349,7 +181,7 @@ partial class UserStoriesForm {
     ComboBoxProjects.ItemHeight = 15;
     ComboBoxProjects.Location = new Point(17, 143);
     ComboBoxProjects.Name = "ComboBoxProjects";
-    ComboBoxProjects.Size = new Size(257, 23);
+    ComboBoxProjects.Size = new Size(377, 23);
     ComboBoxProjects.TabIndex = 28;
     ComboBoxProjects.SelectedIndexChanged += ComboBoxProjects_SelectedIndexChanged;
     // 
@@ -375,37 +207,150 @@ partial class UserStoriesForm {
     StyleManager1.Owner = this;
     StyleManager1.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Silver;
     // 
-    // ComboBoxSprints
+    // dungeonLabel7
     // 
-    ComboBoxSprints.DropDownStyle = ComboBoxStyle.DropDownList;
-    ComboBoxSprints.FormattingEnabled = true;
-    ComboBoxSprints.IntegralHeight = false;
-    ComboBoxSprints.ItemHeight = 15;
-    ComboBoxSprints.Location = new Point(278, 143);
-    ComboBoxSprints.Name = "ComboBoxSprints";
-    ComboBoxSprints.Size = new Size(308, 23);
-    ComboBoxSprints.TabIndex = 31;
-    ComboBoxSprints.SelectedIndexChanged += ComboBoxSprints_SelectedIndexChanged;
+    dungeonLabel7.AutoSize = true;
+    dungeonLabel7.BackColor = Color.Transparent;
+    dungeonLabel7.Font = new Font("Segoe UI", 13F);
+    dungeonLabel7.ForeColor = Color.FromArgb(76, 76, 77);
+    dungeonLabel7.Location = new Point(14, 352);
+    dungeonLabel7.Name = "dungeonLabel7";
+    dungeonLabel7.Size = new Size(126, 25);
+    dungeonLabel7.TabIndex = 23;
+    dungeonLabel7.Text = "Prioritet (1-10)";
     // 
-    // dungeonLabel6
+    // bigLabel2
     // 
-    dungeonLabel6.AutoSize = true;
-    dungeonLabel6.BackColor = Color.Transparent;
-    dungeonLabel6.Font = new Font("Segoe UI", 13F);
-    dungeonLabel6.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel6.Location = new Point(273, 113);
-    dungeonLabel6.Name = "dungeonLabel6";
-    dungeonLabel6.Size = new Size(116, 25);
-    dungeonLabel6.TabIndex = 30;
-    dungeonLabel6.Text = "Izbor sprinta:";
+    bigLabel2.BackColor = Color.Transparent;
+    bigLabel2.Dock = DockStyle.Top;
+    bigLabel2.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+    bigLabel2.ForeColor = Color.DarkSlateGray;
+    bigLabel2.Location = new Point(0, 0);
+    bigLabel2.Name = "bigLabel2";
+    bigLabel2.Size = new Size(383, 55);
+    bigLabel2.TabIndex = 1;
+    bigLabel2.Text = "Nova korisnička priča";
+    bigLabel2.TextAlign = ContentAlignment.MiddleCenter;
+    // 
+    // dungeonLabel3
+    // 
+    dungeonLabel3.AutoSize = true;
+    dungeonLabel3.BackColor = Color.Transparent;
+    dungeonLabel3.Font = new Font("Segoe UI", 13F);
+    dungeonLabel3.ForeColor = Color.FromArgb(76, 76, 77);
+    dungeonLabel3.Location = new Point(14, 54);
+    dungeonLabel3.Name = "dungeonLabel3";
+    dungeonLabel3.Size = new Size(168, 25);
+    dungeonLabel3.TabIndex = 5;
+    dungeonLabel3.Text = "Ime Korisničke Priče";
+    // 
+    // TBoxName
+    // 
+    TBoxName.BackColor = Color.Transparent;
+    TBoxName.Font = new Font("Tahoma", 11F);
+    TBoxName.ForeColor = Color.DimGray;
+    TBoxName.Image = null;
+    TBoxName.Location = new Point(14, 81);
+    TBoxName.MaxLength = 32767;
+    TBoxName.Multiline = false;
+    TBoxName.Name = "TBoxName";
+    TBoxName.ReadOnly = false;
+    TBoxName.Size = new Size(353, 41);
+    TBoxName.TabIndex = 8;
+    TBoxName.TextAlignment = HorizontalAlignment.Left;
+    TBoxName.UseSystemPasswordChar = false;
+    // 
+    // ButtonSave
+    // 
+    ButtonSave.BackColor = Color.Transparent;
+    ButtonSave.BaseColor = Color.DarkSlateGray;
+    ButtonSave.BorderColor = Color.DarkSlateGray;
+    ButtonSave.DisabledBaseColor = Color.FromArgb(249, 249, 249);
+    ButtonSave.DisabledBorderColor = Color.FromArgb(209, 209, 209);
+    ButtonSave.DisabledTextColor = Color.FromArgb(166, 178, 190);
+    ButtonSave.DownColor = Color.DarkSlateGray;
+    ButtonSave.EnabledCalc = true;
+    ButtonSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+    ButtonSave.ForeColor = Color.White;
+    ButtonSave.Location = new Point(14, 419);
+    ButtonSave.Name = "ButtonSave";
+    ButtonSave.OverColor = Color.DimGray;
+    ButtonSave.Size = new Size(353, 40);
+    ButtonSave.TabIndex = 7;
+    ButtonSave.Text = "Sačuvaj";
+    ButtonSave.Click += ButtonSave_Click;
+    // 
+    // dungeonLabel2
+    // 
+    dungeonLabel2.AutoSize = true;
+    dungeonLabel2.BackColor = Color.Transparent;
+    dungeonLabel2.Font = new Font("Segoe UI", 13F);
+    dungeonLabel2.ForeColor = Color.FromArgb(76, 76, 77);
+    dungeonLabel2.Location = new Point(14, 125);
+    dungeonLabel2.Name = "dungeonLabel2";
+    dungeonLabel2.Size = new Size(175, 25);
+    dungeonLabel2.TabIndex = 34;
+    dungeonLabel2.Text = "Opis Korisničke Priče";
+    // 
+    // TBoxDescription
+    // 
+    TBoxDescription.BackColor = Color.Transparent;
+    TBoxDescription.Font = new Font("Tahoma", 11F);
+    TBoxDescription.ForeColor = Color.DimGray;
+    TBoxDescription.Image = null;
+    TBoxDescription.Location = new Point(14, 152);
+    TBoxDescription.MaxLength = 32767;
+    TBoxDescription.Multiline = true;
+    TBoxDescription.Name = "TBoxDescription";
+    TBoxDescription.ReadOnly = false;
+    TBoxDescription.Size = new Size(353, 193);
+    TBoxDescription.TabIndex = 35;
+    TBoxDescription.TextAlignment = HorizontalAlignment.Left;
+    TBoxDescription.UseSystemPasswordChar = false;
+    // 
+    // NumericPriority
+    // 
+    NumericPriority.BackColor = Color.Transparent;
+    NumericPriority.BackColorA = Color.FromArgb(246, 246, 246);
+    NumericPriority.BackColorB = Color.FromArgb(254, 254, 254);
+    NumericPriority.BorderColor = Color.FromArgb(180, 180, 180);
+    NumericPriority.ButtonForeColorA = Color.FromArgb(75, 75, 75);
+    NumericPriority.ButtonForeColorB = Color.FromArgb(75, 75, 75);
+    NumericPriority.Font = new Font("Tahoma", 11F);
+    NumericPriority.ForeColor = Color.FromArgb(76, 76, 76);
+    NumericPriority.Location = new Point(14, 380);
+    NumericPriority.Maximum = 100L;
+    NumericPriority.Minimum = 1L;
+    NumericPriority.MinimumSize = new Size(93, 28);
+    NumericPriority.Name = "NumericPriority";
+    NumericPriority.Size = new Size(175, 28);
+    NumericPriority.TabIndex = 37;
+    NumericPriority.Text = "dungeonNumeric1";
+    NumericPriority.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Near;
+    NumericPriority.Value = 1L;
+    // 
+    // PanelEdit
+    // 
+    PanelEdit.BackColor = SystemColors.Window;
+    PanelEdit.Controls.Add(NumericPriority);
+    PanelEdit.Controls.Add(TBoxDescription);
+    PanelEdit.Controls.Add(dungeonLabel2);
+    PanelEdit.Controls.Add(ButtonSave);
+    PanelEdit.Controls.Add(TBoxName);
+    PanelEdit.Controls.Add(dungeonLabel3);
+    PanelEdit.Controls.Add(bigLabel2);
+    PanelEdit.Controls.Add(dungeonLabel7);
+    PanelEdit.Dock = DockStyle.Right;
+    PanelEdit.Location = new Point(601, 0);
+    PanelEdit.Name = "PanelEdit";
+    PanelEdit.Size = new Size(383, 471);
+    PanelEdit.TabIndex = 20;
     // 
     // UserStoriesForm
     // 
     AutoScaleDimensions = new SizeF(7F, 15F);
     AutoScaleMode = AutoScaleMode.Font;
     ClientSize = new Size(984, 471);
-    Controls.Add(ComboBoxSprints);
-    Controls.Add(dungeonLabel6);
     Controls.Add(TBoxSearch);
     Controls.Add(ComboBoxProjects);
     Controls.Add(dungeonLabel4);
@@ -420,9 +365,9 @@ partial class UserStoriesForm {
     Text = "DashboardForm";
     Load += UserStoriesForm_Load;
     ((System.ComponentModel.ISupportInitialize)DGVSprints).EndInit();
+    ((System.ComponentModel.ISupportInitialize)StyleManager1).EndInit();
     PanelEdit.ResumeLayout(false);
     PanelEdit.PerformLayout();
-    ((System.ComponentModel.ISupportInitialize)StyleManager1).EndInit();
     ResumeLayout(false);
     PerformLayout();
   }
@@ -434,7 +379,12 @@ partial class UserStoriesForm {
   private ReaLTaiizor.Controls.PoisonDataGridView DGVSprints;
   private ReaLTaiizor.Controls.FoxButton ButtonDelete;
   private ReaLTaiizor.Controls.FoxButton ButonAdd;
+  private ReaLTaiizor.Controls.DungeonLabel dungeonLabel4;
+  private ComboBox ComboBoxProjects;
+  private ReaLTaiizor.Controls.BigTextBox TBoxSearch;
+  private ReaLTaiizor.Manager.PoisonStyleManager StyleManager1;
   private Panel PanelEdit;
+  private ReaLTaiizor.Controls.DungeonNumeric NumericPriority;
   private ReaLTaiizor.Controls.BigTextBox TBoxDescription;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
   private ReaLTaiizor.Controls.FoxButton ButtonSave;
@@ -442,13 +392,4 @@ partial class UserStoriesForm {
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel3;
   private ReaLTaiizor.Controls.BigLabel bigLabel2;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel7;
-  private ReaLTaiizor.Controls.DungeonLabel dungeonLabel4;
-  private ComboBox ComboBoxProjects;
-  private ReaLTaiizor.Controls.BigTextBox TBoxSearch;
-  private ReaLTaiizor.Controls.DungeonNumeric NumericPriority;
-  private ReaLTaiizor.Manager.PoisonStyleManager StyleManager1;
-  private ComboBox ComboBoxSprints;
-  private ReaLTaiizor.Controls.DungeonLabel dungeonLabel6;
-  private ComboBox ComboBoxSprintsForAdding;
-  private ReaLTaiizor.Controls.DungeonLabel dungeonLabel5;
 }

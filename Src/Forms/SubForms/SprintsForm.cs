@@ -66,9 +66,9 @@ public partial class SprintsForm : BaseForm {
     DGVSprints.DataSource = sprints.Select(s => new {
       s.Id,
       Naziv = s.Name,
-      Status = s.Status.ToString(),
       Početak = s.StartDate,
-      Kraj = s.EndDate
+      Kraj = s.EndDate,
+      Status = s.Status.ToString()
     }).ToList();
 
     DGVSprints.Columns["Id"]?.Visible = false;
