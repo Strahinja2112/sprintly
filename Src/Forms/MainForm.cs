@@ -74,7 +74,7 @@ public partial class MainForm : BaseForm {
   }
 
   private void PanelWorkLog_Click(object sender, EventArgs e) {
-    OpenChildForm(PanelMainContent, new SprintsForm(this));
+    OpenChildForm(PanelMainContent, new WorkLogForm(this));
   }
 
   private void PanelUserStories_Click(object sender, EventArgs e) {
