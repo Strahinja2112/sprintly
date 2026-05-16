@@ -25,6 +25,9 @@ public partial class WorkTasksForm : BaseForm {
     if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
       DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
     }
+
+    var newTest = new TestForm();
+    OpenChildForm(RightSidePanel, newTest);
   }
 
   private void WorkTasksForm_Load(object sender, EventArgs e) {
@@ -59,7 +62,8 @@ public partial class WorkTasksForm : BaseForm {
     ComboBoxUserStories.DisplayMember = "Title";
     ComboBoxUserStories.ValueMember = "Id";
 
-    ComboBoxUserStories.SelectedIndex = userStories.Count > 0 ? 0 : -1;
+    // TODO: OVO BACA GRESKU POPRAVI TO NE BUDI GLUP
+    //ComboBoxUserStories.SelectedIndex = userStories.Count > 0 ? 0 : -1;
   }
 
   private async Task LoadSprintsToFilters(int projectId) {

@@ -40,9 +40,9 @@ public class BaseForm : Form {
       Helpers.ClearClickEvents(control);
 
       var type = control.GetType();
-      var readOnlyProp = type.GetProperty("Enabled");
-      if (readOnlyProp != null && readOnlyProp.CanWrite) {
-        readOnlyProp.SetValue(control, false);
+      var controlEnabledProp = type.GetProperty("Enabled");
+      if (controlEnabledProp != null && controlEnabledProp.CanWrite) {
+        controlEnabledProp.SetValue(control, false);
       }
 
       control.Click += (sender, e) => {
