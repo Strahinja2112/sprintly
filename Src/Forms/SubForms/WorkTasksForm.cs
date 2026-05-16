@@ -2,28 +2,29 @@
 using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
 using Sprintra.Src.Forms;
+using Sprintra.Src.Services;
 using Sprintra.Src.Services.Forms;
 using System.Data;
 
 namespace Sprintra.Forms;
 
 public partial class WorkTasksForm : BaseForm {
-  private int selectedTaskId = 0;
-
   private readonly WorkTasksService workTasksService;
   private readonly SprintsService sprintsService;
   private readonly UserStoriesService userStoriesService;
 
   public WorkTasksForm(BaseForm parent) {
     InitializeComponent();
+    this.parent = parent;
 
     workTasksService = new WorkTasksService();
     sprintsService = new SprintsService();
     userStoriesService = new UserStoriesService();
 
-    expandedPanelWidth = PanelEdit.Width;
-    PanelEdit.Hide();
-    this.parent = parent;
+    RightSidePanel = PanelRightContent;
+    if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
+      DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
+    }
   }
 
   private void WorkTasksForm_Load(object sender, EventArgs e) {
@@ -136,9 +137,9 @@ public partial class WorkTasksForm : BaseForm {
     }
 
     try {
-      WorkTask task = selectedTaskId == 0
+      WorkTask task = selectedDataGridViewItemId == 0
           ? new WorkTask()
-          : await workTasksService.GetByIdAsync(selectedTaskId) ?? new WorkTask();
+          : await workTasksService.GetByIdAsync(selectedDataGridViewItemId) ?? new WorkTask();
 
       task.Name = name;
       task.Description = desc;
@@ -170,7 +171,7 @@ public partial class WorkTasksForm : BaseForm {
   }
 
   private void ClearInputs() {
-    selectedTaskId = 0;
+    selectedDataGridViewItemId = 0;
     TBoxName.Text = "";
     TBoxDescription.Text = "";
     NumericHours.Value = 0;
@@ -180,7 +181,7 @@ public partial class WorkTasksForm : BaseForm {
   private void ExpandParent() {
     if (!isExpanded) {
       parent?.Width += expandedPanelWidth;
-      PanelEdit.Show();
+      PanelRightContent.Show();
       isExpanded = true;
     }
     parent?.CenterOnScreen();
@@ -197,8 +198,8 @@ public partial class WorkTasksForm : BaseForm {
 
   private async void DGV_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGV.Rows[e.RowIndex].Cells["Id"].Value != null) {
-      selectedTaskId = Convert.ToInt32(DGV.Rows[e.RowIndex].Cells["Id"].Value);
-      await LoadWorkTaskToInputs(selectedTaskId);
+      selectedDataGridViewItemId = Convert.ToInt32(DGV.Rows[e.RowIndex].Cells["Id"].Value);
+      await LoadWorkTaskToInputs(selectedDataGridViewItemId);
       ExpandParent();
     }
   }

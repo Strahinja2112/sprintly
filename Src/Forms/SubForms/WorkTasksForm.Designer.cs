@@ -25,15 +25,15 @@ partial class WorkTasksForm {
   /// </summary>
   private void InitializeComponent() {
     components = new System.ComponentModel.Container();
-    DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
     bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     DGV = new ReaLTaiizor.Controls.PoisonDataGridView();
     ButtonDelete = new ReaLTaiizor.Controls.FoxButton();
-    ButonAdd = new ReaLTaiizor.Controls.FoxButton();
-    PanelEdit = new Panel();
+    ButtonAdd = new ReaLTaiizor.Controls.FoxButton();
+    PanelRightContent = new Panel();
     ComboBoxUserStories = new ComboBox();
     NumericHours = new ReaLTaiizor.Controls.DungeonNumeric();
     dungeonLabel5 = new ReaLTaiizor.Controls.DungeonLabel();
@@ -51,7 +51,7 @@ partial class WorkTasksForm {
     ComboBoxSprints = new ComboBox();
     dungeonLabel6 = new ReaLTaiizor.Controls.DungeonLabel();
     ((System.ComponentModel.ISupportInitialize)DGV).BeginInit();
-    PanelEdit.SuspendLayout();
+    PanelRightContent.SuspendLayout();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).BeginInit();
     SuspendLayout();
     // 
@@ -86,37 +86,37 @@ partial class WorkTasksForm {
     DGV.BorderStyle = BorderStyle.None;
     DGV.CellBorderStyle = DataGridViewCellBorderStyle.None;
     DGV.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-    DGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+    dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle4.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle4.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle4.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+    DGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
     DGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-    dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
-    dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-    DGV.DefaultCellStyle = dataGridViewCellStyle2;
+    dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle5.BackColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle5.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle5.ForeColor = Color.FromArgb(136, 136, 136);
+    dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+    DGV.DefaultCellStyle = dataGridViewCellStyle5;
     DGV.EnableHeadersVisualStyles = false;
     DGV.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
     DGV.GridColor = Color.FromArgb(255, 255, 255);
     DGV.Location = new Point(17, 219);
     DGV.Name = "DGV";
     DGV.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-    DGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+    dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle6.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle6.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle6.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+    DGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
     DGV.RowHeadersVisible = false;
     DGV.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGV.ScrollBars = ScrollBars.None;
@@ -145,45 +145,45 @@ partial class WorkTasksForm {
     ButtonDelete.TabIndex = 18;
     ButtonDelete.Text = "Obriši";
     // 
-    // ButonAdd
+    // ButtonAdd
     // 
-    ButonAdd.BackColor = Color.Transparent;
-    ButonAdd.BaseColor = Color.DarkSlateGray;
-    ButonAdd.BorderColor = Color.DarkSlateGray;
-    ButonAdd.DisabledBaseColor = Color.FromArgb(255, 224, 192);
-    ButonAdd.DisabledBorderColor = Color.FromArgb(209, 209, 209);
-    ButonAdd.DisabledTextColor = Color.FromArgb(166, 178, 190);
-    ButonAdd.DownColor = Color.DarkSlateGray;
-    ButonAdd.EnabledCalc = true;
-    ButonAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-    ButonAdd.ForeColor = Color.White;
-    ButonAdd.Location = new Point(496, 172);
-    ButonAdd.Name = "ButonAdd";
-    ButonAdd.OverColor = Color.DimGray;
-    ButonAdd.RightToLeft = RightToLeft.Yes;
-    ButonAdd.Size = new Size(90, 41);
-    ButonAdd.TabIndex = 19;
-    ButonAdd.Text = "Dodaj";
-    ButonAdd.Click += ButonAdd_Click;
+    ButtonAdd.BackColor = Color.Transparent;
+    ButtonAdd.BaseColor = Color.DarkSlateGray;
+    ButtonAdd.BorderColor = Color.DarkSlateGray;
+    ButtonAdd.DisabledBaseColor = Color.FromArgb(255, 224, 192);
+    ButtonAdd.DisabledBorderColor = Color.FromArgb(209, 209, 209);
+    ButtonAdd.DisabledTextColor = Color.FromArgb(166, 178, 190);
+    ButtonAdd.DownColor = Color.DarkSlateGray;
+    ButtonAdd.EnabledCalc = true;
+    ButtonAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+    ButtonAdd.ForeColor = Color.White;
+    ButtonAdd.Location = new Point(496, 172);
+    ButtonAdd.Name = "ButtonAdd";
+    ButtonAdd.OverColor = Color.DimGray;
+    ButtonAdd.RightToLeft = RightToLeft.Yes;
+    ButtonAdd.Size = new Size(90, 41);
+    ButtonAdd.TabIndex = 19;
+    ButtonAdd.Text = "Dodaj";
+    ButtonAdd.Click += ButonAdd_Click;
     // 
-    // PanelEdit
+    // PanelRightContent
     // 
-    PanelEdit.BackColor = SystemColors.Window;
-    PanelEdit.Controls.Add(ComboBoxUserStories);
-    PanelEdit.Controls.Add(NumericHours);
-    PanelEdit.Controls.Add(dungeonLabel5);
-    PanelEdit.Controls.Add(TBoxDescription);
-    PanelEdit.Controls.Add(dungeonLabel2);
-    PanelEdit.Controls.Add(ButtonSave);
-    PanelEdit.Controls.Add(TBoxName);
-    PanelEdit.Controls.Add(dungeonLabel3);
-    PanelEdit.Controls.Add(bigLabel2);
-    PanelEdit.Controls.Add(dungeonLabel7);
-    PanelEdit.Dock = DockStyle.Right;
-    PanelEdit.Location = new Point(601, 0);
-    PanelEdit.Name = "PanelEdit";
-    PanelEdit.Size = new Size(383, 471);
-    PanelEdit.TabIndex = 20;
+    PanelRightContent.BackColor = SystemColors.Window;
+    PanelRightContent.Controls.Add(ComboBoxUserStories);
+    PanelRightContent.Controls.Add(NumericHours);
+    PanelRightContent.Controls.Add(dungeonLabel5);
+    PanelRightContent.Controls.Add(TBoxDescription);
+    PanelRightContent.Controls.Add(dungeonLabel2);
+    PanelRightContent.Controls.Add(ButtonSave);
+    PanelRightContent.Controls.Add(TBoxName);
+    PanelRightContent.Controls.Add(dungeonLabel3);
+    PanelRightContent.Controls.Add(bigLabel2);
+    PanelRightContent.Controls.Add(dungeonLabel7);
+    PanelRightContent.Dock = DockStyle.Right;
+    PanelRightContent.Location = new Point(601, 0);
+    PanelRightContent.Name = "PanelRightContent";
+    PanelRightContent.Size = new Size(383, 471);
+    PanelRightContent.TabIndex = 20;
     // 
     // ComboBoxUserStories
     // 
@@ -410,10 +410,10 @@ partial class WorkTasksForm {
     Controls.Add(TBoxSearch);
     Controls.Add(ComboBoxProjects);
     Controls.Add(dungeonLabel4);
-    Controls.Add(PanelEdit);
+    Controls.Add(PanelRightContent);
     Controls.Add(DGV);
     Controls.Add(ButtonDelete);
-    Controls.Add(ButonAdd);
+    Controls.Add(ButtonAdd);
     Controls.Add(bigLabel1);
     Controls.Add(dungeonLabel1);
     MaximizeBox = false;
@@ -421,8 +421,8 @@ partial class WorkTasksForm {
     Text = "DashboardForm";
     Load += WorkTasksForm_Load;
     ((System.ComponentModel.ISupportInitialize)DGV).EndInit();
-    PanelEdit.ResumeLayout(false);
-    PanelEdit.PerformLayout();
+    PanelRightContent.ResumeLayout(false);
+    PanelRightContent.PerformLayout();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).EndInit();
     ResumeLayout(false);
     PerformLayout();
@@ -434,8 +434,8 @@ partial class WorkTasksForm {
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
   private ReaLTaiizor.Controls.PoisonDataGridView DGV;
   private ReaLTaiizor.Controls.FoxButton ButtonDelete;
-  private ReaLTaiizor.Controls.FoxButton ButonAdd;
-  private Panel PanelEdit;
+  private ReaLTaiizor.Controls.FoxButton ButtonAdd;
+  private Panel PanelRightContent;
   private ReaLTaiizor.Controls.BigTextBox TBoxDescription;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
   private ReaLTaiizor.Controls.FoxButton ButtonSave;
