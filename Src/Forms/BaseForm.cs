@@ -46,12 +46,7 @@ public class BaseForm : Form {
       }
 
       control.Click += (sender, e) => {
-        MessageBox.Show(
-          "Nemate pravo pristupa ovoj akciji.",
-          "Zabranjen pristup",
-          MessageBoxButtons.OK,
-          MessageBoxIcon.Stop
-        );
+        Helpers.ShowToast("Nemate pravo pristupa ovoj akciji.", NotificationType.Error, "Zabranjen pristup!");
       };
     }
   }

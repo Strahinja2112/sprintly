@@ -19,6 +19,8 @@ public enum NotificationType {
 }
 
 public static class Helpers {
+  private static readonly List<NotifyIcon> activeIcons = [];
+
   public static long CalculateTimeBetween(
     DateTime startDate, DateTime? endDate, TimeUnit? unit = TimeUnit.Days
   ) {
@@ -53,8 +55,8 @@ public static class Helpers {
   }
 
   public static void ShowToast(
-      string message, NotificationType type = NotificationType.Info, string? title = null
-    ) {
+    string message, NotificationType type = NotificationType.Info, string? title = null
+  ) {
     var actualTitle = title ?? type switch {
       NotificationType.Info => "Informacija!",
       NotificationType.Warning => "Upozorenje!",
@@ -68,6 +70,8 @@ public static class Helpers {
       Text = actualTitle
     };
 
+    activeIcons.Add(trayIcon);
+
     trayIcon.ShowBalloonTip(500, actualTitle, message, type switch {
       NotificationType.Info => ToolTipIcon.Info,
       NotificationType.Warning => ToolTipIcon.Warning,
@@ -76,9 +80,11 @@ public static class Helpers {
     });
 
     trayIcon.BalloonTipClosed += (s, e) => {
+      activeIcons.Remove(trayIcon);
       trayIcon.Dispose();
     };
     trayIcon.BalloonTipClicked += (s, e) => {
+      activeIcons.Remove(trayIcon);
       trayIcon.Dispose();
     };
   }
