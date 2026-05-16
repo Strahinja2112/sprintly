@@ -7,6 +7,7 @@ public partial class LoginForm : Form {
 
   public LoginForm() {
     InitializeComponent();
+    TBoxUsername.Focus();
   }
 
   private void ButtonSubmit_Click(object sender, EventArgs e) {

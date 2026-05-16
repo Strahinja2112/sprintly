@@ -517,6 +517,7 @@ partial class EmployeesForm {
     TBoxSearch.MaxLength = 32767;
     TBoxSearch.Multiline = true;
     TBoxSearch.Name = "TBoxSearch";
+    TBoxSearch.PlaceholderText = "asd";
     TBoxSearch.ReadOnly = false;
     TBoxSearch.Size = new Size(377, 41);
     TBoxSearch.TabIndex = 9;
