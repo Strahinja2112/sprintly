@@ -213,16 +213,6 @@ public partial class EmployeesForm : BaseForm {
     }
   }
 
-  private void ExpandParent() {
-    if (!isExpanded) {
-      parent.Width += expandedPanelWidth;
-      PanelRightContent.Show();
-      isExpanded = true;
-    }
-
-    parent.CenterOnScreen();
-  }
-
   private void LoadEmployeeToInputs(int id) {
     try {
       using var db = new AppDbContext();
