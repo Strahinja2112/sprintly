@@ -19,7 +19,7 @@ public partial class SprintsForm : BaseForm {
     sprintsService = new SprintsService();
 
     RightSidePanel = PanelRightContent;
-    if (!PermissionsService.CanCurrentUserManageSprints()) {
+    if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
       DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
     }
   }
