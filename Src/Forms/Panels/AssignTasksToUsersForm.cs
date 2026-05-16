@@ -48,8 +48,13 @@ public partial class AssignTasksToUsersForm : BaseForm {
     FlowPanelEmployees.Controls.Clear();
 
     foreach (var emp in employeesList) {
+      var empTypeString = emp.Type switch {
+        EmployeeType.Developer => $"{emp.SeniorityLevel} {emp.Field} {emp.Type}",
+        _ => emp.Type.ToString()
+      };
+
       var button = new Button() {
-        Text = $"{emp.FirstName} {emp.LastName} - {emp.Type}",
+        Text = $"{emp.FirstName} {emp.LastName} - {empTypeString}",
         Size = new Size(330, 38),
         FlatStyle = FlatStyle.Flat,
         Cursor = Cursors.Hand,
@@ -86,5 +91,9 @@ public partial class AssignTasksToUsersForm : BaseForm {
 
       FlowPanelEmployees.Controls.Add(button);
     }
+  }
+
+  private void ButtonCancel_Click(object sender, EventArgs e) {
+    Close();
   }
 }

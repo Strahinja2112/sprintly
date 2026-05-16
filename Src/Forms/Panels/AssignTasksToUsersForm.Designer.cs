@@ -27,7 +27,7 @@ partial class AssignTasksToUsersForm {
     components = new System.ComponentModel.Container();
     LabelTitle = new ReaLTaiizor.Controls.BigLabel();
     TBoxSearch = new ReaLTaiizor.Controls.BigTextBox();
-    ButtonAddUsersToWorkTask = new ReaLTaiizor.Controls.FoxButton();
+    ButtonCancel = new ReaLTaiizor.Controls.FoxButton();
     ButtonSave = new ReaLTaiizor.Controls.FoxButton();
     StyleManager1 = new ReaLTaiizor.Manager.PoisonStyleManager(components);
     FlowPanelEmployees = new FlowLayoutPanel();
@@ -65,24 +65,25 @@ partial class AssignTasksToUsersForm {
     TBoxSearch.UseSystemPasswordChar = false;
     TBoxSearch.TextChanged += TBoxSearch_TextChanged;
     // 
-    // ButtonAddUsersToWorkTask
+    // ButtonCancel
     // 
-    ButtonAddUsersToWorkTask.BackColor = Color.Transparent;
-    ButtonAddUsersToWorkTask.BaseColor = SystemColors.Window;
-    ButtonAddUsersToWorkTask.BorderColor = Color.DarkSlateGray;
-    ButtonAddUsersToWorkTask.DisabledBaseColor = Color.FromArgb(249, 249, 249);
-    ButtonAddUsersToWorkTask.DisabledBorderColor = Color.FromArgb(209, 209, 209);
-    ButtonAddUsersToWorkTask.DisabledTextColor = Color.FromArgb(166, 178, 190);
-    ButtonAddUsersToWorkTask.DownColor = Color.FromArgb(232, 232, 232);
-    ButtonAddUsersToWorkTask.EnabledCalc = true;
-    ButtonAddUsersToWorkTask.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-    ButtonAddUsersToWorkTask.ForeColor = Color.DarkSlateGray;
-    ButtonAddUsersToWorkTask.Location = new Point(12, 418);
-    ButtonAddUsersToWorkTask.Name = "ButtonAddUsersToWorkTask";
-    ButtonAddUsersToWorkTask.OverColor = Color.FromArgb(242, 242, 242);
-    ButtonAddUsersToWorkTask.Size = new Size(207, 41);
-    ButtonAddUsersToWorkTask.TabIndex = 40;
-    ButtonAddUsersToWorkTask.Text = "Upravljaj zaduženima";
+    ButtonCancel.BackColor = Color.Transparent;
+    ButtonCancel.BaseColor = SystemColors.Window;
+    ButtonCancel.BorderColor = Color.DarkSlateGray;
+    ButtonCancel.DisabledBaseColor = Color.FromArgb(249, 249, 249);
+    ButtonCancel.DisabledBorderColor = Color.FromArgb(209, 209, 209);
+    ButtonCancel.DisabledTextColor = Color.FromArgb(166, 178, 190);
+    ButtonCancel.DownColor = Color.FromArgb(232, 232, 232);
+    ButtonCancel.EnabledCalc = true;
+    ButtonCancel.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+    ButtonCancel.ForeColor = Color.DarkSlateGray;
+    ButtonCancel.Location = new Point(12, 418);
+    ButtonCancel.Name = "ButtonCancel";
+    ButtonCancel.OverColor = Color.FromArgb(242, 242, 242);
+    ButtonCancel.Size = new Size(113, 41);
+    ButtonCancel.TabIndex = 40;
+    ButtonCancel.Text = "Odustani";
+    ButtonCancel.Click += ButtonCancel_Click;
     // 
     // ButtonSave
     // 
@@ -96,10 +97,10 @@ partial class AssignTasksToUsersForm {
     ButtonSave.EnabledCalc = true;
     ButtonSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButtonSave.ForeColor = Color.White;
-    ButtonSave.Location = new Point(225, 419);
+    ButtonSave.Location = new Point(131, 419);
     ButtonSave.Name = "ButtonSave";
     ButtonSave.OverColor = Color.DimGray;
-    ButtonSave.Size = new Size(148, 40);
+    ButtonSave.Size = new Size(242, 40);
     ButtonSave.TabIndex = 39;
     ButtonSave.Text = "Sačuvaj";
     // 
@@ -137,7 +138,7 @@ partial class AssignTasksToUsersForm {
     ClientSize = new Size(385, 479);
     Controls.Add(dungeonLabel1);
     Controls.Add(FlowPanelEmployees);
-    Controls.Add(ButtonAddUsersToWorkTask);
+    Controls.Add(ButtonCancel);
     Controls.Add(ButtonSave);
     Controls.Add(TBoxSearch);
     Controls.Add(LabelTitle);
@@ -152,7 +153,7 @@ partial class AssignTasksToUsersForm {
   #endregion
   private ReaLTaiizor.Controls.BigLabel LabelTitle;
   private ReaLTaiizor.Controls.BigTextBox TBoxSearch;
-  private ReaLTaiizor.Controls.FoxButton ButtonAddUsersToWorkTask;
+  private ReaLTaiizor.Controls.FoxButton ButtonCancel;
   private ReaLTaiizor.Controls.FoxButton ButtonSave;
   private ReaLTaiizor.Manager.PoisonStyleManager StyleManager1;
   private FlowLayoutPanel FlowPanelEmployees;

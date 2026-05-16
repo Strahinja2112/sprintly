@@ -25,15 +25,16 @@ partial class WorkTasksForm {
   /// </summary>
   private void InitializeComponent() {
     components = new System.ComponentModel.Container();
-    DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
     bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     DGV = new ReaLTaiizor.Controls.PoisonDataGridView();
     ButtonDelete = new ReaLTaiizor.Controls.FoxButton();
     ButtonAdd = new ReaLTaiizor.Controls.FoxButton();
     PanelRightContent = new Panel();
+    ButtonAddUsersToWorkTask = new ReaLTaiizor.Controls.FoxButton();
     ComboBoxUserStories = new ComboBox();
     NumericHours = new ReaLTaiizor.Controls.DungeonNumeric();
     dungeonLabel5 = new ReaLTaiizor.Controls.DungeonLabel();
@@ -50,7 +51,6 @@ partial class WorkTasksForm {
     StyleManager1 = new ReaLTaiizor.Manager.PoisonStyleManager(components);
     ComboBoxSprints = new ComboBox();
     dungeonLabel6 = new ReaLTaiizor.Controls.DungeonLabel();
-    ButtonAddUsersToWorkTask = new ReaLTaiizor.Controls.FoxButton();
     ((System.ComponentModel.ISupportInitialize)DGV).BeginInit();
     PanelRightContent.SuspendLayout();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).BeginInit();
@@ -87,37 +87,37 @@ partial class WorkTasksForm {
     DGV.BorderStyle = BorderStyle.None;
     DGV.CellBorderStyle = DataGridViewCellBorderStyle.None;
     DGV.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle4.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle4.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle4.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-    DGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+    dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+    DGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
     DGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-    dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle5.BackColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle5.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle5.ForeColor = Color.FromArgb(136, 136, 136);
-    dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-    DGV.DefaultCellStyle = dataGridViewCellStyle5;
+    dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
+    dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+    DGV.DefaultCellStyle = dataGridViewCellStyle2;
     DGV.EnableHeadersVisualStyles = false;
     DGV.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
     DGV.GridColor = Color.FromArgb(255, 255, 255);
     DGV.Location = new Point(17, 219);
     DGV.Name = "DGV";
     DGV.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle6.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle6.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle6.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-    DGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+    dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+    DGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
     DGV.RowHeadersVisible = false;
     DGV.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGV.ScrollBars = ScrollBars.None;
@@ -187,13 +187,33 @@ partial class WorkTasksForm {
     PanelRightContent.Size = new Size(383, 471);
     PanelRightContent.TabIndex = 20;
     // 
+    // ButtonAddUsersToWorkTask
+    // 
+    ButtonAddUsersToWorkTask.BackColor = Color.Transparent;
+    ButtonAddUsersToWorkTask.BaseColor = SystemColors.Window;
+    ButtonAddUsersToWorkTask.BorderColor = Color.DarkSlateGray;
+    ButtonAddUsersToWorkTask.DisabledBaseColor = Color.FromArgb(249, 249, 249);
+    ButtonAddUsersToWorkTask.DisabledBorderColor = Color.FromArgb(209, 209, 209);
+    ButtonAddUsersToWorkTask.DisabledTextColor = Color.FromArgb(166, 178, 190);
+    ButtonAddUsersToWorkTask.DownColor = Color.FromArgb(232, 232, 232);
+    ButtonAddUsersToWorkTask.EnabledCalc = true;
+    ButtonAddUsersToWorkTask.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+    ButtonAddUsersToWorkTask.ForeColor = Color.DarkSlateGray;
+    ButtonAddUsersToWorkTask.Location = new Point(14, 418);
+    ButtonAddUsersToWorkTask.Name = "ButtonAddUsersToWorkTask";
+    ButtonAddUsersToWorkTask.OverColor = Color.FromArgb(242, 242, 242);
+    ButtonAddUsersToWorkTask.Size = new Size(207, 41);
+    ButtonAddUsersToWorkTask.TabIndex = 38;
+    ButtonAddUsersToWorkTask.Text = "Upravljaj zaduženima";
+    ButtonAddUsersToWorkTask.Click += ButtonAddUsersToWorkTask_Click;
+    // 
     // ComboBoxUserStories
     // 
     ComboBoxUserStories.DropDownStyle = ComboBoxStyle.DropDownList;
     ComboBoxUserStories.FormattingEnabled = true;
     ComboBoxUserStories.IntegralHeight = false;
     ComboBoxUserStories.ItemHeight = 15;
-    ComboBoxUserStories.Location = new Point(199, 382);
+    ComboBoxUserStories.Location = new Point(199, 378);
     ComboBoxUserStories.Name = "ComboBoxUserStories";
     ComboBoxUserStories.Size = new Size(168, 23);
     ComboBoxUserStories.TabIndex = 35;
@@ -208,7 +228,7 @@ partial class WorkTasksForm {
     NumericHours.ButtonForeColorB = Color.FromArgb(75, 75, 75);
     NumericHours.Font = new Font("Tahoma", 11F);
     NumericHours.ForeColor = Color.FromArgb(76, 76, 76);
-    NumericHours.Location = new Point(14, 380);
+    NumericHours.Location = new Point(14, 376);
     NumericHours.Maximum = 100L;
     NumericHours.Minimum = 1L;
     NumericHours.MinimumSize = new Size(93, 28);
@@ -225,7 +245,7 @@ partial class WorkTasksForm {
     dungeonLabel5.BackColor = Color.Transparent;
     dungeonLabel5.Font = new Font("Segoe UI", 13F);
     dungeonLabel5.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel5.Location = new Point(193, 352);
+    dungeonLabel5.Location = new Point(193, 348);
     dungeonLabel5.Name = "dungeonLabel5";
     dungeonLabel5.Size = new Size(138, 25);
     dungeonLabel5.TabIndex = 34;
@@ -326,7 +346,7 @@ partial class WorkTasksForm {
     dungeonLabel7.BackColor = Color.Transparent;
     dungeonLabel7.Font = new Font("Segoe UI", 13F);
     dungeonLabel7.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel7.Location = new Point(14, 352);
+    dungeonLabel7.Location = new Point(14, 348);
     dungeonLabel7.Name = "dungeonLabel7";
     dungeonLabel7.Size = new Size(162, 25);
     dungeonLabel7.TabIndex = 23;
@@ -401,26 +421,6 @@ partial class WorkTasksForm {
     dungeonLabel6.Size = new Size(116, 25);
     dungeonLabel6.TabIndex = 30;
     dungeonLabel6.Text = "Izbor sprinta:";
-    // 
-    // ButtonAddUsersToWorkTask
-    // 
-    ButtonAddUsersToWorkTask.BackColor = Color.Transparent;
-    ButtonAddUsersToWorkTask.BaseColor = SystemColors.Window;
-    ButtonAddUsersToWorkTask.BorderColor = Color.DarkSlateGray;
-    ButtonAddUsersToWorkTask.DisabledBaseColor = Color.FromArgb(249, 249, 249);
-    ButtonAddUsersToWorkTask.DisabledBorderColor = Color.FromArgb(209, 209, 209);
-    ButtonAddUsersToWorkTask.DisabledTextColor = Color.FromArgb(166, 178, 190);
-    ButtonAddUsersToWorkTask.DownColor = Color.FromArgb(232, 232, 232);
-    ButtonAddUsersToWorkTask.EnabledCalc = true;
-    ButtonAddUsersToWorkTask.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-    ButtonAddUsersToWorkTask.ForeColor = Color.DarkSlateGray;
-    ButtonAddUsersToWorkTask.Location = new Point(14, 418);
-    ButtonAddUsersToWorkTask.Name = "ButtonAddUsersToWorkTask";
-    ButtonAddUsersToWorkTask.OverColor = Color.FromArgb(242, 242, 242);
-    ButtonAddUsersToWorkTask.Size = new Size(207, 41);
-    ButtonAddUsersToWorkTask.TabIndex = 38;
-    ButtonAddUsersToWorkTask.Text = "Upravljaj zaduženima";
-    ButtonAddUsersToWorkTask.Click += ButtonAddUsersToWorkTask_Click;
     // 
     // WorkTasksForm
     // 
