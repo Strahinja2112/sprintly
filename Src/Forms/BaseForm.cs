@@ -20,7 +20,6 @@ public class BaseForm : Form {
     }
     set {
       rightSidePanel = value;
-
       if (rightSidePanel == null) {
         return;
       }

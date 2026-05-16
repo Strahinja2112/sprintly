@@ -32,9 +32,9 @@ partial class EmployeesForm {
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     DGVEmployees = new ReaLTaiizor.Controls.PoisonDataGridView();
     StyleManager1 = new ReaLTaiizor.Manager.PoisonStyleManager(components);
-    ButtonUserDelete = new ReaLTaiizor.Controls.FoxButton();
-    ButonUserAdd = new ReaLTaiizor.Controls.FoxButton();
-    PanelUserData = new Panel();
+    ButtonDelete = new ReaLTaiizor.Controls.FoxButton();
+    ButtonAdd = new ReaLTaiizor.Controls.FoxButton();
+    PanelRightContent = new Panel();
     TBoxPassword = new ReaLTaiizor.Controls.BigTextBox();
     dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
     DateTimePicker = new ReaLTaiizor.Controls.PoisonDateTime();
@@ -60,7 +60,7 @@ partial class EmployeesForm {
     TBoxSearch = new ReaLTaiizor.Controls.BigTextBox();
     ((System.ComponentModel.ISupportInitialize)DGVEmployees).BeginInit();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).BeginInit();
-    PanelUserData.SuspendLayout();
+    PanelRightContent.SuspendLayout();
     SuspendLayout();
     // 
     // bigLabel1
@@ -138,77 +138,77 @@ partial class EmployeesForm {
     StyleManager1.Owner = this;
     StyleManager1.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Silver;
     // 
-    // ButtonUserDelete
+    // ButtonDelete
     // 
-    ButtonUserDelete.BackColor = Color.Transparent;
-    ButtonUserDelete.BaseColor = SystemColors.Window;
-    ButtonUserDelete.BorderColor = Color.DarkSlateGray;
-    ButtonUserDelete.DisabledBaseColor = Color.FromArgb(249, 249, 249);
-    ButtonUserDelete.DisabledBorderColor = Color.FromArgb(209, 209, 209);
-    ButtonUserDelete.DisabledTextColor = Color.FromArgb(166, 178, 190);
-    ButtonUserDelete.DownColor = Color.FromArgb(232, 232, 232);
-    ButtonUserDelete.EnabledCalc = true;
-    ButtonUserDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-    ButtonUserDelete.ForeColor = Color.DarkSlateGray;
-    ButtonUserDelete.Location = new Point(400, 120);
-    ButtonUserDelete.Name = "ButtonUserDelete";
-    ButtonUserDelete.OverColor = Color.FromArgb(242, 242, 242);
-    ButtonUserDelete.Size = new Size(90, 40);
-    ButtonUserDelete.TabIndex = 4;
-    ButtonUserDelete.Text = "Obriši";
-    ButtonUserDelete.Click += ButtonUserDelete_Click;
+    ButtonDelete.BackColor = Color.Transparent;
+    ButtonDelete.BaseColor = SystemColors.Window;
+    ButtonDelete.BorderColor = Color.DarkSlateGray;
+    ButtonDelete.DisabledBaseColor = Color.FromArgb(249, 249, 249);
+    ButtonDelete.DisabledBorderColor = Color.FromArgb(209, 209, 209);
+    ButtonDelete.DisabledTextColor = Color.FromArgb(166, 178, 190);
+    ButtonDelete.DownColor = Color.FromArgb(232, 232, 232);
+    ButtonDelete.EnabledCalc = true;
+    ButtonDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+    ButtonDelete.ForeColor = Color.DarkSlateGray;
+    ButtonDelete.Location = new Point(400, 120);
+    ButtonDelete.Name = "ButtonDelete";
+    ButtonDelete.OverColor = Color.FromArgb(242, 242, 242);
+    ButtonDelete.Size = new Size(90, 40);
+    ButtonDelete.TabIndex = 4;
+    ButtonDelete.Text = "Obriši";
+    ButtonDelete.Click += ButtonUserDelete_Click;
     // 
-    // ButonUserAdd
+    // ButtonAdd
     // 
-    ButonUserAdd.BackColor = Color.Transparent;
-    ButonUserAdd.BaseColor = Color.DarkSlateGray;
-    ButonUserAdd.BorderColor = Color.DarkSlateGray;
-    ButonUserAdd.DisabledBaseColor = Color.FromArgb(255, 224, 192);
-    ButonUserAdd.DisabledBorderColor = Color.FromArgb(209, 209, 209);
-    ButonUserAdd.DisabledTextColor = Color.FromArgb(166, 178, 190);
-    ButonUserAdd.DownColor = Color.DarkSlateGray;
-    ButonUserAdd.EnabledCalc = true;
-    ButonUserAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-    ButonUserAdd.ForeColor = Color.White;
-    ButonUserAdd.Location = new Point(496, 120);
-    ButonUserAdd.Name = "ButonUserAdd";
-    ButonUserAdd.OverColor = Color.DimGray;
-    ButonUserAdd.RightToLeft = RightToLeft.Yes;
-    ButonUserAdd.Size = new Size(90, 40);
-    ButonUserAdd.TabIndex = 5;
-    ButonUserAdd.Text = "Dodaj";
-    ButonUserAdd.Click += ButonUserAdd_Click;
+    ButtonAdd.BackColor = Color.Transparent;
+    ButtonAdd.BaseColor = Color.DarkSlateGray;
+    ButtonAdd.BorderColor = Color.DarkSlateGray;
+    ButtonAdd.DisabledBaseColor = Color.DarkSlateGray;
+    ButtonAdd.DisabledBorderColor = Color.FromArgb(209, 209, 209);
+    ButtonAdd.DisabledTextColor = Color.FromArgb(166, 178, 190);
+    ButtonAdd.DownColor = Color.DarkSlateGray;
+    ButtonAdd.EnabledCalc = true;
+    ButtonAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+    ButtonAdd.ForeColor = Color.White;
+    ButtonAdd.Location = new Point(496, 120);
+    ButtonAdd.Name = "ButtonAdd";
+    ButtonAdd.OverColor = Color.DimGray;
+    ButtonAdd.RightToLeft = RightToLeft.Yes;
+    ButtonAdd.Size = new Size(90, 40);
+    ButtonAdd.TabIndex = 5;
+    ButtonAdd.Text = "Dodaj";
+    ButtonAdd.Click += ButonUserAdd_Click;
     // 
-    // PanelUserData
+    // PanelRightContent
     // 
-    PanelUserData.BackColor = SystemColors.Window;
-    PanelUserData.Controls.Add(TBoxPassword);
-    PanelUserData.Controls.Add(dungeonLabel2);
-    PanelUserData.Controls.Add(DateTimePicker);
-    PanelUserData.Controls.Add(dungeonLabel11);
-    PanelUserData.Controls.Add(ComboBoxField);
-    PanelUserData.Controls.Add(ComboBoxExpirience);
-    PanelUserData.Controls.Add(ComboBoxType);
-    PanelUserData.Controls.Add(dungeonLabel7);
-    PanelUserData.Controls.Add(dungeonLabel9);
-    PanelUserData.Controls.Add(dungeonLabel10);
-    PanelUserData.Controls.Add(ButtonSave);
-    PanelUserData.Controls.Add(TBoxEmail);
-    PanelUserData.Controls.Add(dungeonLabel8);
-    PanelUserData.Controls.Add(TBoxPhone);
-    PanelUserData.Controls.Add(dungeonLabel5);
-    PanelUserData.Controls.Add(TBoxUsername);
-    PanelUserData.Controls.Add(dungeonLabel6);
-    PanelUserData.Controls.Add(TBoxLastName);
-    PanelUserData.Controls.Add(dungeonLabel4);
-    PanelUserData.Controls.Add(TBoxName);
-    PanelUserData.Controls.Add(dungeonLabel3);
-    PanelUserData.Controls.Add(bigLabel2);
-    PanelUserData.Dock = DockStyle.Right;
-    PanelUserData.Location = new Point(601, 0);
-    PanelUserData.Name = "PanelUserData";
-    PanelUserData.Size = new Size(383, 471);
-    PanelUserData.TabIndex = 6;
+    PanelRightContent.BackColor = SystemColors.Window;
+    PanelRightContent.Controls.Add(TBoxPassword);
+    PanelRightContent.Controls.Add(dungeonLabel2);
+    PanelRightContent.Controls.Add(DateTimePicker);
+    PanelRightContent.Controls.Add(dungeonLabel11);
+    PanelRightContent.Controls.Add(ComboBoxField);
+    PanelRightContent.Controls.Add(ComboBoxExpirience);
+    PanelRightContent.Controls.Add(ComboBoxType);
+    PanelRightContent.Controls.Add(dungeonLabel7);
+    PanelRightContent.Controls.Add(dungeonLabel9);
+    PanelRightContent.Controls.Add(dungeonLabel10);
+    PanelRightContent.Controls.Add(ButtonSave);
+    PanelRightContent.Controls.Add(TBoxEmail);
+    PanelRightContent.Controls.Add(dungeonLabel8);
+    PanelRightContent.Controls.Add(TBoxPhone);
+    PanelRightContent.Controls.Add(dungeonLabel5);
+    PanelRightContent.Controls.Add(TBoxUsername);
+    PanelRightContent.Controls.Add(dungeonLabel6);
+    PanelRightContent.Controls.Add(TBoxLastName);
+    PanelRightContent.Controls.Add(dungeonLabel4);
+    PanelRightContent.Controls.Add(TBoxName);
+    PanelRightContent.Controls.Add(dungeonLabel3);
+    PanelRightContent.Controls.Add(bigLabel2);
+    PanelRightContent.Dock = DockStyle.Right;
+    PanelRightContent.Location = new Point(601, 0);
+    PanelRightContent.Name = "PanelRightContent";
+    PanelRightContent.Size = new Size(383, 471);
+    PanelRightContent.TabIndex = 6;
     // 
     // TBoxPassword
     // 
@@ -531,9 +531,9 @@ partial class EmployeesForm {
     BackColor = SystemColors.Control;
     ClientSize = new Size(984, 471);
     Controls.Add(TBoxSearch);
-    Controls.Add(PanelUserData);
-    Controls.Add(ButonUserAdd);
-    Controls.Add(ButtonUserDelete);
+    Controls.Add(PanelRightContent);
+    Controls.Add(ButtonAdd);
+    Controls.Add(ButtonDelete);
     Controls.Add(DGVEmployees);
     Controls.Add(dungeonLabel1);
     Controls.Add(bigLabel1);
@@ -542,8 +542,8 @@ partial class EmployeesForm {
     Load += EmployeesForm_Load;
     ((System.ComponentModel.ISupportInitialize)DGVEmployees).EndInit();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).EndInit();
-    PanelUserData.ResumeLayout(false);
-    PanelUserData.PerformLayout();
+    PanelRightContent.ResumeLayout(false);
+    PanelRightContent.PerformLayout();
     ResumeLayout(false);
     PerformLayout();
   }
@@ -554,9 +554,9 @@ partial class EmployeesForm {
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
   private ReaLTaiizor.Controls.PoisonDataGridView DGVEmployees;
   private ReaLTaiizor.Manager.PoisonStyleManager StyleManager1;
-  private ReaLTaiizor.Controls.FoxButton ButtonUserDelete;
-  private ReaLTaiizor.Controls.FoxButton ButonUserAdd;
-  private Panel PanelUserData;
+  private ReaLTaiizor.Controls.FoxButton ButtonDelete;
+  private ReaLTaiizor.Controls.FoxButton ButtonAdd;
+  private Panel PanelRightContent;
   private ReaLTaiizor.Controls.BigLabel bigLabel2;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel3;
   private ReaLTaiizor.Controls.BigTextBox TBoxName;

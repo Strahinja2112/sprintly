@@ -8,13 +8,14 @@ using System.Data;
 namespace Sprintra.Forms;
 
 public partial class EmployeesForm : BaseForm {
-  private int selectedEmployeeId = 0;
-
   public EmployeesForm(BaseForm parent) {
     InitializeComponent();
-    expandedPanelWidth = PanelUserData.Width;
-    PanelUserData.Hide();
     this.parent = parent;
+
+    RightSidePanel = PanelRightContent;
+    if (!PermissionsService.CanCurrentUserManageSprints()) {
+      DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
+    }
   }
 
   private void EmployeesForm_Load(object sender, EventArgs e) {
@@ -34,13 +35,13 @@ public partial class EmployeesForm : BaseForm {
   }
 
   private void ButtonUserDelete_Click(object sender, EventArgs e) {
-    if (selectedEmployeeId == 0) {
+    if (selectedDataGridViewItemId == 0) {
       MessageBox.Show("Molimo vas da prvo odaberete zaposlenog iz tabele kojeg želite da obrišete.",
                       "Nije selektovan korisnik", MessageBoxButtons.OK, MessageBoxIcon.Warning);
       return;
     }
 
-    if (AuthService.CurrentUser != null && selectedEmployeeId == AuthService.CurrentUser.Id) {
+    if (AuthService.CurrentUser != null && selectedDataGridViewItemId == AuthService.CurrentUser.Id) {
       MessageBox.Show("Nije dozvoljeno brisanje sopstvenog naloga dok ste prijavljeni.",
                       "Akcija odbijena", MessageBoxButtons.OK, MessageBoxIcon.Stop);
       return;
@@ -52,7 +53,7 @@ public partial class EmployeesForm : BaseForm {
     if (result == DialogResult.Yes) {
       try {
         using var db = new AppDbContext();
-        var emp = db.Employees.FirstOrDefault(u => u.Id == selectedEmployeeId);
+        var emp = db.Employees.FirstOrDefault(u => u.Id == selectedDataGridViewItemId);
 
         if (emp != null) {
           db.Employees.Remove(emp);
@@ -66,7 +67,7 @@ public partial class EmployeesForm : BaseForm {
 
           if (isExpanded) {
             parent.Width -= expandedPanelWidth;
-            PanelUserData.Hide();
+            PanelRightContent.Hide();
             isExpanded = false;
           }
         }
@@ -110,14 +111,14 @@ public partial class EmployeesForm : BaseForm {
       using var db = new AppDbContext();
       Employee emp;
 
-      bool usernameExists = db.Employees.Any(u => u.Username == username && u.Id != selectedEmployeeId);
+      bool usernameExists = db.Employees.Any(u => u.Username == username && u.Id != selectedDataGridViewItemId);
       if (usernameExists) {
         MessageBox.Show($"Korisničko ime '{username}' je već u upotrebi. Molimo odaberite drugo.",
                         "Duplikat korisničkog imena", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
       }
 
-      if (selectedEmployeeId == 0) {
+      if (selectedDataGridViewItemId == 0) {
         if (string.IsNullOrEmpty(newPassword)) {
           MessageBox.Show("Lozinka je obavezna za nove korisnike.", "Lozinka nedostaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
           return;
@@ -130,7 +131,7 @@ public partial class EmployeesForm : BaseForm {
         db.Employees.Add(emp);
       }
       else {
-        emp = db.Employees.FirstOrDefault(u => u.Id == selectedEmployeeId);
+        emp = db.Employees.FirstOrDefault(u => u.Id == selectedDataGridViewItemId);
         if (emp == null) {
           MessageBox.Show("Korisnik kojeg pokušavate da izmenite više ne postoji u bazi.", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Error);
           return;
@@ -159,7 +160,7 @@ public partial class EmployeesForm : BaseForm {
 
       db.SaveChanges();
 
-      string msg = selectedEmployeeId == 0 ? "Novi zaposleni je uspešno kreiran." : "Podaci o zaposlenom su uspešno ažurirani.";
+      string msg = selectedDataGridViewItemId == 0 ? "Novi zaposleni je uspešno kreiran." : "Podaci o zaposlenom su uspešno ažurirani.";
       Helpers.ShowToast(msg, NotificationType.Info);
 
       ClearInputs();
@@ -173,14 +174,14 @@ public partial class EmployeesForm : BaseForm {
 
   private void DGVEmployees_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGVEmployees.Rows[e.RowIndex].Cells["Id"].Value != null) {
-      selectedEmployeeId = Convert.ToInt32(DGVEmployees.Rows[e.RowIndex].Cells["Id"].Value);
-      LoadEmployeeToInputs(selectedEmployeeId);
+      selectedDataGridViewItemId = Convert.ToInt32(DGVEmployees.Rows[e.RowIndex].Cells["Id"].Value);
+      LoadEmployeeToInputs(selectedDataGridViewItemId);
       ExpandParent();
     }
   }
 
   private void ClearInputs() {
-    selectedEmployeeId = 0;
+    selectedDataGridViewItemId = 0;
     TBoxName.Text = "";
     TBoxLastName.Text = "";
     TBoxUsername.Text = "";
@@ -217,7 +218,7 @@ public partial class EmployeesForm : BaseForm {
   private void ExpandParent() {
     if (!isExpanded) {
       parent.Width += expandedPanelWidth;
-      PanelUserData.Show();
+      PanelRightContent.Show();
       isExpanded = true;
     }
 
