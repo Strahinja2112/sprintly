@@ -12,37 +12,31 @@ internal static class Program {
   static void Main() {
     ApplicationConfiguration.Initialize();
 
-    try {
-      //if (MessageBox.Show("Do you want to seed the database? This will erase all existing data.", "Database Seeding", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
-      //  SeedService.FullSeed();
-      //  AuthService.Logout();
-      //}
+    //if (MessageBox.Show("Do you want to seed the database? This will erase all existing data.", "Database Seeding", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
+    //  SeedService.FullSeed();
+    //  AuthService.Logout();
+    //}
 
-      while (true) {
-        HasUserLoggedOut = false;
+    while (true) {
+      HasUserLoggedOut = false;
 
-        if (!AuthService.TryAutoLogin()) {
-          var loginForm = new LoginForm();
-          Application.Run(loginForm);
-          loginForm.Close();
-          if (!loginForm.IsLoginSuccessful) {
-            break;
-          }
-        }
-
-        mainForm = new MainForm();
-        Application.Run(mainForm);
-
-        if (!HasUserLoggedOut) {
+      if (!AuthService.TryAutoLogin()) {
+        var loginForm = new LoginForm();
+        Application.Run(loginForm);
+        loginForm.Close();
+        if (!loginForm.IsLoginSuccessful) {
           break;
         }
-
-        mainForm = null;
       }
-    }
-    catch (Exception) {
 
-      throw;
+      mainForm = new MainForm();
+      Application.Run(mainForm);
+
+      if (!HasUserLoggedOut) {
+        break;
+      }
+
+      mainForm = null;
     }
   }
 }
