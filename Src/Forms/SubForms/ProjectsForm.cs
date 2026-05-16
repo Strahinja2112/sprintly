@@ -1,6 +1,7 @@
 ﻿using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
 using Sprintra.Src.Forms;
+using Sprintra.Src.Services;
 using System.Data;
 
 namespace Sprintra.Forms;
@@ -14,7 +15,10 @@ public partial class ProjectsForm : BaseForm {
     InitializeComponent();
     this.parent = parent;
 
-
+    RightSidePanel = PanelRightContent;
+    if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
+      DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
+    }
   }
 
   private void ProjectsForm_Load(object sender, EventArgs e) {
@@ -59,7 +63,7 @@ public partial class ProjectsForm : BaseForm {
 
           if (isExpanded) {
             parent.Width -= expandedPanelWidth;
-            PanelProjectData.Hide();
+            PanelRightContent.Hide();
             isExpanded = false;
           }
         }
@@ -192,7 +196,7 @@ public partial class ProjectsForm : BaseForm {
   private void ExpandParent() {
     if (!isExpanded) {
       parent.Width += expandedPanelWidth;
-      PanelProjectData.Show();
+      PanelRightContent.Show();
       isExpanded = true;
     }
     parent.CenterOnScreen();

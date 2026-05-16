@@ -33,7 +33,7 @@ partial class ProjectsForm {
     LabelDate = new ReaLTaiizor.Controls.DungeonLabel();
     ComboBoxStatus = new ReaLTaiizor.Controls.AloneComboBox();
     dungeonLabel7 = new ReaLTaiizor.Controls.DungeonLabel();
-    PanelProjectData = new Panel();
+    PanelRightContent = new Panel();
     TBoxDescription = new ReaLTaiizor.Controls.BigTextBox();
     dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
     ButtonSave = new ReaLTaiizor.Controls.FoxButton();
@@ -44,9 +44,9 @@ partial class ProjectsForm {
     DGVProjects = new ReaLTaiizor.Controls.PoisonDataGridView();
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     StyleManager1 = new ReaLTaiizor.Manager.PoisonStyleManager(components);
-    ButtonProjectDelete = new ReaLTaiizor.Controls.FoxButton();
-    ButonProjectAdd = new ReaLTaiizor.Controls.FoxButton();
-    PanelProjectData.SuspendLayout();
+    ButtonDelete = new ReaLTaiizor.Controls.FoxButton();
+    ButtonAdd = new ReaLTaiizor.Controls.FoxButton();
+    PanelRightContent.SuspendLayout();
     ((System.ComponentModel.ISupportInitialize)DGVProjects).BeginInit();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).BeginInit();
     SuspendLayout();
@@ -116,24 +116,24 @@ partial class ProjectsForm {
     dungeonLabel7.TabIndex = 23;
     dungeonLabel7.Text = "Status";
     // 
-    // PanelProjectData
+    // PanelRightContent
     // 
-    PanelProjectData.BackColor = SystemColors.Window;
-    PanelProjectData.Controls.Add(TBoxDescription);
-    PanelProjectData.Controls.Add(dungeonLabel2);
-    PanelProjectData.Controls.Add(DateTimePicker);
-    PanelProjectData.Controls.Add(LabelDate);
-    PanelProjectData.Controls.Add(ComboBoxStatus);
-    PanelProjectData.Controls.Add(ButtonSave);
-    PanelProjectData.Controls.Add(TBoxProjectName);
-    PanelProjectData.Controls.Add(dungeonLabel3);
-    PanelProjectData.Controls.Add(bigLabel2);
-    PanelProjectData.Controls.Add(dungeonLabel7);
-    PanelProjectData.Dock = DockStyle.Right;
-    PanelProjectData.Location = new Point(601, 0);
-    PanelProjectData.Name = "PanelProjectData";
-    PanelProjectData.Size = new Size(383, 471);
-    PanelProjectData.TabIndex = 15;
+    PanelRightContent.BackColor = SystemColors.Window;
+    PanelRightContent.Controls.Add(TBoxDescription);
+    PanelRightContent.Controls.Add(dungeonLabel2);
+    PanelRightContent.Controls.Add(DateTimePicker);
+    PanelRightContent.Controls.Add(LabelDate);
+    PanelRightContent.Controls.Add(ComboBoxStatus);
+    PanelRightContent.Controls.Add(ButtonSave);
+    PanelRightContent.Controls.Add(TBoxProjectName);
+    PanelRightContent.Controls.Add(dungeonLabel3);
+    PanelRightContent.Controls.Add(bigLabel2);
+    PanelRightContent.Controls.Add(dungeonLabel7);
+    PanelRightContent.Dock = DockStyle.Right;
+    PanelRightContent.Location = new Point(601, 0);
+    PanelRightContent.Name = "PanelRightContent";
+    PanelRightContent.Size = new Size(383, 471);
+    PanelRightContent.TabIndex = 15;
     // 
     // TBoxDescription
     // 
@@ -300,46 +300,46 @@ partial class ProjectsForm {
     StyleManager1.Owner = this;
     StyleManager1.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Silver;
     // 
-    // ButtonProjectDelete
+    // ButtonDelete
     // 
-    ButtonProjectDelete.BackColor = Color.Transparent;
-    ButtonProjectDelete.BaseColor = SystemColors.Window;
-    ButtonProjectDelete.BorderColor = Color.DarkSlateGray;
-    ButtonProjectDelete.DisabledBaseColor = Color.FromArgb(249, 249, 249);
-    ButtonProjectDelete.DisabledBorderColor = Color.FromArgb(209, 209, 209);
-    ButtonProjectDelete.DisabledTextColor = Color.FromArgb(166, 178, 190);
-    ButtonProjectDelete.DownColor = Color.FromArgb(232, 232, 232);
-    ButtonProjectDelete.EnabledCalc = true;
-    ButtonProjectDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-    ButtonProjectDelete.ForeColor = Color.DarkSlateGray;
-    ButtonProjectDelete.Location = new Point(400, 120);
-    ButtonProjectDelete.Name = "ButtonProjectDelete";
-    ButtonProjectDelete.OverColor = Color.FromArgb(242, 242, 242);
-    ButtonProjectDelete.Size = new Size(90, 40);
-    ButtonProjectDelete.TabIndex = 13;
-    ButtonProjectDelete.Text = "Obriši";
-    ButtonProjectDelete.Click += ButtonProjectDelete_Click;
+    ButtonDelete.BackColor = Color.Transparent;
+    ButtonDelete.BaseColor = SystemColors.Window;
+    ButtonDelete.BorderColor = Color.DarkSlateGray;
+    ButtonDelete.DisabledBaseColor = Color.FromArgb(249, 249, 249);
+    ButtonDelete.DisabledBorderColor = Color.FromArgb(209, 209, 209);
+    ButtonDelete.DisabledTextColor = Color.FromArgb(166, 178, 190);
+    ButtonDelete.DownColor = Color.FromArgb(232, 232, 232);
+    ButtonDelete.EnabledCalc = true;
+    ButtonDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+    ButtonDelete.ForeColor = Color.DarkSlateGray;
+    ButtonDelete.Location = new Point(400, 120);
+    ButtonDelete.Name = "ButtonDelete";
+    ButtonDelete.OverColor = Color.FromArgb(242, 242, 242);
+    ButtonDelete.Size = new Size(90, 40);
+    ButtonDelete.TabIndex = 13;
+    ButtonDelete.Text = "Obriši";
+    ButtonDelete.Click += ButtonProjectDelete_Click;
     // 
-    // ButonProjectAdd
+    // ButtonAdd
     // 
-    ButonProjectAdd.BackColor = Color.Transparent;
-    ButonProjectAdd.BaseColor = Color.DarkSlateGray;
-    ButonProjectAdd.BorderColor = Color.DarkSlateGray;
-    ButonProjectAdd.DisabledBaseColor = Color.FromArgb(255, 224, 192);
-    ButonProjectAdd.DisabledBorderColor = Color.FromArgb(209, 209, 209);
-    ButonProjectAdd.DisabledTextColor = Color.FromArgb(166, 178, 190);
-    ButonProjectAdd.DownColor = Color.DarkSlateGray;
-    ButonProjectAdd.EnabledCalc = true;
-    ButonProjectAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-    ButonProjectAdd.ForeColor = Color.White;
-    ButonProjectAdd.Location = new Point(496, 120);
-    ButonProjectAdd.Name = "ButonProjectAdd";
-    ButonProjectAdd.OverColor = Color.DimGray;
-    ButonProjectAdd.RightToLeft = RightToLeft.Yes;
-    ButonProjectAdd.Size = new Size(90, 40);
-    ButonProjectAdd.TabIndex = 14;
-    ButonProjectAdd.Text = "Dodaj";
-    ButonProjectAdd.Click += ButtonProjectAdd_Click;
+    ButtonAdd.BackColor = Color.Transparent;
+    ButtonAdd.BaseColor = Color.DarkSlateGray;
+    ButtonAdd.BorderColor = Color.DarkSlateGray;
+    ButtonAdd.DisabledBaseColor = Color.DarkSlateGray;
+    ButtonAdd.DisabledBorderColor = Color.FromArgb(209, 209, 209);
+    ButtonAdd.DisabledTextColor = Color.FromArgb(166, 178, 190);
+    ButtonAdd.DownColor = Color.DarkSlateGray;
+    ButtonAdd.EnabledCalc = true;
+    ButtonAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+    ButtonAdd.ForeColor = Color.White;
+    ButtonAdd.Location = new Point(496, 120);
+    ButtonAdd.Name = "ButtonAdd";
+    ButtonAdd.OverColor = Color.DimGray;
+    ButtonAdd.RightToLeft = RightToLeft.Yes;
+    ButtonAdd.Size = new Size(90, 40);
+    ButtonAdd.TabIndex = 14;
+    ButtonAdd.Text = "Dodaj";
+    ButtonAdd.Click += ButtonProjectAdd_Click;
     // 
     // ProjectsForm
     // 
@@ -347,17 +347,17 @@ partial class ProjectsForm {
     AutoScaleMode = AutoScaleMode.Font;
     ClientSize = new Size(984, 471);
     Controls.Add(TBoxSearch);
-    Controls.Add(PanelProjectData);
+    Controls.Add(PanelRightContent);
     Controls.Add(bigLabel1);
     Controls.Add(DGVProjects);
     Controls.Add(dungeonLabel1);
-    Controls.Add(ButtonProjectDelete);
-    Controls.Add(ButonProjectAdd);
+    Controls.Add(ButtonDelete);
+    Controls.Add(ButtonAdd);
     Name = "ProjectsForm";
     Text = "ProjectForm";
     Load += ProjectsForm_Load;
-    PanelProjectData.ResumeLayout(false);
-    PanelProjectData.PerformLayout();
+    PanelRightContent.ResumeLayout(false);
+    PanelRightContent.PerformLayout();
     ((System.ComponentModel.ISupportInitialize)DGVProjects).EndInit();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).EndInit();
     ResumeLayout(false);
@@ -371,7 +371,7 @@ partial class ProjectsForm {
   private ReaLTaiizor.Controls.DungeonLabel LabelDate;
   private ReaLTaiizor.Controls.AloneComboBox ComboBoxStatus;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel7;
-  private Panel PanelProjectData;
+  private Panel PanelRightContent;
   private ReaLTaiizor.Controls.FoxButton ButtonSave;
   private ReaLTaiizor.Controls.BigTextBox TBoxProjectName;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel3;
@@ -380,8 +380,8 @@ partial class ProjectsForm {
   private ReaLTaiizor.Controls.PoisonDataGridView DGVProjects;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
   private ReaLTaiizor.Manager.PoisonStyleManager StyleManager1;
-  private ReaLTaiizor.Controls.FoxButton ButtonProjectDelete;
-  private ReaLTaiizor.Controls.FoxButton ButonProjectAdd;
+  private ReaLTaiizor.Controls.FoxButton ButtonDelete;
+  private ReaLTaiizor.Controls.FoxButton ButtonAdd;
   private ReaLTaiizor.Controls.BigTextBox TBoxDescription;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
 }
