@@ -1,6 +1,7 @@
 ﻿using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
 using Sprintra.Src.Forms;
+using Sprintra.Src.Services;
 using Sprintra.Src.Services.Forms;
 using System.Data;
 
@@ -13,11 +14,14 @@ public partial class UserStoriesForm : BaseForm {
 
   public UserStoriesForm(BaseForm parent) {
     InitializeComponent();
+    this.parent = parent;
 
     userStoriesService = new UserStoriesService();
-    expandedPanelWidth = PanelEdit.Width;
-    PanelEdit.Hide();
-    this.parent = parent;
+
+    RightSidePanel = PanelRightContent;
+    if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
+      DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
+    }
   }
 
   private void UserStoriesForm_Load(object sender, EventArgs e) {
@@ -131,7 +135,7 @@ public partial class UserStoriesForm : BaseForm {
   private void ExpandParent() {
     if (!isExpanded) {
       parent.Width += expandedPanelWidth;
-      PanelEdit.Show();
+      PanelRightContent.Show();
       isExpanded = true;
     }
     parent.CenterOnScreen();
