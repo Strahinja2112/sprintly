@@ -4,10 +4,13 @@ namespace Sprintra.Src.Forms;
 
 public class BaseForm : Form {
   protected bool isExpanded = false;
+
   protected int expandedPanelWidth = 0;
-  protected BaseForm? parent;
+  protected int selectedDataGridViewItemId = 0;
+
   protected string searchPlaceholder = "Pretraga...";
 
+  protected BaseForm? parent;
   protected Panel? rightSidePanel = null;
 
   [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -27,7 +30,31 @@ public class BaseForm : Form {
     }
   }
 
-  public BaseForm() {
+  protected void DisableRightPanelAndControls(params Control[] additionalControls) {
+    if (rightSidePanel == null) {
+      return;
+    }
+
+    var allControls = rightSidePanel.Controls.Cast<Control>().Concat(additionalControls);
+
+    foreach (Control control in allControls) {
+      Helpers.ClearClickEvents(control);
+
+      var type = control.GetType();
+      var readOnlyProp = type.GetProperty("Enabled");
+      if (readOnlyProp != null && readOnlyProp.CanWrite) {
+        readOnlyProp.SetValue(control, false);
+      }
+
+      control.Click += (sender, e) => {
+        MessageBox.Show(
+          "Nemate pravo pristupa ovoj akciji.",
+          "Zabranjen pristup",
+          MessageBoxButtons.OK,
+          MessageBoxIcon.Stop
+        );
+      };
+    }
   }
 
   protected static void SetPlaceholder(Control control, string text) {

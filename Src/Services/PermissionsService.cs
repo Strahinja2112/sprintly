@@ -15,24 +15,24 @@ public static class PermissionsService {
     return allowedRoles.Contains(AuthService.CurrentUser.Type);
   }
 
-  private static bool HasAtleastRole(EmployeeType requiredRole) {
+  private static bool CurrentUserHasAtleastRole(EmployeeType requiredRole) {
     if (AuthService.CurrentUser == null) {
       return false;
     }
     return AuthService.CurrentUser.Type >= requiredRole;
   }
 
-  public static bool IsAdmin() => HasAnyRole(EmployeeType.Admin);
+  public static bool IsCurrentUserAdmin() => HasAnyRole(EmployeeType.Admin);
 
-  public static bool CanManageUsers() => IsAdmin();
+  public static bool CanCurrentUserManageUsers() => IsCurrentUserAdmin();
 
-  public static bool CanManageProjects() => IsAdmin();
+  public static bool CanCurrentUserManageProjects() => IsCurrentUserAdmin();
 
-  public static bool CanLogWork() => HasAnyRole();
+  public static bool CanCurrentUserLogWork() => HasAnyRole();
 
-  public static bool CanManageSprints() => HasAnyRole(EmployeeType.Admin);
+  public static bool CanCurrentUserManageSprints() => HasAnyRole(EmployeeType.Admin);
 
-  public static bool CanManageUserStories() => HasAtleastRole(EmployeeType.ProductOwner);
+  public static bool CanCurrentUserManageUserStories() => CurrentUserHasAtleastRole(EmployeeType.ProductOwner);
 
-  public static bool CanManageWorkTasks() => HasAtleastRole(EmployeeType.ProductOwner);
+  public static bool CanCurrentUserManageWorkTasks() => CurrentUserHasAtleastRole(EmployeeType.ProductOwner);
 }

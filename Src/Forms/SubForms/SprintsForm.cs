@@ -10,24 +10,18 @@ using System.Data;
 namespace Sprintra.Forms;
 
 public partial class SprintsForm : BaseForm {
-  private int selectedSprintId = 0;
-
   private readonly SprintsService sprintsService;
 
   public SprintsForm(BaseForm parent) {
     InitializeComponent();
+    this.parent = parent;
 
     sprintsService = new SprintsService();
 
     RightSidePanel = PanelRightContent;
-
-    ButtonDelete.Enabled = ButtonAdd.Enabled = PermissionsService.CanManageSprints();
-
-    //foreach (Control item in PanelRightContent.Controls) {
-    //  MessageBox.Show(item.Name);
-    //}
-
-    this.parent = parent;
+    if (!PermissionsService.CanCurrentUserManageSprints()) {
+      DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
+    }
   }
 
   private async void SprintsForm_Load(object sender, EventArgs e) {
@@ -108,11 +102,11 @@ public partial class SprintsForm : BaseForm {
   private async void ButtonSave_Click(object sender, EventArgs e) {
     try {
       Sprint? sprint;
-      if (selectedSprintId == 0) {
+      if (selectedDataGridViewItemId == 0) {
         sprint = new Sprint { ProjectId = (int)ComboBoxProjects.SelectedValue };
       }
       else {
-        sprint = await sprintsService.GetByIdAsync(selectedSprintId);
+        sprint = await sprintsService.GetByIdAsync(selectedDataGridViewItemId);
         if (sprint == null) return;
       }
 
@@ -134,8 +128,8 @@ public partial class SprintsForm : BaseForm {
 
   private async void DGVSprints_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGVSprints.Rows[e.RowIndex].Cells["Id"].Value != null) {
-      selectedSprintId = Convert.ToInt32(DGVSprints.Rows[e.RowIndex].Cells["Id"].Value);
-      await LoadSprintToInputs(selectedSprintId);
+      selectedDataGridViewItemId = Convert.ToInt32(DGVSprints.Rows[e.RowIndex].Cells["Id"].Value);
+      await LoadSprintToInputs(selectedDataGridViewItemId);
       ExpandParent();
     }
   }
@@ -158,7 +152,7 @@ public partial class SprintsForm : BaseForm {
   }
 
   private void ClearInputs() {
-    selectedSprintId = 0;
+    selectedDataGridViewItemId = 0;
     TBoxProjectName.Text = "";
     TBoxDescription.Text = "";
     DateTimePicker.Value = DateTimePicker.MinDate;
@@ -184,17 +178,17 @@ public partial class SprintsForm : BaseForm {
   }
 
   private async void ButtonFinishSprint_Click(object sender, EventArgs e) {
-    if (selectedSprintId == 0) {
+    if (selectedDataGridViewItemId == 0) {
       return;
     }
 
     try {
-      var sprint = await sprintsService.GetByIdAsync(selectedSprintId);
+      var sprint = await sprintsService.GetByIdAsync(selectedDataGridViewItemId);
       if (sprint == null) {
         return;
       }
 
-      if (await sprintsService.HasUnfinishedTasksAsync(selectedSprintId)) {
+      if (await sprintsService.HasUnfinishedTasksAsync(selectedDataGridViewItemId)) {
         var resultTasks = MessageBox.Show(
           "Postoje nezavršeni zadaci u ovom sprintu. Želite li da ih prebacite nazad u Backlog pre završetka sprinta?",
           "Nezavršeni zadaci",
@@ -205,7 +199,7 @@ public partial class SprintsForm : BaseForm {
         if (resultTasks == DialogResult.Cancel) return;
 
         if (resultTasks == DialogResult.Yes) {
-          await sprintsService.MoveUnfinishedTasksToBacklogAsync(selectedSprintId);
+          await sprintsService.MoveUnfinishedTasksToBacklogAsync(selectedDataGridViewItemId);
         }
       }
       else {
@@ -229,7 +223,7 @@ public partial class SprintsForm : BaseForm {
   }
 
   private async void ButtonDelete_Click(object sender, EventArgs e) {
-    if (selectedSprintId == 0) return;
+    if (selectedDataGridViewItemId == 0) return;
 
     var confirm = MessageBox.Show(
         "Da li ste sigurni da želite trajno da obrišete ovaj sprint?",
@@ -241,16 +235,16 @@ public partial class SprintsForm : BaseForm {
     if (confirm == DialogResult.No) return;
 
     try {
-      await sprintsService.DeleteSprintAsync(selectedSprintId);
+      await sprintsService.DeleteSprintAsync(selectedDataGridViewItemId);
 
       ClearInputs();
       LoadSprints();
 
       if (isExpanded) {
-        parent.Width -= expandedPanelWidth;
+        parent?.Width -= expandedPanelWidth;
         PanelRightContent.Hide();
         isExpanded = false;
-        parent.CenterOnScreen();
+        parent?.CenterOnScreen();
       }
     }
     catch (Exception ex) {
