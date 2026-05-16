@@ -23,7 +23,7 @@ public partial class WorkLogForm : BaseForm {
 
     RightSidePanel = PanelRightContent;
     if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
-      DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
+      DisableRightPanelAndControls();
     }
   }
 
@@ -45,7 +45,6 @@ public partial class WorkLogForm : BaseForm {
 
   private async void ComboBoxProjects_SelectedIndexChanged(object sender, EventArgs e) {
     if (ComboBoxProjects.SelectedValue is int projectId) {
-      await LoadSprintsToFilters(projectId);
       await LoadUserStoriesToFilters(projectId);
       await LoadWorkTasksToDataGrid();
     }
@@ -62,31 +61,10 @@ public partial class WorkLogForm : BaseForm {
     ComboBoxUserStories.SelectedIndex = userStories.Count > 0 ? 0 : -1;
   }
 
-  private async Task LoadSprintsToFilters(int projectId) {
-    var sprints = await sprintsService.GetSprintsForProject(projectId);
-
-    sprints.Insert(0, new() {
-      Id = 0,
-      Name = "-- Svi sprintovi --"
-    });
-
-    ComboBoxSprints.DataSource = sprints;
-
-    ComboBoxSprints.DisplayMember = "Name";
-    ComboBoxSprints.ValueMember = "Id";
-
-    ComboBoxSprints.SelectedIndex = 0;
-  }
-
   private async Task LoadWorkTasksToDataGrid(string term = "") {
     if (ComboBoxProjects.SelectedValue is not int projectId) return;
 
-    int? sprintIdFilter = null;
-    if (ComboBoxSprints.SelectedValue is int sId && sId > 0) {
-      sprintIdFilter = sId;
-    }
-
-    var tasks = await workTasksService.GetTasksAsync(projectId, sprintIdFilter, term);
+    var tasks = await workTasksService.GetTasksAsync(projectId, null, term);
 
     DGV.DataSource = tasks.Select(t => new {
       t.Id,
@@ -125,17 +103,6 @@ public partial class WorkLogForm : BaseForm {
       return;
     }
 
-    if (ComboBoxSprints.SelectedValue is not int sprintId || sprintId <= 0) {
-      Helpers.ShowToast("Zadatak mora pripadati sprintu.", NotificationType.Warning);
-      return;
-    }
-
-    var sprint = await sprintsService.GetByIdAsync(sprintId);
-    if (sprint?.Status == SprintStatus.Completed) {
-      Helpers.ShowToast("Ne možete dodati zadatak u sprint koji je završen.", NotificationType.Error);
-      return;
-    }
-
     try {
       WorkTask task = selectedDataGridViewItemId == 0
           ? new WorkTask()
@@ -146,7 +113,6 @@ public partial class WorkLogForm : BaseForm {
       task.EstimatedHours = NumericHours.Value;
       task.UserStoryId = storyId;
       task.Status = WorkTaskStatus.ToDo;
-      task.SprintId = sprintId > 0 ? sprintId : null;
 
       await workTasksService.SaveTaskAsync(task);
 

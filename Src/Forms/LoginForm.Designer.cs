@@ -23,6 +23,7 @@
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
       pictureBox1 = new PictureBox();
       bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
       bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
@@ -171,6 +172,7 @@
       Controls.Add(bigLabel1);
       Controls.Add(pictureBox1);
       FormBorderStyle = FormBorderStyle.FixedSingle;
+      Icon = (Icon)resources.GetObject("$this.Icon");
       Margin = new Padding(4, 3, 4, 3);
       MaximizeBox = false;
       Name = "LoginForm";

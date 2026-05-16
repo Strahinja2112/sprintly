@@ -43,6 +43,7 @@ public static class PermissionsService {
       "SprintsForm" => CanCurrentUserManageSprints(),
       "UserStoriesForm" => CanCurrentUserManageUserStories(),
       "WorkTasksForm" => CanCurrentUserManageWorkTasks(),
+      "WorkLogForm" => CanCurrentUserLogWork(),
       _ => false
     };
   }

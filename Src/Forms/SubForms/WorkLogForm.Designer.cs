@@ -31,8 +31,6 @@ partial class WorkLogForm {
     bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     DGV = new ReaLTaiizor.Controls.PoisonDataGridView();
-    ButtonDelete = new ReaLTaiizor.Controls.FoxButton();
-    ButtonAdd = new ReaLTaiizor.Controls.FoxButton();
     PanelRightContent = new Panel();
     ComboBoxUserStories = new ComboBox();
     NumericHours = new ReaLTaiizor.Controls.DungeonNumeric();
@@ -48,8 +46,6 @@ partial class WorkLogForm {
     ComboBoxProjects = new ComboBox();
     TBoxSearch = new ReaLTaiizor.Controls.BigTextBox();
     StyleManager1 = new ReaLTaiizor.Manager.PoisonStyleManager(components);
-    ComboBoxSprints = new ComboBox();
-    dungeonLabel6 = new ReaLTaiizor.Controls.DungeonLabel();
     ((System.ComponentModel.ISupportInitialize)DGV).BeginInit();
     PanelRightContent.SuspendLayout();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).BeginInit();
@@ -125,46 +121,6 @@ partial class WorkLogForm {
     DGV.TabIndex = 17;
     DGV.Theme = ReaLTaiizor.Enum.Poison.ThemeStyle.Light;
     DGV.CellClick += DGV_CellClick;
-    // 
-    // ButtonDelete
-    // 
-    ButtonDelete.BackColor = Color.Transparent;
-    ButtonDelete.BaseColor = SystemColors.Window;
-    ButtonDelete.BorderColor = Color.DarkSlateGray;
-    ButtonDelete.DisabledBaseColor = Color.FromArgb(249, 249, 249);
-    ButtonDelete.DisabledBorderColor = Color.FromArgb(209, 209, 209);
-    ButtonDelete.DisabledTextColor = Color.FromArgb(166, 178, 190);
-    ButtonDelete.DownColor = Color.FromArgb(232, 232, 232);
-    ButtonDelete.EnabledCalc = true;
-    ButtonDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-    ButtonDelete.ForeColor = Color.DarkSlateGray;
-    ButtonDelete.Location = new Point(400, 172);
-    ButtonDelete.Name = "ButtonDelete";
-    ButtonDelete.OverColor = Color.FromArgb(242, 242, 242);
-    ButtonDelete.Size = new Size(90, 41);
-    ButtonDelete.TabIndex = 18;
-    ButtonDelete.Text = "Obriši";
-    // 
-    // ButtonAdd
-    // 
-    ButtonAdd.BackColor = Color.Transparent;
-    ButtonAdd.BaseColor = Color.DarkSlateGray;
-    ButtonAdd.BorderColor = Color.DarkSlateGray;
-    ButtonAdd.DisabledBaseColor = Color.DarkSlateGray;
-    ButtonAdd.DisabledBorderColor = Color.FromArgb(209, 209, 209);
-    ButtonAdd.DisabledTextColor = Color.FromArgb(166, 178, 190);
-    ButtonAdd.DownColor = Color.DarkSlateGray;
-    ButtonAdd.EnabledCalc = true;
-    ButtonAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-    ButtonAdd.ForeColor = Color.White;
-    ButtonAdd.Location = new Point(496, 172);
-    ButtonAdd.Name = "ButtonAdd";
-    ButtonAdd.OverColor = Color.DimGray;
-    ButtonAdd.RightToLeft = RightToLeft.Yes;
-    ButtonAdd.Size = new Size(90, 41);
-    ButtonAdd.TabIndex = 19;
-    ButtonAdd.Text = "Dodaj";
-    ButtonAdd.Click += ButonAdd_Click;
     // 
     // PanelRightContent
     // 
@@ -350,7 +306,7 @@ partial class WorkLogForm {
     ComboBoxProjects.ItemHeight = 15;
     ComboBoxProjects.Location = new Point(17, 143);
     ComboBoxProjects.Name = "ComboBoxProjects";
-    ComboBoxProjects.Size = new Size(279, 23);
+    ComboBoxProjects.Size = new Size(569, 23);
     ComboBoxProjects.TabIndex = 28;
     ComboBoxProjects.SelectedIndexChanged += ComboBoxProjects_SelectedIndexChanged;
     // 
@@ -365,7 +321,7 @@ partial class WorkLogForm {
     TBoxSearch.Multiline = true;
     TBoxSearch.Name = "TBoxSearch";
     TBoxSearch.ReadOnly = false;
-    TBoxSearch.Size = new Size(377, 41);
+    TBoxSearch.Size = new Size(569, 41);
     TBoxSearch.TabIndex = 29;
     TBoxSearch.TextAlignment = HorizontalAlignment.Left;
     TBoxSearch.UseSystemPasswordChar = false;
@@ -376,44 +332,16 @@ partial class WorkLogForm {
     StyleManager1.Owner = this;
     StyleManager1.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Silver;
     // 
-    // ComboBoxSprints
-    // 
-    ComboBoxSprints.DropDownStyle = ComboBoxStyle.DropDownList;
-    ComboBoxSprints.FormattingEnabled = true;
-    ComboBoxSprints.IntegralHeight = false;
-    ComboBoxSprints.ItemHeight = 15;
-    ComboBoxSprints.Location = new Point(302, 143);
-    ComboBoxSprints.Name = "ComboBoxSprints";
-    ComboBoxSprints.Size = new Size(284, 23);
-    ComboBoxSprints.TabIndex = 31;
-    ComboBoxSprints.SelectedIndexChanged += ComboBoxSprints_SelectedIndexChanged;
-    // 
-    // dungeonLabel6
-    // 
-    dungeonLabel6.AutoSize = true;
-    dungeonLabel6.BackColor = Color.Transparent;
-    dungeonLabel6.Font = new Font("Segoe UI", 13F);
-    dungeonLabel6.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel6.Location = new Point(297, 113);
-    dungeonLabel6.Name = "dungeonLabel6";
-    dungeonLabel6.Size = new Size(116, 25);
-    dungeonLabel6.TabIndex = 30;
-    dungeonLabel6.Text = "Izbor sprinta:";
-    // 
     // WorkLogForm
     // 
     AutoScaleDimensions = new SizeF(7F, 15F);
     AutoScaleMode = AutoScaleMode.Font;
     ClientSize = new Size(984, 471);
-    Controls.Add(ComboBoxSprints);
-    Controls.Add(dungeonLabel6);
     Controls.Add(TBoxSearch);
     Controls.Add(ComboBoxProjects);
     Controls.Add(dungeonLabel4);
     Controls.Add(PanelRightContent);
     Controls.Add(DGV);
-    Controls.Add(ButtonDelete);
-    Controls.Add(ButtonAdd);
     Controls.Add(bigLabel1);
     Controls.Add(dungeonLabel1);
     MaximizeBox = false;
@@ -433,8 +361,6 @@ partial class WorkLogForm {
   private ReaLTaiizor.Controls.BigLabel bigLabel1;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
   private ReaLTaiizor.Controls.PoisonDataGridView DGV;
-  private ReaLTaiizor.Controls.FoxButton ButtonDelete;
-  private ReaLTaiizor.Controls.FoxButton ButtonAdd;
   private Panel PanelRightContent;
   private ReaLTaiizor.Controls.BigTextBox TBoxDescription;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
@@ -448,8 +374,6 @@ partial class WorkLogForm {
   private ReaLTaiizor.Controls.BigTextBox TBoxSearch;
   private ReaLTaiizor.Controls.DungeonNumeric NumericHours;
   private ReaLTaiizor.Manager.PoisonStyleManager StyleManager1;
-  private ComboBox ComboBoxSprints;
-  private ReaLTaiizor.Controls.DungeonLabel dungeonLabel6;
   private ComboBox ComboBoxUserStories;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel5;
 }
