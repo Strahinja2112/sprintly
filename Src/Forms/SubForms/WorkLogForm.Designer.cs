@@ -61,7 +61,7 @@ partial class WorkLogForm {
     bigLabel1.Name = "bigLabel1";
     bigLabel1.Size = new Size(268, 46);
     bigLabel1.TabIndex = 12;
-    bigLabel1.Text = "Work Log Form";
+    bigLabel1.Text = "Evidencija Rada";
     // 
     // dungeonLabel1
     // 
@@ -72,7 +72,7 @@ partial class WorkLogForm {
     dungeonLabel1.Name = "dungeonLabel1";
     dungeonLabel1.Size = new Size(573, 45);
     dungeonLabel1.TabIndex = 13;
-    dungeonLabel1.Text = "Ovo je stranica na kojoj možete upravljati radim zadacima, dodati nove, ili menjati postojeće.";
+    dungeonLabel1.Text = "Ovo je stranica na kojoj možete unositi radno vreme potrošeno na zadate radne zadatke.";
     // 
     // DGV
     // 

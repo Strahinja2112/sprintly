@@ -42,15 +42,19 @@ public static class Helpers {
 
   public static void ClearClickEvents(Control control) {
     FieldInfo? f1 = typeof(Control).GetField("EventClick", BindingFlags.Static | BindingFlags.NonPublic);
-    if (f1 != null) {
-      object? obj = f1.GetValue(control);
-      PropertyInfo? pi = typeof(Control).GetProperty("Events", BindingFlags.NonPublic | BindingFlags.Instance);
-      if (pi != null) {
-        EventHandlerList? list = (EventHandlerList?)pi.GetValue(control, null);
-        if (list != null && obj != null) {
-          list.RemoveHandler(obj, list[obj]);
-        }
-      }
+    if (f1 == null) {
+      return;
+    }
+
+    object? obj = f1.GetValue(control);
+    PropertyInfo? pi = typeof(Control).GetProperty("Events", BindingFlags.NonPublic | BindingFlags.Instance);
+    if (pi == null) {
+      return;
+    }
+
+    EventHandlerList? list = (EventHandlerList?)pi.GetValue(control, null);
+    if (list != null && obj != null) {
+      list.RemoveHandler(obj, list[obj]);
     }
   }
 

@@ -59,8 +59,7 @@ public partial class EmployeesForm : BaseForm {
           db.Employees.Remove(emp);
           db.SaveChanges();
 
-          MessageBox.Show("Zaposleni je uspešno uklonjen iz baze podataka.",
-                          "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+          Helpers.ShowToast("Zaposleni je uspešno uklonjen iz baze podataka.", NotificationType.Info, "Uspeh!");
 
           ClearInputs();
           LoadEmployees();
@@ -160,8 +159,7 @@ public partial class EmployeesForm : BaseForm {
 
       db.SaveChanges();
 
-      string msg = selectedDataGridViewItemId == 0 ? "Novi zaposleni je uspešno kreiran." : "Podaci o zaposlenom su uspešno ažurirani.";
-      Helpers.ShowToast(msg, NotificationType.Info);
+      Helpers.ShowToast(selectedDataGridViewItemId == 0 ? "Novi zaposleni je uspešno kreiran." : "Podaci o zaposlenom su uspešno ažurirani.", NotificationType.Info);
 
       ClearInputs();
       LoadEmployees();
