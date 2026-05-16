@@ -36,7 +36,7 @@ public partial class WorkTasksForm : BaseForm {
   }
 
   private void WorkTasksForm_Load(object sender, EventArgs e) {
-    SetPlaceholder(TBoxSearch, searchPlaceholder);
+    TBoxSearch.SetPlaceholder(searchPlaceholder);
     LoadProjectsToFilter();
     ComboBoxProjects_SelectedIndexChanged(sender, e);
   }

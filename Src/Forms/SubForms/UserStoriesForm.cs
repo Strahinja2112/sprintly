@@ -1,4 +1,5 @@
-﻿using Sprintra.Src.Data;
+﻿using Sprintra.Src;
+using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
 using Sprintra.Src.Forms;
 using Sprintra.Src.Services;
@@ -23,7 +24,7 @@ public partial class UserStoriesForm : BaseForm {
   }
 
   private void UserStoriesForm_Load(object sender, EventArgs e) {
-    SetPlaceholder(TBoxSearch, searchPlaceholder);
+    TBoxSearch.SetPlaceholder(searchPlaceholder);
     LoadProjectsToFilter();
     ComboBoxProjects_SelectedIndexChanged(sender, e);
   }

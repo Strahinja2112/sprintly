@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using Sprintra.Src;
 using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
@@ -26,7 +27,7 @@ public partial class SprintsForm : BaseForm {
 
   private async void SprintsForm_Load(object sender, EventArgs e) {
     await LoadProjectsToFilter();
-    SetPlaceholder(TBoxSearch, searchPlaceholder);
+    TBoxSearch.SetPlaceholder(searchPlaceholder);
   }
 
   private async Task LoadProjectsToFilter() {
