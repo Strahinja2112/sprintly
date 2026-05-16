@@ -40,15 +40,7 @@ dotnet ef database update
 ```
 
 Or run SQL scripts in `Src/Data/Scripts/`
-
-### Default Users (after seeding)
-
-| Username | Password | Role |
-|----------|----------|------|
-| admin | admin123 | Admin |
-| strahinja | sifra123 | Developer (Senior, Fullstack) |
-| nikola.dev | nikola123 | Developer (Junior, Backend) |
-
+###
 To seed: uncomment `SeedService.FullSeed()` in `Program.cs`
 
 ## Database
@@ -66,7 +58,7 @@ Sprintra/
 │   ├── Data/
 │   │   ├── AppDbContext.cs             # EF Core context
 │   │   ├── Models/                     # Entity classes
-│   │   ├── Persistance/Migrations/    # EF migrations
+│   │   ├── Persistance/Migrations/     # EF migrations
 │   │   └── Scripts/                    # SQL (ddl.sql, script.sql)
 │   ├── Services/
 │   │   ├── AuthService.cs              # Login/logout/session
@@ -96,16 +88,6 @@ Sprintra/
 - **Distribution** — Version, Environment (Web/Mobile/Desktop/API)
 - **Increment** — Release versions linked to Distribution
 - **Feature** — Features linked to Sprint + Increment
-
-## User Roles & Permissions
-
-| Permission | Admin | ScrumMaster | ProductOwner | Developer |
-|------------|:----:|:-----------:|:------------:|:---------:|
-| Manage Projects | ✓ | ✗ | ✗ | ✗ |
-| Manage Sprints | ✓ | ✗ | ✗ | ✗ |
-| Manage Users | ✓ | ✗ | ✗ | ✗ |
-| Manage User Stories | ✓ | ✓ | ✓ | ✗ |
-| Log Work | ✓ | ✓ | ✓ | ✓ |
 
 ## EF Core Commands
 
