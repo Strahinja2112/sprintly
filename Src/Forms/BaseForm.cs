@@ -1,4 +1,6 @@
-﻿namespace Sprintra.Src.Forms;
+﻿using System.ComponentModel;
+
+namespace Sprintra.Src.Forms;
 
 public class BaseForm : Form {
   protected bool isExpanded = false;
@@ -6,9 +8,26 @@ public class BaseForm : Form {
   protected BaseForm? parent;
   protected string searchPlaceholder = "Pretraga...";
 
+  protected Panel? rightSidePanel = null;
+
+  [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+  public Panel? RightSidePanel {
+    get {
+      return rightSidePanel;
+    }
+    set {
+      rightSidePanel = value;
+
+      if (rightSidePanel == null) {
+        return;
+      }
+
+      expandedPanelWidth = rightSidePanel.Width;
+      rightSidePanel.Hide();
+    }
+  }
 
   public BaseForm() {
-    //Icon = SystemIcons.GetStockIcon(StockIconId.Link);
   }
 
   protected static void SetPlaceholder(Control control, string text) {

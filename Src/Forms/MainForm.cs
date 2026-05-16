@@ -32,24 +32,24 @@ public partial class MainForm : BaseForm {
     LabelUserStories.Click += PanelUserStories_Click;
     LabelWorkTasks.Click += PanelWorkTasks_Click;
 
-    if (!PermissionsService.CanLogWork()) {
-      PanelWorkLog.Hide();
-    }
-    if (!PermissionsService.CanManageProjects()) {
-      PanelProjects.Hide();
-    }
-    if (!PermissionsService.CanManageUsers()) {
-      PanelEmployees.Hide();
-    }
-    if (!PermissionsService.CanManageSprints()) {
-      PanelSprints.Hide();
-    }
-    if (!PermissionsService.CanManageUserStories()) {
-      PanelUserStories.Hide();
-    }
-    if (!PermissionsService.CanManageWorkTasks()) {
-      PanelWorkTasks.Hide();
-    }
+    //if (!PermissionsService.CanLogWork()) {
+    //  PanelWorkLog.Hide();
+    //}
+    //if (!PermissionsService.CanManageProjects()) {
+    //  PanelProjects.Hide();
+    //}
+    //if (!PermissionsService.CanManageUsers()) {
+    //  PanelEmployees.Hide();
+    //}
+    //if (!PermissionsService.CanManageSprints()) {
+    //  PanelSprints.Hide();
+    //}
+    //if (!PermissionsService.CanManageUserStories()) {
+    //  PanelUserStories.Hide();
+    //}
+    //if (!PermissionsService.CanManageWorkTasks()) {
+    //  PanelWorkTasks.Hide();
+    //}
 
     LabelUserName.Text = "@" + AuthService.CurrentUser.Username;
     LabelUserType.Text = AuthService.CurrentUser.Type.ToString();

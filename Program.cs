@@ -23,7 +23,9 @@ internal static class Program {
       if (!AuthService.TryAutoLogin()) {
         var loginForm = new LoginForm();
         Application.Run(loginForm);
+
         loginForm.Close();
+
         if (!loginForm.IsLoginSuccessful) {
           break;
         }

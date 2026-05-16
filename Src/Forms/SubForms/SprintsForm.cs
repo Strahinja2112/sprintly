@@ -3,6 +3,7 @@ using Sprintra.Src;
 using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
 using Sprintra.Src.Forms;
+using Sprintra.Src.Services;
 using Sprintra.Src.Services.Forms;
 using System.Data;
 
@@ -10,14 +11,22 @@ namespace Sprintra.Forms;
 
 public partial class SprintsForm : BaseForm {
   private int selectedSprintId = 0;
+
   private readonly SprintsService sprintsService;
 
   public SprintsForm(BaseForm parent) {
     InitializeComponent();
 
     sprintsService = new SprintsService();
-    expandedPanelWidth = PanelProjectEdit.Width;
-    PanelProjectEdit.Hide();
+
+    RightSidePanel = PanelRightContent;
+
+    ButtonDelete.Enabled = ButtonAdd.Enabled = PermissionsService.CanManageSprints();
+
+    //foreach (Control item in PanelRightContent.Controls) {
+    //  MessageBox.Show(item.Name);
+    //}
+
     this.parent = parent;
   }
 
@@ -159,7 +168,7 @@ public partial class SprintsForm : BaseForm {
   private void ExpandParent() {
     if (!isExpanded) {
       parent.Width += expandedPanelWidth;
-      PanelProjectEdit.Show();
+      PanelRightContent.Show();
       isExpanded = true;
     }
     parent.CenterOnScreen();
@@ -239,7 +248,7 @@ public partial class SprintsForm : BaseForm {
 
       if (isExpanded) {
         parent.Width -= expandedPanelWidth;
-        PanelProjectEdit.Hide();
+        PanelRightContent.Hide();
         isExpanded = false;
         parent.CenterOnScreen();
       }

@@ -32,8 +32,8 @@ partial class SprintsForm {
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     DGVSprints = new ReaLTaiizor.Controls.PoisonDataGridView();
     ButtonDelete = new ReaLTaiizor.Controls.FoxButton();
-    ButonAdd = new ReaLTaiizor.Controls.FoxButton();
-    PanelProjectEdit = new Panel();
+    ButtonAdd = new ReaLTaiizor.Controls.FoxButton();
+    PanelRightContent = new Panel();
     LabelDescriptionLength = new ReaLTaiizor.Controls.DungeonLabel();
     ButtonFinishSprint = new ReaLTaiizor.Controls.FoxButton();
     NumericSprintLength = new ReaLTaiizor.Controls.DungeonNumeric();
@@ -51,7 +51,7 @@ partial class SprintsForm {
     TBoxSearch = new ReaLTaiizor.Controls.BigTextBox();
     StyleManager1 = new ReaLTaiizor.Manager.PoisonStyleManager(components);
     ((System.ComponentModel.ISupportInitialize)DGVSprints).BeginInit();
-    PanelProjectEdit.SuspendLayout();
+    PanelRightContent.SuspendLayout();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).BeginInit();
     SuspendLayout();
     // 
@@ -146,47 +146,47 @@ partial class SprintsForm {
     ButtonDelete.Text = "Obriši";
     ButtonDelete.Click += ButtonDelete_Click;
     // 
-    // ButonAdd
+    // ButtonAdd
     // 
-    ButonAdd.BackColor = Color.Transparent;
-    ButonAdd.BaseColor = Color.DarkSlateGray;
-    ButonAdd.BorderColor = Color.DarkSlateGray;
-    ButonAdd.DisabledBaseColor = Color.FromArgb(255, 224, 192);
-    ButonAdd.DisabledBorderColor = Color.FromArgb(209, 209, 209);
-    ButonAdd.DisabledTextColor = Color.FromArgb(166, 178, 190);
-    ButonAdd.DownColor = Color.DarkSlateGray;
-    ButonAdd.EnabledCalc = true;
-    ButonAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-    ButonAdd.ForeColor = Color.White;
-    ButonAdd.Location = new Point(496, 172);
-    ButonAdd.Name = "ButonAdd";
-    ButonAdd.OverColor = Color.DimGray;
-    ButonAdd.RightToLeft = RightToLeft.Yes;
-    ButonAdd.Size = new Size(90, 41);
-    ButonAdd.TabIndex = 19;
-    ButonAdd.Text = "Dodaj";
-    ButonAdd.Click += ButonAdd_Click;
+    ButtonAdd.BackColor = Color.Transparent;
+    ButtonAdd.BaseColor = Color.DarkSlateGray;
+    ButtonAdd.BorderColor = Color.DarkSlateGray;
+    ButtonAdd.DisabledBaseColor = Color.DarkSlateGray;
+    ButtonAdd.DisabledBorderColor = Color.FromArgb(209, 209, 209);
+    ButtonAdd.DisabledTextColor = Color.FromArgb(166, 178, 190);
+    ButtonAdd.DownColor = Color.DarkSlateGray;
+    ButtonAdd.EnabledCalc = true;
+    ButtonAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+    ButtonAdd.ForeColor = Color.White;
+    ButtonAdd.Location = new Point(496, 172);
+    ButtonAdd.Name = "ButtonAdd";
+    ButtonAdd.OverColor = Color.DimGray;
+    ButtonAdd.RightToLeft = RightToLeft.Yes;
+    ButtonAdd.Size = new Size(90, 41);
+    ButtonAdd.TabIndex = 19;
+    ButtonAdd.Text = "Dodaj";
+    ButtonAdd.Click += ButonAdd_Click;
     // 
-    // PanelProjectEdit
+    // PanelRightContent
     // 
-    PanelProjectEdit.BackColor = SystemColors.Window;
-    PanelProjectEdit.Controls.Add(LabelDescriptionLength);
-    PanelProjectEdit.Controls.Add(ButtonFinishSprint);
-    PanelProjectEdit.Controls.Add(NumericSprintLength);
-    PanelProjectEdit.Controls.Add(dungeonLabel5);
-    PanelProjectEdit.Controls.Add(TBoxDescription);
-    PanelProjectEdit.Controls.Add(dungeonLabel2);
-    PanelProjectEdit.Controls.Add(DateTimePicker);
-    PanelProjectEdit.Controls.Add(LabelDate);
-    PanelProjectEdit.Controls.Add(ButtonSave);
-    PanelProjectEdit.Controls.Add(TBoxProjectName);
-    PanelProjectEdit.Controls.Add(dungeonLabel3);
-    PanelProjectEdit.Controls.Add(bigLabel2);
-    PanelProjectEdit.Dock = DockStyle.Right;
-    PanelProjectEdit.Location = new Point(601, 0);
-    PanelProjectEdit.Name = "PanelProjectEdit";
-    PanelProjectEdit.Size = new Size(383, 471);
-    PanelProjectEdit.TabIndex = 20;
+    PanelRightContent.BackColor = SystemColors.Window;
+    PanelRightContent.Controls.Add(LabelDescriptionLength);
+    PanelRightContent.Controls.Add(ButtonFinishSprint);
+    PanelRightContent.Controls.Add(NumericSprintLength);
+    PanelRightContent.Controls.Add(dungeonLabel5);
+    PanelRightContent.Controls.Add(TBoxDescription);
+    PanelRightContent.Controls.Add(dungeonLabel2);
+    PanelRightContent.Controls.Add(DateTimePicker);
+    PanelRightContent.Controls.Add(LabelDate);
+    PanelRightContent.Controls.Add(ButtonSave);
+    PanelRightContent.Controls.Add(TBoxProjectName);
+    PanelRightContent.Controls.Add(dungeonLabel3);
+    PanelRightContent.Controls.Add(bigLabel2);
+    PanelRightContent.Dock = DockStyle.Right;
+    PanelRightContent.Location = new Point(601, 0);
+    PanelRightContent.Name = "PanelRightContent";
+    PanelRightContent.Size = new Size(383, 471);
+    PanelRightContent.TabIndex = 20;
     // 
     // LabelDescriptionLength
     // 
@@ -418,10 +418,10 @@ partial class SprintsForm {
     Controls.Add(TBoxSearch);
     Controls.Add(ComboBoxProjects);
     Controls.Add(dungeonLabel4);
-    Controls.Add(PanelProjectEdit);
+    Controls.Add(PanelRightContent);
     Controls.Add(DGVSprints);
     Controls.Add(ButtonDelete);
-    Controls.Add(ButonAdd);
+    Controls.Add(ButtonAdd);
     Controls.Add(bigLabel1);
     Controls.Add(dungeonLabel1);
     MaximizeBox = false;
@@ -429,8 +429,8 @@ partial class SprintsForm {
     Text = "DashboardForm";
     Load += SprintsForm_Load;
     ((System.ComponentModel.ISupportInitialize)DGVSprints).EndInit();
-    PanelProjectEdit.ResumeLayout(false);
-    PanelProjectEdit.PerformLayout();
+    PanelRightContent.ResumeLayout(false);
+    PanelRightContent.PerformLayout();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).EndInit();
     ResumeLayout(false);
     PerformLayout();
@@ -442,8 +442,8 @@ partial class SprintsForm {
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
   private ReaLTaiizor.Controls.PoisonDataGridView DGVSprints;
   private ReaLTaiizor.Controls.FoxButton ButtonDelete;
-  private ReaLTaiizor.Controls.FoxButton ButonAdd;
-  private Panel PanelProjectEdit;
+  private ReaLTaiizor.Controls.FoxButton ButtonAdd;
+  private Panel PanelRightContent;
   private ReaLTaiizor.Controls.BigTextBox TBoxDescription;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
   private ReaLTaiizor.Controls.PoisonDateTime DateTimePicker;
