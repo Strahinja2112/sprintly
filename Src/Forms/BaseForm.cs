@@ -82,7 +82,7 @@ public class BaseForm : Form {
   protected void OpenChildForm(Panel container, Form childForm) {
     Width = MinimumSize.Width;
     Height = MinimumSize.Height;
-    CenterOnScreen();
+    //CenterOnScreen();
 
     if (container.Controls.Count > 0) {
       container.Controls.Clear();

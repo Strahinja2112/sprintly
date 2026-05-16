@@ -610,6 +610,7 @@
       Controls.Add(PanelMainContent);
       Controls.Add(panel1);
       FormBorderStyle = FormBorderStyle.FixedSingle;
+      Icon = (Icon)resources.GetObject("$this.Icon");
       MaximizeBox = false;
       MinimumSize = new Size(806, 509);
       Name = "MainForm";
