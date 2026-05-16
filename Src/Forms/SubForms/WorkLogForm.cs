@@ -9,8 +9,6 @@ using System.Data;
 namespace Sprintra.Forms;
 
 public partial class WorkLogForm : BaseForm {
-  private int selectedTaskId = 0;
-
   private readonly WorkTasksService workTasksService;
   private readonly SprintsService sprintsService;
   private readonly UserStoriesService userStoriesService;
@@ -139,9 +137,9 @@ public partial class WorkLogForm : BaseForm {
     }
 
     try {
-      WorkTask task = selectedTaskId == 0
+      WorkTask task = selectedDataGridViewItemId == 0
           ? new WorkTask()
-          : await workTasksService.GetByIdAsync(selectedTaskId) ?? new WorkTask();
+          : await workTasksService.GetByIdAsync(selectedDataGridViewItemId) ?? new WorkTask();
 
       task.Name = name;
       task.Description = desc;
@@ -173,7 +171,7 @@ public partial class WorkLogForm : BaseForm {
   }
 
   private void ClearInputs() {
-    selectedTaskId = 0;
+    selectedDataGridViewItemId = 0;
     TBoxName.Text = "";
     TBoxDescription.Text = "";
     NumericHours.Value = 0;
@@ -204,8 +202,8 @@ public partial class WorkLogForm : BaseForm {
 
   private async void DGV_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGV.Rows[e.RowIndex].Cells["Id"].Value != null) {
-      selectedTaskId = Convert.ToInt32(DGV.Rows[e.RowIndex].Cells["Id"].Value);
-      await LoadWorkTaskToInputs(selectedTaskId);
+      selectedDataGridViewItemId = Convert.ToInt32(DGV.Rows[e.RowIndex].Cells["Id"].Value);
+      await LoadWorkTaskToInputs(selectedDataGridViewItemId);
       ExpandParent();
     }
   }

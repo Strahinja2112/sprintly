@@ -7,8 +7,6 @@ using System.Data;
 namespace Sprintra.Forms;
 
 public partial class ProjectsForm : BaseForm {
-  private int selectedProjectId = 0;
-
   private bool dateChanged = false;
 
   public ProjectsForm(BaseForm parent) {
@@ -34,13 +32,13 @@ public partial class ProjectsForm : BaseForm {
   }
 
   private void ButtonProjectDelete_Click(object sender, EventArgs e) {
-    if (selectedProjectId == 0) {
+    if (selectedDataGridViewItemId == 0) {
       MessageBox.Show("Molimo vas da prvo odaberete projekat iz tabele.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
       return;
     }
 
     using var db = new AppDbContext();
-    var count = db.Sprints.Count(s => s.ProjectId == selectedProjectId);
+    var count = db.Sprints.Count(s => s.ProjectId == selectedDataGridViewItemId);
 
     if (count > 0) {
       MessageBox.Show($"Projekat koji sadrži sprintove ({count}) ne može biti obrisan.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -52,7 +50,7 @@ public partial class ProjectsForm : BaseForm {
 
     if (result == DialogResult.Yes) {
       try {
-        var project = db.Projects.FirstOrDefault(p => p.Id == selectedProjectId);
+        var project = db.Projects.FirstOrDefault(p => p.Id == selectedDataGridViewItemId);
 
         if (project != null) {
           db.Projects.Remove(project);
@@ -88,14 +86,14 @@ public partial class ProjectsForm : BaseForm {
       using var db = new AppDbContext();
       Project? project = null;
 
-      if (selectedProjectId == 0) {
+      if (selectedDataGridViewItemId == 0) {
         project = new Project {
           StartDate = DateTimePicker.Value
         };
         db.Projects.Add(project);
       }
       else {
-        project = db.Projects.FirstOrDefault(p => p.Id == selectedProjectId);
+        project = db.Projects.FirstOrDefault(p => p.Id == selectedDataGridViewItemId);
         if (project == null) {
           return;
         }
@@ -121,8 +119,8 @@ public partial class ProjectsForm : BaseForm {
   private void DGVProjects_CellClick(object sender, DataGridViewCellEventArgs e) {
     var isValid = e.RowIndex >= 0 && DGVProjects.Rows[e.RowIndex].Cells["Id"].Value != null;
     if (isValid) {
-      selectedProjectId = Convert.ToInt32(DGVProjects.Rows[e.RowIndex].Cells["Id"].Value);
-      LoadProjectToInputs(selectedProjectId);
+      selectedDataGridViewItemId = Convert.ToInt32(DGVProjects.Rows[e.RowIndex].Cells["Id"].Value);
+      LoadProjectToInputs(selectedDataGridViewItemId);
       ExpandParent();
       LabelDate.Text = "Datum završetka";
     }
@@ -183,7 +181,7 @@ public partial class ProjectsForm : BaseForm {
   }
 
   private void ClearInputs() {
-    selectedProjectId = 0;
+    selectedDataGridViewItemId = 0;
     TBoxProjectName.Text = "";
     TBoxDescription.Text = "";
     ComboBoxStatus.SelectedIndex = -1;
@@ -228,7 +226,7 @@ public partial class ProjectsForm : BaseForm {
     }
 
     if (projectStatus == ProjectStatus.Completed) {
-      if (selectedProjectId == 0) {
+      if (selectedDataGridViewItemId == 0) {
         MessageBox.Show("Projekat ne može biti completed ako nije ni kreiran.",
                       "Nevalidan status", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         ComboBoxStatus.SelectedItem = ProjectStatus.Planned.ToString();

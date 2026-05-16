@@ -8,8 +8,6 @@ using System.Data;
 namespace Sprintra.Forms;
 
 public partial class UserStoriesForm : BaseForm {
-  private int selectedStoryId = 0;
-
   private readonly UserStoriesService userStoriesService;
 
   public UserStoriesForm(BaseForm parent) {
@@ -88,9 +86,9 @@ public partial class UserStoriesForm : BaseForm {
     }
 
     try {
-      UserStory story = selectedStoryId == 0
+      UserStory story = selectedDataGridViewItemId == 0
           ? new UserStory { ProjectId = (int)ComboBoxProjects.SelectedValue }
-          : await userStoriesService.GetByIdAsync(selectedStoryId) ?? new UserStory();
+          : await userStoriesService.GetByIdAsync(selectedDataGridViewItemId) ?? new UserStory();
 
       story.Title = name;
       story.Description = desc;
@@ -108,8 +106,8 @@ public partial class UserStoriesForm : BaseForm {
 
   private async void DGVSprints_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGVSprints.Rows[e.RowIndex].Cells["Id"].Value != null) {
-      selectedStoryId = Convert.ToInt32(DGVSprints.Rows[e.RowIndex].Cells["Id"].Value);
-      await LoadUserStoryToInputs(selectedStoryId);
+      selectedDataGridViewItemId = Convert.ToInt32(DGVSprints.Rows[e.RowIndex].Cells["Id"].Value);
+      await LoadUserStoryToInputs(selectedDataGridViewItemId);
       ExpandParent();
     }
   }
@@ -125,7 +123,7 @@ public partial class UserStoriesForm : BaseForm {
   }
 
   private void ClearInputs() {
-    selectedStoryId = 0;
+    selectedDataGridViewItemId = 0;
     TBoxName.Text = "";
     TBoxDescription.Text = "";
     NumericPriority.Value = 1;
