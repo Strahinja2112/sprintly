@@ -2,6 +2,7 @@
 using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
 using Sprintra.Src.Forms;
+using Sprintra.Src.Services;
 using Sprintra.Src.Services.Forms;
 using System.Data;
 
@@ -16,14 +17,16 @@ public partial class WorkLogForm : BaseForm {
 
   public WorkLogForm(BaseForm parent) {
     InitializeComponent();
+    this.parent = parent;
 
     workTasksService = new WorkTasksService();
     sprintsService = new SprintsService();
     userStoriesService = new UserStoriesService();
 
-    expandedPanelWidth = PanelEdit.Width;
-    PanelEdit.Hide();
-    this.parent = parent;
+    RightSidePanel = PanelRightContent;
+    if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
+      DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
+    }
   }
 
   private void WorkTasksForm_Load(object sender, EventArgs e) {
@@ -180,7 +183,7 @@ public partial class WorkLogForm : BaseForm {
   private void ExpandParent() {
     if (!isExpanded) {
       parent?.Width += expandedPanelWidth;
-      PanelEdit.Show();
+      PanelRightContent.Show();
       isExpanded = true;
     }
     parent?.CenterOnScreen();
