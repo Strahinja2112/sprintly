@@ -102,7 +102,7 @@ public partial class WorkLogForm : BaseForm {
 
   private void ButtonAdd_Click(object sender, EventArgs e) {
     if (ComboBoxProjects.SelectedIndex == -1) {
-      this.ShowToast("Molimo vas da prvo odaberete projekat na vrhu.", NotificationType.Warning);
+      Helpers.ShowToast("Molimo vas da prvo odaberete projekat na vrhu.", NotificationType.Warning);
       return;
     }
 
@@ -115,23 +115,23 @@ public partial class WorkLogForm : BaseForm {
     string desc = TBoxDescription.Text.Trim();
 
     if (string.IsNullOrEmpty(name)) {
-      this.ShowToast("Ime zadatka je obavezno.", NotificationType.Warning);
+      Helpers.ShowToast("Ime zadatka je obavezno.", NotificationType.Warning);
       return;
     }
 
     if (ComboBoxUserStories.SelectedValue is not int storyId) {
-      this.ShowToast("Zadatak mora pripadati korisničkoj priči.", NotificationType.Warning);
+      Helpers.ShowToast("Zadatak mora pripadati korisničkoj priči.", NotificationType.Warning);
       return;
     }
 
     if (ComboBoxSprints.SelectedValue is not int sprintId || sprintId <= 0) {
-      this.ShowToast("Zadatak mora pripadati sprintu.", NotificationType.Warning);
+      Helpers.ShowToast("Zadatak mora pripadati sprintu.", NotificationType.Warning);
       return;
     }
 
     var sprint = await sprintsService.GetByIdAsync(sprintId);
     if (sprint?.Status == SprintStatus.Completed) {
-      this.ShowToast("Ne možete dodati zadatak u sprint koji je završen.", NotificationType.Error);
+      Helpers.ShowToast("Ne možete dodati zadatak u sprint koji je završen.", NotificationType.Error);
       return;
     }
 
@@ -149,12 +149,12 @@ public partial class WorkLogForm : BaseForm {
 
       await workTasksService.SaveTaskAsync(task);
 
-      this.ShowToast("Zadatak uspešno sačuvan.", NotificationType.Success);
+      Helpers.ShowToast("Zadatak uspešno sačuvan.", NotificationType.Success);
       ClearInputs();
       await LoadWorkTasksToDataGrid();
     }
     catch (Exception ex) {
-      this.ShowToast($"Greška: {ex.Message}", NotificationType.Error);
+      Helpers.ShowToast($"Greška: {ex.Message}", NotificationType.Error);
     }
   }
 

@@ -160,7 +160,7 @@ public partial class EmployeesForm : BaseForm {
       db.SaveChanges();
 
       string msg = selectedEmployeeId == 0 ? "Novi zaposleni je uspešno kreiran." : "Podaci o zaposlenom su uspešno ažurirani.";
-      this.ShowToast(msg, NotificationType.Info);
+      Helpers.ShowToast(msg, NotificationType.Info);
 
       ClearInputs();
       LoadEmployees();
