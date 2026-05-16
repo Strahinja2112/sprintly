@@ -12,9 +12,9 @@ public partial class ProjectsForm : BaseForm {
 
   public ProjectsForm(BaseForm parent) {
     InitializeComponent();
-    expandedPanelWidth = PanelProjectData.Width;
-    PanelProjectData.Hide();
     this.parent = parent;
+
+
   }
 
   private void ProjectsForm_Load(object sender, EventArgs e) {

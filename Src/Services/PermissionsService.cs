@@ -35,4 +35,15 @@ public static class PermissionsService {
   public static bool CanCurrentUserManageUserStories() => CurrentUserHasAtleastRole(EmployeeType.ProductOwner);
 
   public static bool CanCurrentUserManageWorkTasks() => CurrentUserHasAtleastRole(EmployeeType.ProductOwner);
+
+  public static bool CanCurrentUserManageForm(Type formType) {
+    return formType.Name switch {
+      "EmployeesForm" => CanCurrentUserManageUsers(),
+      "ProjectsForm" => CanCurrentUserManageProjects(),
+      "SprintsForm" => CanCurrentUserManageSprints(),
+      "UserStoriesForm" => CanCurrentUserManageUserStories(),
+      "WorkTasksForm" => CanCurrentUserManageWorkTasks(),
+      _ => false
+    };
+  }
 }

@@ -13,7 +13,7 @@ public partial class EmployeesForm : BaseForm {
     this.parent = parent;
 
     RightSidePanel = PanelRightContent;
-    if (!PermissionsService.CanCurrentUserManageSprints()) {
+    if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
       DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
     }
   }
