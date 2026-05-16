@@ -25,9 +25,9 @@ partial class WorkTasksForm {
   /// </summary>
   private void InitializeComponent() {
     components = new System.ComponentModel.Container();
-    DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-    DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+    DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
     bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     DGV = new ReaLTaiizor.Controls.PoisonDataGridView();
@@ -50,6 +50,7 @@ partial class WorkTasksForm {
     StyleManager1 = new ReaLTaiizor.Manager.PoisonStyleManager(components);
     ComboBoxSprints = new ComboBox();
     dungeonLabel6 = new ReaLTaiizor.Controls.DungeonLabel();
+    ButtonAddUsersToWorkTask = new ReaLTaiizor.Controls.FoxButton();
     ((System.ComponentModel.ISupportInitialize)DGV).BeginInit();
     PanelRightContent.SuspendLayout();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).BeginInit();
@@ -86,37 +87,37 @@ partial class WorkTasksForm {
     DGV.BorderStyle = BorderStyle.None;
     DGV.CellBorderStyle = DataGridViewCellBorderStyle.None;
     DGV.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-    DGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+    dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle4.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle4.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle4.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+    DGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
     DGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-    dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
-    dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-    DGV.DefaultCellStyle = dataGridViewCellStyle2;
+    dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle5.BackColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle5.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle5.ForeColor = Color.FromArgb(136, 136, 136);
+    dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+    DGV.DefaultCellStyle = dataGridViewCellStyle5;
     DGV.EnableHeadersVisualStyles = false;
     DGV.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
     DGV.GridColor = Color.FromArgb(255, 255, 255);
     DGV.Location = new Point(17, 219);
     DGV.Name = "DGV";
     DGV.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-    dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-    dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 174, 219);
-    dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-    dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
-    dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 198, 247);
-    dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
-    dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-    DGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+    dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+    dataGridViewCellStyle6.BackColor = Color.FromArgb(0, 174, 219);
+    dataGridViewCellStyle6.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+    dataGridViewCellStyle6.ForeColor = Color.FromArgb(255, 255, 255);
+    dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(0, 198, 247);
+    dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(17, 17, 17);
+    dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+    DGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
     DGV.RowHeadersVisible = false;
     DGV.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGV.ScrollBars = ScrollBars.None;
@@ -169,6 +170,7 @@ partial class WorkTasksForm {
     // PanelRightContent
     // 
     PanelRightContent.BackColor = SystemColors.Window;
+    PanelRightContent.Controls.Add(ButtonAddUsersToWorkTask);
     PanelRightContent.Controls.Add(ComboBoxUserStories);
     PanelRightContent.Controls.Add(NumericHours);
     PanelRightContent.Controls.Add(dungeonLabel5);
@@ -269,10 +271,10 @@ partial class WorkTasksForm {
     ButtonSave.EnabledCalc = true;
     ButtonSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButtonSave.ForeColor = Color.White;
-    ButtonSave.Location = new Point(14, 419);
+    ButtonSave.Location = new Point(227, 419);
     ButtonSave.Name = "ButtonSave";
     ButtonSave.OverColor = Color.DimGray;
-    ButtonSave.Size = new Size(353, 40);
+    ButtonSave.Size = new Size(140, 40);
     ButtonSave.TabIndex = 7;
     ButtonSave.Text = "Sačuvaj";
     ButtonSave.Click += ButtonSave_Click;
@@ -400,6 +402,26 @@ partial class WorkTasksForm {
     dungeonLabel6.TabIndex = 30;
     dungeonLabel6.Text = "Izbor sprinta:";
     // 
+    // ButtonAddUsersToWorkTask
+    // 
+    ButtonAddUsersToWorkTask.BackColor = Color.Transparent;
+    ButtonAddUsersToWorkTask.BaseColor = SystemColors.Window;
+    ButtonAddUsersToWorkTask.BorderColor = Color.DarkSlateGray;
+    ButtonAddUsersToWorkTask.DisabledBaseColor = Color.FromArgb(249, 249, 249);
+    ButtonAddUsersToWorkTask.DisabledBorderColor = Color.FromArgb(209, 209, 209);
+    ButtonAddUsersToWorkTask.DisabledTextColor = Color.FromArgb(166, 178, 190);
+    ButtonAddUsersToWorkTask.DownColor = Color.FromArgb(232, 232, 232);
+    ButtonAddUsersToWorkTask.EnabledCalc = true;
+    ButtonAddUsersToWorkTask.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+    ButtonAddUsersToWorkTask.ForeColor = Color.DarkSlateGray;
+    ButtonAddUsersToWorkTask.Location = new Point(14, 418);
+    ButtonAddUsersToWorkTask.Name = "ButtonAddUsersToWorkTask";
+    ButtonAddUsersToWorkTask.OverColor = Color.FromArgb(242, 242, 242);
+    ButtonAddUsersToWorkTask.Size = new Size(207, 41);
+    ButtonAddUsersToWorkTask.TabIndex = 38;
+    ButtonAddUsersToWorkTask.Text = "Upravljaj zaduženima";
+    ButtonAddUsersToWorkTask.Click += ButtonAddUsersToWorkTask_Click;
+    // 
     // WorkTasksForm
     // 
     AutoScaleDimensions = new SizeF(7F, 15F);
@@ -452,4 +474,5 @@ partial class WorkTasksForm {
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel6;
   private ComboBox ComboBoxUserStories;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel5;
+  private ReaLTaiizor.Controls.FoxButton ButtonAddUsersToWorkTask;
 }

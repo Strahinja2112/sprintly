@@ -11,7 +11,7 @@ public class BaseForm : Form {
   protected string searchPlaceholder = "Pretraga...";
 
   protected BaseForm? parent;
-  protected Panel? rightSidePanel = null;
+  private Panel? rightSidePanel = null;
 
   [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
   public Panel? RightSidePanel {
@@ -51,25 +51,6 @@ public class BaseForm : Form {
     }
   }
 
-  protected static void SetPlaceholder(Control control, string text) {
-    control.Text = text;
-    control.ForeColor = Color.Gray;
-
-    control.Enter += (s, e) => {
-      if (control.Text == text) {
-        control.Text = "";
-        control.ForeColor = Color.Black;
-      }
-    };
-
-    control.Leave += (s, e) => {
-      if (string.IsNullOrWhiteSpace(control.Text)) {
-        control.Text = text;
-        control.ForeColor = Color.Gray;
-      }
-    };
-  }
-
   public void CenterOnScreen() {
     Rectangle screenArea = Screen.FromControl(this).WorkingArea;
 
@@ -79,7 +60,7 @@ public class BaseForm : Form {
     Location = new Point(x, y);
   }
 
-  protected void OpenChildForm(Panel container, Form childForm) {
+  protected void OpenSubform(Panel container, Form childForm) {
     Width = MinimumSize.Width;
     Height = MinimumSize.Height;
     //CenterOnScreen();
@@ -96,5 +77,23 @@ public class BaseForm : Form {
     container.Tag = childForm;
     childForm.BringToFront();
     childForm.Show();
+  }
+
+  protected void ExpandParent() {
+    if (!isExpanded) {
+      parent?.Width += expandedPanelWidth;
+      RightSidePanel?.Show();
+      isExpanded = true;
+    }
+    parent?.CenterOnScreen();
+  }
+
+  protected void CollapseParent() {
+    if (isExpanded) {
+      parent?.Width -= expandedPanelWidth;
+      RightSidePanel?.Hide();
+      isExpanded = false;
+    }
+    parent?.CenterOnScreen();
   }
 }

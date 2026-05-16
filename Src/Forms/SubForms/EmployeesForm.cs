@@ -25,7 +25,7 @@ public partial class EmployeesForm : BaseForm {
 
     LoadEmployees();
 
-    SetPlaceholder(TBoxSearch, searchPlaceholder);
+    TBoxSearch.SetPlaceholder(searchPlaceholder);
   }
 
   private void ButonUserAdd_Click(object sender, EventArgs e) {

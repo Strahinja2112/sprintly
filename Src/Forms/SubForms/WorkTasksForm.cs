@@ -13,9 +13,17 @@ public partial class WorkTasksForm : BaseForm {
   private readonly SprintsService sprintsService;
   private readonly UserStoriesService userStoriesService;
 
+  private AssignTasksToUsersForm assignTasksToUsersForm;
+
   public WorkTasksForm(BaseForm parent) {
     InitializeComponent();
     this.parent = parent;
+
+    assignTasksToUsersForm = new(this);
+    assignTasksToUsersForm.FormClosed += async (s, args) => {
+      Helpers.ShowToast("Zatvoreno dodeljivanje korisnika!", NotificationType.Info);
+      CollapseParent();
+    };
 
     workTasksService = new WorkTasksService();
     sprintsService = new SprintsService();
@@ -25,9 +33,6 @@ public partial class WorkTasksForm : BaseForm {
     if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
       DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
     }
-
-    var newTest = new TestForm();
-    OpenChildForm(RightSidePanel, newTest);
   }
 
   private void WorkTasksForm_Load(object sender, EventArgs e) {
@@ -182,15 +187,6 @@ public partial class WorkTasksForm : BaseForm {
     bigLabel2.Text = "Novi radni zadatak";
   }
 
-  private void ExpandParent() {
-    if (!isExpanded) {
-      parent?.Width += expandedPanelWidth;
-      PanelRightContent.Show();
-      isExpanded = true;
-    }
-    parent?.CenterOnScreen();
-  }
-
   private async void TBoxSearch_TextChanged(object sender, EventArgs e) {
     string term = TBoxSearch.Text.Trim();
     await LoadWorkTasksToDataGrid(term == searchPlaceholder || string.IsNullOrEmpty(term) ? "" : term);
@@ -211,5 +207,13 @@ public partial class WorkTasksForm : BaseForm {
   private void ButonAdd_Click(object sender, EventArgs e) {
     ClearInputs();
     ExpandParent();
+  }
+
+  private void ButtonAddUsersToWorkTask_Click(object sender, EventArgs e) {
+    if (RightSidePanel == null) {
+      return;
+    }
+
+    OpenSubform(RightSidePanel, assignTasksToUsersForm);
   }
 }

@@ -23,7 +23,7 @@ public partial class ProjectsForm : BaseForm {
     ComboBoxStatus.Items.AddRange(Enum.GetNames<ProjectStatus>());
 
     LoadProjects();
-    SetPlaceholder(TBoxSearch, searchPlaceholder);
+    TBoxSearch.SetPlaceholder(searchPlaceholder);
   }
 
   private void ButtonProjectAdd_Click(object sender, EventArgs e) {
