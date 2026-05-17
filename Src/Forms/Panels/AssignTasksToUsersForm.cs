@@ -12,6 +12,20 @@ public partial class AssignTasksToUsersForm : BaseForm {
     this.parent = parent;
   }
 
+  public void LoadEmployeesForProject(int projectId) {
+    try {
+      using var db = new AppDbContext();
+      allEmployees = [.. db.Employees
+        .Where(emp => emp.Projects.Any(p => p.Id == projectId))
+        .OrderBy(emp => emp.LastName)
+      ];
+      DisplayEmployees(allEmployees);
+    }
+    catch (Exception ex) {
+      Helpers.ShowToast($"Greška pri učitavanju: {ex.Message}", NotificationType.Error);
+    }
+  }
+
   private void AssignTasksToUsersForm_Load(object sender, EventArgs e) {
     TBoxSearch.SetPlaceholder("Pretraži zaposlene...");
     FlowPanelEmployees.AutoScroll = true;
@@ -19,7 +33,7 @@ public partial class AssignTasksToUsersForm : BaseForm {
 
     try {
       using var db = new AppDbContext();
-      allEmployees = db.Employees.OrderBy(emp => emp.LastName).ToList();
+      allEmployees = [.. db.Employees.OrderBy(emp => emp.LastName)];
       DisplayEmployees(allEmployees);
     }
     catch (Exception ex) {
@@ -95,5 +109,44 @@ public partial class AssignTasksToUsersForm : BaseForm {
 
   private void ButtonCancel_Click(object sender, EventArgs e) {
     Close();
+  }
+
+  private void ButtonSave_Click(object sender, EventArgs e) {
+    if (parent == null || parent.SelectedDataGridViewItemId == 0) {
+      Helpers.ShowToast("Nije odabran nijedan validan zadatak.", NotificationType.Warning);
+      return;
+    }
+
+    //try {
+    //  using var db = new AppDbContext();
+    //  int taskId = parent.selectedDataGridViewItemId;
+
+    //  var task = db.WorkTasks
+    //      .Include(t => t.AssignedEmployees)
+    //      .FirstOrDefault(t => t.Id == taskId);
+
+    //  if (task == null) {
+    //    Helpers.ShowToast("Zadatak više ne postoji u bazi podataka.", NotificationType.Error);
+    //    return;
+    //  }
+
+    //  task.AssignedEmployees.Clear();
+
+    //  var selectedEmployees = db.Employees
+    //      .Where(emp => selectedEmployeeIds.Contains(emp.Id))
+    //      .ToList();
+
+    //  foreach (var emp in selectedEmployees) {
+    //    task.AssignedEmployees.Add(emp);
+    //  }
+
+    //  db.SaveChanges();
+
+    //  Helpers.ShowToast("Zaposleni su uspešno dodeljeni zadatku.", NotificationType.Success);
+    //  Close();
+    //}
+    //catch (Exception ex) {
+    //  MessageBox.Show($"Greška prilikom čuvanja podataka:\n\n{ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    //}
   }
 }

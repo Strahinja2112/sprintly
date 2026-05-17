@@ -35,13 +35,13 @@ public partial class EmployeesForm : BaseForm {
   }
 
   private void ButtonUserDelete_Click(object sender, EventArgs e) {
-    if (selectedDataGridViewItemId == 0) {
+    if (SelectedDataGridViewItemId == 0) {
       MessageBox.Show("Molimo vas da prvo odaberete zaposlenog iz tabele kojeg želite da obrišete.",
                       "Nije selektovan korisnik", MessageBoxButtons.OK, MessageBoxIcon.Warning);
       return;
     }
 
-    if (AuthService.CurrentUser != null && selectedDataGridViewItemId == AuthService.CurrentUser.Id) {
+    if (AuthService.CurrentUser != null && SelectedDataGridViewItemId == AuthService.CurrentUser.Id) {
       MessageBox.Show("Nije dozvoljeno brisanje sopstvenog naloga dok ste prijavljeni.",
                       "Akcija odbijena", MessageBoxButtons.OK, MessageBoxIcon.Stop);
       return;
@@ -53,7 +53,7 @@ public partial class EmployeesForm : BaseForm {
     if (result == DialogResult.Yes) {
       try {
         using var db = new AppDbContext();
-        var emp = db.Employees.FirstOrDefault(u => u.Id == selectedDataGridViewItemId);
+        var emp = db.Employees.FirstOrDefault(u => u.Id == SelectedDataGridViewItemId);
 
         if (emp != null) {
           db.Employees.Remove(emp);
@@ -110,14 +110,14 @@ public partial class EmployeesForm : BaseForm {
       using var db = new AppDbContext();
       Employee emp;
 
-      bool usernameExists = db.Employees.Any(u => u.Username == username && u.Id != selectedDataGridViewItemId);
+      bool usernameExists = db.Employees.Any(u => u.Username == username && u.Id != SelectedDataGridViewItemId);
       if (usernameExists) {
         MessageBox.Show($"Korisničko ime '{username}' je već u upotrebi. Molimo odaberite drugo.",
                         "Duplikat korisničkog imena", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
       }
 
-      if (selectedDataGridViewItemId == 0) {
+      if (SelectedDataGridViewItemId == 0) {
         if (string.IsNullOrEmpty(newPassword)) {
           MessageBox.Show("Lozinka je obavezna za nove korisnike.", "Lozinka nedostaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
           return;
@@ -130,7 +130,7 @@ public partial class EmployeesForm : BaseForm {
         db.Employees.Add(emp);
       }
       else {
-        emp = db.Employees.FirstOrDefault(u => u.Id == selectedDataGridViewItemId);
+        emp = db.Employees.FirstOrDefault(u => u.Id == SelectedDataGridViewItemId);
         if (emp == null) {
           MessageBox.Show("Korisnik kojeg pokušavate da izmenite više ne postoji u bazi.", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Error);
           return;
@@ -159,7 +159,7 @@ public partial class EmployeesForm : BaseForm {
 
       db.SaveChanges();
 
-      Helpers.ShowToast(selectedDataGridViewItemId == 0 ? "Novi zaposleni je uspešno kreiran." : "Podaci o zaposlenom su uspešno ažurirani.", NotificationType.Info);
+      Helpers.ShowToast(SelectedDataGridViewItemId == 0 ? "Novi zaposleni je uspešno kreiran." : "Podaci o zaposlenom su uspešno ažurirani.", NotificationType.Info);
 
       ClearInputs();
       LoadEmployees();
@@ -172,14 +172,14 @@ public partial class EmployeesForm : BaseForm {
 
   private void DGVEmployees_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGVEmployees.Rows[e.RowIndex].Cells["Id"].Value != null) {
-      selectedDataGridViewItemId = Convert.ToInt32(DGVEmployees.Rows[e.RowIndex].Cells["Id"].Value);
-      LoadEmployeeToInputs(selectedDataGridViewItemId);
+      SelectedDataGridViewItemId = Convert.ToInt32(DGVEmployees.Rows[e.RowIndex].Cells["Id"].Value);
+      LoadEmployeeToInputs(SelectedDataGridViewItemId);
       ExpandParent();
     }
   }
 
   private void ClearInputs() {
-    selectedDataGridViewItemId = 0;
+    SelectedDataGridViewItemId = 0;
     TBoxName.Text = "";
     TBoxLastName.Text = "";
     TBoxUsername.Text = "";

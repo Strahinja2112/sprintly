@@ -103,11 +103,11 @@ public partial class SprintsForm : BaseForm {
   private async void ButtonSave_Click(object sender, EventArgs e) {
     try {
       Sprint? sprint;
-      if (selectedDataGridViewItemId == 0) {
+      if (SelectedDataGridViewItemId == 0) {
         sprint = new Sprint { ProjectId = (int)ComboBoxProjects.SelectedValue };
       }
       else {
-        sprint = await sprintsService.GetByIdAsync(selectedDataGridViewItemId);
+        sprint = await sprintsService.GetByIdAsync(SelectedDataGridViewItemId);
         if (sprint == null) return;
       }
 
@@ -129,8 +129,8 @@ public partial class SprintsForm : BaseForm {
 
   private async void DGVSprints_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGVSprints.Rows[e.RowIndex].Cells["Id"].Value != null) {
-      selectedDataGridViewItemId = Convert.ToInt32(DGVSprints.Rows[e.RowIndex].Cells["Id"].Value);
-      await LoadSprintToInputs(selectedDataGridViewItemId);
+      SelectedDataGridViewItemId = Convert.ToInt32(DGVSprints.Rows[e.RowIndex].Cells["Id"].Value);
+      await LoadSprintToInputs(SelectedDataGridViewItemId);
       ExpandParent();
     }
   }
@@ -153,20 +153,11 @@ public partial class SprintsForm : BaseForm {
   }
 
   private void ClearInputs() {
-    selectedDataGridViewItemId = 0;
+    SelectedDataGridViewItemId = 0;
     TBoxProjectName.Text = "";
     TBoxDescription.Text = "";
     DateTimePicker.Value = DateTimePicker.MinDate;
     bigLabel2.Text = "Novi Sprint";
-  }
-
-  private void ExpandParent() {
-    if (!isExpanded) {
-      parent.Width += expandedPanelWidth;
-      PanelRightContent.Show();
-      isExpanded = true;
-    }
-    parent.CenterOnScreen();
   }
 
   private void TBoxSearch_TextChanged(object sender, EventArgs e) {
@@ -179,17 +170,17 @@ public partial class SprintsForm : BaseForm {
   }
 
   private async void ButtonFinishSprint_Click(object sender, EventArgs e) {
-    if (selectedDataGridViewItemId == 0) {
+    if (SelectedDataGridViewItemId == 0) {
       return;
     }
 
     try {
-      var sprint = await sprintsService.GetByIdAsync(selectedDataGridViewItemId);
+      var sprint = await sprintsService.GetByIdAsync(SelectedDataGridViewItemId);
       if (sprint == null) {
         return;
       }
 
-      if (await sprintsService.HasUnfinishedTasksAsync(selectedDataGridViewItemId)) {
+      if (await sprintsService.HasUnfinishedTasksAsync(SelectedDataGridViewItemId)) {
         var resultTasks = MessageBox.Show(
           "Postoje nezavršeni zadaci u ovom sprintu. Želite li da ih prebacite nazad u Backlog pre završetka sprinta?",
           "Nezavršeni zadaci",
@@ -200,7 +191,7 @@ public partial class SprintsForm : BaseForm {
         if (resultTasks == DialogResult.Cancel) return;
 
         if (resultTasks == DialogResult.Yes) {
-          await sprintsService.MoveUnfinishedTasksToBacklogAsync(selectedDataGridViewItemId);
+          await sprintsService.MoveUnfinishedTasksToBacklogAsync(SelectedDataGridViewItemId);
         }
       }
       else {
@@ -224,7 +215,7 @@ public partial class SprintsForm : BaseForm {
   }
 
   private async void ButtonDelete_Click(object sender, EventArgs e) {
-    if (selectedDataGridViewItemId == 0) return;
+    if (SelectedDataGridViewItemId == 0) return;
 
     var confirm = MessageBox.Show(
         "Da li ste sigurni da želite trajno da obrišete ovaj sprint?",
@@ -236,7 +227,7 @@ public partial class SprintsForm : BaseForm {
     if (confirm == DialogResult.No) return;
 
     try {
-      await sprintsService.DeleteSprintAsync(selectedDataGridViewItemId);
+      await sprintsService.DeleteSprintAsync(SelectedDataGridViewItemId);
 
       ClearInputs();
       LoadSprints();

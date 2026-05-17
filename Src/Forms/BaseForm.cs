@@ -3,11 +3,10 @@
 namespace Sprintra.Src.Forms;
 
 public class BaseForm : Form {
+  public int SelectedDataGridViewItemId = 0;
+
   protected bool isExpanded = false;
-
   protected int expandedPanelWidth = 0;
-  protected int selectedDataGridViewItemId = 0;
-
   protected string searchPlaceholder = "Pretraga...";
 
   protected BaseForm? parent;

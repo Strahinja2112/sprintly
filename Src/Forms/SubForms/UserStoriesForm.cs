@@ -87,9 +87,9 @@ public partial class UserStoriesForm : BaseForm {
     }
 
     try {
-      UserStory story = selectedDataGridViewItemId == 0
+      UserStory story = SelectedDataGridViewItemId == 0
           ? new UserStory { ProjectId = (int)ComboBoxProjects.SelectedValue }
-          : await userStoriesService.GetByIdAsync(selectedDataGridViewItemId) ?? new UserStory();
+          : await userStoriesService.GetByIdAsync(SelectedDataGridViewItemId) ?? new UserStory();
 
       story.Title = name;
       story.Description = desc;
@@ -107,8 +107,8 @@ public partial class UserStoriesForm : BaseForm {
 
   private async void DGVSprints_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGVSprints.Rows[e.RowIndex].Cells["Id"].Value != null) {
-      selectedDataGridViewItemId = Convert.ToInt32(DGVSprints.Rows[e.RowIndex].Cells["Id"].Value);
-      await LoadUserStoryToInputs(selectedDataGridViewItemId);
+      SelectedDataGridViewItemId = Convert.ToInt32(DGVSprints.Rows[e.RowIndex].Cells["Id"].Value);
+      await LoadUserStoryToInputs(SelectedDataGridViewItemId);
       ExpandParent();
     }
   }
@@ -124,22 +124,12 @@ public partial class UserStoriesForm : BaseForm {
   }
 
   private void ClearInputs() {
-    selectedDataGridViewItemId = 0;
+    SelectedDataGridViewItemId = 0;
     TBoxName.Text = "";
     TBoxDescription.Text = "";
     NumericPriority.Value = 1;
     bigLabel2.Text = "Nova korisnička priča";
   }
-
-  private void ExpandParent() {
-    if (!isExpanded) {
-      parent.Width += expandedPanelWidth;
-      PanelRightContent.Show();
-      isExpanded = true;
-    }
-    parent.CenterOnScreen();
-  }
-
   private async void TBoxSearch_TextChanged(object sender, EventArgs e) {
     string term = TBoxSearch.Text.Trim();
     if (term == searchPlaceholder || string.IsNullOrEmpty(term)) {

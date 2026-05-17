@@ -103,6 +103,7 @@ partial class AssignTasksToUsersForm {
     ButtonSave.Size = new Size(242, 40);
     ButtonSave.TabIndex = 39;
     ButtonSave.Text = "Sačuvaj";
+    ButtonSave.Click += ButtonSave_Click;
     // 
     // StyleManager1
     // 

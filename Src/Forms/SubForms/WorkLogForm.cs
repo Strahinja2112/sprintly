@@ -104,9 +104,9 @@ public partial class WorkLogForm : BaseForm {
     }
 
     try {
-      WorkTask task = selectedDataGridViewItemId == 0
+      WorkTask task = SelectedDataGridViewItemId == 0
           ? new WorkTask()
-          : await workTasksService.GetByIdAsync(selectedDataGridViewItemId) ?? new WorkTask();
+          : await workTasksService.GetByIdAsync(SelectedDataGridViewItemId) ?? new WorkTask();
 
       task.Name = name;
       task.Description = desc;
@@ -137,20 +137,11 @@ public partial class WorkLogForm : BaseForm {
   }
 
   private void ClearInputs() {
-    selectedDataGridViewItemId = 0;
+    SelectedDataGridViewItemId = 0;
     TBoxName.Text = "";
     TBoxDescription.Text = "";
     NumericHours.Value = 0;
     bigLabel2.Text = "Novi radni zadatak";
-  }
-
-  private void ExpandParent() {
-    if (!isExpanded) {
-      parent?.Width += expandedPanelWidth;
-      PanelRightContent.Show();
-      isExpanded = true;
-    }
-    parent?.CenterOnScreen();
   }
 
   private async void TBoxSearch_TextChanged(object sender, EventArgs e) {
@@ -168,8 +159,8 @@ public partial class WorkLogForm : BaseForm {
 
   private async void DGV_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGV.Rows[e.RowIndex].Cells["Id"].Value != null) {
-      selectedDataGridViewItemId = Convert.ToInt32(DGV.Rows[e.RowIndex].Cells["Id"].Value);
-      await LoadWorkTaskToInputs(selectedDataGridViewItemId);
+      SelectedDataGridViewItemId = Convert.ToInt32(DGV.Rows[e.RowIndex].Cells["Id"].Value);
+      await LoadWorkTaskToInputs(SelectedDataGridViewItemId);
       ExpandParent();
     }
   }
