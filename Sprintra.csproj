@@ -26,6 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Src\Forms\Panels\AddOrEditWorkTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Src\Forms\SubForms\WorkLogForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -8,7 +8,6 @@ public partial class AssignTasksToUsersForm : BaseForm {
   private List<Employee> allEmployees = [];
   private HashSet<int> selectedEmployeeIds = [];
   private HashSet<int> projectEmployeeIds = [];
-  private int currentProjectId = 0;
 
   public AssignTasksToUsersForm(BaseForm parent) {
     InitializeComponent();
@@ -16,8 +15,6 @@ public partial class AssignTasksToUsersForm : BaseForm {
   }
 
   public void LoadEmployeesForProject(int projectId) {
-    this.currentProjectId = projectId;
-
     try {
       using (var db = new AppDbContext()) {
         var assignedToProject = db.Employees

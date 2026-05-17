@@ -1,26 +1,42 @@
 ﻿using Sprintra.Src;
 using Sprintra.Src.Data;
-using Sprintra.Src.Data.Models;
 using Sprintra.Src.Forms;
 using Sprintra.Src.Services;
 using Sprintra.Src.Services.Forms;
+using System.ComponentModel;
 using System.Data;
 
 namespace Sprintra.Forms;
 
-enum WorkTaskFormMode {
+public enum WorkTaskFormMode {
   EditingWorkTasks,
   AssigningUsers,
 }
 
 public partial class WorkTasksForm : BaseForm {
-  private WorkTaskFormMode mode = WorkTaskFormMode.EditingWorkTasks;
+  private WorkTaskFormMode? mode = null;
+
+  [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+  public WorkTaskFormMode? Mode {
+    get {
+      return mode;
+    }
+    set {
+      mode = value;
+      if (mode == null) {
+        return;
+      }
+
+      OpenSubform(PanelForSubforms, mode == WorkTaskFormMode.AssigningUsers ? assignTasksToUsersForm : addOrEditWorkTaskForm);
+    }
+  }
 
   private readonly WorkTasksService workTasksService;
   private readonly SprintsService sprintsService;
   private readonly UserStoriesService userStoriesService;
 
-  private AssignTasksToUsersForm assignTasksToUsersForm;
+  private readonly AssignTasksToUsersForm assignTasksToUsersForm;
+  private readonly AddOrEditWorkTaskForm addOrEditWorkTaskForm;
 
   private new int SelectedDataGridViewItemId {
     get => base.SelectedDataGridViewItemId;
@@ -34,6 +50,12 @@ public partial class WorkTasksForm : BaseForm {
     InitializeComponent();
     this.parent = parent;
 
+    addOrEditWorkTaskForm = new AddOrEditWorkTaskForm(this);
+    addOrEditWorkTaskForm.FormClosed += async (s, args) => {
+      Helpers.ShowToast("Zatvoreno dodeljivanje korisnika!", NotificationType.Info);
+      CollapseParent();
+    };
+
     assignTasksToUsersForm = new AssignTasksToUsersForm(this);
     assignTasksToUsersForm.FormClosed += async (s, args) => {
       Helpers.ShowToast("Zatvoreno dodeljivanje korisnika!", NotificationType.Info);
@@ -45,7 +67,7 @@ public partial class WorkTasksForm : BaseForm {
     sprintsService = new SprintsService();
     userStoriesService = new UserStoriesService();
 
-    RightSidePanel = PanelRightContent;
+    RightSidePanel = PanelRight;
     if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
       DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
     }
@@ -54,7 +76,6 @@ public partial class WorkTasksForm : BaseForm {
   private void WorkTasksForm_Load(object sender, EventArgs e) {
     TBoxSearch.SetPlaceholder(searchPlaceholder);
     LoadProjectsToFilter();
-    ComboBoxProjects_SelectedIndexChanged(sender, e);
   }
 
   private void LoadProjectsToFilter() {
@@ -65,29 +86,31 @@ public partial class WorkTasksForm : BaseForm {
     ComboBoxProjects.DisplayMember = "Name";
     ComboBoxProjects.ValueMember = "Id";
     ComboBoxProjects.SelectedIndex = projects.Count > 0 ? 0 : -1;
+
+    ComboBoxProjects_SelectedIndexChanged(null!, null!);
   }
 
   private async void ComboBoxProjects_SelectedIndexChanged(object sender, EventArgs e) {
     if (ComboBoxProjects.SelectedValue is int projectId) {
-      await LoadSprintsToFilters(projectId);
-      await LoadUserStoriesToFilters(projectId);
-      await LoadWorkTasksToDataGrid();
+      await LoadSprintsToComboBox(projectId);
+      await LoadUserStoriesComboBox(projectId);
+      await LoadWorkTasksToDataGridView();
     }
   }
 
-  private async Task LoadUserStoriesToFilters(int projectId) {
+  private async Task LoadUserStoriesComboBox(int projectId) {
     var userStories = await userStoriesService.GetByProjectAsync(projectId);
 
-    ComboBoxUserStories.DataSource = userStories;
+    //ComboBoxUserStories.DataSource = userStories;
 
-    ComboBoxUserStories.DisplayMember = "Title";
-    ComboBoxUserStories.ValueMember = "Id";
+    //ComboBoxUserStories.DisplayMember = "Title";
+    //ComboBoxUserStories.ValueMember = "Id";
 
     // TODO: OVO BACA GRESKU POPRAVI TO NE BUDI GLUP
     //ComboBoxUserStories.SelectedIndex = userStories.Count > 0 ? 0 : -1;
   }
 
-  private async Task LoadSprintsToFilters(int projectId) {
+  private async Task LoadSprintsToComboBox(int projectId) {
     var sprints = await sprintsService.GetSprintsForProject(projectId);
 
     sprints.Insert(0, new() {
@@ -103,7 +126,7 @@ public partial class WorkTasksForm : BaseForm {
     ComboBoxSprints.SelectedIndex = 0;
   }
 
-  private async Task LoadWorkTasksToDataGrid(string term = "") {
+  private async Task LoadWorkTasksToDataGridView(string term = "") {
     if (ComboBoxProjects.SelectedValue is not int projectId) return;
 
     int? sprintIdFilter = null;
@@ -119,11 +142,11 @@ public partial class WorkTasksForm : BaseForm {
       Priča = t.UserStory?.Title,
       Status = t.Status.ToString(),
       Sati = t.EstimatedHours,
-      PreostaliSati = t.EstimatedHours - 12
     }).ToList();
 
     DGV.Columns["Id"]?.Visible = false;
-    DGV.Columns["Zadatak"]?.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+    DGV.Columns["Zadatak"]?.Width = 200;
+    DGV.Columns["Sati"]?.Width = 80;
   }
 
   private void ButtonAdd_Click(object sender, EventArgs e) {
@@ -137,101 +160,93 @@ public partial class WorkTasksForm : BaseForm {
   }
 
   private async void ButtonSave_Click(object sender, EventArgs e) {
-    string name = TBoxName.Text.Trim();
-    string desc = TBoxDescription.Text.Trim();
+    if (Mode == WorkTaskFormMode.EditingWorkTasks) {
+      var name = addOrEditWorkTaskForm.TBoxName.Text.Trim();
+      var desc = addOrEditWorkTaskForm.TBoxDescription.Text.Trim();
 
-    if (string.IsNullOrEmpty(name)) {
-      Helpers.ShowToast("Ime zadatka je obavezno.", NotificationType.Warning);
-      return;
+      if (string.IsNullOrEmpty(name)) {
+        Helpers.ShowToast("Ime zadatka je obavezno.", NotificationType.Warning);
+        return;
+      }
     }
 
-    if (ComboBoxUserStories.SelectedValue is not int storyId) {
-      Helpers.ShowToast("Zadatak mora pripadati korisničkoj priči.", NotificationType.Warning);
-      return;
-    }
+    //if (ComboBoxUserStories.SelectedValue is not int storyId) {
+    //  Helpers.ShowToast("Zadatak mora pripadati korisničkoj priči.", NotificationType.Warning);
+    //  return;
+    //}
 
-    if (ComboBoxSprints.SelectedValue is not int sprintId || sprintId <= 0) {
-      Helpers.ShowToast("Zadatak mora pripadati sprintu.", NotificationType.Warning);
-      return;
-    }
+    //if (ComboBoxSprints.SelectedValue is not int sprintId || sprintId <= 0) {
+    //  Helpers.ShowToast("Zadatak mora pripadati sprintu.", NotificationType.Warning);
+    //  return;
+    //}
 
-    var sprint = await sprintsService.GetByIdAsync(sprintId);
-    if (sprint?.Status == SprintStatus.Completed) {
-      Helpers.ShowToast("Ne možete dodati zadatak u sprint koji je završen.", NotificationType.Error);
-      return;
-    }
+    //var sprint = await sprintsService.GetByIdAsync(sprintId);
+    //if (sprint?.Status == SprintStatus.Completed) {
+    //  Helpers.ShowToast("Ne možete dodati zadatak u sprint koji je završen.", NotificationType.Error);
+    //  return;
+    //}
 
-    try {
-      WorkTask task = SelectedDataGridViewItemId == 0
-          ? new WorkTask()
-          : await workTasksService.GetByIdAsync(SelectedDataGridViewItemId) ?? new WorkTask();
+    //try {
+    //  WorkTask task = SelectedDataGridViewItemId == 0
+    //      ? new WorkTask()
+    //      : await workTasksService.GetByIdAsync(SelectedDataGridViewItemId) ?? new WorkTask();
 
-      task.Name = name;
-      task.Description = desc;
-      task.EstimatedHours = NumericHours.Value;
-      task.UserStoryId = storyId;
-      task.Status = WorkTaskStatus.ToDo;
-      task.SprintId = sprintId > 0 ? sprintId : null;
+    //  task.Name = name;
+    //  task.Description = desc;
+    //  //task.EstimatedHours = NumericHours.Value;
+    //  task.UserStoryId = storyId;
+    //  task.Status = WorkTaskStatus.ToDo;
+    //  task.SprintId = sprintId > 0 ? sprintId : null;
 
-      await workTasksService.SaveTaskAsync(task);
+    //  await workTasksService.SaveTaskAsync(task);
 
-      Helpers.ShowToast("Zadatak uspešno sačuvan.", NotificationType.Success);
-      ClearInputs();
-      await LoadWorkTasksToDataGrid();
-    }
-    catch (Exception ex) {
-      Helpers.ShowToast($"Greška: {ex.Message}", NotificationType.Error);
-    }
-  }
-
-  private async Task LoadWorkTaskToInputs(int id) {
-    var task = await workTasksService.GetByIdAsync(id);
-    if (task != null) {
-      TBoxName.Text = task.Name;
-      TBoxDescription.Text = task.Description;
-      NumericHours.Value = (long)task.EstimatedHours;
-
-      bigLabel2.Text = "Izmena radnog zadatka";
-    }
+    //  Helpers.ShowToast("Zadatak uspešno sačuvan.", NotificationType.Success);
+    //  ClearInputs();
+    //  await LoadWorkTasksToDataGridView();
+    //}
+    //catch (Exception ex) {
+    //  Helpers.ShowToast($"Greška: {ex.Message}", NotificationType.Error);
+    //}
   }
 
   private void ClearInputs() {
     SelectedDataGridViewItemId = 0;
-    TBoxName.Text = "";
-    TBoxDescription.Text = "";
-    NumericHours.Value = 0;
-    bigLabel2.Text = "Novi radni zadatak";
+    //TBoxName.Text = "";
+    //TBoxDescription.Text = "";
+    //NumericHours.Value = 0;
+    LabelTitle.Text = "Novi radni zadatak";
   }
 
   private async void TBoxSearch_TextChanged(object sender, EventArgs e) {
     string term = TBoxSearch.Text.Trim();
-    await LoadWorkTasksToDataGrid(term == searchPlaceholder || string.IsNullOrEmpty(term) ? "" : term);
+    await LoadWorkTasksToDataGridView(term == searchPlaceholder || string.IsNullOrEmpty(term) ? "" : term);
   }
 
   private async void ComboBoxSprints_SelectedIndexChanged(object sender, EventArgs e) {
-    await LoadWorkTasksToDataGrid();
+    await LoadWorkTasksToDataGridView();
   }
 
   private async void DGV_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGV.Rows[e.RowIndex].Cells["Id"].Value != null) {
       SelectedDataGridViewItemId = Convert.ToInt32(DGV.Rows[e.RowIndex].Cells["Id"].Value);
-      await LoadWorkTaskToInputs(SelectedDataGridViewItemId);
+      LabelTitle.Text = "Izmena radnog zadatka";
+      Mode ??= WorkTaskFormMode.EditingWorkTasks;
+
+      if (Mode == WorkTaskFormMode.EditingWorkTasks) {
+        addOrEditWorkTaskForm.PrepareForm(SelectedDataGridViewItemId);
+      }
+
       ExpandParent();
     }
   }
 
   private void ButonAdd_Click(object sender, EventArgs e) {
-    ClearInputs();
+    Mode = WorkTaskFormMode.EditingWorkTasks;
+    addOrEditWorkTaskForm.PrepareForm();
     ExpandParent();
   }
 
   private void ButtonAddUsersToWorkTask_Click(object sender, EventArgs e) {
-    if (RightSidePanel == null) {
-      return;
-    }
-
-    OpenSubform(RightSidePanel, assignTasksToUsersForm);
-
-    mode = WorkTaskFormMode.AssigningUsers;
+    Mode = Mode == WorkTaskFormMode.AssigningUsers ? WorkTaskFormMode.EditingWorkTasks : WorkTaskFormMode.AssigningUsers;
   }
 }
