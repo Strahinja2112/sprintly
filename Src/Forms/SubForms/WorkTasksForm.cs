@@ -29,6 +29,7 @@ public partial class WorkTasksForm : BaseForm {
       }
 
       OpenSubform(PanelForSubforms, mode == WorkTaskFormMode.AssigningUsers ? assignTasksToUsersForm : addOrEditWorkTaskForm);
+      ButtonWhiteLeft.Text = mode == WorkTaskFormMode.EditingWorkTasks ? "Upravljaj zaduženima" : "Izmeni zadatak";
     }
   }
 

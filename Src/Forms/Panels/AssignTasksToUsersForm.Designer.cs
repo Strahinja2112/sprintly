@@ -59,7 +59,7 @@ partial class AssignTasksToUsersForm {
     FlowPanelEmployees.BackColor = SystemColors.Window;
     FlowPanelEmployees.Location = new Point(12, 92);
     FlowPanelEmployees.Name = "FlowPanelEmployees";
-    FlowPanelEmployees.Size = new Size(360, 232);
+    FlowPanelEmployees.Size = new Size(360, 259);
     FlowPanelEmployees.TabIndex = 41;
     // 
     // dungeonLabel1
@@ -80,7 +80,7 @@ partial class AssignTasksToUsersForm {
     AutoScaleDimensions = new SizeF(7F, 15F);
     AutoScaleMode = AutoScaleMode.Font;
     BackColor = SystemColors.Window;
-    ClientSize = new Size(382, 337);
+    ClientSize = new Size(382, 364);
     Controls.Add(dungeonLabel1);
     Controls.Add(FlowPanelEmployees);
     Controls.Add(TBoxSearch);

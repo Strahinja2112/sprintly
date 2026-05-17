@@ -230,12 +230,12 @@ partial class SprintsForm {
     NumericSprintLength.ButtonForeColorB = Color.FromArgb(75, 75, 75);
     NumericSprintLength.Font = new Font("Tahoma", 11F);
     NumericSprintLength.ForeColor = Color.FromArgb(76, 76, 76);
-    NumericSprintLength.Location = new Point(181, 370);
+    NumericSprintLength.Location = new Point(209, 370);
     NumericSprintLength.Maximum = 100L;
     NumericSprintLength.Minimum = 1L;
     NumericSprintLength.MinimumSize = new Size(93, 28);
     NumericSprintLength.Name = "NumericSprintLength";
-    NumericSprintLength.Size = new Size(186, 28);
+    NumericSprintLength.Size = new Size(158, 28);
     NumericSprintLength.TabIndex = 37;
     NumericSprintLength.Text = "dungeonNumeric1";
     NumericSprintLength.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Near;
@@ -247,7 +247,7 @@ partial class SprintsForm {
     dungeonLabel5.BackColor = Color.Transparent;
     dungeonLabel5.Font = new Font("Segoe UI", 13F);
     dungeonLabel5.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel5.Location = new Point(181, 341);
+    dungeonLabel5.Location = new Point(204, 342);
     dungeonLabel5.Name = "dungeonLabel5";
     dungeonLabel5.Size = new Size(167, 25);
     dungeonLabel5.TabIndex = 36;
@@ -288,7 +288,7 @@ partial class SprintsForm {
     DateTimePicker.Location = new Point(14, 370);
     DateTimePicker.MinimumSize = new Size(0, 29);
     DateTimePicker.Name = "DateTimePicker";
-    DateTimePicker.Size = new Size(161, 29);
+    DateTimePicker.Size = new Size(189, 29);
     DateTimePicker.TabIndex = 29;
     // 
     // LabelDate

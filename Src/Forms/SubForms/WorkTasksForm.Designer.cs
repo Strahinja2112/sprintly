@@ -35,7 +35,7 @@ partial class WorkTasksForm {
     ButtonAdd = new ReaLTaiizor.Controls.FoxButton();
     PanelRight = new Panel();
     PanelForSubforms = new Panel();
-    ButtonAddUsersToWorkTask = new ReaLTaiizor.Controls.FoxButton();
+    ButtonWhiteLeft = new ReaLTaiizor.Controls.FoxButton();
     ButtonSave = new ReaLTaiizor.Controls.FoxButton();
     LabelTitle = new ReaLTaiizor.Controls.BigLabel();
     dungeonLabel4 = new ReaLTaiizor.Controls.DungeonLabel();
@@ -160,16 +160,16 @@ partial class WorkTasksForm {
     ButtonAdd.Text = "Dodaj";
     ButtonAdd.Click += ButonAdd_Click;
     // 
-    // PanelWorkTask
+    // PanelRight
     // 
     PanelRight.BackColor = SystemColors.Window;
     PanelRight.Controls.Add(PanelForSubforms);
-    PanelRight.Controls.Add(ButtonAddUsersToWorkTask);
+    PanelRight.Controls.Add(ButtonWhiteLeft);
     PanelRight.Controls.Add(ButtonSave);
     PanelRight.Controls.Add(LabelTitle);
     PanelRight.Dock = DockStyle.Right;
     PanelRight.Location = new Point(601, 0);
-    PanelRight.Name = "PanelWorkTask";
+    PanelRight.Name = "PanelRight";
     PanelRight.Size = new Size(383, 471);
     PanelRight.TabIndex = 20;
     // 
@@ -181,25 +181,25 @@ partial class WorkTasksForm {
     PanelForSubforms.Size = new Size(383, 358);
     PanelForSubforms.TabIndex = 39;
     // 
-    // ButtonAddUsersToWorkTask
+    // ButtonWhiteLeft
     // 
-    ButtonAddUsersToWorkTask.BackColor = Color.Transparent;
-    ButtonAddUsersToWorkTask.BaseColor = SystemColors.Window;
-    ButtonAddUsersToWorkTask.BorderColor = Color.DarkSlateGray;
-    ButtonAddUsersToWorkTask.DisabledBaseColor = Color.FromArgb(249, 249, 249);
-    ButtonAddUsersToWorkTask.DisabledBorderColor = Color.FromArgb(209, 209, 209);
-    ButtonAddUsersToWorkTask.DisabledTextColor = Color.FromArgb(166, 178, 190);
-    ButtonAddUsersToWorkTask.DownColor = Color.FromArgb(232, 232, 232);
-    ButtonAddUsersToWorkTask.EnabledCalc = true;
-    ButtonAddUsersToWorkTask.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-    ButtonAddUsersToWorkTask.ForeColor = Color.DarkSlateGray;
-    ButtonAddUsersToWorkTask.Location = new Point(14, 419);
-    ButtonAddUsersToWorkTask.Name = "ButtonAddUsersToWorkTask";
-    ButtonAddUsersToWorkTask.OverColor = Color.FromArgb(242, 242, 242);
-    ButtonAddUsersToWorkTask.Size = new Size(207, 41);
-    ButtonAddUsersToWorkTask.TabIndex = 38;
-    ButtonAddUsersToWorkTask.Text = "Upravljaj zaduženima";
-    ButtonAddUsersToWorkTask.Click += ButtonAddUsersToWorkTask_Click;
+    ButtonWhiteLeft.BackColor = Color.Transparent;
+    ButtonWhiteLeft.BaseColor = SystemColors.Window;
+    ButtonWhiteLeft.BorderColor = Color.DarkSlateGray;
+    ButtonWhiteLeft.DisabledBaseColor = Color.FromArgb(249, 249, 249);
+    ButtonWhiteLeft.DisabledBorderColor = Color.FromArgb(209, 209, 209);
+    ButtonWhiteLeft.DisabledTextColor = Color.FromArgb(166, 178, 190);
+    ButtonWhiteLeft.DownColor = Color.FromArgb(232, 232, 232);
+    ButtonWhiteLeft.EnabledCalc = true;
+    ButtonWhiteLeft.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+    ButtonWhiteLeft.ForeColor = Color.DarkSlateGray;
+    ButtonWhiteLeft.Location = new Point(14, 419);
+    ButtonWhiteLeft.Name = "ButtonWhiteLeft";
+    ButtonWhiteLeft.OverColor = Color.FromArgb(242, 242, 242);
+    ButtonWhiteLeft.Size = new Size(207, 41);
+    ButtonWhiteLeft.TabIndex = 38;
+    ButtonWhiteLeft.Text = "Upravljaj zaduženima";
+    ButtonWhiteLeft.Click += ButtonAddUsersToWorkTask_Click;
     // 
     // ButtonSave
     // 
@@ -347,6 +347,6 @@ partial class WorkTasksForm {
   private ReaLTaiizor.Manager.PoisonStyleManager StyleManager1;
   private ComboBox ComboBoxSprints;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel6;
-  private ReaLTaiizor.Controls.FoxButton ButtonAddUsersToWorkTask;
+  private ReaLTaiizor.Controls.FoxButton ButtonWhiteLeft;
   private Panel PanelForSubforms;
 }

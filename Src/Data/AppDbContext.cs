@@ -27,6 +27,11 @@ public class AppDbContext : DbContext {
       entity.Property(e => e.Type).HasConversion<string>();
     });
 
+    modelBuilder.Entity<WorkTask>()
+      .HasMany(w => w.AssignedEmployees)
+      .WithMany(e => e.AssignedTasks)
+      .UsingEntity(j => j.ToTable("Employee_AssignedTo_WorkTask"));
+
     // WorkTask
     modelBuilder.Entity<WorkTask>(entity => {
       entity.HasOne(w => w.UserStory)
@@ -54,12 +59,6 @@ public class AppDbContext : DbContext {
           .HasForeignKey(we => we.WorkTaskId)
           .OnDelete(DeleteBehavior.Cascade);
     });
-
-    // Project (Many-to-Many: Employee <-> Project)
-    modelBuilder.Entity<Project>()
-        .HasMany(p => p.Members)
-        .WithMany(e => e.Projects)
-        .UsingEntity(j => j.ToTable("Employee_WorksOn_Project"));
 
     // Sprint
     modelBuilder.Entity<Sprint>(entity => {
