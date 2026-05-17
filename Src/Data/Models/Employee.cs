@@ -42,6 +42,7 @@ public class Employee {
 
   public virtual ICollection<Project> Projects { get; set; } = [];
   public virtual ICollection<Meeting> Meetings { get; set; } = [];
+  public virtual ICollection<WorkTask> AssignedTasks { get; set; } = [];
 }
 
 public enum SeniorityLevel {

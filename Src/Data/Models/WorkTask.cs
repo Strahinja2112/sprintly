@@ -31,6 +31,8 @@ public class WorkTask {
   public virtual Sprint? Sprint { get; set; } = null;
 
   public virtual ICollection<WorkTaskEntry> WorkLogEntries { get; set; } = [];
+
+  public virtual ICollection<Employee> AssignedEmployees { get; set; } = [];
 }
 
 public enum WorkTaskStatus {

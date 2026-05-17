@@ -1,4 +1,5 @@
-﻿using Sprintra.Src.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
 
 namespace Sprintra.Src.Forms;
@@ -6,6 +7,8 @@ namespace Sprintra.Src.Forms;
 public partial class AssignTasksToUsersForm : BaseForm {
   private List<Employee> allEmployees = [];
   private HashSet<int> selectedEmployeeIds = [];
+  private HashSet<int> projectEmployeeIds = [];
+  private int currentProjectId = 0;
 
   public AssignTasksToUsersForm(BaseForm parent) {
     InitializeComponent();
@@ -13,16 +16,31 @@ public partial class AssignTasksToUsersForm : BaseForm {
   }
 
   public void LoadEmployeesForProject(int projectId) {
+    this.currentProjectId = projectId;
+
     try {
-      using var db = new AppDbContext();
-      allEmployees = [.. db.Employees
-        .Where(emp => emp.Projects.Any(p => p.Id == projectId))
-        .OrderBy(emp => emp.LastName)
-      ];
+      using (var db = new AppDbContext()) {
+        var assignedToProject = db.Employees
+            .Where(emp => emp.Projects.Any(p => p.Id == projectId))
+            .Select(emp => emp.Id)
+            .ToList();
+
+        projectEmployeeIds = [.. assignedToProject];
+
+        if (parent != null && parent.SelectedDataGridViewItemId != 0) {
+          var assignedToTask = db.WorkTasks
+              .Where(t => t.Id == parent.SelectedDataGridViewItemId)
+              .SelectMany(t => t.AssignedEmployees.Select(emp => emp.Id))
+              .ToList();
+
+          selectedEmployeeIds = [.. assignedToTask];
+        }
+      }
+
       DisplayEmployees(allEmployees);
     }
     catch (Exception ex) {
-      Helpers.ShowToast($"Greška pri učitavanju: {ex.Message}", NotificationType.Error);
+      Helpers.ShowToast($"Greška pri učitavanju projektnih prava: {ex.Message}", NotificationType.Error);
     }
   }
 
@@ -50,9 +68,9 @@ public partial class AssignTasksToUsersForm : BaseForm {
     }
 
     var filtered = allEmployees.Where(emp =>
-      emp.FirstName.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase) ||
-      emp.LastName.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase) ||
-      emp.Type.ToString().Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase)
+        emp.FirstName.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase) ||
+        emp.LastName.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase) ||
+        emp.Type.ToString().Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase)
     ).ToList();
 
     DisplayEmployees(filtered);
@@ -61,14 +79,23 @@ public partial class AssignTasksToUsersForm : BaseForm {
   private void DisplayEmployees(List<Employee> employeesList) {
     FlowPanelEmployees.Controls.Clear();
 
-    foreach (var emp in employeesList) {
+    var sortedList = employeesList
+        .OrderByDescending(emp => projectEmployeeIds.Contains(emp.Id))
+        .ThenBy(emp => emp.LastName)
+        .ToList();
+
+    foreach (var emp in sortedList) {
       var empTypeString = emp.Type switch {
         EmployeeType.Developer => $"{emp.SeniorityLevel} {emp.Field} {emp.Type}",
         _ => emp.Type.ToString()
       };
 
+      bool isOnProject = projectEmployeeIds.Contains(emp.Id);
+
+      string projectIndicator = isOnProject ? " (Na projektu)" : " (Van projekta)";
+
       var button = new Button() {
-        Text = $"{emp.FirstName} {emp.LastName} - {empTypeString}",
+        Text = $"{emp.FirstName} {emp.LastName} - {empTypeString}{projectIndicator}",
         Size = new Size(330, 38),
         FlatStyle = FlatStyle.Flat,
         Cursor = Cursors.Hand,
@@ -82,8 +109,8 @@ public partial class AssignTasksToUsersForm : BaseForm {
       }
       else {
         button.BackColor = Color.White;
-        button.ForeColor = Color.FromArgb(47, 79, 79);
-        button.FlatAppearance.BorderColor = Color.LightGray;
+        button.ForeColor = isOnProject ? Color.FromArgb(47, 79, 79) : Color.Gray;
+        button.FlatAppearance.BorderColor = isOnProject ? Color.LightGray : Color.Gainsboro;
       }
 
       button.FlatAppearance.BorderSize = 1;
@@ -97,8 +124,8 @@ public partial class AssignTasksToUsersForm : BaseForm {
         }
         else {
           button.BackColor = Color.White;
-          button.ForeColor = Color.FromArgb(47, 79, 79);
-          button.FlatAppearance.BorderColor = Color.LightGray;
+          button.ForeColor = isOnProject ? Color.FromArgb(47, 79, 79) : Color.Gray;
+          button.FlatAppearance.BorderColor = isOnProject ? Color.LightGray : Color.Gainsboro;
           selectedEmployeeIds.Remove(emp.Id);
         }
       };
@@ -117,36 +144,36 @@ public partial class AssignTasksToUsersForm : BaseForm {
       return;
     }
 
-    //try {
-    //  using var db = new AppDbContext();
-    //  int taskId = parent.selectedDataGridViewItemId;
+    try {
+      using var db = new AppDbContext();
+      int taskId = parent.SelectedDataGridViewItemId;
 
-    //  var task = db.WorkTasks
-    //      .Include(t => t.AssignedEmployees)
-    //      .FirstOrDefault(t => t.Id == taskId);
+      var task = db.WorkTasks
+          .Include(t => t.AssignedEmployees)
+          .FirstOrDefault(t => t.Id == taskId);
 
-    //  if (task == null) {
-    //    Helpers.ShowToast("Zadatak više ne postoji u bazi podataka.", NotificationType.Error);
-    //    return;
-    //  }
+      if (task == null) {
+        Helpers.ShowToast("Zadatak više ne postoji u bazi podataka.", NotificationType.Error);
+        return;
+      }
 
-    //  task.AssignedEmployees.Clear();
+      task.AssignedEmployees.Clear();
 
-    //  var selectedEmployees = db.Employees
-    //      .Where(emp => selectedEmployeeIds.Contains(emp.Id))
-    //      .ToList();
+      var selectedEmployees = db.Employees
+          .Where(emp => selectedEmployeeIds.Contains(emp.Id))
+          .ToList();
 
-    //  foreach (var emp in selectedEmployees) {
-    //    task.AssignedEmployees.Add(emp);
-    //  }
+      foreach (var emp in selectedEmployees) {
+        task.AssignedEmployees.Add(emp);
+      }
 
-    //  db.SaveChanges();
+      db.SaveChanges();
 
-    //  Helpers.ShowToast("Zaposleni su uspešno dodeljeni zadatku.", NotificationType.Success);
-    //  Close();
-    //}
-    //catch (Exception ex) {
-    //  MessageBox.Show($"Greška prilikom čuvanja podataka:\n\n{ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    //}
+      Helpers.ShowToast("Zaposleni su uspešno dodeljeni zadatku.", NotificationType.Success);
+      Close();
+    }
+    catch (Exception ex) {
+      MessageBox.Show($"Greška prilikom čuvanja podataka:\n\n{ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
   }
 }

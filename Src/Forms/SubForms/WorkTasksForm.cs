@@ -8,20 +8,36 @@ using System.Data;
 
 namespace Sprintra.Forms;
 
+enum WorkTaskFormMode {
+  EditingWorkTasks,
+  AssigningUsers,
+}
+
 public partial class WorkTasksForm : BaseForm {
+  private WorkTaskFormMode mode = WorkTaskFormMode.EditingWorkTasks;
+
   private readonly WorkTasksService workTasksService;
   private readonly SprintsService sprintsService;
   private readonly UserStoriesService userStoriesService;
 
   private AssignTasksToUsersForm assignTasksToUsersForm;
 
+  private new int SelectedDataGridViewItemId {
+    get => base.SelectedDataGridViewItemId;
+    set {
+      base.SelectedDataGridViewItemId = value;
+      assignTasksToUsersForm.LoadEmployeesForProject(value);
+    }
+  }
+
   public WorkTasksForm(BaseForm parent) {
     InitializeComponent();
     this.parent = parent;
 
-    assignTasksToUsersForm = new(this);
+    assignTasksToUsersForm = new AssignTasksToUsersForm(this);
     assignTasksToUsersForm.FormClosed += async (s, args) => {
       Helpers.ShowToast("Zatvoreno dodeljivanje korisnika!", NotificationType.Info);
+      mode = WorkTaskFormMode.EditingWorkTasks;
       CollapseParent();
     };
 
@@ -215,5 +231,7 @@ public partial class WorkTasksForm : BaseForm {
     }
 
     OpenSubform(RightSidePanel, assignTasksToUsersForm);
+
+    mode = WorkTaskFormMode.AssigningUsers;
   }
 }
