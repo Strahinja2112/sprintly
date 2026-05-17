@@ -1,10 +1,12 @@
 ﻿using Sprintra.Src.Data;
 using Sprintra.Src.Data.Models;
+using System.ComponentModel;
 
 namespace Sprintra.Src.Forms;
 
 public partial class AddOrEditWorkTaskForm : BaseForm {
-  private WorkTask? currentTask = null;
+  [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+  public WorkTask? CurrentTask { get; set; }
 
   public AddOrEditWorkTaskForm(BaseForm parent) {
     InitializeComponent();
@@ -32,30 +34,30 @@ public partial class AddOrEditWorkTaskForm : BaseForm {
   public void PrepareForm(int? taskId = null) {
     if (taskId == null) {
       ClearInputs();
-      return;
     }
-
-    using var db = new AppDbContext();
-    currentTask = db.WorkTasks.Find(taskId);
-    LoadInputs();
-
-    if (currentTask != null) {
-      ComboBoxUserStories.SelectedValue = currentTask.UserStoryId;
+    else {
+      using var db = new AppDbContext();
+      CurrentTask = db.WorkTasks.Find(taskId);
+      LoadInputs();
     }
   }
 
   void LoadInputs() {
-    if (currentTask == null) {
+    if (CurrentTask == null) {
       return;
     }
 
-    TBoxName.Text = currentTask.Name;
-    TBoxDescription.Text = currentTask.Description;
-    NumericHours.Value = (long)currentTask.EstimatedHours;
+    TBoxName.Text = CurrentTask.Name;
+    TBoxDescription.Text = CurrentTask.Description;
+    NumericHours.Value = (long)CurrentTask.EstimatedHours;
+
+    if (CurrentTask != null) {
+      ComboBoxUserStories.SelectedValue = CurrentTask.UserStoryId;
+    }
   }
 
   void ClearInputs() {
-    currentTask = null;
+    CurrentTask = null;
     TBoxName.Text = "";
     TBoxDescription.Text = "";
     NumericHours.Value = 0;

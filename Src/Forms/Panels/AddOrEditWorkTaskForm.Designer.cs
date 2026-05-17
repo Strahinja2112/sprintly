@@ -168,13 +168,12 @@ partial class AddOrEditWorkTaskForm {
   }
 
   #endregion
-
-  private ComboBox ComboBoxUserStories;
-  private ReaLTaiizor.Controls.DungeonNumeric NumericHours;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel5;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel3;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel7;
   public ReaLTaiizor.Controls.BigTextBox TBoxName;
   public ReaLTaiizor.Controls.BigTextBox TBoxDescription;
+  public ReaLTaiizor.Controls.DungeonNumeric NumericHours;
+  public ComboBox ComboBoxUserStories;
 }
