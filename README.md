@@ -1,4 +1,4 @@
-# Sprintra
+# Sprintly
 
 A Windows desktop application for Scrum teams to manage sprints, track tasks, log work, and handle projects.
 
