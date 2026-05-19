@@ -1,8 +1,8 @@
-﻿using Sprintra.Src.Data;
-using Sprintra.Src.Data.Models;
+﻿using Sprintly.Src.Data;
+using Sprintly.Src.Data.Models;
 using System.ComponentModel;
 
-namespace Sprintra.Src.Forms;
+namespace Sprintly.Src.Forms;
 
 public partial class AddOrEditWorkTaskForm : BaseForm {
   [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

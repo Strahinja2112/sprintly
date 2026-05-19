@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Sprintra.Src.Data;
-using Sprintra.Src.Data.Models;
+using Sprintly.Src.Data;
+using Sprintly.Src.Data.Models;
 
-namespace Sprintra.Src.Services;
+namespace Sprintly.Src.Services;
 
 internal class SeedService {
   public static void FullSeed() {

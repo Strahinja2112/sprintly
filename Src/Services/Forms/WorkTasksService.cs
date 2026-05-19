@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Sprintra.Src.Data;
-using Sprintra.Src.Data.Models;
+using Sprintly.Src.Data;
+using Sprintly.Src.Data.Models;
 
-namespace Sprintra.Src.Services.Forms;
+namespace Sprintly.Src.Services.Forms;
 
 public class WorkTasksService {
 

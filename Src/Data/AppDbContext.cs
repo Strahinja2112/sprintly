@@ -1,7 +1,7 @@
-﻿namespace Sprintra.Src.Data;
+﻿namespace Sprintly.Src.Data;
 
 using Microsoft.EntityFrameworkCore;
-using Sprintra.Src.Data.Models;
+using Sprintly.Src.Data.Models;
 
 public class AppDbContext : DbContext {
   public DbSet<Employee> Employees { get; set; }

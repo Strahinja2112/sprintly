@@ -1,8 +1,8 @@
-﻿using Sprintra.Src.Data;
-using Sprintra.Src.Forms;
-using Sprintra.Src.Services;
+﻿using Sprintly.Src.Data;
+using Sprintly.Src.Forms;
+using Sprintly.Src.Services;
 
-namespace Sprintra.Forms;
+namespace Sprintly.Forms;
 
 public partial class MainForm : BaseForm {
   public MainForm() {

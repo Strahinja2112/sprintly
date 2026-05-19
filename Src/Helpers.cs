@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
 
-namespace Sprintra.Src;
+namespace Sprintly.Src;
 
 public enum TimeUnit {
   Seconds,

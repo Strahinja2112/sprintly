@@ -1,4 +1,4 @@
-﻿ namespace Sprintra.Src.Forms;
+﻿ namespace Sprintly.Src.Forms;
 
 partial class AddOrEditWorkTaskForm {
   /// <summary>

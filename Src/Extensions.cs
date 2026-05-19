@@ -1,4 +1,4 @@
-﻿namespace Sprintra.Src;
+﻿namespace Sprintly.Src;
 
 public static class Extensions {
   extension(Control control) {

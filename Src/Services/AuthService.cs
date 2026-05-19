@@ -1,8 +1,8 @@
-﻿namespace Sprintra.Src.Services;
+﻿namespace Sprintly.Src.Services;
 
-using Sprintra.Src;
-using Sprintra.Src.Data;
-using Sprintra.Src.Data.Models;
+using Sprintly.Src;
+using Sprintly.Src.Data;
+using Sprintly.Src.Data.Models;
 
 public static class AuthService {
   public static Employee? CurrentUser { get; private set; }

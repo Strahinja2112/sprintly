@@ -1,4 +1,4 @@
-﻿namespace Sprintra.Forms;
+﻿namespace Sprintly.Forms;
 
 partial class UserStoriesForm {
   /// <summary>

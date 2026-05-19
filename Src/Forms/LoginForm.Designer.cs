@@ -1,4 +1,4 @@
-﻿namespace Sprintra.Forms {
+﻿namespace Sprintly.Forms {
   partial class LoginForm {
     /// <summary>
     /// Required designer variable.
@@ -56,9 +56,9 @@
       bigLabel1.Location = new Point(76, 125);
       bigLabel1.Margin = new Padding(4, 0, 4, 0);
       bigLabel1.Name = "bigLabel1";
-      bigLabel1.Size = new Size(188, 59);
+      bigLabel1.Size = new Size(183, 59);
       bigLabel1.TabIndex = 1;
-      bigLabel1.Text = "Sprintra";
+      bigLabel1.Text = "Sprintly";
       // 
       // bigLabel2
       // 
@@ -177,7 +177,7 @@
       MaximizeBox = false;
       Name = "LoginForm";
       StartPosition = FormStartPosition.CenterScreen;
-      Text = "Sprintra - Login";
+      Text = "Sprintly - Login Forma";
       ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
       ResumeLayout(false);
       PerformLayout();

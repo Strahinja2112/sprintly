@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-using Sprintra.Src;
-using Sprintra.Src.Data;
-using Sprintra.Src.Data.Models;
-using Sprintra.Src.Forms;
-using Sprintra.Src.Services;
-using Sprintra.Src.Services.Forms;
+using Sprintly.Src;
+using Sprintly.Src.Data;
+using Sprintly.Src.Data.Models;
+using Sprintly.Src.Forms;
+using Sprintly.Src.Services;
+using Sprintly.Src.Services.Forms;
 using System.Data;
 
-namespace Sprintra.Forms;
+namespace Sprintly.Forms;
 
 public partial class SprintsForm : BaseForm {
   private readonly SprintsService sprintsService;

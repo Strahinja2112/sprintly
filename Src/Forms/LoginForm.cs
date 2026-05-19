@@ -1,6 +1,6 @@
-﻿using Sprintra.Src.Services;
+﻿using Sprintly.Src.Services;
 
-namespace Sprintra.Forms;
+namespace Sprintly.Forms;
 
 public partial class LoginForm : Form {
   public bool IsLoginSuccessful { get; private set; } = false;

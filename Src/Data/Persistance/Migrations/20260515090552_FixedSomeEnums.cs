@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Sprintra.Data.Persistance.Migrations
+namespace Sprintly.Data.Persistance.Migrations
 {
     /// <inheritdoc />
     public partial class FixedSomeEnums : Migration

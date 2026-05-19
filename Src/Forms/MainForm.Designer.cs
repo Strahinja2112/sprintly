@@ -1,4 +1,4 @@
-﻿namespace Sprintra.Forms {
+﻿namespace Sprintly.Forms {
   partial class MainForm {
     /// <summary>
     /// Required designer variable.
@@ -598,9 +598,9 @@
       bigLabel2.ForeColor = Color.DarkSlateGray;
       bigLabel2.Location = new Point(140, 15);
       bigLabel2.Name = "bigLabel2";
-      bigLabel2.Size = new Size(305, 93);
+      bigLabel2.Size = new Size(297, 93);
       bigLabel2.TabIndex = 13;
-      bigLabel2.Text = "Sprintra";
+      bigLabel2.Text = "Sprintly";
       // 
       // MainForm
       // 
@@ -615,7 +615,7 @@
       MinimumSize = new Size(806, 509);
       Name = "MainForm";
       StartPosition = FormStartPosition.CenterScreen;
-      Text = "MainForm";
+      Text = "Sprintly - Glavna Forma";
       Load += MainForm_Load;
       panel1.ResumeLayout(false);
       PanelWorkTasks.ResumeLayout(false);

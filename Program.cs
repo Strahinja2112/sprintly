@@ -1,7 +1,7 @@
-using Sprintra.Forms;
-using Sprintra.Src.Services;
+using Sprintly.Forms;
+using Sprintly.Src.Services;
 
-namespace Sprintra;
+namespace Sprintly;
 
 internal static class Program {
   public static bool HasUserLoggedOut = false;

@@ -1,4 +1,4 @@
-﻿namespace Sprintra.Src;
+﻿namespace Sprintly.Src;
 
 using System.Security.Cryptography;
 using System.Text;

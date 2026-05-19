@@ -1,6 +1,6 @@
-﻿namespace Sprintra.Src.Services;
+﻿namespace Sprintly.Src.Services;
 
-using Sprintra.Src.Data.Models;
+using Sprintly.Src.Data.Models;
 
 public static class PermissionsService {
   private static bool HasAnyRole(params EmployeeType[] allowedRoles) {

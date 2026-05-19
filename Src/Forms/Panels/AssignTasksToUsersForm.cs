@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Sprintra.Src.Data;
-using Sprintra.Src.Data.Models;
+using Sprintly.Src.Data;
+using Sprintly.Src.Data.Models;
 
-namespace Sprintra.Src.Forms;
+namespace Sprintly.Src.Forms;
 
 public partial class AssignTasksToUsersForm : BaseForm {
   private List<Employee> allEmployees = [];

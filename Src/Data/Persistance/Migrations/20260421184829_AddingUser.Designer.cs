@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Sprintra.Src.Data;
+using Sprintly.Src.Data;
 
 #nullable disable
 
-namespace Sprintra.Data.Persistance.Migrations
+namespace Sprintly.Data.Persistance.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20260421184829_AddingUser")]

@@ -1,4 +1,4 @@
-﻿namespace Sprintra.Src.Data.Models;
+﻿namespace Sprintly.Src.Data.Models;
 
 using System.ComponentModel.DataAnnotations.Schema;
 

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Sprintra.Src.Forms;
+namespace Sprintly.Src.Forms;
 
 public class BaseForm : Form {
   public int SelectedDataGridViewItemId = 0;
