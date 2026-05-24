@@ -2,44 +2,21 @@
 using Sprintly.Src.Data;
 using Sprintly.Src.Data.Models;
 using Sprintly.Src.Services.Forms;
+using System.ComponentModel;
 
 namespace Sprintly.Src.Forms;
 
 public partial class AssignTasksToUsersForm : BaseForm {
   private List<Employee> allEmployees = [];
-  public HashSet<int> SelectedEmployeeIds = [];
-  public HashSet<int> ProjectEmployeeIds = [];
+  private HashSet<int> selectedEmployeeIds = [];
+  private HashSet<int> employeesAlreadyWorkingOnWorkTask = [];
+
+  [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+  public int TaskId { get; set; }
 
   public AssignTasksToUsersForm(BaseForm parent) {
     InitializeComponent();
     this.parent = parent;
-  }
-
-  public void LoadEmployeesForProject(int projectId) {
-    try {
-      using (var db = new AppDbContext()) {
-        var assignedToProject = db.Employees
-            .Where(emp => emp.Projects.Any(p => p.Id == projectId))
-            .Select(emp => emp.Id)
-            .ToList();
-
-        ProjectEmployeeIds = [.. assignedToProject];
-
-        if (parent != null && parent.SelectedDataGridViewItemId != 0) {
-          var assignedToTask = db.WorkTasks
-              .Where(t => t.Id == parent.SelectedDataGridViewItemId)
-              .SelectMany(t => t.AssignedEmployees.Select(emp => emp.Id))
-              .ToList();
-
-          SelectedEmployeeIds = [.. assignedToTask];
-        }
-      }
-
-      DisplayEmployees(allEmployees);
-    }
-    catch (Exception ex) {
-      Helpers.ShowToast($"Greška pri učitavanju projektnih prava: {ex.Message}", NotificationType.Error);
-    }
   }
 
   private void AssignTasksToUsersForm_Load(object sender, EventArgs e) {
@@ -50,6 +27,11 @@ public partial class AssignTasksToUsersForm : BaseForm {
     try {
       using var db = new AppDbContext();
       allEmployees = [.. db.Employees.OrderBy(emp => emp.LastName)];
+      foreach (var employee in allEmployees) {
+        //if (db.Employees.Where(e => e.AssignedTasks.Contains(e.Id)).Any()) {
+        //  employeesAlreadyWorkingOnWorkTask.Add(employee.Id);
+        //}
+      }
       DisplayEmployees(allEmployees);
     }
     catch (Exception ex) {
@@ -79,10 +61,7 @@ public partial class AssignTasksToUsersForm : BaseForm {
   private void DisplayEmployees(List<Employee> employeesList) {
     FlowPanelEmployees.Controls.Clear();
 
-    var sortedList = employeesList
-        .OrderByDescending(emp => ProjectEmployeeIds.Contains(emp.Id))
-        .ThenBy(emp => emp.LastName)
-        .ToList();
+
 
     foreach (var emp in sortedList) {
       var empTypeString = emp.Type switch {
@@ -90,7 +69,7 @@ public partial class AssignTasksToUsersForm : BaseForm {
         _ => emp.Type.ToString()
       };
 
-      bool isOnProject = ProjectEmployeeIds.Contains(emp.Id);
+      bool isOnProject = projectEmployeeIds.Contains(emp.Id);
 
       var button = new Button() {
         Text = $"{emp.FirstName} {emp.LastName} - {empTypeString}",
@@ -100,7 +79,7 @@ public partial class AssignTasksToUsersForm : BaseForm {
         Tag = emp
       };
 
-      if (SelectedEmployeeIds.Contains(emp.Id)) {
+      if (selectedEmployeeIds.Contains(emp.Id)) {
         button.BackColor = Color.FromArgb(47, 79, 79);
         button.ForeColor = Color.White;
         button.FlatAppearance.BorderColor = Color.FromArgb(47, 79, 79);
@@ -118,13 +97,13 @@ public partial class AssignTasksToUsersForm : BaseForm {
           button.BackColor = Color.FromArgb(47, 79, 79);
           button.ForeColor = Color.White;
           button.FlatAppearance.BorderColor = Color.FromArgb(47, 79, 79);
-          SelectedEmployeeIds.Add(emp.Id);
+          selectedEmployeeIds.Add(emp.Id);
         }
         else {
           button.BackColor = Color.White;
           button.ForeColor = isOnProject ? Color.FromArgb(47, 79, 79) : Color.Gray;
           button.FlatAppearance.BorderColor = isOnProject ? Color.LightGray : Color.Gainsboro;
-          SelectedEmployeeIds.Remove(emp.Id);
+          selectedEmployeeIds.Remove(emp.Id);
         }
       };
 
@@ -158,7 +137,7 @@ public partial class AssignTasksToUsersForm : BaseForm {
       task.AssignedEmployees.Clear();
 
       var selectedEmployees = db.Employees
-          .Where(emp => SelectedEmployeeIds.Contains(emp.Id))
+          .Where(emp => selectedEmployeeIds.Contains(emp.Id))
           .ToList();
 
       foreach (var emp in selectedEmployees) {
@@ -181,6 +160,11 @@ public partial class AssignTasksToUsersForm : BaseForm {
         Helpers.ShowToast("Nije odabran nijedan validan zadatak.", NotificationType.Warning);
         return false;
       }
+
+      using var db = new AppDbContext();
+      int taskId = parent.SelectedDataGridViewItemId;
+
+      var old =
 
       return true;
     }
