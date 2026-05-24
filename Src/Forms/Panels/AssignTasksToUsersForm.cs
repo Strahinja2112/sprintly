@@ -212,7 +212,7 @@ public partial class AssignTasksToUsersForm : BaseForm {
       Helpers.ShowToast("Zaposleni su uspešno dodeljeni zadatku.", NotificationType.Success);
       return true;
     }
-    catch (Exception) {
+    catch {
       return false;
     }
   }
