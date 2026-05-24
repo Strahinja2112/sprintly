@@ -1,5 +1,6 @@
 ﻿using Sprintly.Src.Data;
 using Sprintly.Src.Data.Models;
+using Sprintly.Src.Services.Forms;
 using System.ComponentModel;
 
 namespace Sprintly.Src.Forms;
@@ -67,6 +68,53 @@ public partial class AddOrEditWorkTaskForm : BaseForm {
     }
     else {
       ComboBoxUserStories.SelectedIndex = -1;
+    }
+  }
+
+  internal async Task<bool> SaveTask(
+    int sprintId, SprintsService sprintsService, WorkTasksService workTasksService
+  ) {
+    try {
+      var name = TBoxName.Text.Trim();
+      var desc = TBoxDescription.Text.Trim();
+      var estimatedHours = NumericHours.Value;
+      var userStory = (UserStory?)ComboBoxUserStories.SelectedItem;
+
+      if (string.IsNullOrEmpty(name)) {
+        Helpers.ShowToast("Ime zadatka je obavezno.", NotificationType.Warning);
+        return false;
+      }
+
+      if (userStory?.Id is null) {
+        Helpers.ShowToast("Zadatak mora pripadati korisničkoj priči.", NotificationType.Warning);
+        return false;
+      }
+
+      WorkTask task = CurrentTask == null
+          ? new WorkTask()
+          : await workTasksService.GetByIdAsync(CurrentTask.Id) ?? new WorkTask();
+
+      var sprint = await sprintsService.GetByIdAsync((int)sprintId);
+      if (sprint?.Status == SprintStatus.Completed) {
+        Helpers.ShowToast("Ne možete dodati zadatak u sprint koji je završen.", NotificationType.Error);
+        return false;
+      }
+
+      task.Name = name;
+      task.Description = desc;
+      task.EstimatedHours = estimatedHours;
+      task.UserStoryId = userStory.Id;
+      task.Status = WorkTaskStatus.ToDo;
+      task.SprintId = sprintId > 0 ? sprintId : null;
+
+      await workTasksService.SaveTaskAsync(task);
+
+      Helpers.ShowToast("Zadatak uspešno sačuvan.", NotificationType.Success);
+
+      return true;
+    }
+    catch (Exception) {
+      return false;
     }
   }
 }

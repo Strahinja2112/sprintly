@@ -1,6 +1,5 @@
 ﻿using Sprintly.Src;
 using Sprintly.Src.Data;
-using Sprintly.Src.Data.Models;
 using Sprintly.Src.Forms;
 using Sprintly.Src.Services;
 using Sprintly.Src.Services.Forms;
@@ -164,48 +163,23 @@ public partial class WorkTasksForm : BaseForm {
   private async void ButtonSave_Click(object sender, EventArgs e) {
     try {
       if (Mode == WorkTaskFormMode.EditingWorkTasks) {
-        var name = addOrEditWorkTaskForm.TBoxName.Text.Trim();
-        var desc = addOrEditWorkTaskForm.TBoxDescription.Text.Trim();
-        var estimatedHours = addOrEditWorkTaskForm.NumericHours.Value;
-        var userStory = (UserStory?)addOrEditWorkTaskForm.ComboBoxUserStories.SelectedItem;
-
-        if (string.IsNullOrEmpty(name)) {
-          Helpers.ShowToast("Ime zadatka je obavezno.", NotificationType.Warning);
-          return;
-        }
-
-        if (userStory?.Id is null) {
-          Helpers.ShowToast("Zadatak mora pripadati korisničkoj priči.", NotificationType.Warning);
-          return;
-        }
-
-        WorkTask task = addOrEditWorkTaskForm.CurrentTask == null
-            ? new WorkTask()
-            : await workTasksService.GetByIdAsync(addOrEditWorkTaskForm.CurrentTask.Id) ?? new WorkTask();
-
-        if ((task?.SprintId ?? (int?)ComboBoxSprints.SelectedValue) is not int sprintId || sprintId <= 0) {
+        if (((int?)ComboBoxSprints.SelectedValue) is not int sprintId || sprintId <= 0) {
           Helpers.ShowToast("Zadatak mora pripadati sprintu.", NotificationType.Warning);
           return;
         }
 
-        var sprint = await sprintsService.GetByIdAsync((int)sprintId);
-        if (sprint?.Status == SprintStatus.Completed) {
-          Helpers.ShowToast("Ne možete dodati zadatak u sprint koji je završen.", NotificationType.Error);
-          return;
-        }
+        var res = await addOrEditWorkTaskForm.SaveTask(sprintId, sprintsService, workTasksService);
+        if (!res) return;
 
-        task.Name = name;
-        task.Description = desc;
-        task.EstimatedHours = estimatedHours;
-        task.UserStoryId = userStory.Id;
-        task.Status = WorkTaskStatus.ToDo;
-        task.SprintId = sprintId > 0 ? sprintId : null;
-
-        await workTasksService.SaveTaskAsync(task);
-
-        Helpers.ShowToast("Zadatak uspešno sačuvan.", NotificationType.Success);
         ClearInputs();
         await LoadWorkTasksToDataGridView();
+      }
+      else {
+        var res = await assignTasksToUsersForm.SaveAssignedUsers(workTasksService);
+        if (!res) return;
+
+        ClearInputs();
+        Mode = WorkTaskFormMode.EditingWorkTasks;
       }
     }
     catch (Exception ex) {

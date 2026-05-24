@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sprintly.Src.Data;
 using Sprintly.Src.Data.Models;
+using Sprintly.Src.Services.Forms;
 
 namespace Sprintly.Src.Forms;
 
 public partial class AssignTasksToUsersForm : BaseForm {
   private List<Employee> allEmployees = [];
-  private HashSet<int> selectedEmployeeIds = [];
-  private HashSet<int> projectEmployeeIds = [];
+  public HashSet<int> SelectedEmployeeIds = [];
+  public HashSet<int> ProjectEmployeeIds = [];
 
   public AssignTasksToUsersForm(BaseForm parent) {
     InitializeComponent();
@@ -22,7 +23,7 @@ public partial class AssignTasksToUsersForm : BaseForm {
             .Select(emp => emp.Id)
             .ToList();
 
-        projectEmployeeIds = [.. assignedToProject];
+        ProjectEmployeeIds = [.. assignedToProject];
 
         if (parent != null && parent.SelectedDataGridViewItemId != 0) {
           var assignedToTask = db.WorkTasks
@@ -30,7 +31,7 @@ public partial class AssignTasksToUsersForm : BaseForm {
               .SelectMany(t => t.AssignedEmployees.Select(emp => emp.Id))
               .ToList();
 
-          selectedEmployeeIds = [.. assignedToTask];
+          SelectedEmployeeIds = [.. assignedToTask];
         }
       }
 
@@ -59,7 +60,9 @@ public partial class AssignTasksToUsersForm : BaseForm {
   private void TBoxSearch_TextChanged(object sender, EventArgs e) {
     string searchTerm = TBoxSearch.Text.Trim().ToLower();
 
-    if (searchTerm.Equals(searchPlaceholder, StringComparison.CurrentCultureIgnoreCase) || string.IsNullOrEmpty(searchTerm)) {
+    if (
+      searchTerm.Equals(searchPlaceholder, StringComparison.CurrentCultureIgnoreCase) || string.IsNullOrEmpty(searchTerm)
+    ) {
       DisplayEmployees(allEmployees);
       return;
     }
@@ -77,7 +80,7 @@ public partial class AssignTasksToUsersForm : BaseForm {
     FlowPanelEmployees.Controls.Clear();
 
     var sortedList = employeesList
-        .OrderByDescending(emp => projectEmployeeIds.Contains(emp.Id))
+        .OrderByDescending(emp => ProjectEmployeeIds.Contains(emp.Id))
         .ThenBy(emp => emp.LastName)
         .ToList();
 
@@ -87,19 +90,17 @@ public partial class AssignTasksToUsersForm : BaseForm {
         _ => emp.Type.ToString()
       };
 
-      bool isOnProject = projectEmployeeIds.Contains(emp.Id);
-
-      string projectIndicator = isOnProject ? " (Na projektu)" : " (Van projekta)";
+      bool isOnProject = ProjectEmployeeIds.Contains(emp.Id);
 
       var button = new Button() {
-        Text = $"{emp.FirstName} {emp.LastName} - {empTypeString}{projectIndicator}",
+        Text = $"{emp.FirstName} {emp.LastName} - {empTypeString}",
         Size = new Size(330, 38),
         FlatStyle = FlatStyle.Flat,
         Cursor = Cursors.Hand,
         Tag = emp
       };
 
-      if (selectedEmployeeIds.Contains(emp.Id)) {
+      if (SelectedEmployeeIds.Contains(emp.Id)) {
         button.BackColor = Color.FromArgb(47, 79, 79);
         button.ForeColor = Color.White;
         button.FlatAppearance.BorderColor = Color.FromArgb(47, 79, 79);
@@ -117,13 +118,13 @@ public partial class AssignTasksToUsersForm : BaseForm {
           button.BackColor = Color.FromArgb(47, 79, 79);
           button.ForeColor = Color.White;
           button.FlatAppearance.BorderColor = Color.FromArgb(47, 79, 79);
-          selectedEmployeeIds.Add(emp.Id);
+          SelectedEmployeeIds.Add(emp.Id);
         }
         else {
           button.BackColor = Color.White;
           button.ForeColor = isOnProject ? Color.FromArgb(47, 79, 79) : Color.Gray;
           button.FlatAppearance.BorderColor = isOnProject ? Color.LightGray : Color.Gainsboro;
-          selectedEmployeeIds.Remove(emp.Id);
+          SelectedEmployeeIds.Remove(emp.Id);
         }
       };
 
@@ -157,7 +158,7 @@ public partial class AssignTasksToUsersForm : BaseForm {
       task.AssignedEmployees.Clear();
 
       var selectedEmployees = db.Employees
-          .Where(emp => selectedEmployeeIds.Contains(emp.Id))
+          .Where(emp => SelectedEmployeeIds.Contains(emp.Id))
           .ToList();
 
       foreach (var emp in selectedEmployees) {
@@ -171,6 +172,20 @@ public partial class AssignTasksToUsersForm : BaseForm {
     }
     catch (Exception ex) {
       MessageBox.Show($"Greška prilikom čuvanja podataka:\n\n{ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+  }
+
+  internal async Task<bool> SaveAssignedUsers(WorkTasksService workTasksService) {
+    try {
+      if (parent == null || parent.SelectedDataGridViewItemId == 0) {
+        Helpers.ShowToast("Nije odabran nijedan validan zadatak.", NotificationType.Warning);
+        return false;
+      }
+
+      return true;
+    }
+    catch (Exception) {
+      return false;
     }
   }
 }
