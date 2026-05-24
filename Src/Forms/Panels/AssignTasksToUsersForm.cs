@@ -19,6 +19,30 @@ public partial class AssignTasksToUsersForm : BaseForm {
     this.parent = parent;
   }
 
+  internal void LoadEmployeesForProject(int taskId) {
+    TaskId = taskId;
+    selectedEmployeeIds.Clear();
+
+    try {
+      using var db = new AppDbContext();
+      allEmployees = [.. db.Employees.OrderBy(emp => emp.LastName)];
+      employeesAlreadyWorkingOnWorkTask = db.WorkTasks
+          .Where(t => t.Id == taskId)
+          .SelectMany(t => t.AssignedEmployees)
+          .Select(e => e.Id)
+          .ToHashSet();
+
+      foreach (var id in employeesAlreadyWorkingOnWorkTask) {
+        selectedEmployeeIds.Add(id);
+      }
+
+      DisplayEmployees(allEmployees);
+    }
+    catch (Exception ex) {
+      Helpers.ShowToast($"Greška pri učitavanju: {ex.Message}", NotificationType.Error);
+    }
+  }
+
   private void AssignTasksToUsersForm_Load(object sender, EventArgs e) {
     TBoxSearch.SetPlaceholder("Pretraži zaposlene...");
     FlowPanelEmployees.AutoScroll = true;
@@ -27,11 +51,11 @@ public partial class AssignTasksToUsersForm : BaseForm {
     try {
       using var db = new AppDbContext();
       allEmployees = [.. db.Employees.OrderBy(emp => emp.LastName)];
-      foreach (var employee in allEmployees) {
-        //if (db.Employees.Where(e => e.AssignedTasks.Contains(e.Id)).Any()) {
-        //  employeesAlreadyWorkingOnWorkTask.Add(employee.Id);
-        //}
-      }
+      employeesAlreadyWorkingOnWorkTask = db.WorkTasks
+          .Where(t => t.Id == TaskId)
+          .SelectMany(t => t.AssignedEmployees)
+          .Select(e => e.Id)
+          .ToHashSet();
       DisplayEmployees(allEmployees);
     }
     catch (Exception ex) {
@@ -63,13 +87,13 @@ public partial class AssignTasksToUsersForm : BaseForm {
 
 
 
-    foreach (var emp in sortedList) {
+    foreach (var emp in employeesList) {
       var empTypeString = emp.Type switch {
         EmployeeType.Developer => $"{emp.SeniorityLevel} {emp.Field} {emp.Type}",
         _ => emp.Type.ToString()
       };
 
-      bool isOnProject = projectEmployeeIds.Contains(emp.Id);
+      bool isOnProject = employeesAlreadyWorkingOnWorkTask.Contains(emp.Id);
 
       var button = new Button() {
         Text = $"{emp.FirstName} {emp.LastName} - {empTypeString}",
@@ -164,8 +188,28 @@ public partial class AssignTasksToUsersForm : BaseForm {
       using var db = new AppDbContext();
       int taskId = parent.SelectedDataGridViewItemId;
 
-      var old =
+      var task = await db.WorkTasks
+          .Include(t => t.AssignedEmployees)
+          .FirstOrDefaultAsync(t => t.Id == taskId);
 
+      if (task == null) {
+        Helpers.ShowToast("Zadatak više ne postoji u bazi podataka.", NotificationType.Error);
+        return false;
+      }
+
+      task.AssignedEmployees.Clear();
+
+      var selectedEmployees = await db.Employees
+          .Where(emp => selectedEmployeeIds.Contains(emp.Id))
+          .ToListAsync();
+
+      foreach (var emp in selectedEmployees) {
+        task.AssignedEmployees.Add(emp);
+      }
+
+      await db.SaveChangesAsync();
+
+      Helpers.ShowToast("Zaposleni su uspešno dodeljeni zadatku.", NotificationType.Success);
       return true;
     }
     catch (Exception) {
