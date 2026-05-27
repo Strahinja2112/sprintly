@@ -1,6 +1,5 @@
 ﻿using Sprintly.Src;
 using Sprintly.Src.Data;
-using Sprintly.Src.Data.Models;
 using Sprintly.Src.Forms;
 using Sprintly.Src.Services;
 using Sprintly.Src.Services.Forms;
@@ -35,7 +34,13 @@ public partial class WorkLogForm : BaseForm {
 
   private void LoadProjectsToFilter() {
     using var db = new AppDbContext();
-    var projects = db.Projects.OrderBy(p => p.Name).ToList();
+    var username = SessionManager.GetSavedUsername();
+    var projects = db.Projects
+        .Where(p => p.Sprints
+            .SelectMany(s => s.WorkTasks)
+            .Any(wt => wt.AssignedEmployees.Any(e => e.Username == username)))
+        .OrderBy(p => p.Name)
+        .ToList();
 
     ComboBoxProjects.DataSource = projects;
     ComboBoxProjects.DisplayMember = "Name";
@@ -52,13 +57,6 @@ public partial class WorkLogForm : BaseForm {
 
   private async Task LoadUserStoriesToFilters(int projectId) {
     var userStories = await userStoriesService.GetByProjectAsync(projectId);
-
-    ComboBoxUserStories.DataSource = userStories;
-
-    ComboBoxUserStories.DisplayMember = "Title";
-    ComboBoxUserStories.ValueMember = "Id";
-
-    ComboBoxUserStories.SelectedIndex = userStories.Count > 0 ? 0 : -1;
   }
 
   private async Task LoadWorkTasksToDataGrid(string term = "") {
@@ -90,46 +88,44 @@ public partial class WorkLogForm : BaseForm {
   }
 
   private async void ButtonSave_Click(object sender, EventArgs e) {
-    string name = TBoxName.Text.Trim();
-    string desc = TBoxDescription.Text.Trim();
+    //string name = TBoxName.Text.Trim();
+    //string desc = TBoxDescription.Text.Trim();
 
-    if (string.IsNullOrEmpty(name)) {
-      Helpers.ShowToast("Ime zadatka je obavezno.", NotificationType.Warning);
-      return;
-    }
+    //if (string.IsNullOrEmpty(name)) {
+    //  Helpers.ShowToast("Ime zadatka je obavezno.", NotificationType.Warning);
+    //  return;
+    //}
 
-    if (ComboBoxUserStories.SelectedValue is not int storyId) {
-      Helpers.ShowToast("Zadatak mora pripadati korisničkoj priči.", NotificationType.Warning);
-      return;
-    }
+    //if (ComboBoxUserStories.SelectedValue is not int storyId) {
+    //  Helpers.ShowToast("Zadatak mora pripadati korisničkoj priči.", NotificationType.Warning);
+    //  return;
+    //}
 
-    try {
-      WorkTask task = SelectedDataGridViewItemId == 0
-          ? new WorkTask()
-          : await workTasksService.GetByIdAsync(SelectedDataGridViewItemId) ?? new WorkTask();
+    //try {
+    //  WorkTask task = SelectedDataGridViewItemId == 0
+    //      ? new WorkTask()
+    //      : await workTasksService.GetByIdAsync(SelectedDataGridViewItemId) ?? new WorkTask();
 
-      task.Name = name;
-      task.Description = desc;
-      task.EstimatedHours = NumericHours.Value;
-      task.UserStoryId = storyId;
-      task.Status = WorkTaskStatus.ToDo;
+    //  task.Name = name;
+    //  task.Description = desc;
+    //  task.EstimatedHours = NumericHours.Value;
+    //  task.UserStoryId = storyId;
+    //  task.Status = WorkTaskStatus.ToDo;
 
-      await workTasksService.SaveTaskAsync(task);
+    //  await workTasksService.SaveTaskAsync(task);
 
-      Helpers.ShowToast("Zadatak uspešno sačuvan.", NotificationType.Success);
-      ClearInputs();
-      await LoadWorkTasksToDataGrid();
-    }
-    catch (Exception ex) {
-      Helpers.ShowToast($"Greška: {ex.Message}", NotificationType.Error);
-    }
+    //  Helpers.ShowToast("Zadatak uspešno sačuvan.", NotificationType.Success);
+    //  ClearInputs();
+    //  await LoadWorkTasksToDataGrid();
+    //}
+    //catch (Exception ex) {
+    //  Helpers.ShowToast($"Greška: {ex.Message}", NotificationType.Error);
+    //}
   }
 
   private async Task LoadWorkTaskToInputs(int id) {
     var task = await workTasksService.GetByIdAsync(id);
     if (task != null) {
-      TBoxName.Text = task.Name;
-      TBoxDescription.Text = task.Description;
       NumericHours.Value = (long)task.EstimatedHours;
 
       bigLabel2.Text = "Izmena radnog zadatka";
@@ -138,8 +134,6 @@ public partial class WorkLogForm : BaseForm {
 
   private void ClearInputs() {
     SelectedDataGridViewItemId = 0;
-    TBoxName.Text = "";
-    TBoxDescription.Text = "";
     NumericHours.Value = 0;
     bigLabel2.Text = "Novi radni zadatak";
   }

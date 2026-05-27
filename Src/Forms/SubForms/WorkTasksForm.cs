@@ -143,6 +143,7 @@ public partial class WorkTasksForm : BaseForm {
       Priča = t.UserStory?.Title,
       Status = t.Status.ToString(),
       Sati = t.EstimatedHours,
+      Sprint = t.Sprint?.Name ?? "N/A",
     }).ToList();
 
     DGV.Columns["Id"]?.Visible = false;
