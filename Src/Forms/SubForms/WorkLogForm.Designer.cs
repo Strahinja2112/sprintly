@@ -155,7 +155,7 @@ partial class WorkLogForm {
     ButtonMinutesDown.IconColor = Color.DarkSlateGray;
     ButtonMinutesDown.IconFont = FontAwesome.Sharp.IconFont.Auto;
     ButtonMinutesDown.IconSize = 49;
-    ButtonMinutesDown.Location = new Point(169, 219);
+    ButtonMinutesDown.Location = new Point(169, 263);
     ButtonMinutesDown.Name = "ButtonMinutesDown";
     ButtonMinutesDown.Size = new Size(55, 49);
     ButtonMinutesDown.TabIndex = 19;
@@ -172,7 +172,7 @@ partial class WorkLogForm {
     ButtonHoursDown.IconColor = Color.DarkSlateGray;
     ButtonHoursDown.IconFont = FontAwesome.Sharp.IconFont.Auto;
     ButtonHoursDown.IconSize = 49;
-    ButtonHoursDown.Location = new Point(49, 219);
+    ButtonHoursDown.Location = new Point(49, 263);
     ButtonHoursDown.Name = "ButtonHoursDown";
     ButtonHoursDown.Size = new Size(55, 49);
     ButtonHoursDown.TabIndex = 18;
@@ -189,7 +189,7 @@ partial class WorkLogForm {
     ButtonMinutesUp.IconColor = Color.DarkSlateGray;
     ButtonMinutesUp.IconFont = FontAwesome.Sharp.IconFont.Auto;
     ButtonMinutesUp.IconSize = 49;
-    ButtonMinutesUp.Location = new Point(169, 114);
+    ButtonMinutesUp.Location = new Point(169, 158);
     ButtonMinutesUp.Name = "ButtonMinutesUp";
     ButtonMinutesUp.Size = new Size(55, 49);
     ButtonMinutesUp.TabIndex = 17;
@@ -206,7 +206,7 @@ partial class WorkLogForm {
     ButtonHoursUp.IconColor = Color.DarkSlateGray;
     ButtonHoursUp.IconFont = FontAwesome.Sharp.IconFont.Auto;
     ButtonHoursUp.IconSize = 49;
-    ButtonHoursUp.Location = new Point(49, 115);
+    ButtonHoursUp.Location = new Point(49, 159);
     ButtonHoursUp.Name = "ButtonHoursUp";
     ButtonHoursUp.Size = new Size(55, 49);
     ButtonHoursUp.TabIndex = 16;
@@ -219,7 +219,7 @@ partial class WorkLogForm {
     LabelMinutes.BackColor = Color.Transparent;
     LabelMinutes.Font = new Font("Cascadia Code", 45F, FontStyle.Bold, GraphicsUnit.Point, 0);
     LabelMinutes.ForeColor = Color.DarkSlateGray;
-    LabelMinutes.Location = new Point(147, 143);
+    LabelMinutes.Location = new Point(147, 187);
     LabelMinutes.Name = "LabelMinutes";
     LabelMinutes.Size = new Size(104, 79);
     LabelMinutes.TabIndex = 15;
@@ -231,7 +231,7 @@ partial class WorkLogForm {
     bigLabel4.BackColor = Color.Transparent;
     bigLabel4.Font = new Font("Cascadia Code", 45F, FontStyle.Bold, GraphicsUnit.Point, 0);
     bigLabel4.ForeColor = Color.DarkSlateGray;
-    bigLabel4.Location = new Point(94, 143);
+    bigLabel4.Location = new Point(94, 187);
     bigLabel4.Name = "bigLabel4";
     bigLabel4.Size = new Size(69, 79);
     bigLabel4.TabIndex = 14;
@@ -243,7 +243,7 @@ partial class WorkLogForm {
     LabelHours.BackColor = Color.Transparent;
     LabelHours.Font = new Font("Cascadia Code", 45F, FontStyle.Bold, GraphicsUnit.Point, 0);
     LabelHours.ForeColor = Color.DarkSlateGray;
-    LabelHours.Location = new Point(41, 143);
+    LabelHours.Location = new Point(41, 187);
     LabelHours.Name = "LabelHours";
     LabelHours.Size = new Size(69, 79);
     LabelHours.TabIndex = 13;
@@ -277,9 +277,9 @@ partial class WorkLogForm {
     bigLabel2.ForeColor = Color.DarkSlateGray;
     bigLabel2.Location = new Point(0, 0);
     bigLabel2.Name = "bigLabel2";
-    bigLabel2.Size = new Size(274, 89);
+    bigLabel2.Size = new Size(274, 61);
     bigLabel2.TabIndex = 1;
-    bigLabel2.Text = "Title";
+    bigLabel2.Text = "Unos sati i minuta";
     bigLabel2.TextAlign = ContentAlignment.MiddleCenter;
     // 
     // dungeonLabel4

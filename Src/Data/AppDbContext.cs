@@ -47,8 +47,6 @@ public class AppDbContext : DbContext {
 
     // WorkTaskEntry (Join tabela sa podacima - Manuelno mapirana)
     modelBuilder.Entity<WorkTaskEntry>(entity => {
-      entity.HasKey(we => new { we.EmployeeId, we.WorkTaskId, we.WorkDate });
-
       entity.HasOne(we => we.Employee)
           .WithMany()
           .HasForeignKey(we => we.EmployeeId)

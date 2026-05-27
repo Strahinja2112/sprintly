@@ -145,69 +145,43 @@ public partial class WorkLogForm : BaseForm {
     DGV.Columns["Zadatak"]?.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
   }
 
-  private void ButtonAdd_Click(object sender, EventArgs e) {
-    if (ComboBoxProjects.SelectedIndex == -1) {
-      Helpers.ShowToast("Molimo vas da prvo odaberete projekat na vrhu.", NotificationType.Warning);
-      return;
-    }
-
-    ClearInputs();
-    ExpandParent();
-  }
-
   private async void ButtonSave_Click(object sender, EventArgs e) {
-    try {
-      if (SelectedDataGridViewItemId == -1) {
-        throw new Exception("Nije odabran nijedan radni zadatak.");
-      }
-
-      if (AuthService.CurrentUser == null) {
-        throw new Exception("Nije pronađen trenutno prijavljeni korisnik.");
-      }
-
-      decimal hoursWorked = 0m;
-      if (Hours < 0 || Minutes < 0) {
-        throw new Exception("Sati i minuti ne mogu biti negativni.");
-      }
-      hoursWorked = Hours + (Minutes / 60m);
-
-      var workLogEntry = new WorkTaskEntry {
-        WorkTaskId = SelectedDataGridViewItemId,
-        EmployeeId = AuthService.CurrentUser.Id,
-        HoursWorked = hoursWorked
-      };
-
-      using var db = new AppDbContext();
-      db.SaveChanges();
-
-      Helpers.ShowToast("Rad uspešno unesen.", NotificationType.Success);
-      ClearInputs();
-      await LoadWorkTasksToDataGrid();
+    //try {
+    if (SelectedDataGridViewItemId == -1) {
+      throw new Exception("Nije odabran nijedan radni zadatak.");
     }
-    catch (Exception ex) {
-      Helpers.ShowToast($"Greška: {ex.Message}", NotificationType.Error);
-    }
-  }
 
-  private async Task LoadWorkTaskToInputs(int id) {
-    var task = await workTasksService.GetByIdAsync(id);
-    if (task != null) {
-      bigLabel2.Text = "Izmena radnog zadatka";
+    if (AuthService.CurrentUser == null) {
+      throw new Exception("Nije pronađen trenutno prijavljeni korisnik.");
     }
-  }
 
-  private void ClearInputs() {
-    SelectedDataGridViewItemId = 0;
-    bigLabel2.Text = "Novi radni zadatak";
+    if (Hours < 0 || Minutes < 0) {
+      throw new Exception("Sati i minuti ne mogu biti negativni.");
+    }
+
+    var workTaskEntry = new WorkTaskEntry {
+      WorkTaskId = SelectedDataGridViewItemId,
+      EmployeeId = AuthService.CurrentUser.Id,
+      WorkDate = DateTime.Now,
+      HoursWorked = Hours + (Minutes / 60m)
+    };
+
+    using var db = new AppDbContext();
+    db.WorkTaskEntries.Add(workTaskEntry);
+    db.SaveChanges();
+
+    Helpers.ShowToast("Rad uspešno unesen.", NotificationType.Success);
+    await LoadWorkTasksToDataGrid();
+    CollapseParent();
+    //}
+    //catch (Exception ex) {
+    //  Helpers.ShowToast($"Greška: {ex.Message}", NotificationType.Error);
+    //}
   }
 
   private async void TBoxSearch_TextChanged(object sender, EventArgs e) {
     string term = TBoxSearch.Text.Trim();
-    if (term == searchPlaceholder || string.IsNullOrEmpty(term)) {
-      await LoadWorkTasksToDataGrid("");
-      return;
-    }
-    await LoadWorkTasksToDataGrid(term);
+    await LoadWorkTasksToDataGrid(term == searchPlaceholder || string.IsNullOrEmpty(term) ? "" : term);
   }
 
   private async void ComboBoxSprints_SelectedIndexChanged(object sender, EventArgs e) {
@@ -216,8 +190,7 @@ public partial class WorkLogForm : BaseForm {
 
   private async void DGV_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGV.Rows[e.RowIndex].Cells["Id"].Value != null) {
-      SelectedDataGridViewItemId = Convert.ToInt32(DGV.Rows[e.RowIndex].Cells["Id"].Value);
-      await LoadWorkTaskToInputs(SelectedDataGridViewItemId);
+      SelectedDataGridViewItemId = (int)DGV.Rows[e.RowIndex].Cells["Id"].Value!;
       ExpandParent();
     }
   }

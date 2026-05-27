@@ -3,6 +3,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 public class WorkTaskEntry {
+  public int Id { get; set; }
+
   public int EmployeeId { get; set; }
 
   public int WorkTaskId { get; set; }
