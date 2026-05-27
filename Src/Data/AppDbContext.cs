@@ -45,8 +45,10 @@ public class AppDbContext : DbContext {
           .OnDelete(DeleteBehavior.NoAction);
     });
 
-    // WorkTaskEntry (Join tabela sa podacima - Manuelno mapirana)
+    // WorkTaskEntry
     modelBuilder.Entity<WorkTaskEntry>(entity => {
+      entity.HasKey(we => we.Id);
+
       entity.HasOne(we => we.Employee)
           .WithMany()
           .HasForeignKey(we => we.EmployeeId)

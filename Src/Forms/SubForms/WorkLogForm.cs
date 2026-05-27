@@ -138,7 +138,7 @@ public partial class WorkLogForm : BaseForm {
       Priča = t.UserStory?.Title,
       Status = t.Status.ToString(),
       Sati = t.EstimatedHours,
-      PreostaliSati = t.EstimatedHours - 12
+      PreostaliSati = t.EstimatedHours - t.WorkLogEntries.Sum(we => we.HoursWorked)
     }).ToList();
 
     DGV.Columns["Id"]?.Visible = false;
@@ -146,37 +146,37 @@ public partial class WorkLogForm : BaseForm {
   }
 
   private async void ButtonSave_Click(object sender, EventArgs e) {
-    //try {
-    if (SelectedDataGridViewItemId == -1) {
-      throw new Exception("Nije odabran nijedan radni zadatak.");
+    try {
+      if (SelectedDataGridViewItemId == -1) {
+        throw new Exception("Nije odabran nijedan radni zadatak.");
+      }
+
+      if (AuthService.CurrentUser == null) {
+        throw new Exception("Nije pronađen trenutno prijavljeni korisnik.");
+      }
+
+      if (Hours < 0 || Minutes < 0) {
+        throw new Exception("Sati i minuti ne mogu biti negativni.");
+      }
+
+      var workTaskEntry = new WorkTaskEntry {
+        WorkTaskId = SelectedDataGridViewItemId,
+        EmployeeId = AuthService.CurrentUser.Id,
+        WorkDate = DateTime.Now,
+        HoursWorked = Hours + (Minutes / 60m)
+      };
+
+      using var db = new AppDbContext();
+      db.WorkTaskEntries.Add(workTaskEntry);
+      db.SaveChanges();
+
+      Helpers.ShowToast("Rad uspešno unesen.", NotificationType.Success);
+      await LoadWorkTasksToDataGrid();
+      CollapseParent();
     }
-
-    if (AuthService.CurrentUser == null) {
-      throw new Exception("Nije pronađen trenutno prijavljeni korisnik.");
+    catch (Exception ex) {
+      Helpers.ShowToast($"Greška: {ex.Message}", NotificationType.Error);
     }
-
-    if (Hours < 0 || Minutes < 0) {
-      throw new Exception("Sati i minuti ne mogu biti negativni.");
-    }
-
-    var workTaskEntry = new WorkTaskEntry {
-      WorkTaskId = SelectedDataGridViewItemId,
-      EmployeeId = AuthService.CurrentUser.Id,
-      WorkDate = DateTime.Now,
-      HoursWorked = Hours + (Minutes / 60m)
-    };
-
-    using var db = new AppDbContext();
-    db.WorkTaskEntries.Add(workTaskEntry);
-    db.SaveChanges();
-
-    Helpers.ShowToast("Rad uspešno unesen.", NotificationType.Success);
-    await LoadWorkTasksToDataGrid();
-    CollapseParent();
-    //}
-    //catch (Exception ex) {
-    //  Helpers.ShowToast($"Greška: {ex.Message}", NotificationType.Error);
-    //}
   }
 
   private async void TBoxSearch_TextChanged(object sender, EventArgs e) {

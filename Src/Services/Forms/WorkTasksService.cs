@@ -12,6 +12,7 @@ public class WorkTasksService {
     var query = db.WorkTasks
         .Include(t => t.UserStory)
         .Include(t => t.Sprint)
+        .Include(t => t.WorkLogEntries)
         .Where(t => t.UserStory.ProjectId == projectId);
 
     if (sprintId.HasValue && sprintId.Value > 0) {
