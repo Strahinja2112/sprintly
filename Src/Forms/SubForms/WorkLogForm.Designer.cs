@@ -32,18 +32,27 @@ partial class WorkLogForm {
     dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
     DGV = new ReaLTaiizor.Controls.PoisonDataGridView();
     PanelRightContent = new Panel();
-    NumericHours = new ReaLTaiizor.Controls.DungeonNumeric();
+    ButtonMinutesDown = new FontAwesome.Sharp.IconPictureBox();
+    ButtonHoursDown = new FontAwesome.Sharp.IconPictureBox();
+    ButtonMinutesUp = new FontAwesome.Sharp.IconPictureBox();
+    ButtonHoursUp = new FontAwesome.Sharp.IconPictureBox();
+    LabelMinutes = new ReaLTaiizor.Controls.BigLabel();
+    bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
+    LabelHours = new ReaLTaiizor.Controls.BigLabel();
     ButtonSave = new ReaLTaiizor.Controls.FoxButton();
     bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
-    dungeonLabel7 = new ReaLTaiizor.Controls.DungeonLabel();
     dungeonLabel4 = new ReaLTaiizor.Controls.DungeonLabel();
     ComboBoxProjects = new ComboBox();
     TBoxSearch = new ReaLTaiizor.Controls.BigTextBox();
     StyleManager1 = new ReaLTaiizor.Manager.PoisonStyleManager(components);
-    comboBox1 = new ComboBox();
+    ComboBoxSprints = new ComboBox();
     dungeonLabel6 = new ReaLTaiizor.Controls.DungeonLabel();
     ((System.ComponentModel.ISupportInitialize)DGV).BeginInit();
     PanelRightContent.SuspendLayout();
+    ((System.ComponentModel.ISupportInitialize)ButtonMinutesDown).BeginInit();
+    ((System.ComponentModel.ISupportInitialize)ButtonHoursDown).BeginInit();
+    ((System.ComponentModel.ISupportInitialize)ButtonMinutesUp).BeginInit();
+    ((System.ComponentModel.ISupportInitialize)ButtonHoursUp).BeginInit();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).BeginInit();
     SuspendLayout();
     // 
@@ -121,36 +130,124 @@ partial class WorkLogForm {
     // PanelRightContent
     // 
     PanelRightContent.BackColor = SystemColors.Window;
-    PanelRightContent.Controls.Add(NumericHours);
+    PanelRightContent.Controls.Add(ButtonMinutesDown);
+    PanelRightContent.Controls.Add(ButtonHoursDown);
+    PanelRightContent.Controls.Add(ButtonMinutesUp);
+    PanelRightContent.Controls.Add(ButtonHoursUp);
+    PanelRightContent.Controls.Add(LabelMinutes);
+    PanelRightContent.Controls.Add(bigLabel4);
+    PanelRightContent.Controls.Add(LabelHours);
     PanelRightContent.Controls.Add(ButtonSave);
     PanelRightContent.Controls.Add(bigLabel2);
-    PanelRightContent.Controls.Add(dungeonLabel7);
     PanelRightContent.Dock = DockStyle.Right;
-    PanelRightContent.Location = new Point(599, 0);
+    PanelRightContent.Location = new Point(596, 0);
     PanelRightContent.Name = "PanelRightContent";
-    PanelRightContent.Size = new Size(201, 471);
+    PanelRightContent.Size = new Size(274, 471);
     PanelRightContent.TabIndex = 20;
     // 
-    // NumericHours
+    // ButtonMinutesDown
     // 
-    NumericHours.BackColor = Color.Transparent;
-    NumericHours.BackColorA = Color.FromArgb(246, 246, 246);
-    NumericHours.BackColorB = Color.FromArgb(254, 254, 254);
-    NumericHours.BorderColor = Color.FromArgb(180, 180, 180);
-    NumericHours.ButtonForeColorA = Color.FromArgb(75, 75, 75);
-    NumericHours.ButtonForeColorB = Color.FromArgb(75, 75, 75);
-    NumericHours.Font = new Font("Tahoma", 11F);
-    NumericHours.ForeColor = Color.FromArgb(76, 76, 76);
-    NumericHours.Location = new Point(14, 96);
-    NumericHours.Maximum = 100L;
-    NumericHours.Minimum = 1L;
-    NumericHours.MinimumSize = new Size(93, 28);
-    NumericHours.Name = "NumericHours";
-    NumericHours.Size = new Size(175, 28);
-    NumericHours.TabIndex = 37;
-    NumericHours.Text = "dungeonNumeric1";
-    NumericHours.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Near;
-    NumericHours.Value = 1L;
+    ButtonMinutesDown.Anchor = AnchorStyles.None;
+    ButtonMinutesDown.BackColor = SystemColors.Window;
+    ButtonMinutesDown.Cursor = Cursors.Hand;
+    ButtonMinutesDown.ForeColor = Color.DarkSlateGray;
+    ButtonMinutesDown.IconChar = FontAwesome.Sharp.IconChar.CaretDown;
+    ButtonMinutesDown.IconColor = Color.DarkSlateGray;
+    ButtonMinutesDown.IconFont = FontAwesome.Sharp.IconFont.Auto;
+    ButtonMinutesDown.IconSize = 49;
+    ButtonMinutesDown.Location = new Point(169, 219);
+    ButtonMinutesDown.Name = "ButtonMinutesDown";
+    ButtonMinutesDown.Size = new Size(55, 49);
+    ButtonMinutesDown.TabIndex = 19;
+    ButtonMinutesDown.TabStop = false;
+    ButtonMinutesDown.Click += ButtonMinutesDown_Click;
+    // 
+    // ButtonHoursDown
+    // 
+    ButtonHoursDown.Anchor = AnchorStyles.None;
+    ButtonHoursDown.BackColor = SystemColors.Window;
+    ButtonHoursDown.Cursor = Cursors.Hand;
+    ButtonHoursDown.ForeColor = Color.DarkSlateGray;
+    ButtonHoursDown.IconChar = FontAwesome.Sharp.IconChar.CaretDown;
+    ButtonHoursDown.IconColor = Color.DarkSlateGray;
+    ButtonHoursDown.IconFont = FontAwesome.Sharp.IconFont.Auto;
+    ButtonHoursDown.IconSize = 49;
+    ButtonHoursDown.Location = new Point(49, 219);
+    ButtonHoursDown.Name = "ButtonHoursDown";
+    ButtonHoursDown.Size = new Size(55, 49);
+    ButtonHoursDown.TabIndex = 18;
+    ButtonHoursDown.TabStop = false;
+    ButtonHoursDown.Click += ButtonHoursDown_Click;
+    // 
+    // ButtonMinutesUp
+    // 
+    ButtonMinutesUp.Anchor = AnchorStyles.None;
+    ButtonMinutesUp.BackColor = SystemColors.Window;
+    ButtonMinutesUp.Cursor = Cursors.Hand;
+    ButtonMinutesUp.ForeColor = Color.DarkSlateGray;
+    ButtonMinutesUp.IconChar = FontAwesome.Sharp.IconChar.CaretUp;
+    ButtonMinutesUp.IconColor = Color.DarkSlateGray;
+    ButtonMinutesUp.IconFont = FontAwesome.Sharp.IconFont.Auto;
+    ButtonMinutesUp.IconSize = 49;
+    ButtonMinutesUp.Location = new Point(169, 114);
+    ButtonMinutesUp.Name = "ButtonMinutesUp";
+    ButtonMinutesUp.Size = new Size(55, 49);
+    ButtonMinutesUp.TabIndex = 17;
+    ButtonMinutesUp.TabStop = false;
+    ButtonMinutesUp.Click += ButtonMinutesUp_Click;
+    // 
+    // ButtonHoursUp
+    // 
+    ButtonHoursUp.Anchor = AnchorStyles.None;
+    ButtonHoursUp.BackColor = SystemColors.Window;
+    ButtonHoursUp.Cursor = Cursors.Hand;
+    ButtonHoursUp.ForeColor = Color.DarkSlateGray;
+    ButtonHoursUp.IconChar = FontAwesome.Sharp.IconChar.CaretUp;
+    ButtonHoursUp.IconColor = Color.DarkSlateGray;
+    ButtonHoursUp.IconFont = FontAwesome.Sharp.IconFont.Auto;
+    ButtonHoursUp.IconSize = 49;
+    ButtonHoursUp.Location = new Point(49, 115);
+    ButtonHoursUp.Name = "ButtonHoursUp";
+    ButtonHoursUp.Size = new Size(55, 49);
+    ButtonHoursUp.TabIndex = 16;
+    ButtonHoursUp.TabStop = false;
+    ButtonHoursUp.Click += ButtonHoursUp_Click;
+    // 
+    // LabelMinutes
+    // 
+    LabelMinutes.AutoSize = true;
+    LabelMinutes.BackColor = Color.Transparent;
+    LabelMinutes.Font = new Font("Cascadia Code", 45F, FontStyle.Bold, GraphicsUnit.Point, 0);
+    LabelMinutes.ForeColor = Color.DarkSlateGray;
+    LabelMinutes.Location = new Point(147, 143);
+    LabelMinutes.Name = "LabelMinutes";
+    LabelMinutes.Size = new Size(104, 79);
+    LabelMinutes.TabIndex = 15;
+    LabelMinutes.Text = "00";
+    // 
+    // bigLabel4
+    // 
+    bigLabel4.AutoSize = true;
+    bigLabel4.BackColor = Color.Transparent;
+    bigLabel4.Font = new Font("Cascadia Code", 45F, FontStyle.Bold, GraphicsUnit.Point, 0);
+    bigLabel4.ForeColor = Color.DarkSlateGray;
+    bigLabel4.Location = new Point(94, 143);
+    bigLabel4.Name = "bigLabel4";
+    bigLabel4.Size = new Size(69, 79);
+    bigLabel4.TabIndex = 14;
+    bigLabel4.Text = ":";
+    // 
+    // LabelHours
+    // 
+    LabelHours.AutoSize = true;
+    LabelHours.BackColor = Color.Transparent;
+    LabelHours.Font = new Font("Cascadia Code", 45F, FontStyle.Bold, GraphicsUnit.Point, 0);
+    LabelHours.ForeColor = Color.DarkSlateGray;
+    LabelHours.Location = new Point(41, 143);
+    LabelHours.Name = "LabelHours";
+    LabelHours.Size = new Size(69, 79);
+    LabelHours.TabIndex = 13;
+    LabelHours.Text = "0";
     // 
     // ButtonSave
     // 
@@ -167,7 +264,7 @@ partial class WorkLogForm {
     ButtonSave.Location = new Point(14, 419);
     ButtonSave.Name = "ButtonSave";
     ButtonSave.OverColor = Color.DimGray;
-    ButtonSave.Size = new Size(175, 40);
+    ButtonSave.Size = new Size(248, 40);
     ButtonSave.TabIndex = 7;
     ButtonSave.Text = "Sačuvaj";
     ButtonSave.Click += ButtonSave_Click;
@@ -180,22 +277,10 @@ partial class WorkLogForm {
     bigLabel2.ForeColor = Color.DarkSlateGray;
     bigLabel2.Location = new Point(0, 0);
     bigLabel2.Name = "bigLabel2";
-    bigLabel2.Size = new Size(201, 55);
+    bigLabel2.Size = new Size(274, 89);
     bigLabel2.TabIndex = 1;
     bigLabel2.Text = "Title";
     bigLabel2.TextAlign = ContentAlignment.MiddleCenter;
-    // 
-    // dungeonLabel7
-    // 
-    dungeonLabel7.AutoSize = true;
-    dungeonLabel7.BackColor = Color.Transparent;
-    dungeonLabel7.Font = new Font("Segoe UI", 13F);
-    dungeonLabel7.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel7.Location = new Point(14, 68);
-    dungeonLabel7.Name = "dungeonLabel7";
-    dungeonLabel7.Size = new Size(149, 25);
-    dungeonLabel7.TabIndex = 23;
-    dungeonLabel7.Text = "Broj urađenih sati";
     // 
     // dungeonLabel4
     // 
@@ -243,16 +328,17 @@ partial class WorkLogForm {
     StyleManager1.Owner = this;
     StyleManager1.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Silver;
     // 
-    // comboBox1
+    // ComboBoxSprints
     // 
-    comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-    comboBox1.FormattingEnabled = true;
-    comboBox1.IntegralHeight = false;
-    comboBox1.ItemHeight = 15;
-    comboBox1.Location = new Point(287, 143);
-    comboBox1.Name = "comboBox1";
-    comboBox1.Size = new Size(299, 23);
-    comboBox1.TabIndex = 31;
+    ComboBoxSprints.DropDownStyle = ComboBoxStyle.DropDownList;
+    ComboBoxSprints.FormattingEnabled = true;
+    ComboBoxSprints.IntegralHeight = false;
+    ComboBoxSprints.ItemHeight = 15;
+    ComboBoxSprints.Location = new Point(287, 143);
+    ComboBoxSprints.Name = "ComboBoxSprints";
+    ComboBoxSprints.Size = new Size(299, 23);
+    ComboBoxSprints.TabIndex = 31;
+    ComboBoxSprints.SelectedIndexChanged += ComboBoxSprints_SelectedIndexChanged;
     // 
     // dungeonLabel6
     // 
@@ -270,8 +356,8 @@ partial class WorkLogForm {
     // 
     AutoScaleDimensions = new SizeF(7F, 15F);
     AutoScaleMode = AutoScaleMode.Font;
-    ClientSize = new Size(800, 471);
-    Controls.Add(comboBox1);
+    ClientSize = new Size(870, 471);
+    Controls.Add(ComboBoxSprints);
     Controls.Add(dungeonLabel6);
     Controls.Add(TBoxSearch);
     Controls.Add(ComboBoxProjects);
@@ -287,6 +373,10 @@ partial class WorkLogForm {
     ((System.ComponentModel.ISupportInitialize)DGV).EndInit();
     PanelRightContent.ResumeLayout(false);
     PanelRightContent.PerformLayout();
+    ((System.ComponentModel.ISupportInitialize)ButtonMinutesDown).EndInit();
+    ((System.ComponentModel.ISupportInitialize)ButtonHoursDown).EndInit();
+    ((System.ComponentModel.ISupportInitialize)ButtonMinutesUp).EndInit();
+    ((System.ComponentModel.ISupportInitialize)ButtonHoursUp).EndInit();
     ((System.ComponentModel.ISupportInitialize)StyleManager1).EndInit();
     ResumeLayout(false);
     PerformLayout();
@@ -300,12 +390,17 @@ partial class WorkLogForm {
   private Panel PanelRightContent;
   private ReaLTaiizor.Controls.FoxButton ButtonSave;
   private ReaLTaiizor.Controls.BigLabel bigLabel2;
-  private ReaLTaiizor.Controls.DungeonLabel dungeonLabel7;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel4;
   private ComboBox ComboBoxProjects;
   private ReaLTaiizor.Controls.BigTextBox TBoxSearch;
-  private ReaLTaiizor.Controls.DungeonNumeric NumericHours;
   private ReaLTaiizor.Manager.PoisonStyleManager StyleManager1;
-  private ComboBox comboBox1;
+  private ComboBox ComboBoxSprints;
   private ReaLTaiizor.Controls.DungeonLabel dungeonLabel6;
+  private ReaLTaiizor.Controls.BigLabel LabelHours;
+  private ReaLTaiizor.Controls.BigLabel LabelMinutes;
+  private ReaLTaiizor.Controls.BigLabel bigLabel4;
+  private FontAwesome.Sharp.IconPictureBox ButtonHoursUp;
+  private FontAwesome.Sharp.IconPictureBox ButtonMinutesDown;
+  private FontAwesome.Sharp.IconPictureBox ButtonHoursDown;
+  private FontAwesome.Sharp.IconPictureBox ButtonMinutesUp;
 }

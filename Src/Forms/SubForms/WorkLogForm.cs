@@ -1,8 +1,11 @@
-﻿using Sprintly.Src;
+﻿using Microsoft.EntityFrameworkCore;
+using Sprintly.Src;
 using Sprintly.Src.Data;
+using Sprintly.Src.Data.Models;
 using Sprintly.Src.Forms;
 using Sprintly.Src.Services;
 using Sprintly.Src.Services.Forms;
+using System.ComponentModel;
 using System.Data;
 
 namespace Sprintly.Forms;
@@ -11,6 +14,46 @@ public partial class WorkLogForm : BaseForm {
   private readonly WorkTasksService workTasksService;
   private readonly SprintsService sprintsService;
   private readonly UserStoriesService userStoriesService;
+
+  const int hoursStep = 1;
+  const int minutesStep = 5;
+
+  private int hours;
+  private int minutes;
+
+  [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+  public int Hours {
+    get {
+      return hours;
+    }
+    set {
+      if (value < 0) {
+        value = 0;
+      }
+      hours = value;
+      LabelHours.Text = hours.ToString();
+    }
+  }
+
+  [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+  public int Minutes {
+    get {
+      return minutes;
+    }
+    set {
+      if (value < 0) {
+        value = 0;
+      }
+      if (value >= 60) {
+        value -= 60;
+        Hours += hoursStep;
+      }
+
+      minutes = value;
+      LabelMinutes.Text = $"{(minutes.ToString().Length == 1 ? "0" : "")}{minutes}";
+    }
+  }
+
 
   public WorkLogForm(BaseForm parent) {
     InitializeComponent();
@@ -50,9 +93,26 @@ public partial class WorkLogForm : BaseForm {
 
   private async void ComboBoxProjects_SelectedIndexChanged(object sender, EventArgs e) {
     if (ComboBoxProjects.SelectedValue is int projectId) {
+      await LoadSprintsToComboBox(projectId);
       await LoadUserStoriesToFilters(projectId);
       await LoadWorkTasksToDataGrid();
     }
+  }
+
+  private async Task LoadSprintsToComboBox(int projectId) {
+    using var db = new AppDbContext();
+    var username = SessionManager.GetSavedUsername();
+    var sprints = await db.Sprints
+        .Where(s => s.ProjectId == projectId && s.WorkTasks.Any(wt => wt.AssignedEmployees.Any(e => e.Username == username)))
+        .OrderBy(s => s.Name)
+        .ToListAsync();
+
+    sprints.Insert(0, new Sprint { Id = 0, Name = "-- Svi sprintovi --" });
+
+    ComboBoxSprints.DataSource = sprints;
+    ComboBoxSprints.DisplayMember = "Name";
+    ComboBoxSprints.ValueMember = "Id";
+    ComboBoxSprints.SelectedIndex = 0;
   }
 
   private async Task LoadUserStoriesToFilters(int projectId) {
@@ -62,7 +122,15 @@ public partial class WorkLogForm : BaseForm {
   private async Task LoadWorkTasksToDataGrid(string term = "") {
     if (ComboBoxProjects.SelectedValue is not int projectId) return;
 
-    var tasks = await workTasksService.GetTasksAsync(projectId, null, term);
+    int? sprintIdFilter = null;
+    if (ComboBoxSprints.SelectedValue is int sId && sId > 0) {
+      sprintIdFilter = sId;
+    }
+
+    using var db = new AppDbContext();
+    var username = SessionManager.GetSavedUsername();
+    var employee = await db.Employees.FirstOrDefaultAsync(e => e.Username == username);
+    var tasks = await workTasksService.GetTasksAsync(projectId, sprintIdFilter, term, employee?.Id);
 
     DGV.DataSource = tasks.Select(t => new {
       t.Id,
@@ -88,53 +156,48 @@ public partial class WorkLogForm : BaseForm {
   }
 
   private async void ButtonSave_Click(object sender, EventArgs e) {
-    //string name = TBoxName.Text.Trim();
-    //string desc = TBoxDescription.Text.Trim();
+    try {
+      if (SelectedDataGridViewItemId == -1) {
+        throw new Exception("Nije odabran nijedan radni zadatak.");
+      }
 
-    //if (string.IsNullOrEmpty(name)) {
-    //  Helpers.ShowToast("Ime zadatka je obavezno.", NotificationType.Warning);
-    //  return;
-    //}
+      if (AuthService.CurrentUser == null) {
+        throw new Exception("Nije pronađen trenutno prijavljeni korisnik.");
+      }
 
-    //if (ComboBoxUserStories.SelectedValue is not int storyId) {
-    //  Helpers.ShowToast("Zadatak mora pripadati korisničkoj priči.", NotificationType.Warning);
-    //  return;
-    //}
+      decimal hoursWorked = 0m;
+      if (Hours < 0 || Minutes < 0) {
+        throw new Exception("Sati i minuti ne mogu biti negativni.");
+      }
+      hoursWorked = Hours + (Minutes / 60m);
 
-    //try {
-    //  WorkTask task = SelectedDataGridViewItemId == 0
-    //      ? new WorkTask()
-    //      : await workTasksService.GetByIdAsync(SelectedDataGridViewItemId) ?? new WorkTask();
+      var workLogEntry = new WorkTaskEntry {
+        WorkTaskId = SelectedDataGridViewItemId,
+        EmployeeId = AuthService.CurrentUser.Id,
+        HoursWorked = hoursWorked
+      };
 
-    //  task.Name = name;
-    //  task.Description = desc;
-    //  task.EstimatedHours = NumericHours.Value;
-    //  task.UserStoryId = storyId;
-    //  task.Status = WorkTaskStatus.ToDo;
+      using var db = new AppDbContext();
+      db.SaveChanges();
 
-    //  await workTasksService.SaveTaskAsync(task);
-
-    //  Helpers.ShowToast("Zadatak uspešno sačuvan.", NotificationType.Success);
-    //  ClearInputs();
-    //  await LoadWorkTasksToDataGrid();
-    //}
-    //catch (Exception ex) {
-    //  Helpers.ShowToast($"Greška: {ex.Message}", NotificationType.Error);
-    //}
+      Helpers.ShowToast("Rad uspešno unesen.", NotificationType.Success);
+      ClearInputs();
+      await LoadWorkTasksToDataGrid();
+    }
+    catch (Exception ex) {
+      Helpers.ShowToast($"Greška: {ex.Message}", NotificationType.Error);
+    }
   }
 
   private async Task LoadWorkTaskToInputs(int id) {
     var task = await workTasksService.GetByIdAsync(id);
     if (task != null) {
-      NumericHours.Value = (long)task.EstimatedHours;
-
       bigLabel2.Text = "Izmena radnog zadatka";
     }
   }
 
   private void ClearInputs() {
     SelectedDataGridViewItemId = 0;
-    NumericHours.Value = 0;
     bigLabel2.Text = "Novi radni zadatak";
   }
 
@@ -159,8 +222,19 @@ public partial class WorkLogForm : BaseForm {
     }
   }
 
-  private void ButonAdd_Click(object sender, EventArgs e) {
-    ClearInputs();
-    ExpandParent();
+  private void ButtonHoursUp_Click(object sender, EventArgs e) {
+    Hours += hoursStep;
+  }
+
+  private void ButtonMinutesUp_Click(object sender, EventArgs e) {
+    Minutes += minutesStep;
+  }
+
+  private void ButtonHoursDown_Click(object sender, EventArgs e) {
+    Hours -= hoursStep;
+  }
+
+  private void ButtonMinutesDown_Click(object sender, EventArgs e) {
+    Minutes -= minutesStep;
   }
 }

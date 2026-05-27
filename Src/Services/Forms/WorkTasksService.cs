@@ -6,7 +6,7 @@ namespace Sprintly.Src.Services.Forms;
 
 public class WorkTasksService {
 
-  public async Task<List<WorkTask>> GetTasksAsync(int projectId, int? sprintId = null, string searchTerm = "") {
+  public async Task<List<WorkTask>> GetTasksAsync(int projectId, int? sprintId = null, string searchTerm = "", int? employeeId = null) {
     using var db = new AppDbContext();
 
     var query = db.WorkTasks
@@ -20,6 +20,10 @@ public class WorkTasksService {
 
     if (!string.IsNullOrWhiteSpace(searchTerm)) {
       query = query.Where(t => t.Name.Contains(searchTerm) || t.Description.Contains(searchTerm));
+    }
+
+    if (employeeId.HasValue) {
+      query = query.Where(t => t.AssignedEmployees.Any(e => e.Id == employeeId.Value));
     }
 
     return await query.OrderByDescending(t => t.Id).ToListAsync();
