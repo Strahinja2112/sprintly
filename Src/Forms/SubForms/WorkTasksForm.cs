@@ -68,7 +68,7 @@ public partial class WorkTasksForm : BaseForm {
     sprintsService = new SprintsService();
     userStoriesService = new UserStoriesService();
 
-    RightSidePanel = PanelRight;
+    SidePanel = PanelRight;
     if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
       DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
     }

@@ -14,7 +14,7 @@ public partial class ProjectsForm : BaseForm {
     InitializeComponent();
     this.parent = parent;
 
-    RightSidePanel = PanelRightContent;
+    SidePanel = PanelRightContent;
     if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
       DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
     }

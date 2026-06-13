@@ -17,7 +17,7 @@ public partial class UserStoriesForm : BaseForm {
 
     userStoriesService = new UserStoriesService();
 
-    RightSidePanel = PanelRightContent;
+    SidePanel = PanelRightContent;
     if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
       DisableRightPanelAndControls(ButtonDelete, ButtonAdd);
     }

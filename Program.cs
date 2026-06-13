@@ -12,10 +12,10 @@ internal static class Program {
   static void Main() {
     ApplicationConfiguration.Initialize();
 
-    if (MessageBox.Show("Do you want to seed the database? This will erase all existing data.", "Database Seeding", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
-      SeedService.FullSeed();
-      AuthService.Logout();
-    }
+    //if (MessageBox.Show("Do you want to seed the database? This will erase all existing data.", "Database Seeding", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
+    //  SeedService.FullSeed();
+    //  AuthService.Logout();
+    //}
 
     while (true) {
       HasUserLoggedOut = false;

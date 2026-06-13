@@ -63,7 +63,7 @@ public partial class WorkLogForm : BaseForm {
     sprintsService = new SprintsService();
     userStoriesService = new UserStoriesService();
 
-    RightSidePanel = PanelRightContent;
+    SidePanel = PanelRightContent;
     if (!PermissionsService.CanCurrentUserManageForm(GetType())) {
       DisableRightPanelAndControls();
     }

@@ -10,30 +10,30 @@ public class BaseForm : Form {
   protected string searchPlaceholder = "Pretraga...";
 
   protected BaseForm? parent;
-  private Panel? rightSidePanel = null;
+  private Panel? sidePanel = null;
 
   [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-  public Panel? RightSidePanel {
+  public Panel? SidePanel {
     get {
-      return rightSidePanel;
+      return sidePanel;
     }
     set {
-      rightSidePanel = value;
-      if (rightSidePanel == null) {
+      sidePanel = value;
+      if (sidePanel == null) {
         return;
       }
 
-      expandedPanelWidth = rightSidePanel.Width;
-      rightSidePanel.Hide();
+      expandedPanelWidth = sidePanel.Width;
+      sidePanel.Hide();
     }
   }
 
   protected void DisableRightPanelAndControls(params Control[] additionalControls) {
-    if (rightSidePanel == null) {
+    if (sidePanel == null) {
       return;
     }
 
-    var allControls = rightSidePanel.Controls.Cast<Control>().Concat(additionalControls);
+    var allControls = sidePanel.Controls.Cast<Control>().Concat(additionalControls);
 
     foreach (Control control in allControls) {
       Helpers.ClearClickEvents(control);
@@ -62,7 +62,7 @@ public class BaseForm : Form {
   protected void OpenSubform(Panel container, Form childForm) {
     Width = MinimumSize.Width;
     Height = MinimumSize.Height;
-    //CenterOnScreen();
+    CenterOnScreen();
 
     if (container.Controls.Count > 0) {
       container.Controls.Clear();
@@ -81,7 +81,7 @@ public class BaseForm : Form {
   protected void ExpandParent() {
     if (!isExpanded) {
       parent?.Width += expandedPanelWidth;
-      RightSidePanel?.Show();
+      SidePanel?.Show();
       isExpanded = true;
     }
     parent?.CenterOnScreen();
@@ -90,7 +90,7 @@ public class BaseForm : Form {
   protected void CollapseParent() {
     if (isExpanded) {
       parent?.Width -= expandedPanelWidth;
-      RightSidePanel?.Hide();
+      SidePanel?.Hide();
       isExpanded = false;
     }
     parent?.CenterOnScreen();
