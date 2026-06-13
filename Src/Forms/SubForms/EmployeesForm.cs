@@ -56,7 +56,6 @@ public partial class EmployeesForm : BaseForm {
         using var db = new AppDbContext();
         var emp = db.Employees
             .Include(e => e.AssignedTasks)
-            .Include(e => e.Meetings)
             .FirstOrDefault(u => u.Id == SelectedDataGridViewItemId);
 
         if (emp != null) {
@@ -70,12 +69,6 @@ public partial class EmployeesForm : BaseForm {
           var scrumMasterSprintCount = db.Sprints.Count(s => s.ScrumMasterId == emp.Id);
           if (scrumMasterSprintCount > 0) {
             MessageBox.Show($"Zaposleni je Scrum Master na sprintovima ({scrumMasterSprintCount}). Prvo dodelite drugog Scrum Mastera.",
-                            "Brisanje nije dozvoljeno", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
-          }
-
-          if (emp.Meetings.Count > 0) {
-            MessageBox.Show($"Zaposleni je učesnik na sastancima ({emp.Meetings.Count}) i ne može biti obrisan dok se ta veza ne ukloni.",
                             "Brisanje nije dozvoljeno", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
           }

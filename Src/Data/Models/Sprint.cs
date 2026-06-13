@@ -33,8 +33,6 @@ public class Sprint {
   public virtual Employee? ScrumMaster { get; set; }
 
   public virtual ICollection<WorkTask> WorkTasks { get; set; } = [];
-
-  public virtual ICollection<Meeting> Meetings { get; set; } = [];
 }
 
 public enum SprintStatus {

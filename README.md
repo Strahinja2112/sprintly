@@ -84,7 +84,6 @@ Sprintra/
 - **UserStory** — Title, Description, Priority, linked to Project
 - **WorkTask** — Name, Description, Status, EstimatedHours, linked to UserStory
 - **WorkTaskEntry** — Hours logged per employee/task/date
-- **Meeting** — Sprint meetings with type, attendees
 - **Distribution** — Version, Environment (Web/Mobile/Desktop/API)
 - **Increment** — Release versions linked to Distribution
 - **Feature** — Features linked to Sprint + Increment

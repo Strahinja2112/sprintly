@@ -27,7 +27,6 @@ Hard-delete the selected employee only when all of these are true:
 - The selected employee is not the currently logged-in user.
 - The employee has no work log entries.
 - The employee is not assigned as a Scrum Master on any sprint.
-- The employee has no blocking meeting attendance records.
 
 ### Use Another Action Instead
 
@@ -35,14 +34,12 @@ Hard-delete the selected employee only when all of these are true:
 - If the employee has work log entries, do not hard-delete; deactivate the employee instead, or require an explicit archive/deactivation workflow.
 - If the employee is assigned to work tasks, remove task assignment links before deleting.
 - If the employee is a Scrum Master on any sprint, block deletion until those sprints are reassigned.
-- If the employee is a meeting attendee, remove attendance links first or block deletion if meeting history must remain immutable.
 
 ### Implementation Notes
 
 - The current handler already blocks deleting the current user.
 - EF currently cascades `WorkTaskEntry.EmployeeId`, which would delete logged work if an employee is deleted. The UI should block this.
 - EF currently cascades `Sprint.ScrumMasterId`, which risks deleting sprints when a Scrum Master is deleted. This should be treated as unsafe behavior and blocked in the UI.
-- Meeting attendees use `NoAction`, so deleting an employee with meeting attendance may fail unless attendance links are removed first.
 
 ## Projects
 
@@ -80,7 +77,6 @@ Hard-delete the selected sprint only when all of these are true:
 - The selected sprint exists.
 - The sprint status is `Planned`.
 - The sprint has no work tasks.
-- The sprint has no meetings.
 - The sprint has no features.
 
 ### Use Another Action Instead
@@ -88,7 +84,7 @@ Hard-delete the selected sprint only when all of these are true:
 - If the sprint has work tasks, block deletion and require moving/removing those tasks first.
 - If the sprint is `Active`, use the finish/cancel workflow instead of hard delete.
 - If the sprint is `Completed`, never hard-delete from the normal UI.
-- If the sprint has meetings or features, block deletion until those records are resolved or explicitly deleted through their owning workflow.
+- If the sprint has features, block deletion until those records are resolved or explicitly deleted through their owning workflow.
 
 ### Implementation Notes
 
@@ -162,7 +158,7 @@ If a future delete action is added for work log entries, it should be restricted
 - Verify project delete succeeds for an empty project.
 - Verify project delete blocks projects with sprints.
 - Verify project delete blocks projects with user stories even if there are no sprints.
-- Verify sprint delete succeeds for a planned sprint with no tasks, meetings, or features.
+- Verify sprint delete succeeds for a planned sprint with no tasks or features.
 - Verify sprint delete blocks active and completed sprints.
 - Verify sprint delete blocks sprints with work tasks.
 - Verify user story delete succeeds only when no work tasks exist.

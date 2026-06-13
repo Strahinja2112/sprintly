@@ -13,7 +13,6 @@ public class AppDbContext : DbContext {
   public DbSet<Distribution> Distributions { get; set; }
   public DbSet<Increment> Increments { get; set; }
   public DbSet<Feature> Features { get; set; }
-  public DbSet<Meeting> Meetings { get; set; }
 
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
     optionsBuilder.UseSqlServer($"Server={Environment.MachineName}\\SQLEXPRESS;Database=Sprintra;Trusted_Connection=True;TrustServerCertificate=True;");
@@ -99,31 +98,5 @@ public class AppDbContext : DbContext {
           .OnDelete(DeleteBehavior.Cascade);
     });
 
-    // Meeting (Many-to-Many: Employee <-> Meeting + TPH)
-    modelBuilder.Entity<Meeting>(entity => {
-      entity.HasOne(m => m.Sprint)
-          .WithMany(s => s.Meetings)
-          .HasForeignKey(m => m.SprintId)
-          .OnDelete(DeleteBehavior.Cascade);
-
-      entity.Property(m => m.Type).HasConversion<string>();
-
-      // Many-to-Many: Employee <-> Meeting
-      entity.HasMany(m => m.Attendees)
-          .WithMany(e => e.Meetings)
-          .UsingEntity<Dictionary<string, object>>(
-              "Employee_Attends_Meeting",
-              j => j
-                  .HasOne<Employee>()
-                  .WithMany()
-                  .HasForeignKey("AttendeesId")
-                  .OnDelete(DeleteBehavior.NoAction),
-              j => j
-                  .HasOne<Meeting>()
-                  .WithMany()
-                  .HasForeignKey("MeetingsId")
-                  .OnDelete(DeleteBehavior.Cascade)
-          );
-    });
   }
 }

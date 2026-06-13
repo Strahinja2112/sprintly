@@ -41,7 +41,6 @@ public class Employee {
   public EmployeeType Type { get; set; }
 
   public virtual ICollection<Project> Projects { get; set; } = [];
-  public virtual ICollection<Meeting> Meetings { get; set; } = [];
   public virtual ICollection<WorkTask> AssignedTasks { get; set; } = [];
 }
 
