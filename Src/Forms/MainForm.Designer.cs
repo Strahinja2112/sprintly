@@ -585,9 +585,9 @@
       dungeonLabel1.ForeColor = Color.FromArgb(76, 76, 77);
       dungeonLabel1.Location = new Point(15, 116);
       dungeonLabel1.Name = "dungeonLabel1";
-      dungeonLabel1.Size = new Size(573, 87);
+      dungeonLabel1.Size = new Size(573, 108);
       dungeonLabel1.TabIndex = 14;
-      dungeonLabel1.Text = resources.GetString("dungeonLabel1.Text");
+      dungeonLabel1.Text = "Sprintly je Windows desktop aplikacija napravljena pomoću C# i WinForms-a koja pomaže Scrum timovima da upravljaju svojim projektima, sprintovima i zadacima.";
       dungeonLabel1.TextAlign = ContentAlignment.MiddleCenter;
       // 
       // bigLabel2
