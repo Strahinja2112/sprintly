@@ -217,6 +217,7 @@ public partial class SprintsForm : BaseForm {
   private async void ButtonDelete_Click(object sender, EventArgs e) {
     if (SelectedDataGridViewItemId == 0) return;
 
+    // TODO - change course of action here if the sprint has tasks assigned to it. For now, we will just show a message and return.
     var confirm = MessageBox.Show(
         "Da li ste sigurni da želite trajno da obrišete ovaj sprint?",
         "Potvrda brisanja",
