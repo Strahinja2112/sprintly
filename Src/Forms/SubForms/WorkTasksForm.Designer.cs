@@ -138,6 +138,7 @@ partial class WorkTasksForm {
     ButtonDelete.Size = new Size(90, 41);
     ButtonDelete.TabIndex = 18;
     ButtonDelete.Text = "Obriši";
+    ButtonDelete.Click += ButtonDelete_Click;
     // 
     // ButtonAdd
     // 

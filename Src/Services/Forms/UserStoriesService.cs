@@ -39,4 +39,19 @@ public class UserStoriesService {
   public async Task<UserStory?> GetByIdAsync(int id) {
     return await db.UserStories.FirstOrDefaultAsync(us => us.Id == id);
   }
+
+  public async Task DeleteUserStoryAsync(int id) {
+    var story = await db.UserStories
+        .Include(us => us.WorkTasks)
+        .FirstOrDefaultAsync(us => us.Id == id);
+
+    if (story == null) return;
+
+    if (story.WorkTasks.Count != 0) {
+      throw new InvalidOperationException("Ne možete obrisati korisničku priču koja ima povezane zadatke. Prvo obrišite ili premestite zadatke.");
+    }
+
+    db.UserStories.Remove(story);
+    await db.SaveChangesAsync();
+  }
 }

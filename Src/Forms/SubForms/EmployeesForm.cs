@@ -3,6 +3,7 @@ using Sprintly.Src.Data;
 using Sprintly.Src.Data.Models;
 using Sprintly.Src.Forms;
 using Sprintly.Src.Services;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 namespace Sprintly.Forms;
@@ -53,9 +54,33 @@ public partial class EmployeesForm : BaseForm {
     if (result == DialogResult.Yes) {
       try {
         using var db = new AppDbContext();
-        var emp = db.Employees.FirstOrDefault(u => u.Id == SelectedDataGridViewItemId);
+        var emp = db.Employees
+            .Include(e => e.AssignedTasks)
+            .Include(e => e.Meetings)
+            .FirstOrDefault(u => u.Id == SelectedDataGridViewItemId);
 
         if (emp != null) {
+          var workLogCount = db.WorkTaskEntries.Count(we => we.EmployeeId == emp.Id);
+          if (workLogCount > 0) {
+            MessageBox.Show($"Zaposleni ima evidentirane radne unose ({workLogCount}) i ne može biti obrisan. Umesto toga deaktivirajte nalog.",
+                            "Brisanje nije dozvoljeno", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+          }
+
+          var scrumMasterSprintCount = db.Sprints.Count(s => s.ScrumMasterId == emp.Id);
+          if (scrumMasterSprintCount > 0) {
+            MessageBox.Show($"Zaposleni je Scrum Master na sprintovima ({scrumMasterSprintCount}). Prvo dodelite drugog Scrum Mastera.",
+                            "Brisanje nije dozvoljeno", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+          }
+
+          if (emp.Meetings.Count > 0) {
+            MessageBox.Show($"Zaposleni je učesnik na sastancima ({emp.Meetings.Count}) i ne može biti obrisan dok se ta veza ne ukloni.",
+                            "Brisanje nije dozvoljeno", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+          }
+
+          emp.AssignedTasks.Clear();
           db.Employees.Remove(emp);
           db.SaveChanges();
 

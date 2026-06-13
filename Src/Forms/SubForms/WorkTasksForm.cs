@@ -188,6 +188,47 @@ public partial class WorkTasksForm : BaseForm {
     }
   }
 
+  private async void ButtonDelete_Click(object sender, EventArgs e) {
+    if (SelectedDataGridViewItemId == 0) {
+      MessageBox.Show("Molimo vas da prvo odaberete radni zadatak iz tabele.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+      return;
+    }
+
+    var result = MessageBox.Show("Da li ste sigurni da želite da uklonite izabrani radni zadatak?",
+                                 "Potvrda brisanja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+    if (result == DialogResult.No) return;
+
+    try {
+      var deleteResult = await workTasksService.DeleteTaskAsync(SelectedDataGridViewItemId);
+
+      switch (deleteResult) {
+        case WorkTaskDeleteResult.Deleted:
+          Helpers.ShowToast("Radni zadatak je uspešno obrisan.", NotificationType.Info, "Uspeh!");
+          break;
+        case WorkTaskDeleteResult.Cancelled:
+          Helpers.ShowToast("Radni zadatak ima evidentiran rad, pa je označen kao otkazan umesto brisanja.", NotificationType.Warning);
+          break;
+        case WorkTaskDeleteResult.NotFound:
+          MessageBox.Show("Radni zadatak nije pronađen. Moguće je da je već obrisan.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          return;
+      }
+
+      ClearInputs();
+      Mode = WorkTaskFormMode.EditingWorkTasks;
+      await LoadWorkTasksToDataGridView();
+
+      if (isExpanded) {
+        parent.Width -= expandedPanelWidth;
+        PanelRight.Hide();
+        isExpanded = false;
+      }
+    }
+    catch (Exception ex) {
+      MessageBox.Show(ex.Message, "Brisanje nije dozvoljeno", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    }
+  }
+
   private void ClearInputs() {
     SelectedDataGridViewItemId = 0;
     //TBoxName.Text = "";

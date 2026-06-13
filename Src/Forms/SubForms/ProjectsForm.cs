@@ -46,6 +46,12 @@ public partial class ProjectsForm : BaseForm {
       return;
     }
 
+    var userStoryCount = db.UserStories.Count(us => us.ProjectId == SelectedDataGridViewItemId);
+    if (userStoryCount > 0) {
+      MessageBox.Show($"Projekat koji sadrži korisničke priče ({userStoryCount}) ne može biti obrisan.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+      return;
+    }
+
     var result = MessageBox.Show($"Da li ste sigurni da želite da obrišete projekat '{TBoxProjectName.Text}'?",
                                  "Potvrda brisanja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -123,7 +129,6 @@ public partial class ProjectsForm : BaseForm {
       SelectedDataGridViewItemId = Convert.ToInt32(DGVProjects.Rows[e.RowIndex].Cells["Id"].Value);
       LoadProjectToInputs(SelectedDataGridViewItemId);
       ExpandParent();
-      LabelDate.Text = "Datum završetka";
     }
   }
 
@@ -164,6 +169,10 @@ public partial class ProjectsForm : BaseForm {
       dateChanged = false;
 
       bigLabel2.Text = "Izmena projekta";
+      LabelDate.Text = "Završetak";
+      if (p.EndDate == null) {
+        LabelDate.Text += " (nije postavljen)";
+      }
     }
   }
 
@@ -189,7 +198,7 @@ public partial class ProjectsForm : BaseForm {
     DateTimePicker.Value = DateTimePicker.MinDate = DateTime.Now;
     dateChanged = false;
     bigLabel2.Text = "Novi Projekat";
-    LabelDate.Text = "Datum početka";
+    LabelDate.Text = "Početak";
   }
 
   private void DateTimePicker_ValueChanged(object sender, EventArgs e) {

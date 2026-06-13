@@ -219,10 +219,10 @@ public partial class SprintsForm : BaseForm {
 
     // TODO - change course of action here if the sprint has tasks assigned to it. For now, we will just show a message and return.
     var confirm = MessageBox.Show(
-        "Da li ste sigurni da želite trajno da obrišete ovaj sprint?",
-        "Potvrda brisanja",
-        MessageBoxButtons.YesNo,
-        MessageBoxIcon.Warning
+      "Da li ste sigurni da želite trajno da obrišete ovaj sprint?",
+      "Potvrda brisanja",
+      MessageBoxButtons.YesNo,
+      MessageBoxIcon.Warning
     );
 
     if (confirm == DialogResult.No) return;

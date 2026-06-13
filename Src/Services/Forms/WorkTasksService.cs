@@ -4,6 +4,12 @@ using Sprintly.Src.Data.Models;
 
 namespace Sprintly.Src.Services.Forms;
 
+public enum WorkTaskDeleteResult {
+  Deleted,
+  Cancelled,
+  NotFound
+}
+
 public class WorkTasksService {
 
   public async Task<List<WorkTask>> GetTasksAsync(int projectId, int? sprintId = null, string searchTerm = "", int? employeeId = null) {
@@ -52,15 +58,26 @@ public class WorkTasksService {
     await db.SaveChangesAsync();
   }
 
-  public async Task<bool> DeleteTaskAsync(int id) {
+  public async Task<WorkTaskDeleteResult> DeleteTaskAsync(int id) {
     using var db = new AppDbContext();
-    var task = await db.WorkTasks.FindAsync(id);
+    var task = await db.WorkTasks
+        .Include(t => t.WorkLogEntries)
+        .Include(t => t.AssignedEmployees)
+        .FirstOrDefaultAsync(t => t.Id == id);
 
-    if (task == null) return false;
+    if (task == null) return WorkTaskDeleteResult.NotFound;
+
+    if (task.WorkLogEntries.Count != 0) {
+      task.Status = WorkTaskStatus.Cancelled;
+      await db.SaveChangesAsync();
+      return WorkTaskDeleteResult.Cancelled;
+    }
+
+    task.AssignedEmployees.Clear();
 
     db.WorkTasks.Remove(task);
     await db.SaveChangesAsync();
-    return true;
+    return WorkTaskDeleteResult.Deleted;
   }
 
   public async Task<decimal> GetTotalLoggedHoursAsync(int taskId) {

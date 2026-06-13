@@ -73,16 +73,20 @@ public class SprintsService {
   public async Task DeleteSprintAsync(int sprintId) {
     var sprint = await db.Sprints
         .Include(s => s.WorkTasks)
+        .Include(s => s.Meetings)
         .FirstOrDefaultAsync(s => s.Id == sprintId);
 
     if (sprint == null) return;
 
-    foreach (var task in sprint.WorkTasks) {
-      task.SprintId = null;
-    }
-
     if (sprint.WorkTasks.Count != 0)
       throw new InvalidOperationException("Ne možete obrisati sprint koji ima povezane zadatke. Prvo obrišite ili premestite zadatke.");
+
+    if (sprint.Meetings.Count != 0)
+      throw new InvalidOperationException("Ne možete obrisati sprint koji ima povezane sastanke. Prvo obrišite ili razrešite sastanke.");
+
+    var hasFeatures = await db.Features.AnyAsync(f => f.SprintId == sprintId);
+    if (hasFeatures)
+      throw new InvalidOperationException("Ne možete obrisati sprint koji ima povezane funkcionalnosti. Prvo obrišite ili razrešite funkcionalnosti.");
 
     if (sprint.Status != SprintStatus.Planned)
       throw new InvalidOperationException("Samo planirani sprintovi (Planned) se mogu obrisati.");

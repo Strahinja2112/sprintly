@@ -105,6 +105,36 @@ public partial class UserStoriesForm : BaseForm {
     }
   }
 
+  private async void ButtonDelete_Click(object sender, EventArgs e) {
+    if (SelectedDataGridViewItemId == 0) {
+      MessageBox.Show("Molimo vas da prvo odaberete korisničku priču iz tabele.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+      return;
+    }
+
+    var result = MessageBox.Show($"Da li ste sigurni da želite da obrišete korisničku priču '{TBoxName.Text}'?",
+                                 "Potvrda brisanja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+    if (result == DialogResult.No) return;
+
+    try {
+      await userStoriesService.DeleteUserStoryAsync(SelectedDataGridViewItemId);
+
+      ClearInputs();
+      await LoadUserStoriesToDataGrid();
+
+      if (isExpanded) {
+        parent.Width -= expandedPanelWidth;
+        PanelRightContent.Hide();
+        isExpanded = false;
+      }
+
+      Helpers.ShowToast("Korisnička priča je uspešno obrisana.", NotificationType.Info, "Uspeh!");
+    }
+    catch (Exception ex) {
+      MessageBox.Show(ex.Message, "Brisanje nije dozvoljeno", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    }
+  }
+
   private async void DGVSprints_CellClick(object sender, DataGridViewCellEventArgs e) {
     if (e.RowIndex >= 0 && DGVSprints.Rows[e.RowIndex].Cells["Id"].Value != null) {
       SelectedDataGridViewItemId = Convert.ToInt32(DGVSprints.Rows[e.RowIndex].Cells["Id"].Value);
