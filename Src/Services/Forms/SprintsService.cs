@@ -80,10 +80,6 @@ public class SprintsService {
     if (sprint.WorkTasks.Count != 0)
       throw new InvalidOperationException("Ne možete obrisati sprint koji ima povezane zadatke. Prvo obrišite ili premestite zadatke.");
 
-    var hasFeatures = await db.Features.AnyAsync(f => f.SprintId == sprintId);
-    if (hasFeatures)
-      throw new InvalidOperationException("Ne možete obrisati sprint koji ima povezane funkcionalnosti. Prvo obrišite ili razrešite funkcionalnosti.");
-
     if (sprint.Status != SprintStatus.Planned)
       throw new InvalidOperationException("Samo planirani sprintovi (Planned) se mogu obrisati.");
 

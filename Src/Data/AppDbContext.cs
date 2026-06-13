@@ -10,9 +10,6 @@ public class AppDbContext : DbContext {
   public DbSet<WorkTaskEntry> WorkTaskEntries { get; set; }
   public DbSet<Project> Projects { get; set; }
   public DbSet<Sprint> Sprints { get; set; }
-  public DbSet<Distribution> Distributions { get; set; }
-  public DbSet<Increment> Increments { get; set; }
-  public DbSet<Feature> Features { get; set; }
 
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
     optionsBuilder.UseSqlServer($"Server={Environment.MachineName}\\SQLEXPRESS;Database=Sprintra;Trusted_Connection=True;TrustServerCertificate=True;");
@@ -73,30 +70,5 @@ public class AppDbContext : DbContext {
 
       entity.Property(s => s.Status).HasConversion<string>();
     });
-
-    // Distribution
-    modelBuilder.Entity<Distribution>()
-        .Property(d => d.Environment).HasConversion<string>();
-
-    // Increment
-    modelBuilder.Entity<Increment>()
-        .HasOne(i => i.Distribution)
-        .WithMany()
-        .HasForeignKey(i => i.DistributionId)
-        .OnDelete(DeleteBehavior.Cascade);
-
-    // Feature
-    modelBuilder.Entity<Feature>(entity => {
-      entity.HasOne(f => f.Sprint)
-          .WithMany()
-          .HasForeignKey(f => f.SprintId)
-          .OnDelete(DeleteBehavior.Cascade);
-
-      entity.HasOne(f => f.Increment)
-          .WithMany()
-          .HasForeignKey(f => f.IncrementId)
-          .OnDelete(DeleteBehavior.Cascade);
-    });
-
   }
 }
