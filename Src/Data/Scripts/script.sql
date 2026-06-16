@@ -1,13 +1,4 @@
-﻿CREATE TABLE [Distributions] (
-    [Id] int NOT NULL IDENTITY,
-    [Version] nvarchar(30) NOT NULL,
-    [Environment] nvarchar(max) NOT NULL,
-    CONSTRAINT [PK_Distributions] PRIMARY KEY ([Id])
-);
-GO
-
-
-CREATE TABLE [Employees] (
+﻿CREATE TABLE [Employees] (
     [Id] int NOT NULL IDENTITY,
     [FirstName] nvarchar(50) NOT NULL,
     [LastName] nvarchar(50) NOT NULL,
@@ -38,17 +29,6 @@ CREATE TABLE [Projects] (
 GO
 
 
-CREATE TABLE [Increments] (
-    [Id] int NOT NULL IDENTITY,
-    [DistributionId] int NOT NULL,
-    [CreatedAt] datetime2 NOT NULL,
-    [Status] nvarchar(30) NOT NULL,
-    CONSTRAINT [PK_Increments] PRIMARY KEY ([Id]),
-    CONSTRAINT [FK_Increments_Distributions_DistributionId] FOREIGN KEY ([DistributionId]) REFERENCES [Distributions] ([Id]) ON DELETE CASCADE
-);
-GO
-
-
 CREATE TABLE [EmployeeProject] (
     [MembersId] int NOT NULL,
     [ProjectsId] int NOT NULL,
@@ -69,9 +49,7 @@ CREATE TABLE [Sprints] (
     [EndDate] datetime2 NULL,
     [EstimatedWorkHours] int NOT NULL,
     [Status] nvarchar(max) NOT NULL,
-    [DistributionId] int NULL,
     CONSTRAINT [PK_Sprints] PRIMARY KEY ([Id]),
-    CONSTRAINT [FK_Sprints_Distributions_DistributionId] FOREIGN KEY ([DistributionId]) REFERENCES [Distributions] ([Id]),
     CONSTRAINT [FK_Sprints_Employees_ScrumMasterId] FOREIGN KEY ([ScrumMasterId]) REFERENCES [Employees] ([Id]) ON DELETE CASCADE,
     CONSTRAINT [FK_Sprints_Projects_ProjectId] FOREIGN KEY ([ProjectId]) REFERENCES [Projects] ([Id]) ON DELETE CASCADE
 );
@@ -86,19 +64,6 @@ CREATE TABLE [UserStories] (
     [Priority] int NOT NULL,
     CONSTRAINT [PK_UserStories] PRIMARY KEY ([Id]),
     CONSTRAINT [FK_UserStories_Projects_ProjectId] FOREIGN KEY ([ProjectId]) REFERENCES [Projects] ([Id]) ON DELETE CASCADE
-);
-GO
-
-
-CREATE TABLE [Features] (
-    [Id] int NOT NULL IDENTITY,
-    [SprintId] int NOT NULL,
-    [IncrementId] int NOT NULL,
-    [Name] nvarchar(150) NOT NULL,
-    [Description] nvarchar(600) NOT NULL,
-    CONSTRAINT [PK_Features] PRIMARY KEY ([Id]),
-    CONSTRAINT [FK_Features_Increments_IncrementId] FOREIGN KEY ([IncrementId]) REFERENCES [Increments] ([Id]) ON DELETE CASCADE,
-    CONSTRAINT [FK_Features_Sprints_SprintId] FOREIGN KEY ([SprintId]) REFERENCES [Sprints] ([Id]) ON DELETE CASCADE
 );
 GO
 
@@ -154,22 +119,6 @@ GO
 
 
 CREATE UNIQUE INDEX [IX_Employees_Username] ON [Employees] ([Username]);
-GO
-
-
-CREATE INDEX [IX_Features_IncrementId] ON [Features] ([IncrementId]);
-GO
-
-
-CREATE INDEX [IX_Features_SprintId] ON [Features] ([SprintId]);
-GO
-
-
-CREATE INDEX [IX_Increments_DistributionId] ON [Increments] ([DistributionId]);
-GO
-
-
-CREATE INDEX [IX_Sprints_DistributionId] ON [Sprints] ([DistributionId]);
 GO
 
 
