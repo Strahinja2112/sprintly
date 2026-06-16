@@ -57,13 +57,12 @@ partial class ProjectsForm {
     TBoxSearch.Font = new Font("Tahoma", 11F);
     TBoxSearch.ForeColor = Color.DimGray;
     TBoxSearch.Image = null;
-    TBoxSearch.Location = new Point(19, 159);
-    TBoxSearch.Margin = new Padding(3, 4, 3, 4);
+    TBoxSearch.Location = new Point(17, 119);
     TBoxSearch.MaxLength = 32767;
     TBoxSearch.Multiline = true;
     TBoxSearch.Name = "TBoxSearch";
     TBoxSearch.ReadOnly = false;
-    TBoxSearch.Size = new Size(431, 55);
+    TBoxSearch.Size = new Size(377, 41);
     TBoxSearch.TabIndex = 16;
     TBoxSearch.TextAlignment = HorizontalAlignment.Left;
     TBoxSearch.UseSystemPasswordChar = false;
@@ -72,11 +71,10 @@ partial class ProjectsForm {
     // DateTimePicker
     // 
     DateTimePicker.FontSize = ReaLTaiizor.Extension.Poison.PoisonDateTimeSize.Medium;
-    DateTimePicker.Location = new Point(178, 415);
-    DateTimePicker.Margin = new Padding(3, 4, 3, 4);
-    DateTimePicker.MinimumSize = new Size(0, 30);
+    DateTimePicker.Location = new Point(156, 311);
+    DateTimePicker.MinimumSize = new Size(0, 29);
     DateTimePicker.Name = "DateTimePicker";
-    DateTimePicker.Size = new Size(241, 30);
+    DateTimePicker.Size = new Size(211, 30);
     DateTimePicker.TabIndex = 29;
     DateTimePicker.ValueChanged += DateTimePicker_ValueChanged;
     // 
@@ -86,9 +84,9 @@ partial class ProjectsForm {
     LabelDate.BackColor = Color.Transparent;
     LabelDate.Font = new Font("Segoe UI", 13F);
     LabelDate.ForeColor = Color.FromArgb(76, 76, 77);
-    LabelDate.Location = new Point(171, 377);
+    LabelDate.Location = new Point(150, 283);
     LabelDate.Name = "LabelDate";
-    LabelDate.Size = new Size(160, 30);
+    LabelDate.Size = new Size(134, 25);
     LabelDate.TabIndex = 28;
     LabelDate.Text = "Datum početka";
     // 
@@ -100,10 +98,9 @@ partial class ProjectsForm {
     ComboBoxStatus.EnabledCalc = true;
     ComboBoxStatus.FormattingEnabled = true;
     ComboBoxStatus.ItemHeight = 20;
-    ComboBoxStatus.Location = new Point(16, 416);
-    ComboBoxStatus.Margin = new Padding(3, 4, 3, 4);
+    ComboBoxStatus.Location = new Point(14, 312);
     ComboBoxStatus.Name = "ComboBoxStatus";
-    ComboBoxStatus.Size = new Size(155, 26);
+    ComboBoxStatus.Size = new Size(136, 26);
     ComboBoxStatus.TabIndex = 25;
     ComboBoxStatus.SelectedIndexChanged += ComboBoxStatus_SelectedIndexChanged;
     // 
@@ -113,9 +110,9 @@ partial class ProjectsForm {
     dungeonLabel7.BackColor = Color.Transparent;
     dungeonLabel7.Font = new Font("Segoe UI", 13F);
     dungeonLabel7.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel7.Location = new Point(16, 379);
+    dungeonLabel7.Location = new Point(14, 284);
     dungeonLabel7.Name = "dungeonLabel7";
-    dungeonLabel7.Size = new Size(70, 30);
+    dungeonLabel7.Size = new Size(60, 25);
     dungeonLabel7.TabIndex = 23;
     dungeonLabel7.Text = "Status";
     // 
@@ -133,10 +130,9 @@ partial class ProjectsForm {
     PanelRightContent.Controls.Add(bigLabel2);
     PanelRightContent.Controls.Add(dungeonLabel7);
     PanelRightContent.Dock = DockStyle.Right;
-    PanelRightContent.Location = new Point(687, 0);
-    PanelRightContent.Margin = new Padding(3, 4, 3, 4);
+    PanelRightContent.Location = new Point(601, 0);
     PanelRightContent.Name = "PanelRightContent";
-    PanelRightContent.Size = new Size(438, 628);
+    PanelRightContent.Size = new Size(383, 471);
     PanelRightContent.TabIndex = 15;
     // 
     // TBoxDescription
@@ -145,13 +141,12 @@ partial class ProjectsForm {
     TBoxDescription.Font = new Font("Tahoma", 11F);
     TBoxDescription.ForeColor = Color.DimGray;
     TBoxDescription.Image = null;
-    TBoxDescription.Location = new Point(16, 203);
-    TBoxDescription.Margin = new Padding(3, 4, 3, 4);
+    TBoxDescription.Location = new Point(14, 152);
     TBoxDescription.MaxLength = 32767;
     TBoxDescription.Multiline = true;
     TBoxDescription.Name = "TBoxDescription";
     TBoxDescription.ReadOnly = false;
-    TBoxDescription.Size = new Size(403, 171);
+    TBoxDescription.Size = new Size(353, 128);
     TBoxDescription.TabIndex = 35;
     TBoxDescription.TextAlignment = HorizontalAlignment.Left;
     TBoxDescription.UseSystemPasswordChar = false;
@@ -162,9 +157,9 @@ partial class ProjectsForm {
     dungeonLabel2.BackColor = Color.Transparent;
     dungeonLabel2.Font = new Font("Segoe UI", 13F);
     dungeonLabel2.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel2.Location = new Point(16, 167);
+    dungeonLabel2.Location = new Point(14, 125);
     dungeonLabel2.Name = "dungeonLabel2";
-    dungeonLabel2.Size = new Size(63, 30);
+    dungeonLabel2.Size = new Size(54, 25);
     dungeonLabel2.TabIndex = 34;
     dungeonLabel2.Text = "Opis ";
     // 
@@ -180,11 +175,10 @@ partial class ProjectsForm {
     ButtonSave.EnabledCalc = true;
     ButtonSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButtonSave.ForeColor = Color.White;
-    ButtonSave.Location = new Point(16, 559);
-    ButtonSave.Margin = new Padding(3, 4, 3, 4);
+    ButtonSave.Location = new Point(14, 419);
     ButtonSave.Name = "ButtonSave";
     ButtonSave.OverColor = Color.DimGray;
-    ButtonSave.Size = new Size(403, 53);
+    ButtonSave.Size = new Size(353, 40);
     ButtonSave.TabIndex = 7;
     ButtonSave.Text = "Sačuvaj";
     ButtonSave.Click += ButtonSave_Click;
@@ -195,13 +189,12 @@ partial class ProjectsForm {
     TBoxProjectName.Font = new Font("Tahoma", 11F);
     TBoxProjectName.ForeColor = Color.DimGray;
     TBoxProjectName.Image = null;
-    TBoxProjectName.Location = new Point(16, 108);
-    TBoxProjectName.Margin = new Padding(3, 4, 3, 4);
+    TBoxProjectName.Location = new Point(14, 81);
     TBoxProjectName.MaxLength = 32767;
     TBoxProjectName.Multiline = false;
     TBoxProjectName.Name = "TBoxProjectName";
     TBoxProjectName.ReadOnly = false;
-    TBoxProjectName.Size = new Size(403, 46);
+    TBoxProjectName.Size = new Size(353, 41);
     TBoxProjectName.TabIndex = 8;
     TBoxProjectName.TextAlignment = HorizontalAlignment.Left;
     TBoxProjectName.UseSystemPasswordChar = false;
@@ -212,9 +205,9 @@ partial class ProjectsForm {
     dungeonLabel3.BackColor = Color.Transparent;
     dungeonLabel3.Font = new Font("Segoe UI", 13F);
     dungeonLabel3.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel3.Location = new Point(16, 72);
+    dungeonLabel3.Location = new Point(14, 54);
     dungeonLabel3.Name = "dungeonLabel3";
-    dungeonLabel3.Size = new Size(50, 30);
+    dungeonLabel3.Size = new Size(42, 25);
     dungeonLabel3.TabIndex = 5;
     dungeonLabel3.Text = "Ime";
     // 
@@ -226,7 +219,7 @@ partial class ProjectsForm {
     bigLabel2.ForeColor = Color.DarkSlateGray;
     bigLabel2.Location = new Point(0, 0);
     bigLabel2.Name = "bigLabel2";
-    bigLabel2.Size = new Size(438, 73);
+    bigLabel2.Size = new Size(383, 55);
     bigLabel2.TabIndex = 1;
     bigLabel2.Text = "Title";
     bigLabel2.TextAlign = ContentAlignment.MiddleCenter;
@@ -237,9 +230,9 @@ partial class ProjectsForm {
     bigLabel1.BackColor = Color.Transparent;
     bigLabel1.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
     bigLabel1.ForeColor = Color.DarkSlateGray;
-    bigLabel1.Location = new Point(14, 7);
+    bigLabel1.Location = new Point(12, 5);
     bigLabel1.Name = "bigLabel1";
-    bigLabel1.Size = new Size(479, 57);
+    bigLabel1.Size = new Size(387, 46);
     bigLabel1.TabIndex = 10;
     bigLabel1.Text = "Upravljanje Projektima";
     // 
@@ -271,8 +264,7 @@ partial class ProjectsForm {
     DGVProjects.EnableHeadersVisualStyles = false;
     DGVProjects.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
     DGVProjects.GridColor = Color.FromArgb(255, 255, 255);
-    DGVProjects.Location = new Point(19, 221);
-    DGVProjects.Margin = new Padding(3, 4, 3, 4);
+    DGVProjects.Location = new Point(17, 166);
     DGVProjects.Name = "DGVProjects";
     DGVProjects.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
     dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -288,7 +280,7 @@ partial class ProjectsForm {
     DGVProjects.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
     DGVProjects.ScrollBars = ScrollBars.None;
     DGVProjects.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-    DGVProjects.Size = new Size(650, 384);
+    DGVProjects.Size = new Size(569, 288);
     DGVProjects.TabIndex = 12;
     DGVProjects.Theme = ReaLTaiizor.Enum.Poison.ThemeStyle.Light;
     DGVProjects.CellClick += DGVProjects_CellClick;
@@ -298,9 +290,9 @@ partial class ProjectsForm {
     dungeonLabel1.BackColor = Color.Transparent;
     dungeonLabel1.Font = new Font("Segoe UI", 11F);
     dungeonLabel1.ForeColor = Color.FromArgb(76, 76, 77);
-    dungeonLabel1.Location = new Point(19, 79);
+    dungeonLabel1.Location = new Point(17, 59);
     dungeonLabel1.Name = "dungeonLabel1";
-    dungeonLabel1.Size = new Size(655, 60);
+    dungeonLabel1.Size = new Size(573, 45);
     dungeonLabel1.TabIndex = 11;
     dungeonLabel1.Text = "Ovo je stranica na kojoj možete upravljati projektima, dodati nove projekte, ili menjati postojeće.";
     // 
@@ -321,11 +313,10 @@ partial class ProjectsForm {
     ButtonDelete.EnabledCalc = true;
     ButtonDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButtonDelete.ForeColor = Color.DarkSlateGray;
-    ButtonDelete.Location = new Point(457, 160);
-    ButtonDelete.Margin = new Padding(3, 4, 3, 4);
+    ButtonDelete.Location = new Point(400, 120);
     ButtonDelete.Name = "ButtonDelete";
     ButtonDelete.OverColor = Color.FromArgb(242, 242, 242);
-    ButtonDelete.Size = new Size(103, 53);
+    ButtonDelete.Size = new Size(90, 40);
     ButtonDelete.TabIndex = 13;
     ButtonDelete.Text = "Obriši";
     ButtonDelete.Click += ButtonProjectDelete_Click;
@@ -342,21 +333,20 @@ partial class ProjectsForm {
     ButtonAdd.EnabledCalc = true;
     ButtonAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
     ButtonAdd.ForeColor = Color.White;
-    ButtonAdd.Location = new Point(567, 160);
-    ButtonAdd.Margin = new Padding(3, 4, 3, 4);
+    ButtonAdd.Location = new Point(496, 120);
     ButtonAdd.Name = "ButtonAdd";
     ButtonAdd.OverColor = Color.DimGray;
     ButtonAdd.RightToLeft = RightToLeft.Yes;
-    ButtonAdd.Size = new Size(103, 53);
+    ButtonAdd.Size = new Size(90, 40);
     ButtonAdd.TabIndex = 14;
     ButtonAdd.Text = "Dodaj";
     ButtonAdd.Click += ButtonProjectAdd_Click;
     // 
     // ProjectsForm
     // 
-    AutoScaleDimensions = new SizeF(8F, 20F);
+    AutoScaleDimensions = new SizeF(7F, 15F);
     AutoScaleMode = AutoScaleMode.Font;
-    ClientSize = new Size(1125, 628);
+    ClientSize = new Size(984, 471);
     Controls.Add(TBoxSearch);
     Controls.Add(PanelRightContent);
     Controls.Add(bigLabel1);
@@ -364,9 +354,8 @@ partial class ProjectsForm {
     Controls.Add(dungeonLabel1);
     Controls.Add(ButtonDelete);
     Controls.Add(ButtonAdd);
-    Margin = new Padding(3, 4, 3, 4);
     Name = "ProjectsForm";
-    Text = "ProjectForm";
+    Text = " ";
     Load += ProjectsForm_Load;
     PanelRightContent.ResumeLayout(false);
     PanelRightContent.PerformLayout();

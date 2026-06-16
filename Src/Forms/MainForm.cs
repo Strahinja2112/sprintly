@@ -1,4 +1,5 @@
 ﻿using Sprintly.Src.Data;
+using Sprintly.Src.Data.Models;
 using Sprintly.Src.Forms;
 using Sprintly.Src.Services;
 
@@ -31,6 +32,10 @@ public partial class MainForm : BaseForm {
     LabelEmployees.Click += PanelEmployees_Click!;
     LabelUserStories.Click += PanelUserStories_Click!;
     LabelWorkTasks.Click += PanelWorkTasks_Click!;
+
+    if (AuthService.CurrentUser.Type != EmployeeType.Developer && AuthService.CurrentUser.Type != EmployeeType.Admin) {
+      PanelWorkLog.Hide();
+    }
 
     LabelUserName.Text = "@" + AuthService.CurrentUser.Username;
     LabelUserType.Text = AuthService.CurrentUser.Type.ToString();

@@ -15,7 +15,7 @@ public static class PermissionsService {
     return allowedRoles.Contains(AuthService.CurrentUser.Type);
   }
 
-  private static bool CurrentUserHasAtleastRole(EmployeeType requiredRole) {
+  public static bool CurrentUserHasAtleastRole(EmployeeType requiredRole) {
     if (AuthService.CurrentUser == null) {
       return false;
     }
@@ -30,7 +30,7 @@ public static class PermissionsService {
 
   public static bool CanCurrentUserLogWork() => HasAnyRole();
 
-  public static bool CanCurrentUserManageSprints() => HasAnyRole(EmployeeType.Admin);
+  public static bool CanCurrentUserManageSprints() => CurrentUserHasAtleastRole(EmployeeType.ProductOwner);
 
   public static bool CanCurrentUserManageUserStories() => CurrentUserHasAtleastRole(EmployeeType.ProductOwner);
 
